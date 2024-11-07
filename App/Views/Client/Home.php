@@ -21,7 +21,7 @@ class Home extends BaseView
             <style>
                 /* Custom styles for a more dynamic homepage */
                 .banner {
-                    background-image: url('https://sanhangre.net/image/data/danhmuc/2018/do-tien-ich.jpg');
+                    background-image: url('https://bizweb.dktcdn.net/100/408/532/themes/894841/assets/slider_1.jpg?1676272915536');
                     /* Example image */
                     background-size: cover;
                     background-position: center;
@@ -112,6 +112,8 @@ class Home extends BaseView
                 </div>
             </section>
 
+            
+
 
             <!-- Special Benefits Section -->
             <section class="section bg-light">
@@ -132,6 +134,10 @@ class Home extends BaseView
                         </div>
                     </div>
                 </div>
+            </section >
+            <img src="https://bizweb.dktcdn.net/100/408/532/themes/894841/assets/banner-leng.jpg?1676272915536" class="img-fluid" alt="...">
+            <section>
+
             </section>
 
             <!-- Customer Feedback Section -->
