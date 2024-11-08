@@ -16,7 +16,7 @@ class Home extends BaseView
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>LVK - Cửa Hàng Tiện Ích Gia Đình</title>
+            <title>LVK House - Cửa Hàng Tiện Ích Gia Đình</title>
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
             <style>
                 /* Custom styles for a more dynamic homepage */
@@ -92,7 +92,7 @@ class Home extends BaseView
             <!-- Banner Section -->
             <section class="banner">
                 <div class="overlay">
-                    <h1 class="display-4">Cửa Hàng Tiện Ích Gia Đình LVK</h1>
+                    <h1 class="display-4">Cửa Hàng Tiện Ích Gia Đình LVK House</h1>
                     <p class="lead">Sản phẩm thiết yếu cho mọi gia đình</p>
                     <a href="products" class="btn btn-light">Mua Ngay</a>
                 </div>
