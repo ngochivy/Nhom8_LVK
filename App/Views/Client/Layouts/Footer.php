@@ -10,7 +10,7 @@ class Footer extends BaseView
     {
 ?>
 
-        <footer class="footer">Đây là footer client. Copyright &copy; Chihihi</footer>
+        <footer class="footer ">LVK. Copyright &copy;</footer>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
