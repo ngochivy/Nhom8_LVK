@@ -23,18 +23,18 @@ class ProductController
         $categories = [
             [
                 'id' => 1,
-                'name' => 'Category 1',
+                'name' => 'Nhà bếp',
                 'status' => 1
             ],
             [
                 'id' => 2,
-                'name' => 'Category 2',
+                'name' => 'Nhà vệ sinh/nhà tắm',
                 'status' => 1
             ],
             [
                 'id' => 3,
-                'name' => 'Category 3',
-                'status' => 0
+                'name' => 'Đồ dùng thông minh',
+                'status' => 1
             ],
 
         ];
@@ -45,7 +45,7 @@ class ProductController
                 'description' => 'Nhập khẩu chính hãng, Bảo hành chính hãng, Động cơ mạnh mẽ',
                 'price' => 300000,
                 'discount_price' => 20000,
-                'image' => 'ban-chai-dien-xiaomi-mijia-smart-sonic-t500-thumbnail-300x300.jpg',
+                'image' => 'product-1.webp',
                 'status' => 1
             ],
             [
@@ -54,7 +54,7 @@ class ProductController
                 'description' => 'Nhập khẩu chính hãng, Bảo hành chính hãng, Nấu nướng đa năng',
                 'price' => 1000000,
                 'discount_price' => 50000,
-                'image' => 'bep-lau-nuong-da-nang-bear-dhg-c40d5-thumbnail.jpg',
+                'image' => 'product-2.webp',
                 'status' => 1
             ],
             [
@@ -63,34 +63,34 @@ class ProductController
                 'description' => 'Nhập khẩu chính hãng, Bảo hành chính hãng,Sử dụng bền bỉ',
                 'price' => 150000,
                 'discount_price' => 30000,
-                'image' => 'bo-lay-ray-tai-co-den-kiem-bam-mong-2in1-xiaomi-huohou-thumbnail-300x300.jpg',
+                'image' => 'product-3.webp',
                 'status' => 1
             ],
             [
-                'id' => 3,
+                'id' => 4,
                 'name' => 'Bộ sạc 5 cổng USB',
                 'description' => 'Nhập khẩu chính hãng, Bảo hành chính hãng, Sử dụng bền bỉ',
                 'price' => 300000,
                 'discount_price' => 30000,
-                'image' => 'bo-sac-5-cong-USB-Anker-01-300x300.jpg',
+                'image' => 'product-4.webp',
                 'status' => 1
             ],
             [
-                'id' => 3,
+                'id' => 5,
                 'name' => 'Chuông cửa thông minh Xiaomi',
                 'description' => 'Nhập khẩu chính hãng, Bảo hành chính hãng',
                 'price' => 1200000,
                 'discount_price' => 100000,
-                'image' => 'chuong-cua-thong-minh-xiaomi-cat-eye-lsc-m01-thumbnail-600x600.jpg',
+                'image' => 'product-5.webp',
                 'status' => 1
             ],
             [
-                'id' => 3,
+                'id' => 6,
                 'name' => 'Máy nấu ăn đa năng',
                 'description' => 'Nhập khẩu chính hãng, Bảo hành chính hãng, Nấu nướng đa năng, Sử dụng bền bỉ',
                 'price' => 800000,
                 'discount_price' => 30000,
-                'image' => 'may-nau-an-da-nang-fanlai-fl-m1301-thumbnail-300x300.jpg',
+                'image' => 'product-6.webp',
                 'status' => 1
             ],
 

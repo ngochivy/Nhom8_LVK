@@ -36,11 +36,12 @@ class Category extends BaseView
                             foreach ($data['products'] as $item) :
                             ?>
 
+
                                 <div class="col-md-4">
                                     <div class="card mb-4 shadow-sm">
                                         <img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" class="card-img-top" alt="" style="width: 100%; display: block;" data-holder-rendered="true">
                                         <div class="card-body">
-                                            <p class="card-text"><?= $item['name'] ?></p>
+                                            <p class="card-text product-name"><?= $item['name'] ?></p>
                                             <?php
                                             if ($item['discount_price'] > 0) :
                                             ?>
