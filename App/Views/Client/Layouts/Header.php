@@ -15,148 +15,163 @@ class Header extends BaseView
         <html lang="en">
 
         <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Document</title>
-            <!-- Bootstrap CSS -->
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-            <link rel="stylesheet" href="<?= APP_URL ?>/public/assets/client/css/style.css">
+           
+
+            <!-- Favicon -->
+            <link rel="icon" href="/favicon.png" />
+
+            <!-- Google Web Fonts -->
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+            <!-- Font Awesome -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+            <!-- Libraries Stylesheet -->
+            <link href="/public/assets/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+            <!-- Customized Bootstrap Stylesheet -->
+            
+            <link href="/public/assets/client/css/style.css" rel="stylesheet">
+            <link href="/public/assets/client/css/style.min.css" rel="stylesheet">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         </head>
-        <style>
-            /* General styling for the navbar */
-            .navbar {
-                background-color: #333;
-                padding: 10px 20px;
-            }
-
-            /* Center logo styling */
-            .navbar .navbar-brand {
-                font-size: 1.5rem;
-                font-weight: bold;
-                color: #fff !important;
-            }
-
-            .navbar .navbar-brand:hover {
-                color: #ff4c4c !important;
-                text-decoration: none;
-            }
-
-            /* Left and right navigation links styling */
-            .navbar-nav .nav-link {
-                color: #fff !important;
-                font-weight: 500;
-                margin: 0 10px;
-                transition: color 0.3s ease;
-            }
-
-            .navbar-nav .nav-link:hover {
-                color: #ff4c4c !important;
-            }
-
-            /* Search form styling (if included in the future) */
-            .form-inline .form-control {
-                border-radius: 20px;
-                padding: 5px 15px;
-                border: none;
-            }
-
-            .form-inline .btn {
-                border-radius: 20px;
-                padding: 5px 15px;
-                color: #fff;
-                background-color: #ff4c4c;
-                border: none;
-            }
-
-            .form-inline .btn:hover {
-                background-color: #ff3333;
-            }
-
-            /* Mobile responsiveness for smaller screens */
-            @media (max-width: 768px) {
-                .navbar .navbar-brand {
-                    margin: 0 auto;
-                }
-
-                .navbar .navbar-collapse {
-                    text-align: center;
-                }
-
-                .navbar-nav {
-                    flex-direction: column;
-                }
-
-                .navbar-nav .nav-link {
-                    margin: 5px 0;
-                }
-            }
-
-            /* Logo spacing */
-            .navbar-brand {
-                margin: 0 auto;
-                padding: 0;
-            }
-
-            /* Cart, login, and register icons styling */
-            .navbar-nav .nav-item {
-                display: flex;
-                align-items: center;
-            }
-
-            .navbar-nav .nav-item .nav-link {
-                display: flex;
-                align-items: center;
-            }
-
-            .navbar-nav .nav-item .nav-link i {
-                margin-right: 5px;
-                font-size: 1.2em;
-            }
-
-            /* Optional: Highlight the active link */
-            .navbar-nav .nav-item.active .nav-link {
-                color: #ff4c4c !important;
-                font-weight: bold;
-            }
-        </style>
 
         <body>
-
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <!-- Left side links -->
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Trang chủ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/products">Sản phẩm</a>
-                        </li>
-                    </ul>
-
-                    <!-- Centered logo -->
-                    <a class="navbar-brand mx-auto" href="/"><img src="/public/assets/client/images/logo.jpg" class="rounded-circle" style="width:100px; height:100px;"></a>
-
-                    <!-- Right side links -->
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Giỏ hàng</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Đăng nhập</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Đăng ký</a>
-                        </li>
-                    </ul>
+            <!-- Topbar Start -->
+            <div class="container-fluid">
+                <div class="row bg-secondary py-2 px-xl-5">
+                    <div class="col-lg-6 d-none d-lg-block">
+                        <div class="d-inline-flex align-items-center">
+                            <a class="text-dark" href="">FAQs</a>
+                            <span class="text-muted px-2">|</span>
+                            <a class="text-dark" href="">Hỗ trợ</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 text-center text-lg-right">
+                        <div class="d-inline-flex align-items-center">
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a class="text-dark px-2" href="">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a class="text-dark pl-2" href="">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </nav>
+                <div class="row align-items-center py-3 px-xl-5">
+                    <div class="col-lg-3 d-none d-lg-block">
+                        <a href="/" class="text-decoration-none">
+                            <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">LVK</span>HOUSE</h1>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-6 text-left">
+                        <form action="">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                <div class="input-group-append">
+                                    <span class="input-group-text bg-transparent text-primary">
+                                        <i class="fa fa-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-3 col-6 text-right">
+                        <a href="" class="btn border">
+                            <i class="fas fa-heart text-primary"></i>
+                            
+                        </a>
+                        <a href="" class="btn border">
+                            <i class="fas fa-shopping-cart text-primary"></i>
+                            
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Topbar End -->
 
-    <?php
+
+            <!-- Navbar Start -->
+            <div class="container-fluid ">
+                <div class="row border-top px-xl-5">
+                    <!-- <div class="col-lg-3 d-none d-lg-block">
+                        <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px; font-family:montserrat;">
+                            <h6 class="m-0">Danh mục</h6>
+                            <i class="fa fa-angle-down text-dark"></i>
+                        </a>
+                        <nav class="collapse navbar  navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
+                            <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
+                                <a href="" class="nav-item nav-link">Shirts</a>
+                                <a href="" class="nav-item nav-link">Jeans</a>
+                                <a href="" class="nav-item nav-link">Swimwear</a>
+                                <a href="" class="nav-item nav-link">Sleepwear</a>
+                                <a href="" class="nav-item nav-link">Sportswear</a>
+                                <a href="" class="nav-item nav-link">Jumpsuits</a>
+                                <a href="" class="nav-item nav-link">Blazers</a>
+                                <a href="" class="nav-item nav-link">Jackets</a>
+                                <a href="" class="nav-item nav-link">Shoes</a>
+                            </div>
+                        </nav>
+                    </div> -->
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0" style="font-family:montserrat; font-weight:500;">
+                            <a href="" class="text-decoration-none d-block d-lg-none">
+                                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1">LVK</span>House</h1>
+                            </a>
+                            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                                <div class="navbar-nav mr-auto py-0">
+                                    <a href="/" class="nav-item nav-link ">Trang chủ</a>
+                                    <a href="/products" class="nav-item nav-link">Sản phẩm</a>
+                                    <a href="detail.html" class="nav-item nav-link">Giới thiệu</a>
+                                    <!-- <div class="nav-item dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                                        <div class="dropdown-menu rounded-0 m-0">
+                                            <a href="cart.html" class="dropdown-item">Shopping Cart</a>
+                                            <a href="checkout.html" class="dropdown-item">Checkout</a>
+                                        </div>
+                                    </div> -->
+                                    <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                                </div>
+                                <div class="navbar-nav ml-auto py-0">
+                                    <a href="" class="nav-item nav-link">Đăng nhập</a>
+                                    <a href="" class="nav-item nav-link">Đăng ký</a>
+                                </div>
+                            </div>
+                        </nav>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- Navbar End -->
+        </body>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="/public/assets/client/lib/easing/easing.min.js"></script>
+        <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <!-- Contact Javascript File -->
+        <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
+        <script src="/public/assets/client/mail/contact.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="/public/assets/client/js/main.js"></script>
+
+<?php
     }
 }
-    ?>
+?>

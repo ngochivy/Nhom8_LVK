@@ -13,6 +13,8 @@ class HomeController
     // hiển thị danh sách
     public static function index()
     {
+
+        
         Header::render();
         Home::render();
         Footer::render();

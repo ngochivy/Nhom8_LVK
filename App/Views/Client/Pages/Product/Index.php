@@ -11,218 +11,192 @@ class Index extends BaseView
     {
 
 ?>
+
         <!DOCTYPE html>
-        <html lang="vi">
+        <html lang="en">
 
         <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Trang Sản Phẩm</title>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-            <style>
-                /* CSS cho sidebar bộ lọc */
-                .filter-sidebar {
-                    background-color: #f8f9fa;
-                    padding: 15px;
-                    border-radius: 8px;
-                    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                }
+            <meta charset="utf-8">
+            <title>LVK House - Shop</title>
+            <!-- Favicon -->
+            <link rel="icon" href="/favicon.png" />
 
-                .filter-title {
-                    font-size: 1.2em;
-                    font-weight: bold;
-                    color: #333;
-                    margin-bottom: 15px;
-                    border-bottom: 2px solid #d9534f;
-                    padding-bottom: 5px;
-                }
+            <!-- Google Web Fonts -->
+            <link rel="preconnect" href="https://fonts.gstatic.com">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-                /* Phần lọc giá */
-                .price-filter {
-                    margin-top: 20px;
-                }
+            <!-- Font Awesome -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-                .price-range input[type="range"] {
-                    width: 100%;
-                    appearance: none;
-                    height: 8px;
-                    background: #ddd;
-                    outline: none;
-                    opacity: 0.7;
-                    transition: opacity .2s;
-                }
+            <!-- Libraries Stylesheet -->
+            <link href="/public/assets/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-                .price-range input[type="range"]:hover {
-                    opacity: 1;
-                }
+            <!-- Customized Bootstrap Stylesheet -->
 
-                .price-values {
-                    display: flex;
-                    justify-content: space-between;
-                    margin-top: 5px;
-                    font-size: 0.9em;
-                }
+            <link href="/public/assets/client/css/style.css" rel="stylesheet">
 
-                .btn-filter {
-                    margin-top: 10px;
-                    background-color: #d9534f;
-                    color: #fff;
-                    padding: 5px 15px;
-                    border-radius: 20px;
-                    border: none;
-                    cursor: pointer;
-                }
-
-                .btn-filter:hover {
-                    background-color: #c9302c;
-                }
-
-                /* Phần lọc thương hiệu */
-                .brand-filter {
-                    margin-top: 20px;
-                }
-
-                .brand-options label {
-                    display: block;
-                    font-size: 0.9em;
-                    margin: 5px 0;
-                    cursor: pointer;
-                }
-
-                .brand-options input[type="checkbox"] {
-                    margin-right: 8px;
-                }
-
-                /* CSS cho sản phẩm */
-    .card {
-        cursor: pointer;
-        transition: transform 0.3s ease;
-        position: relative;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-    }
-
-    .btn-add-to-cart {
-        display: none;
-        position: absolute;
-        bottom: 100px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #ffffff;
-        color: #000000;
-        border: 1px solid #ddd;
-        width: 200px;
-        height: 30px;
-        border-radius: 25px;
-        font-size: 1em;
-        text-align: center;
-        line-height: 25px; /* Điều chỉnh để chữ nằm giữa theo chiều dọc */
-        cursor: pointer;
-    }
-
-    .btn-add-to-cart:hover {
-        background-color: red;
-        color: white;
-    }
-
-    .card:hover .btn-add-to-cart {
-        display: block;
-    }
-            </style>
         </head>
 
-        <body>
+        <!-- Page Header Start -->
+        <div class="container-fluid bg-secondary mb-5">
+            <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+                <h1 class="font-weight-semi-bold text-uppercase mb-3" style="font-family:roboto;">Cửa hàng</h1>
+                <div class="d-inline-flex">
+                    <p class="m-0"><a href="/">Trang chủ</a></p>
+                    <p class="m-0 px-2">-</p>
+                    <p class="m-0">Cửa hàng</p>
+                </div>
+            </div>
+        </div>
+        <!-- Page Header End -->
 
-            <div class="container mt-5 mb-5">
-                <div class="row">
-                    <!-- Sidebar Bộ Lọc -->
-                    <div class="col-md-3">
-                        <div class="filter-sidebar">
-                            <!-- Danh mục sản phẩm -->
-                            <h3 class="filter-title">Danh mục sản phẩm</h3>
-                            <?php Category::render($data['categories']); ?>
+        <!-- product -->
+        <div class="container-fluid pt-5">
+            <div class="row px-xl-5">
+                <!-- Shop Sidebar Start -->
+                <div class="col-lg-3 col-md-12">
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-4">Danh mục</h5>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <a href="?category=all" class="category-link">Tất cả</a>
+                            </li>
+                            <?php foreach ($data['categories'] as $category): ?>
+                                <li class="mb-3">
+                                    <a href="?category=<?= $category['id'] ?>" class="category-link"><?= $category['name'] ?></a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
 
-                            <!-- Bộ lọc giá -->
-                            <div class="price-filter mt-4">
-                                <h4 class="filter-title">Giá sản phẩm</h4>
-                                <div class="price-range">
-                                    <input type="range" min="0" max="100000000" step="100000" id="priceRange" oninput="updatePrice()">
-                                    <div class="price-values">
-                                        <span id="priceMin">0 đ</span> - <span id="priceMax">100.000.000 đ</span>
-                                    </div>
-                                    <button class="btn btn-filter" onclick="applyPriceFilter()">Lọc</button>
-                                </div>
+
+
+
+                    <div class="border-bottom mb-4 pb-4">
+                        <h5 class="font-weight-semi-bold mb-2" style="font-family:montserrat; font-weight:700;">Giá sản phẩm</h5>
+                        <form method="GET">
+                            <!-- Mức giá tối đa -->
+                            <div class="form-group">
+                                <label for="max_price"></label>
+                                <input type="range" class="form-range" id="max_price" name="max_price" value="<?php echo isset($_GET['max_price']) ? $_GET['max_price'] : 10000000; ?>" min="0" max="10000000" step="10000" onchange="updatePriceRange()">
+                                <output id="max_price_output"><?php echo isset($_GET['max_price']) ? number_format($_GET['max_price'], 0, ',', '.') : number_format(10000000, 0, ',', '.'); ?></output> VND
                             </div>
 
-                            <!-- Bộ lọc thương hiệu -->
-                            <div class="brand-filter mt-4">
-                                <h4 class="filter-title">Thương hiệu</h4>
-                                <div class="brand-options">
-                                    <label><input type="checkbox" name="brand" value="Cuckoo"> Cuckoo</label>
-                                    <label><input type="checkbox" name="brand" value="Danger"> Danger</label>
-                                    <label><input type="checkbox" name="brand" value="Fushen"> Fushen</label>
-                                    <label><input type="checkbox" name="brand" value="Justin"> Justin</label>
-                                    <label><input type="checkbox" name="brand" value="LG"> LG</label>
-                                    <label><input type="checkbox" name="brand" value="Lock&Lock"> Lock&Lock</label>
+                            <button type="submit" class="btn btn-primary">Áp dụng</button>
+                        </form>
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- Shop Product Start -->
+                <div class="col-lg-9 col-md-12">
+                    <div class="row pb-3">
+                        <div class="col-12 pb-1">
+                            <div class="d-flex align-items-center justify-content-between mb-4">
+                                <form action="">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search by name">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text bg-transparent text-primary">
+                                                <i class="fa fa-search"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="dropdown ml-4">
+                                    <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Lọc
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
+                                        <a class="dropdown-item" href="#">Latest</a>
+                                        <a class="dropdown-item" href="#">Popularity</a>
+                                        <a class="dropdown-item" href="#">Best Rating</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Phần hiển thị sản phẩm -->
-                    <div class="col-md-9">
-                        <?php if (count($data) && count($data['products'])) : ?>
-                            <h1 class="text-center mb-3">Sản phẩm</h1>
-                            <div class="row">
-                                <?php foreach ($data['products'] as $item) : ?>
-                                    <div class="col-md-4">
-                                        <div class="card mb-4 shadow-sm" onclick="window.location.href='/products/<?= $item['id'] ?>'">
-                                            <img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" class="card-img-top" alt="" style="width: 100%; display: block;" data-holder-rendered="true">
-                                            <div class="card-body">
-                                                <p class="card-text"><?= $item['name'] ?></p>
-                                                <?php if ($item['discount_price'] > 0) : ?>
-                                                    <p>
-                                                        <span class="text-muted"><strike><?= number_format($item['price']) ?> đ</strike></span>
-                                                        <span class="text-danger font-weight-bold"><?= number_format($item['price'] - $item['discount_price']) ?> đ</span>
-                                                    </p>
-                                                <?php else : ?>
-                                                    <p>Giá tiền: <?= number_format($item['price']) ?> đ</p>
-                                                <?php endif; ?>
-                                                <button class="btn-add-to-cart" onclick="event.stopPropagation(); addToCart(<?= $item['id'] ?>)">Thêm vào giỏ hàng</button>
+                        <!-- Phần hiển thị sản phẩm -->
+                        <div class="col-md-12">
+                            <?php if (count($data) && count($data['products'])) : ?>
+
+                                <div class="row">
+                                    <?php foreach ($data['products'] as $item) : ?>
+                                        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+                                            <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $item['id'] ?>'">
+                                                <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+                                                    <img class="img-fluid w-100" src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>">
+                                                </div>
+                                                <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
+                                                    <h6 class="text-truncate mb-3" style="font-family:roboto;"><?= $item['name'] ?></h6>
+                                                    <div class="d-flex justify-content-center">
+                                                        <?php if ($item['discount_price'] > 0) : ?>
+                                                            <h6><?= number_format($item['price'] - $item['discount_price']) ?> đ</h6>
+                                                            <h6 class="text-muted ml-2"><del><?= number_format($item['price']) ?> đ</del></h6>
+                                                        <?php else : ?>
+                                                            <h6><?= number_format($item['price']) ?> đ</h6>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer d-flex justify-content-between bg-light border d-wrap">
+                                                    <!-- <a href="/products/<?= $item['id'] ?>" class="btn btn-sm text-dark p-0 w-100">
+                                                        <i class="fas fa-eye text-primary mr-1"></i> Xem
+                                                    </a> -->
+                                                    <a href="#" class="btn btn-sm text-dark p-0" onclick="event.stopPropagation(); addToCart(<?= $item['id'] ?>)">
+                                                        <i class="fas fa-shopping-cart text-primary mr-1"></i> Thêm vào giỏ hàng
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php else : ?>
-                            <h3 class="text-center text-danger">Không có sản phẩm</h3>
-                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
+                            <?php else : ?>
+                                <h3 class="text-center text-danger">Không có sản phẩm</h3>
+                            <?php endif; ?>
+                        </div>
+
+
                     </div>
                 </div>
             </div>
+        </div>
 
-            <script>
-                function updatePrice() {
-                    const priceRange = document.getElementById("priceRange");
-                    const priceMin = document.getElementById("priceMin");
-                    const priceMax = document.getElementById("priceMax");
 
-                    const value = parseInt(priceRange.value);
-                    priceMin.innerText = value.toLocaleString('vi-VN') + ' đ';
-                    priceMax.innerText = (100000000 - value).toLocaleString('vi-VN') + ' đ';
-                }
 
-                function applyPriceFilter() {
-                    alert('Áp dụng bộ lọc giá!');
-                }
 
-                function addToCart(productId) {
-                    // Thêm logic thêm vào giỏ hàng, ví dụ:
-                    alert('Đã thêm sản phẩm ' + productId + ' vào giỏ hàng!');
-                }
-            </script>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="/public/assets/client/lib/easing/easing.min.js"></script>
+        <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
+
+        <!-- Contact Javascript File -->
+        <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
+        <script src="/public/assets/client/mail/contact.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="/public/assets/client/js/main.js"></script>
+
+        <script>
+            // Cập nhật giá trị hiển thị khi người dùng thay đổi giá trị của range
+            function updatePriceRange() {
+                let maxPrice = document.getElementById('max_price').value;
+
+                // Hiển thị giá trị với dấu chấm
+                document.getElementById('max_price_output').textContent = formatNumber(maxPrice);
+            }
+
+            // Hàm để format số tiền với dấu chấm
+            function formatNumber(number) {
+                return number.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            }
+        </script>
 
         </body>
 
