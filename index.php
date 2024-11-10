@@ -37,7 +37,7 @@ Route::get('/admin/categories/create', 'App\Controllers\Admin\CategoryController
 // POST /categories (tạo mới một loại sản phẩm)
 Route::post('/admin/categories', 'App\Controllers\Admin\CategoryController@store');
 
-// GET /categories/{id} (lấy chi tiết loại sản phẩm với id cụ thể)
+// GET /categories/{id} (lấy chi tiết loại sản phẩm với id cu the)
 Route::get('/admin/categories/{id}', 'App\Controllers\Admin\CategoryController@edit');
 
 // PUT /categories/{id} (update loại sản phẩm với id cụ thể)
