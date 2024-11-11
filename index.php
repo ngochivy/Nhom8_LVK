@@ -20,7 +20,7 @@ require_once 'config.php';
 // *** Client
 Route::get('/', 'App\Controllers\Client\HomeController@index');
 Route::get('/products', 'App\Controllers\Client\ProductController@index');
-Route::get('/gioithieu', 'App\Controllers\Client\HomeController@gioithieu');
+Route::get('/about', 'App\Controllers\Client\HomeController@about');
 
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
 

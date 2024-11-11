@@ -4,7 +4,7 @@ namespace App\Views\Client\Pages\Page;
 
 use App\Views\BaseView;
 
-class Gioithieu extends BaseView
+class About extends BaseView
 {
     public static function render($data = null)
     {
@@ -38,16 +38,16 @@ class Gioithieu extends BaseView
                     <div class="col-lg-6">
                         <div class="row g-3">
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="/App/Views/Client/Pages/Image/ig1.jpg">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="/public/assets/client/images/ig1.jpg">
                             </div>
                             <div class="col-6 text-start">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="/App/Views/Client/Pages/Image/ig2.jpg" style="margin-top: 40%;">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="/public/assets/client/images/ig2.jpg" style="margin-top: 40%;">
                             </div>
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="/App/Views/Client/Pages/Image/ig2.jpg">
+                                <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="/public/assets/client/images/ig5.jpg">
                             </div>
                             <div class="col-6 text-end">
-                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="/App/Views/Client/Pages/Image/ig3.jpg">
+                                <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="/public/assets/client/images/ig3.jpg">
                             </div>
                         </div>
                     </div>
@@ -59,7 +59,7 @@ class Gioithieu extends BaseView
                         <div class="row g-4 mb-4">
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">5</h1>
+                                    <h1  class="flex-shrink-0 display-5 text-primary mb-0" style="font-weight: bold;"  data-toggle="counter-up">5</h1>
                                     <div class="ps-4">
                                         <p class="mb-0">năm</p>
                                         <h6 class="text-uppercase mb-0">Kinh nghiệm</h6>
@@ -68,7 +68,7 @@ class Gioithieu extends BaseView
                             </div>
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center border-start border-5 border-primary px-3">
-                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" data-toggle="counter-up">17</h1>
+                                    <h1 class="flex-shrink-0 display-5 text-primary mb-0" style="font-weight: bold;"  data-toggle="counter-up">17</h1>
                                     <div class="ps-4">
                                         <p class="mb-0">Chi nhánh</p>
                                         <h6 class="text-uppercase mb-0">Bắc Trung Nam</h6>
@@ -94,12 +94,12 @@ class Gioithieu extends BaseView
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="/public//uploads//users//khang.jpg" alt="">
+                                <img class="img-fluid" src="/public//uploads//users/igkhang.png" alt="">
                             </div>
-                            <h5 class="mb-0">Full Name</h5>
-                            <small>Designation</small>
+                            <h5 class="mb-0">Lê Hoàng Khang</h5>
+                            <small>Bảo trì website</small>
                             <div class="d-flex justify-content-center mt-3">
-                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="https://www.facebook.com/profile.php?id=100067365274482"><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
                             </div>
@@ -108,12 +108,12 @@ class Gioithieu extends BaseView
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle overflow-hidden m-4">
-                                <img class="img-fluid" src="/public//uploads//users//vy.jpg" alt="">
+                                <img class="img-fluid" src="/public//uploads//users/igvy.png" alt="">
                             </div>
                             <h5 class="mb-0">Ngô Chí Vỹ</h5>
-                            <small>Designation</small>
+                            <small>Quản trị viên</small>
                             <div class="d-flex justify-content-center mt-3">
-                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="https://www.facebook.com/ZyNgo19"><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
                             </div>
@@ -122,12 +122,12 @@ class Gioithieu extends BaseView
                     <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
                         <div class="team-item text-center rounded overflow-hidden">
                             <div class="rounded-circle  overflow-hidden m-4">
-                                <img class="img-fluid" src="/public//uploads//users//linh.jpg" alt="">
+                                <img class="img-fluid" src="/public//uploads//users/iglinh.png" alt="">
                             </div>
                             <h5 class="mb-0">Trần Nhựt Linh</h5>
-                            <small>Designation</small>
+                            <small>Thiết kế website</small>
                             <div class="d-flex justify-content-center mt-3">
-                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                                <a class="btn btn-square btn-primary mx-1" href="https://www.facebook.com/profile.php?id=61559591994101"><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
                             </div>

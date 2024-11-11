@@ -157,7 +157,7 @@ class Header extends BaseView
                                 <div class="navbar-nav mr-auto py-0">
                                     <a href="/" class="nav-item nav-link ">Trang chủ</a>
                                     <a href="/products" class="nav-item nav-link">Sản phẩm</a>
-                                    <a href="/gioithieu" class="nav-item nav-link">Giới thiệu</a>
+                                    <a href="/about" class="nav-item nav-link">Giới thiệu</a>
                                     <!-- <div class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                         <div class="dropdown-menu rounded-0 m-0">

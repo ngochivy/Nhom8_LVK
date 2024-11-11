@@ -7,7 +7,7 @@ use App\Views\Client\Components\Notification;
 use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Home;
 use App\Views\Client\Layouts\Header;
-use App\Views\Client\Pages\Page\Gioithieu;
+use App\Views\Client\Pages\Page\About;
 
 class HomeController
 {
@@ -22,10 +22,10 @@ class HomeController
     }
 
     // hiển thị trang giới thiệu
-    public static function gioithieu() 
+    public static function about() 
     {
         Header::render();
-        Gioithieu::render(); 
+        About::render(); 
         Footer::render();
     }
 }
