@@ -50,7 +50,7 @@ class Home extends BaseView
                             <div class="p-3" style="max-width: 700px;">
                                 <h4 class="text-light text-uppercase font-weight-medium mb-3">Giảm 10% cho đơn hàng đầu tiên</h4>
                                 <h3 class="display-4 text-white font-weight-semi-bold mb-4" style="font-family:montserrat;">Đồ dùng nhà bếp</h3>
-                                <a href="" class="btn btn-light py-2 px-3">Mua ngay</a>
+                                <a href="" class="btn btn-light py-2 px-3 rounded-1">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@ class Home extends BaseView
                             <div class="p-3" style="max-width: 700px;">
                                 <h4 class="text-light text-uppercase font-weight-medium mb-3">LVK House</h4>
                                 <h3 class="display-4 text-white font-weight-semi-bold mb-4" style="font-family:montserrat;">Nâng tầm cuộc sống! Chất lượng, giá tốt</h3>
-                                <a href="/products" class="btn btn-light py-2 px-3">Mua ngay</a>
+                                <a href="/products" class="btn btn-light py-2 px-3 rounded-1">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -120,7 +120,7 @@ class Home extends BaseView
                             <div class="position-relative" style="z-index: 1;">
                                 <h5 class="text-uppercase text-primary mb-3">Giảm giá khi mua</h5>
                                 <h1 class="mb-4 font-weight-semi-bold" style="font-weight:roboto;">Đồ dùng nhà bếp</h1>
-                                <a href="/products?category=1" class="btn btn-outline-primary py-md-2 px-md-3">Mua ngay</a>
+                                <a href="/products?category=1" class="btn btn-outline-primary py-md-2 px-md-3 rounded-1">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -130,7 +130,7 @@ class Home extends BaseView
                             <div class="position-relative" style="z-index: 1;">
                                 <h5 class="text-uppercase text-primary mb-3">Nâng tần cuộc sống với</h5>
                                 <h1 class="mb-4 font-weight-semi-bold" style="font-family:roboto;">Đồ gia đình thông minh</h1>
-                                <a href="/products?category=3" class="btn btn-outline-primary py-md-2 px-md-3">Mua ngay</a>
+                                <a href="/products?category=3" class="btn btn-outline-primary py-md-2 px-md-3 rounded-1">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -265,7 +265,7 @@ class Home extends BaseView
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     Sử dụng nồi cơm điện đa năng và máy xay sinh tố thông minh không chỉ giúp bạn tiết kiệm thời gian mà còn làm cho bữa ăn trở nên dễ dàng và ngon miệng hơn.
                                 </p>
-                                <a href="#" class="btn btn-primary">Xem thêm</a>
+                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
                             </div>
                         </div>
                     </div>
@@ -280,7 +280,7 @@ class Home extends BaseView
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                 Máy hút bụi thông minh và cây lau nhà tự động là những trợ thủ đắc lực giúp bạn duy trì ngôi nhà luôn sạch sẽ mà không tốn quá nhiều thời gian.
                                 </p>
-                                <a href="#" class="btn btn-primary">Xem thêm</a>
+                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
                             </div>
                         </div>
                     </div>
@@ -295,7 +295,7 @@ class Home extends BaseView
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                 Những thiết bị công nghệ như loa thông minh và bóng đèn điều khiển từ xa giúp bạn dễ dàng điều khiển ngôi nhà, tiết kiệm năng lượng và nâng cao chất lượng sống.
                                 </p>
-                                <a href="#" class="btn btn-primary">Xem thêm</a>
+                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
                             </div>
                         </div>
                     </div>
@@ -310,7 +310,7 @@ class Home extends BaseView
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                 Sử dụng vòi sen massage, gương chống hơi nước và các giá đựng đồ thông minh không chỉ giúp phòng tắm gọn gàng mà còn mang lại trải nghiệm thư giãn tuyệt vời.
                                 </p>
-                                <a href="#" class="btn btn-primary">Xem thêm</a>
+                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
                             </div>
                         </div>
                     </div>

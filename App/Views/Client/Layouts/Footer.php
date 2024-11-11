@@ -52,14 +52,14 @@ class Footer extends BaseView
                         <h5 class=" text-dark mb-4" style="font-family: roboto; font-weight:900;">Đăng ký nhận tin</h5>
                         <form action="">
                             <div class="form-group">
-                                <input type="text" class="form-control border-0 py-4" placeholder="Tên của bạn" required="required" />
+                                <input type="text" class="form-control border-0 py-4 rounded-1" placeholder="Tên của bạn" required="required" />
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control border-0 py-4" placeholder="Email của bạn"
+                                <input type="email" class="form-control border-0 py-4 rounded-1" placeholder="Email của bạn"
                                     required="required" />
                             </div>
                             <div>
-                                <button class="btn btn-primary btn-block border-0 py-3" type="submit">Đăng ký ngay</button>
+                                <button class="btn btn-primary btn-block border-0 py-3 rounded-1" type="submit">Đăng ký ngay</button>
                             </div>
                         </form>
                     </div>
