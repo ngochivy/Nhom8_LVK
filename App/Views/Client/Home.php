@@ -253,14 +253,16 @@ class Home extends BaseView
 
             <div class="container-fluid my-5">
                 <div class="text-center">
-                <h2 class="section-title px-5 mb-3"><span class="px-2" style="font-family:roboto;">Bài viết</span></h2>
+                    <h2 class="section-title px-5 mb-3"><span class="px-2" style="font-family:roboto;">Bài viết</span></h2>
                 </div>
-               
-                <div class="row mr-4 ml-4" style="font-family:roboto;">
+
+                <div class="row mx-4" style="font-family:roboto;">
                     <!-- Bài viết 1 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img src="https://www.zecible.fr/wp-content/uploads/2018/02/644455-POO5SL-571-scaled.jpg" class="card-img-top" alt="Blog 1">
+                        <div class="card h-100">
+                            <img src="https://www.zecible.fr/wp-content/uploads/2018/02/644455-POO5SL-571-scaled.jpg"
+                                class="card-img-top img-fluid w-100"
+                                style="height: 200px; object-fit: cover;" alt="Blog 1">
                             <div class="card-body">
                                 <h5 class="card-title">Mẹo Chọn Thiết Bị Nấu Ăn Tiết Kiệm Thời Gian</h5>
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
@@ -271,54 +273,55 @@ class Home extends BaseView
                         </div>
                     </div>
 
-
                     <!-- Bài viết 2 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img src="https://th.bing.com/th/id/R.5e64dc17c45ce6dd64a8d42ab876d5a4?rik=Q0Wh4dKR%2bAaLGg&riu=http%3a%2f%2fbookdirtbusters.com%2fwp-content%2fuploads%2f2019%2f09%2fclean-home.jpeg&ehk=RzfBQ1NQwMrSgcNfxbCMfOP%2bvLV%2bO9h4LfxZ4da%2fAik%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Blog 1">
+                        <div class="card h-100">
+                            <img src="https://th.bing.com/th/id/R.5e64dc17c45ce6dd64a8d42ab876d5a4?rik=Q0Wh4dKR%2bAaLGg&riu=http%3a%2f%2fbookdirtbusters.com%2fwp-content%2fuploads%2f2019%2f09%2fclean-home.jpeg&ehk=RzfBQ1NQwMrSgcNfxbCMfOP%2bvLV%2bO9h4LfxZ4da%2fAik%3d&risl=&pid=ImgRaw&r=0"
+                                class="card-img-top img-fluid w-100"
+                                style="height: 200px; object-fit: cover;" alt="Blog 2">
                             <div class="card-body">
                                 <h5 class="card-title">Mẹo Dọn Dẹp Tiện Lợi Cho Nhà Bận Rộn</h5>
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                Máy hút bụi thông minh và cây lau nhà tự động là những trợ thủ đắc lực giúp bạn duy trì ngôi nhà luôn sạch sẽ mà không tốn quá nhiều thời gian.
+                                    Máy hút bụi thông minh và cây lau nhà tự động là những trợ thủ đắc lực giúp bạn duy trì ngôi nhà luôn sạch sẽ mà không tốn quá nhiều thời gian.
                                 </p>
                                 <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
                             </div>
                         </div>
                     </div>
-
 
                     <!-- Bài viết 3 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img src="https://www.cnet.com/a/img/resize/e2cd457709207d1abf51648466b077b61f8b11d2/hub/2024/06/04/8a97de33-f6d8-46b8-8821-c52cc5897929/best-home-security-system.jpg?auto=webp&width=1200" class="card-img-top" style="height: 212px;" alt="Blog 1">
+                        <div class="card h-100">
+                            <img src="https://www.cnet.com/a/img/resize/e2cd457709207d1abf51648466b077b61f8b11d2/hub/2024/06/04/8a97de33-f6d8-46b8-8821-c52cc5897929/best-home-security-system.jpg?auto=webp&width=1200"
+                                class="card-img-top img-fluid w-100"
+                                style="height: 200px; object-fit: cover;" alt="Blog 3">
                             <div class="card-body">
                                 <h5 class="card-title">Kiến Thức Về Công Nghệ Thông Minh Trong Nhà</h5>
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                Những thiết bị công nghệ như loa thông minh và bóng đèn điều khiển từ xa giúp bạn dễ dàng điều khiển ngôi nhà, tiết kiệm năng lượng và nâng cao chất lượng sống.
+                                    Những thiết bị công nghệ như loa thông minh và bóng đèn điều khiển từ xa giúp bạn dễ dàng điều khiển ngôi nhà, tiết kiệm năng lượng và nâng cao chất lượng sống.
                                 </p>
                                 <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
                             </div>
                         </div>
                     </div>
-
 
                     <!-- Bài viết 4 -->
                     <div class="col-md-3 mb-4">
-                        <div class="card">
-                            <img src="https://th.bing.com/th/id/R.2926339bcbd95498310983e22be67c38?rik=0poh7t3ysTCxOQ&pid=ImgRaw&r=0" class="card-img-top" style="height: 212px;" alt="Blog 1">
+                        <div class="card h-100">
+                            <img src="https://th.bing.com/th/id/R.2926339bcbd95498310983e22be67c38?rik=0poh7t3ysTCxOQ&pid=ImgRaw&r=0"
+                                class="card-img-top img-fluid w-100"
+                                style="height: 200px; object-fit: cover;" alt="Blog 4">
                             <div class="card-body">
                                 <h5 class="card-title">Mẹo Tận Dụng Không Gian Phòng Tắm</h5>
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                Sử dụng vòi sen massage, gương chống hơi nước và các giá đựng đồ thông minh không chỉ giúp phòng tắm gọn gàng mà còn mang lại trải nghiệm thư giãn tuyệt vời.
+                                    Sử dụng vòi sen massage, gương chống hơi nước và các giá đựng đồ thông minh không chỉ giúp phòng tắm gọn gàng mà còn mang lại trải nghiệm thư giãn tuyệt vời.
                                 </p>
                                 <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
                             </div>
                         </div>
                     </div>
-
-
-
                 </div>
+
             </div>
 
 
