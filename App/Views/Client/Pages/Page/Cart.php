@@ -196,7 +196,7 @@ class Cart extends BaseView
                             <h5 class="font-weight-bold">Total</h5>
                             <h5 class="font-weight-bold">$160</h5>
                         </div>
-                        <button class="btn btn-block btn-primary my-3 py-3">Proceed To Checkout</button>
+                        <button class="btn btn-block btn-primary my-3 py-3"><a class="text-light link-no-underline" href="/checkout">Proceed To Checkout</a></button>
                     </div>
                 </div>
             </div>

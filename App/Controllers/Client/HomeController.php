@@ -9,6 +9,7 @@ use App\Views\Client\Home;
 use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Page\About;
 use App\Views\Client\Pages\Page\Cart;
+use App\Views\Client\Pages\Page\Checkout;
 
 class HomeController
 {
@@ -34,6 +35,13 @@ class HomeController
     {
         Header::render();
         Cart::render(); 
+        Footer::render();
+    }
+
+    public static function checkout() 
+    {
+        Header::render();
+        Checkout::render(); 
         Footer::render();
     }
 }
