@@ -53,14 +53,12 @@ class Footer extends BaseView
                 <script src="<?=APP_URL?>/public/assets/admin/libs/flot.tooltip/js/jquery.flot.tooltip.min.js"></script>
                 <script src="<?=APP_URL?>/public/assets/admin/dist/js/pages/chart/chart-page-init.js"></script>
 
-                <script src="<?=APP_URL?>/public/assets/admin/extra-libs/multicheck/datatable-checkbox-init.js"></script>
-                <script src="<?=APP_URL?>/public/assets/admin/extra-libs/multicheck/jquery.multicheck.js"></script>
-                <script src="<?=APP_URL?>/public/assets/admin/extra-libs/DataTables/datatables.min.js"></script>
+                <script src="<?= APP_URL ?>/public/assets/admin/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+                <script src="<?= APP_URL ?>/public/assets/admin/extra-libs/multicheck/jquery.multicheck.js"></script>
+                <script src="<?= APP_URL ?>/public/assets/admin/extra-libs/DataTables/datatables.min.js"></script>
                 <script>
-                        /****************************************
-                         *       Basic Table                   *
-                         ****************************************/
-                        $('#zero_config').DataTable();
+              
+                $('#zero_config').DataTable();
                 </script>
 
                 <script src="<?=APP_URL?>/public/assets/admin/libs/inputmask/dist/min/jquery.inputmask.bundle.min.js"></script>

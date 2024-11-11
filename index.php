@@ -49,4 +49,26 @@ Route::delete('/admin/categories/{id}', 'App\Controllers\Admin\CategoryControlle
 
 
 
+//  *** Products
+// GET /categories (lấy danh sách loại sản phẩm)
+Route::get('/admin/products', 'App\Controllers\Admin\ProductController@index');
+
+// GET /categories/create (hiển thị form thêm loại sản phẩm)
+Route::get('/admin/products/create', 'App\Controllers\Admin\ProductController@create');
+
+// POST /categories (tạo mới một loại sản phẩm)
+Route::post('/admin/products', 'App\Controllers\Admin\ProductController@store');
+
+// GET /categories/{id} (lấy chi tiết loại sản phẩm với id cụ thể)
+Route::get('/admin/products/{id}', 'App\Controllers\Admin\ProductController@edit');
+
+// PUT /categories/{id} (update loại sản phẩm với id cụ thể)
+Route::put('/admin/products/{id}', 'App\Controllers\Admin\ProductController@update');
+
+// DELETE /categories/{id} (delete loại sản phẩm với id cụ thể)
+Route::delete('/admin/products/{id}', 'App\Controllers\Admin\ProductController@delete');
+
+
+
+
 Route::dispatch($_SERVER['REQUEST_URI']);
