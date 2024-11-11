@@ -113,7 +113,7 @@ class Header extends BaseView
                             <i class="fas fa-heart text-primary"></i>
                             
                         </a>
-                        <a href="" class="btn border">
+                        <a href="/cart" class="btn border">
                             <i class="fas fa-shopping-cart text-primary"></i>
                             
                         </a>
@@ -170,6 +170,7 @@ class Header extends BaseView
                                 <div class="navbar-nav ml-auto py-0">
                                     <a href="" class="nav-item nav-link">Đăng nhập</a>
                                     <a href="" class="nav-item nav-link">Đăng ký</a>
+                                    <a>hihi</a>
                                 </div>
                             </div>
                         </nav>

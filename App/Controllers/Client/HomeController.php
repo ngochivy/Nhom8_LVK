@@ -8,6 +8,7 @@ use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Home;
 use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Page\About;
+use App\Views\Client\Pages\Page\Cart;
 
 class HomeController
 {
@@ -26,6 +27,13 @@ class HomeController
     {
         Header::render();
         About::render(); 
+        Footer::render();
+    }
+
+    public static function cart() 
+    {
+        Header::render();
+        Cart::render(); 
         Footer::render();
     }
 }
