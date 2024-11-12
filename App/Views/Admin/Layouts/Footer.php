@@ -14,7 +14,8 @@ class Footer extends BaseView
                 <!-- footer -->
                 <!-- ============================================================== -->
                 <footer class="footer text-center">
-                        Copyright &copy; by <strong>LVK House</strong>
+                Copyright © 2024 by <strong>LVK House</strong>. All Rights Reserved.
+                Website design by <Strong>LVK ENTERTAIMENT</Strong>
                 </footer>
                 <!-- ============================================================== -->
                 <!-- End footer -->

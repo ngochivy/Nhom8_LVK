@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Admin\Pages\Category;
+namespace App\Views\Admin\Pages\User;
 
 use App\Views\BaseView;
 
@@ -19,12 +19,12 @@ class Create extends BaseView
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">QUẢN LÝ LOẠI SẢN PHẨM</h4>
+                        <h4 class="page-title">QUẢN LÝ NGƯỜI DÙNG</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Thêm loại sản phẩm</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Thêm người dùng</li>
                                 </ol>
                             </nav>
                         </div>
@@ -44,13 +44,33 @@ class Create extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/categories" method="POST">
+                            <form class="form-horizontal" action="/admin/users" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Thêm loại sản phẩm</h4>
+                                    <h4 class="card-title">Thêm người dùng</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
+                                        <label for="name">Tài khoản*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập Tài khoản..." name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Mật khẩu*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập Mật khẩu..." name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">email*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập email..." name="name" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="name">Tên*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" required>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên ..." name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">avatar*</label>
+                                        <input type="file" class="form-control" id="name"  name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">role*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập role..." name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Trạng thái*</label>

@@ -20,7 +20,7 @@ class Index extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Danh sách sản phẩm</li>
                                 </ol>
                             </nav>
@@ -44,7 +44,9 @@ class Index extends BaseView
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Danh sách sản phẩm</h5>
+                                
                                 <?php
+                                
                                 if (count($data)) :
                                 ?>
                                     <div class="table-responsive">
@@ -58,7 +60,7 @@ class Index extends BaseView
                                                     <th>Giảm Giá</th>
                                                     <th>Ngày đăng</th>
                                                     <th>Trạng thái</th>
-                                                    <th></th>
+                                                    <th><a href="/admin/products/create" class="btn btn-success ">Thêm mới</a></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -67,7 +69,7 @@ class Index extends BaseView
                                                 ?>
                                                     <tr>
                                                         <td><?= $item['id'] ?></td>
-                                                        <td><?= $item['img'] ?></td>
+                                                        <td><img src="../../../../../public/assets/admin/assets/images/bc.jpg" alt="" width="100px" height="100px"></td>
                                                         <td><?= $item['name'] ?></td>
                                                         <td><?= $item['price'] ?></td>
                                                         <td><?= $item['discount_price'] ?></td>

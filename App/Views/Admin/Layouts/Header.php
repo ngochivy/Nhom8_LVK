@@ -67,7 +67,7 @@ class Header extends BaseView
                             <!-- ============================================================== -->
                             <!-- Logo -->
                             <!-- ============================================================== -->
-                            <a class="navbar-brand" href="index.html">
+                            <a class="navbar-brand" href="/admin">
                                 <!-- Logo icon -->
                                 <b class="logo-icon">
                                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -123,7 +123,7 @@ class Header extends BaseView
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="navbarDropdown"
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../../../public/assets/admin/assets/images/users/1.jpg" alt="user" class="profile-pic me-2">Markarn Doe
+                                        <img src="../../../../public/assets/admin/assets/images/users/linh.jpg" alt="user" class="profile-pic me-2">Admin
                                     </a>
                                     <ul class="dropdown-menu show" aria-labelledby="navbarDropdown"></ul>
                                 </li>
@@ -145,10 +145,10 @@ class Header extends BaseView
                             <ul id="sidebarnav">
                                 <!-- User Profile-->
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="index.html" aria-expanded="false"><i class="me-3 far fa-clock fa-fw"
+                                        href="/admin" aria-expanded="false"><i class="me-3 far fa-clock fa-fw"
                                             aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="pages-profile.html" aria-expanded="false">
+                                        href="/admin/users" aria-expanded="false">
                                         <i class="me-3 fa fa-user" aria-hidden="true"></i><span
                                             class="hide-menu">Users</span></a>
                                 </li>
@@ -159,7 +159,7 @@ class Header extends BaseView
                                         href="/admin/products" aria-expanded="false"><i class="me-3 fa fa-columns"
                                             aria-hidden="true"></i><span class="hide-menu">Sản phẩm</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="icon-fontawesome.html" aria-expanded="false"><i class="me-3 fa fa-font"
+                                        href="/admin/comments" aria-expanded="false"><i class="me-3 fa fa-font"
                                             aria-hidden="true"></i><span class="hide-menu">Commemt</span></a></li>
 
 

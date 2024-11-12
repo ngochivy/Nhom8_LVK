@@ -19,12 +19,12 @@ class Create extends BaseView
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">QUẢN LÝ LOẠI SẢN PHẨM</h4>
+                        <h4 class="page-title">QUẢN LÝ SẢN PHẨM</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Thêm loại sản phẩm</li>
+                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Thêm sản phẩm</li>
                                 </ol>
                             </nav>
                         </div>
@@ -49,8 +49,24 @@ class Create extends BaseView
                                     <h4 class="card-title">Thêm loại sản phẩm</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
+                                        <label for="name">Hình ảnh*</label>
+                                        <input type="file" class="form-control" id="name"  name="name" required>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="name">Tên*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" required>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên sản phẩm..." name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">GIá*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập giá sản phẩm..." name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Giảm giá*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập giảm giá sản phẩm..." name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="name">Ngày đăng*</label>
+                                        <input type="date" class="form-control" id="name" placeholder="Nhập ngày đăng sản phẩm..." name="name" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Trạng thái*</label>
