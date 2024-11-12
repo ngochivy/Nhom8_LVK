@@ -25,6 +25,7 @@ Route::get('/cart', 'App\Controllers\Client\HomeController@cart');
 Route::get('/checkout', 'App\Controllers\Client\HomeController@checkout');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
 Route::get('/login', 'App\Controllers\Client\HomeController@login');
+Route::get('/register', 'App\Controllers\Client\HomeController@register');
 
 
 

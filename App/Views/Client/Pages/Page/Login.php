@@ -55,6 +55,7 @@ class Login extends BaseView
                                         </div>
                                         <input type="submit" value="Đăng nhập" class="btn btn-block btn-primary rounded-1">
                                     </form>
+                                    <p class="mt-3">Chưa có tài khoản? <a href="/register">Đăng ký ngay</a></p>
                                 </div>
                             </div>
                         </div>

@@ -11,6 +11,7 @@ use App\Views\Client\Pages\Page\About;
 use App\Views\Client\Pages\Page\Cart;
 use App\Views\Client\Pages\Page\Checkout;
 use App\Views\Client\Pages\Page\Login;
+use App\Views\Client\Pages\Page\Register;
 
 class HomeController
 {
@@ -50,6 +51,13 @@ class HomeController
         Header::render();
         // Hiển thị giao diện đăng nhập
         Login::render();
+        Footer::render();
+    }
+
+    public static function register() {
+        Header::render();
+        // Hiển thị giao diện đăng ký
+        Register::render();
         Footer::render();
     }
 }
