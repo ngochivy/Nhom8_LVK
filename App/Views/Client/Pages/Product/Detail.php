@@ -195,6 +195,7 @@ class Detail extends BaseView
                                 </div>
                                 <div class="col-md-6">
                                     <h4 class="mb-4">Bình luận</h4>
+                                    <h5><a href="/login" class="text-danger text-decoration-none">*Đăng nhập để được phép bình luận</a></h5>
                                     <small>Email của bạn sẽ không được công khai. Các trường bắt buộc được đánh dấu *</small>
                                     <div class="d-flex my-3">
                                         <p class="mb-0 mr-2">Đánh giá của bạn * :</p>
