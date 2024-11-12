@@ -10,6 +10,7 @@ use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Page\About;
 use App\Views\Client\Pages\Page\Cart;
 use App\Views\Client\Pages\Page\Checkout;
+use App\Views\Client\Pages\Page\Login;
 
 class HomeController
 {
@@ -42,6 +43,13 @@ class HomeController
     {
         Header::render();
         Checkout::render(); 
+        Footer::render();
+    }
+
+    public static function login() {
+        Header::render();
+        // Hiển thị giao diện đăng nhập
+        Login::render();
         Footer::render();
     }
 }
