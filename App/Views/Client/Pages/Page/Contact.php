@@ -33,7 +33,7 @@ class Contact extends BaseView
             <div class="container-xxl py-5">
                 <div class="container">
                     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                        <h5 class=" ff-secondary text-center text-primary fw-normal fw-bold">Liên hệ với chúng tôi </h5>
+                        <h5 class=" ff-secondary text-center text-primary fw-normal fw-bold">Liên hệ với chúng tôi</h5>
                         <h1 class="mb-5 fw-bold">Liên hệ để được giải đáp mọi thắc mắc</h1>
                     </div>
                     <div class="row g-4">
