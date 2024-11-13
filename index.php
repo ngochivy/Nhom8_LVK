@@ -22,6 +22,7 @@ Route::get('/', 'App\Controllers\Client\HomeController@index');
 Route::get('/products', 'App\Controllers\Client\ProductController@index');
 Route::get('/about', 'App\Controllers\Client\HomeController@about');
 Route::get('/contact', 'App\Controllers\Client\HomeController@contact');
+Route::get('/blog', 'App\Controllers\Client\HomeController@blog');
 Route::get('/cart', 'App\Controllers\Client\HomeController@cart');
 Route::get('/checkout', 'App\Controllers\Client\HomeController@checkout');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');

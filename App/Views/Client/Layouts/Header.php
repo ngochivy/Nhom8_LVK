@@ -168,6 +168,7 @@ class Header extends BaseView
                                         </div>
                                     </div> -->
                                     <a href="/contact" class="nav-item nav-link">Liên hệ</a>
+                                    <a href="/blog" class="nav-item nav-link">Bài viết</a>
                                 </div>
                                 <div class="navbar-nav ml-auto py-0">
                                     <a href="/login" class="nav-item nav-link">Đăng nhập</a>

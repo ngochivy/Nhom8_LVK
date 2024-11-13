@@ -9,6 +9,7 @@ use App\Views\Client\Home;
 use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Page\About;
 use App\Views\Client\Pages\Page\Contact;
+use App\Views\Client\Pages\Page\Blog;
 use App\Views\Client\Pages\Page\Cart;
 use App\Views\Client\Pages\Page\Checkout;
 use App\Views\Client\Pages\Page\Login;
@@ -40,6 +41,13 @@ class HomeController
     {
         Header::render();
         Contact::render(); 
+        Footer::render();
+    }
+
+    public static function blog() 
+    {
+        Header::render();
+        Blog::render(); 
         Footer::render();
     }
 
