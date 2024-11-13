@@ -20,7 +20,7 @@ class Index extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Danh sách loại sản phẩm</li>
                                 </ol>
                             </nav>
@@ -54,7 +54,7 @@ class Index extends BaseView
                                                     <th>ID</th>
                                                     <th>Tên</th>
                                                     <th>Trạng thái</th>
-                                                    <th></th>
+                                                    <th><a href="/admin/categories/create" class="btn btn-success ">Thêm mới</a></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
