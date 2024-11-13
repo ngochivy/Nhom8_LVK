@@ -167,7 +167,7 @@ class Header extends BaseView
                                             <a href="checkout.html" class="dropdown-item">Checkout</a>
                                         </div>
                                     </div> -->
-                                    <a href="contact.html" class="nav-item nav-link">Liên hệ</a>
+                                    <a href="/contact" class="nav-item nav-link">Liên hệ</a>
                                 </div>
                                 <div class="navbar-nav ml-auto py-0">
                                     <a href="/login" class="nav-item nav-link">Đăng nhập</a>
