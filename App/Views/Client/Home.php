@@ -202,8 +202,10 @@ class Home extends BaseView
                                                         <p class="product-name mb-1" style="font-size: 14px; font-weight: bold; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 3rem;">
                                                             <?= $product['name'] ?>
                                                         </p>
-                                                        <div class="product-price mb-1" style="font-size: 18px; font-weight: bold; color: #d9534f;">
-                                                            ₫<?= number_format($product['price'] - $product['discount_price'], 0, ',', '.') ?>
+                                                        <div class="product-price mb-1 d-flex justify-content-center" style="font-size: 18px; font-weight: bold; color: #d9534f;">
+                                                        <p class="text-muted px-2 font-weight-light"><del><?= number_format($product['price'], 0, ',', '.') ?>₫</del></p>
+                                                        
+                                                            <?= number_format($product['price'] - $product['discount_price'], 0, ',', '.') ?>₫
                                                         </div>
                                                         <div class="sold-info" style="font-size: 14px; color: #5bc0de;">
                                                             Đã bán <?= rand(1, 200) ?>

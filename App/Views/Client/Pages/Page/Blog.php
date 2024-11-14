@@ -52,13 +52,14 @@ class Blog extends BaseView
                     <div class="row g-3">
                         <div class="col-xl-4 col-lg-6">
                             <div class="blog-item ">
-                                <img class="img-fluid w-100" src="https://www.zecible.fr/wp-content/uploads/2018/02/644455-POO5SL-571-scaled.jpg" style="height: 200px; object-fit: cover;" alt="Blog 3">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4" style="width: 60px; height: 100px;">
+                            <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4 rounded-4" style="width: 60px; height: 100px; position:absolute; left:0; top:0;">
                                         <i class="fa fa-calendar-alt text-primary mb-2"></i>
-                                        <p class="m-0 text-black">Jan 01</p>
+                                        <p class="m-0 text-black">1 tháng 1</p>
                                         <small class="text-black">2045</small>
                                     </div>
+                                <img class="img-fluid w-100 rounded-3" src="https://www.zecible.fr/wp-content/uploads/2018/02/644455-POO5SL-571-scaled.jpg" style="height: 200px; object-fit: cover;" alt="Blog 3">
+                                <div class="d-flex align-items-center">
+                                    
                                     <a class="h6 m-0 text-truncate me-4 fw-bold " href="">Mẹo Chọn Thiết Bị Nấu Ăn Tiết Kiệm Thời Gian</a>
                                 </div>
                                 <div class="d-flex justify-content-between border-top border-secondary p-4">
@@ -75,13 +76,14 @@ class Blog extends BaseView
                         </div>
                         <div class="col-xl-4 col-lg-6">
                             <div class="blog-item ">
-                                <img class="img-fluid w-100" src="https://th.bing.com/th/id/R.5e64dc17c45ce6dd64a8d42ab876d5a4?rik=Q0Wh4dKR%2bAaLGg&riu=http%3a%2f%2fbookdirtbusters.com%2fwp-content%2fuploads%2f2019%2f09%2fclean-home.jpeg&ehk=RzfBQ1NQwMrSgcNfxbCMfOP%2bvLV%2bO9h4LfxZ4da%2fAik%3d&risl=&pid=ImgRaw&r=0" style="height: 200px; object-fit: cover;" alt="Blog 3">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4" style="width: 60px; height: 100px;">
+                            <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4 rounded-4" style="width: 60px; height: 100px; position:absolute; left:0; top:0;">
                                         <i class="fa fa-calendar-alt text-primary mb-2"></i>
-                                        <p class="m-0 text-black">Jan 01</p>
+                                        <p class="m-0 text-black">1 tháng 1</p>
                                         <small class="text-black">2045</small>
                                     </div>
+                                <img class="img-fluid w-100 rounded-3" src="https://th.bing.com/th/id/R.5e64dc17c45ce6dd64a8d42ab876d5a4?rik=Q0Wh4dKR%2bAaLGg&riu=http%3a%2f%2fbookdirtbusters.com%2fwp-content%2fuploads%2f2019%2f09%2fclean-home.jpeg&ehk=RzfBQ1NQwMrSgcNfxbCMfOP%2bvLV%2bO9h4LfxZ4da%2fAik%3d&risl=&pid=ImgRaw&r=0" style="height: 200px; object-fit: cover;" alt="Blog 3">
+                                <div class="d-flex align-items-center">
+                                    
                                     <a class="h6 m-0 text-truncate me-4 fw-bold " href="">Mẹo Dọn Dẹp Tiện Lợi Cho Nhà Bận Rộn</a>
                                 </div>
                                 <div class="d-flex justify-content-between border-top border-secondary p-4">
@@ -98,13 +100,14 @@ class Blog extends BaseView
                         </div>
                         <div class="col-xl-4 col-lg-6">
                             <div class="blog-item">
-                                <img class="img-fluid w-100" src="https://www.cnet.com/a/img/resize/e2cd457709207d1abf51648466b077b61f8b11d2/hub/2024/06/04/8a97de33-f6d8-46b8-8821-c52cc5897929/best-home-security-system.jpg?auto=webp&width=1200" style="height: 200px; object-fit: cover;" alt="Blog 3">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4" style="width: 60px; height: 100px;">
+                            <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4 rounded-4" style="width: 60px; height: 100px; position:absolute; left:0; top:0;">
                                         <i class="fa fa-calendar-alt text-primary mb-2"></i>
-                                        <p class="m-0 text-black">Jan 01</p>
+                                        <p class="m-0 text-black">1 tháng 1</p>
                                         <small class="text-black">2045</small>
                                     </div>
+                                <img class="img-fluid w-100 rounded-3" src="https://www.cnet.com/a/img/resize/e2cd457709207d1abf51648466b077b61f8b11d2/hub/2024/06/04/8a97de33-f6d8-46b8-8821-c52cc5897929/best-home-security-system.jpg?auto=webp&width=1200" style="height: 200px; object-fit: cover;" alt="Blog 3">
+                                <div class="d-flex align-items-center">
+                                    
                                     <a class="h6 m-0 text-truncate me-4 fw-bold " href="">Kiến Thức Về Công Nghệ Thông Minh Trong Nhà</a>
                                 </div>
                                 <div class="d-flex justify-content-between border-top border-secondary p-4">
@@ -120,14 +123,15 @@ class Blog extends BaseView
                             </div>
                         </div>
                         <div class="col-xl-4 col-lg-6">
-                            <div class="blog-item">
-                                <img class="img-fluid w-100" src="https://th.bing.com/th/id/R.2926339bcbd95498310983e22be67c38?rik=0poh7t3ysTCxOQ&pid=ImgRaw&r=0" style="height: 200px; object-fit: cover;" alt="Blog 3">
-                                <div class="d-flex align-items-center">
-                                    <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4" style="width: 60px; height: 100px;">
+                            <div class="blog-item ">
+                            <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4 rounded-4" style="width: 60px; height: 100px; position:absolute; left:0; top:0;">
                                         <i class="fa fa-calendar-alt text-primary mb-2"></i>
-                                        <p class="m-0 text-black">Jan 01</p>
+                                        <p class="m-0 text-black">1 tháng 1</p>
                                         <small class="text-black">2045</small>
                                     </div>
+                                <img class="img-fluid w-100 rounded-3" src="https://th.bing.com/th/id/R.2926339bcbd95498310983e22be67c38?rik=0poh7t3ysTCxOQ&pid=ImgRaw&r=0" style="height: 200px; object-fit: cover;" alt="Blog 3">
+                                <div class="d-flex align-items-center">
+                                    
                                     <a class="h6 m-0 text-truncate me-4 fw-bold " href="">Mẹo Tận Dụng Không Gian Phòng Tắm</a>
                                 </div>
                                 <div class="d-flex justify-content-between border-top border-secondary p-4">
@@ -152,6 +156,8 @@ class Blog extends BaseView
                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                                <li class="page-item"><a class="page-link" href="#">9</a></li>
                                 <li class="page-item">
                                     <a class="page-link" href="#" aria-label="Next">
                                         <span aria-hidden="true">&raquo;</span>
