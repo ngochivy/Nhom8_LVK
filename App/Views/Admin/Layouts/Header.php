@@ -107,7 +107,7 @@ class Header extends BaseView
 
                                 <li class="nav-item hidden-sm-down">
                                     <form class="app-search ps-3">
-                                        <input type="text" class="form-control" placeholder="Search for..."> <a
+                                        <input type="text" class="form-control" placeholder="Tìm kiếm..."> <a
                                             class="srh-btn"><i class="ti-search"></i></a>
                                     </form>
                                 </li>
@@ -146,11 +146,11 @@ class Header extends BaseView
                                 <!-- User Profile-->
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                         href="/admin" aria-expanded="false"><i class="me-3 far fa-clock fa-fw"
-                                            aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a></li>
+                                            aria-hidden="true"></i><span class="hide-menu">Bảng điều khiển</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                         href="/admin/users" aria-expanded="false">
                                         <i class="me-3 fa fa-user" aria-hidden="true"></i><span
-                                            class="hide-menu">Users</span></a>
+                                            class="hide-menu">Người dùng</span></a>
                                 </li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                         href="/admin/categories" aria-expanded="false"><i class="me-3 fa fa-table"
@@ -160,7 +160,7 @@ class Header extends BaseView
                                             aria-hidden="true"></i><span class="hide-menu">Sản phẩm</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                         href="/admin/comments" aria-expanded="false"><i class="me-3 fa fa-font"
-                                            aria-hidden="true"></i><span class="hide-menu">Commemt</span></a></li>
+                                            aria-hidden="true"></i><span class="hide-menu">Bình luận</span></a></li>
 
 
 

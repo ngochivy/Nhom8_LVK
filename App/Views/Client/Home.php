@@ -46,7 +46,7 @@ class Home extends BaseView
         <body>
             <div id="header-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    
+
                     <div class="carousel-item active" style="height: 410px;">
                         <img class="img-fluid" src="https://media3.bosch-home.com/Product_Shots/1200x675/22226362_MGM8856BIN_TrueMixxPro_Indien_Grinder_Flagship_visual_F39_def.jpg" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -184,7 +184,7 @@ class Home extends BaseView
                                 <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
                                     <div class="row justify-content-start py-2" style="gap: 0px;">
                                         <?php foreach ($chunk as $product) : ?>
-                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex mb-2" style="padding: 0 10px;" onclick="window.location.href='/products/<?=$product['id']?>'">
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex mb-2" style="padding: 0 10px;" onclick="window.location.href='/products/<?= $product['id'] ?>'">
                                                 <div class="product-card product-item p-2 d-flex flex-column" style="height: 100%; width: 100%;">
 
                                                     <!-- Discount Tag -->
@@ -385,9 +385,18 @@ class Home extends BaseView
 
 
             <div class="container-fluid my-5">
-                <div class="text-center">
-                    <h2 class="section-title px-5 mb-3"><span class="px-2" style="font-family:roboto;">Bài viết</span></h2>
+
+                <div class="d-flex justify-content-between align-items-center">
+                    <!-- Centering the section title -->
+                    <div class="text-center mx-auto">
+                        <h2 class="section-title px-5 mb-3">
+                            <span class="px-2" style="font-family:roboto;">Bài viết</span>
+                        </h2>
+                    </div>
+                    <!-- Aligning the 'Xem tất cả' link to the right -->
+                    <a href="/blog" class="view-all-link" style="font-family:roboto; margin-right: 20px;">Xem tất cả &gt;</a>
                 </div>
+
 
                 <div class="row mx-4" style="font-family:roboto;">
                     <!-- Bài viết 1 -->
@@ -460,7 +469,7 @@ class Home extends BaseView
 
 
 
-
+            <a href="#" class="btn btn-primary back-to-top" style="display: none; opacity: 0.754003;"><i class="fa fa-angle-double-up"></i></a>
 
 
 
@@ -474,6 +483,8 @@ class Home extends BaseView
             <!-- Contact Javascript File -->
             <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
             <script src="/public/assets/client/mail/contact.js"></script>
+
+            
 
             <!-- Template Javascript -->
             <script src="/public/assets/client/js/main.js"></script>
