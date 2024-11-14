@@ -9586,3 +9586,88 @@ a.text-dark:hover, a.text-dark:focus {
     transform: translateY(-15px);
   }
 }
+
+/* Flash Sale Section */
+.flash-sale-section {
+  padding: 30px;
+  background-color: #f9f9f9;
+}
+
+/* Product Card Style */
+.product-card {
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Ensures uniform height for all cards */
+}
+
+/* Product Image */
+.product-image img {
+  width: 100%;
+  height: 200px; /* Set a fixed height for images */
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Product Info */
+.product-info {
+  flex-grow: 1;
+  padding: 10px;
+}
+
+/* Product Price */
+.product-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #d9534f;
+  margin-bottom: 10px;
+}
+
+/* Sold Info */
+.sold-info {
+  font-size: 14px;
+  color: #5bc0de;
+}
+
+/* Carousel Controls */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: #333;
+}
+
+/* Carousel Inner (adjust to display items inline) */
+.carousel-inner {
+  display: flex;
+  justify-content: center; /* Center the carousel items */
+}
+
+/* Carousel Item - Ensuring equal width and proper margin */
+.carousel-items {
+  flex: 0 0 auto;
+  width: 23%; /* Adjust width to fit 4 items per row */
+  margin-right: 10px;
+}
+
+/* Ensure the last item doesn't have extra margin */
+.carousel-item:last-child {
+  margin-right: 0;
+}
+
+/* Ensure responsive behavior */
+@media (max-width: 991px) {
+  .carousel-item {
+    width: 45%; /* 2 items per row on medium screens */
+  }
+}
+
+@media (max-width: 575px) {
+  .carousel-item {
+    width: 90%; /* 1 item per row on small screens */
+    margin-right: 0;
+  }
+}
