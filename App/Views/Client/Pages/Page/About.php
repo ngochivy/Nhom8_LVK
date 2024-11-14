@@ -150,7 +150,7 @@ class About extends BaseView
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
             <script src="/public/assets/client/lib/easing/easing.min.js"></script>
             <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
+            <a href="#" class="btn btn-primary back-to-top" style="display: none; opacity: 0.754003;"><i class="fa fa-angle-double-up"></i></a>
             <!-- Contact Javascript File -->
             <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
             <script src="/public/assets/client/mail/contact.js"></script>

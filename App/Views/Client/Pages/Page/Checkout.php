@@ -241,6 +241,7 @@ class Checkout extends BaseView
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-oBqDVmMz4fnFO9gybGSKkqdYupqj7c39Q2NUmewilKxN0qxF0epwS4cXALYMzKG9" crossorigin="anonymous"></script>
             <script src="/public/assets/client/js/main.js"></script>
+            <a href="#" class="btn btn-primary back-to-top" style="display: none; opacity: 0.754003;"><i class="fa fa-angle-double-up"></i></a>
             <script>
                 document.getElementById('checkout-button').addEventListener('click', function(event) {
                     event.preventDefault(); // Ngăn không cho chuyển trang ngay lập tức

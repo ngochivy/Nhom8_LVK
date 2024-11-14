@@ -207,7 +207,7 @@ class Cart extends BaseView
             <!-- Contact Javascript File -->
             <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
             <script src="/public/assets/client/mail/contact.js"></script>
-
+            <a href="#" class="btn btn-primary back-to-top" style="display: none; opacity: 0.754003;"><i class="fa fa-angle-double-up"></i></a>
             <!-- Template Javascript -->
             <script src="/public/assets/client/js/main.js"></script>
 </body>
