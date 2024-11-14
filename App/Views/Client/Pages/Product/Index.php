@@ -99,7 +99,7 @@ class Index extends BaseView
                             <div class="d-flex align-items-center justify-content-between mb-4">
                                 <form action="">
                                     <div class="input-group">
-                                        <input type="text" class="form-control" placeholder="Search by name">
+                                        <input type="text" class="form-control" placeholder="Tìm kiếm">
                                         <div class="input-group-append">
                                             <span class="input-group-text bg-transparent text-primary">
                                                 <i class="fa fa-search"></i>
@@ -113,9 +113,9 @@ class Index extends BaseView
                                         Lọc
                                     </button>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="triggerId">
-                                        <a class="dropdown-item" href="#">Latest</a>
-                                        <a class="dropdown-item" href="#">Popularity</a>
-                                        <a class="dropdown-item" href="#">Best Rating</a>
+                                        <a class="dropdown-item" href="#">Mới nhất</a>
+                                        <a class="dropdown-item" href="#">Phổ biến</a>
+                                        <a class="dropdown-item" href="#">Bán chạy</a>
                                     </div>
                                 </div>
                             </div>

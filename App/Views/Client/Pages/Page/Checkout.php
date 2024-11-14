@@ -32,7 +32,7 @@ class Checkout extends BaseView
             <div class="container-xxl bg-white p-0">
 
                 <!-- Tiêu đề Trang Bắt đầu -->
-                <div class="container-fluid bg-secondary mb-5">
+                <div class="container bg-secondary mb-5" style="min-width: 100%;">
                     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
                         <h1 class="font-weight-semi-bold text-uppercase mb-3">Thanh toán</h1>
                         <div class="d-inline-flex">
@@ -79,9 +79,9 @@ class Checkout extends BaseView
                                         <label>Quốc gia</label>
                                         <select class="custom-select">
                                             <option selected>Việt Nam</option>
-                                            <option>Afghanistan</option>
-                                            <option>Albania</option>
-                                            <option>Algeria</option>
+                                            <option>Trung Quốc</option>
+                                            <option>Thái Lan</option>
+                                            <option>Singapore</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">
@@ -141,9 +141,9 @@ class Checkout extends BaseView
                                         <label>Quốc gia</label>
                                         <select class="custom-select">
                                             <option selected>Việt Nam</option>
-                                            <option>Afghanistan</option>
-                                            <option>Albania</option>
-                                            <option>Algeria</option>
+                                            <option>Trung Quốc</option>
+                                            <option>Thái Lan</option>
+                                            <option>Singapore</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">
@@ -169,31 +169,35 @@ class Checkout extends BaseView
                                 <div class="card-body">
                                     <h5 class="font-weight-medium mb-3">Sản phẩm</h5>
                                     <div class="d-flex justify-content-between">
-                                        <p>Áo sơ mi 1</p>
-                                        <p>$150</p>
+                                        <p>Bàn chải điện Xiaomi</p>
+                                        <p>280,000đ</p>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <p>Áo sơ mi 2</p>
-                                        <p>$150</p>
+                                        <p>Bếp lẩu nướng đa năng</p>
+                                        <p>950,000đ</p>
+                                    </div>
+                                    <div class="row d-flex justify-content-between">
+                                        <p class="col-6">Chuông cửa thông minh Xiaomi</p>
+                                        <p class="col-4" style="text-align:right;">1,100,000đ</p>
                                     </div>
                                     <div class="d-flex justify-content-between">
-                                        <p>Áo sơ mi 3</p>
-                                        <p>$150</p>
+                                        <p>Bộ sạc 5 cổng USB</p>
+                                        <p>270,000đ</p>
                                     </div>
                                     <hr class="mt-0">
                                     <div class="d-flex justify-content-between mb-3 pt-1">
                                         <h6 class="font-weight-medium">Tạm tính</h6>
-                                        <h6 class="font-weight-medium">$150</h6>
+                                        <h6 class="font-weight-medium">2,600,000 đ</h6>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <h6 class="font-weight-medium">Phí vận chuyển</h6>
-                                        <h6 class="font-weight-medium">$10</h6>
+                                        <h6 class="font-weight-medium">0 đ</h6>
                                     </div>
                                 </div>
                                 <div class="card-footer border-secondary bg-transparent">
                                     <div class="d-flex justify-content-between mt-2">
                                         <h5 class="font-weight-bold">Tổng cộng</h5>
-                                        <h5 class="font-weight-bold">$160</h5>
+                                        <h5 class="font-weight-bold">2,600,000 đ</h5>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +209,7 @@ class Checkout extends BaseView
                                     <div class="form-group">
                                         <div class="custom-control custom-radio">
                                             <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                            <label class="custom-control-label" for="paypal">PayPal</label>
+                                            <label class="custom-control-label" for="paypal">Ví điện tử (Momo, VNPay,...)</label>
                                         </div>
                                     </div>
                                     <div class="form-group">

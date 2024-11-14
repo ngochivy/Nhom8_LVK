@@ -46,17 +46,8 @@ class Home extends BaseView
         <body>
             <div id="header-carousel" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
+                    
                     <div class="carousel-item active" style="height: 410px;">
-                        <img class="img-fluid" src="https://th.bing.com/th/id/R.80d43d9d14389650193470a88258142d?rik=qFFEiaOOrLRs1Q&riu=http%3a%2f%2fwww.goldsun.vn%2fpic%2fProductCate%2fthiet-bi-_637160882463804420.jpg&ehk=f0otbp0S8nIVoVhXLQW6GIMOPlgzIVy9xkvQYtCv8ks%3d&risl=&pid=ImgRaw&r=0" alt="Image">
-                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
-                                <h4 class="text-light text-uppercase font-weight-medium mb-3">Giảm 10% cho đơn hàng đầu tiên</h4>
-                                <h3 class="display-4 text-white font-weight-semi-bold mb-4" style="font-family:montserrat;">Đồ dùng nhà bếp</h3>
-                                <a href="" class="btn btn-light py-2 px-3 rounded-1">Mua ngay</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item" style="height: 410px;">
                         <img class="img-fluid" src="https://media3.bosch-home.com/Product_Shots/1200x675/22226362_MGM8856BIN_TrueMixxPro_Indien_Grinder_Flagship_visual_F39_def.jpg" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
@@ -66,6 +57,16 @@ class Home extends BaseView
                             </div>
                         </div>
                     </div>
+                    <!-- <div class="carousel-item" style="height: 410px; justify-content:center !important;">
+                        <img class="img-fluid" src="https://th.bing.com/th/id/R.80d43d9d14389650193470a88258142d?rik=qFFEiaOOrLRs1Q&riu=http%3a%2f%2fwww.goldsun.vn%2fpic%2fProductCate%2fthiet-bi-_637160882463804420.jpg&ehk=f0otbp0S8nIVoVhXLQW6GIMOPlgzIVy9xkvQYtCv8ks%3d&risl=&pid=ImgRaw&r=0" alt="Image">
+                        <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
+                            <div class="p-3" style="max-width: 700px;">
+                                <h4 class="text-light text-uppercase font-weight-medium mb-3">LVK House</h4>
+                                <h3 class="display-4 text-white font-weight-semi-bold mb-4" style="font-family:montserrat;">Nâng tầm cuộc sống! Chất lượng, giá tốt</h3>
+                                <a href="/products" class="btn btn-light py-2 px-3 rounded-1">Mua ngay</a>
+                            </div>
+                        </div>
+                    </div> -->
                 </div>
                 <a class="carousel-control-prev" href="#header-carousel" data-slide="prev">
                     <div class="btn btn-dark" style="width: 45px; height: 45px;">
