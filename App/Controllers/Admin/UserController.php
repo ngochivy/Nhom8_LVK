@@ -2,122 +2,122 @@
 
 namespace App\Controllers\Admin;
 
-use App\Helpers\NotificationHelper;
 use App\Models\User;
 use App\Views\Admin\Layouts\Footer;
 use App\Views\Admin\Layouts\Header;
-use App\Views\Admin\Components\Notification;
 use App\Views\Admin\Pages\User\Create;
 use App\Views\Admin\Pages\User\Edit;
-use App\Views\Admin\Pages\user\Index;
+use App\Views\Admin\Pages\User\Index;
 
 class UserController
 {
-
-
-    // hiển thị danh sách
+    // Hiển thị danh sách người dùng
     public static function index()
     {
-        // giả sử data là mảng dữ liệu lấy được từ database
-        $data = [
-            [
-                'id' => 1,
-                'username' => 'chivy',
-                'password' => '$2y$10$EZ6qLhq8b63iY/UKjmWss.I9hdZ1dIbu0fDzDYXmuSV',
-                'email' => 'ngochivy@gmail.com',
-                'name' => 'Chí Vỹ',
-                'avt' => '',
-                'role' => 1,
-                'status' => 1,
-            ],
-            [
-                'id' => 2,
-                'username' => 'nhutlinh',
-                'password' => '8b353d5cc07e13577608711f4602fcb7',
-                'email' => 'trannhutlinh@gmail.com',
-                'name' => 'Nhựt Linh',
-                'avt' => '',
-                'role' => 1,
-                'status' => 1,
-            ],
-            [
-                'id' => 3,
-                'username' => 'hoangkhang',
-                'password' => '$2y$10$XCY6bEgV/pEUuEt//d9i4eQdZ1dIbu0fDzDYXmuSV',
-                'email' => 'lehoangkhang@gmail.com',
-                'name' => 'Hoàng Khang',
-                'avt' => '',
-                'role' => 1,
-                'status' => 1,
-            ],
+        // Khởi tạo model
+        $userModel = new User();
+        
+        // Lấy danh sách tất cả người dùng từ database
+        $data = $userModel->getAllUser();
 
-
-
-        ];
-
+        // Hiển thị giao diện danh sách
         Header::render();
-        // hiển thị giao diện danh sách
         Index::render($data);
         Footer::render();
     }
 
-
-    // hiển thị giao diện form thêm
-   
+    // Hiển thị giao diện form thêm mới
     public static function create()
     {
         Header::render();
-        // hiển thị form thêm
         Create::render();
         Footer::render();
     }
 
-    // xử lý chức năng thêm
+    // Xử lý chức năng thêm mới người dùng
     public static function store()
     {
-        echo 'Thực hiện lưu vào database';
-    }
+        if ($_POST) {
+            // Lấy dữ liệu từ form
+            $data = [
+                'username' => $_POST['username'],
+                'password' => password_hash($_POST['password'], PASSWORD_BCRYPT),
+                'email'    => $_POST['email'],
+                'name'     => $_POST['name'],
+                'role'     => $_POST['role'],
+                'status'   => $_POST['status'],
+            ];
 
+            // Khởi tạo model
+            $userModel = new User();
 
-    // hiển thị chi tiết
-    public static function show() {}
+            // Thêm người dùng mới vào database
+            $userModel->createUser($data);
 
-
-    // hiển thị giao diện form sửa
-    public static function edit(int $id)
-    {
-        // giả sử data là mảng dữ liệu lấy được từ database
-        $data = [
-            'id' => $id,
-            'username' => 'chivy',
-            'password' => '$2y$10$EZ6qLhq8b63iY/UKjmWss.I9hdZ1dIbu0fDzDYXmuSV',
-            'email' => 'ngochivy@gmail.com',
-            'name' => 'Chí Vỹ',
-            'avt' => '',
-            'role' => 1,
-            'status' => 1,
-        ];
-        if ($data) {
-            Header::render();
-            // hiển thị form sửa
-            Edit::render($data);
-            Footer::render();
-        } else {
-            header('location: /admin/users');
+            // Chuyển hướng về danh sách người dùng
+            header('Location: /admin/users');
         }
     }
 
-
-    // xử lý chức năng sửa (cập nhật)
-    public static function update(int $id)
+    // Hiển thị giao diện form sửa
+    public static function edit(int $id)
     {
-        echo 'Thực hiện cập nhật vào database';
+        // Khởi tạo model
+        $userModel = new User();
+
+        // Lấy thông tin người dùng theo ID
+        $data = $userModel->getOneUser($id);
+
+        if ($data) {
+            // Hiển thị form sửa nếu tìm thấy người dùng
+            Header::render();
+            Edit::render($data);
+            Footer::render();
+        } else {
+            // Chuyển hướng về danh sách nếu không tìm thấy
+            header('Location: /admin/users');
+        }
     }
 
+    // Xử lý chức năng sửa thông tin người dùng
+    public static function update(int $id)
+    {
+        if ($_POST) {
+            // Lấy dữ liệu từ form
+            $data = [
+                'username' => $_POST['username'],
+                'email'    => $_POST['email'],
+                'name'     => $_POST['name'],
+                'role'     => $_POST['role'],
+                'status'   => $_POST['status'],
+            ];
 
-    // thực hiện xoá
+            // Nếu có mật khẩu mới, cập nhật
+            if (!empty($_POST['password'])) {
+                $data['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            }
+
+            // Khởi tạo model
+            $userModel = new User();
+
+            // Cập nhật thông tin người dùng vào database
+            $userModel->updateUser($id, $data);
+
+            // Chuyển hướng về danh sách
+            header('Location: /admin/users');
+        }
+    }
+
+    // Thực hiện xóa người dùng
     public static function delete(int $id)
     {
-        echo 'Thực hiện xoá';
+        // Khởi tạo model
+        $userModel = new User();
+
+        // Xóa người dùng khỏi database
+        $userModel->deleteUser($id);
+
+        // Chuyển hướng về danh sách
+        header('Location: /admin/users');
     }
 }

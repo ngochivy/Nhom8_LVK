@@ -40,87 +40,67 @@ class Index extends BaseView
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
-
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Danh sách người dùng</h5>
-                                <?php
-                                if (count($data)) :
-                                ?>
+                                <?php if (!empty($data) && count($data)) : ?>
                                     <div class="table-responsive">
-                                        <table id="" class="table table-striped ">
+                                        <table class="table table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Tài khoản</th>
-                                                    <th>Mật khẩu</th>
-                                                    <th>email</th>
-                                                    <th>tên</th>
-                                                    <th>avt</th>
-                                                    <th>role</th>
-                                                    <th>Trạng thái</th>
-                                                    <th><a href="/admin/users/create" class="btn btn-success ">Thêm mới</a></th>
+                                                    <th>Email</th>
+                                                    <th>Tên</th>
+                                                    <th>Avatar</th>
+                                                    <th>Vai trò</th>
+                                                    
+                                                    <th>Hành động</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                foreach ($data as $item) :
-                                                ?>
+                                                <?php foreach ($data as $user) : ?>
                                                     <tr>
-                                                        <td><?= $item['id'] ?></td>
-                                                        <td><?= $item['username'] ?></td>
-                                                        <td><?= $item['password'] ?></td>
-                                                        <td><?= $item['email'] ?></td>
-                                                        <td><?= $item['name'] ?></td>
-                                                        <td><img src="../../../../../public/assets/admin/assets/images/users/khang.jpg" alt="" width="100px" height="100px"></td>
-                                                        <td><?= $item['role'] ?></td>
-                                                        <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
+                                                        <td><?= $user['User_ID'] ?></td>
+                                                        <td><?= $user['Username'] ?></td>
+                                                        <td><?= $user['Email'] ?></td>
+                                                        <td><?= $user['Name'] ?></td>
                                                         <td>
-                                                            <a href="/admin/users/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
-                                                            <form action="/admin/users/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
-                                                                <input type="hidden" name="method" value="DELETE" id="">
-                                                                <button type="submit" class="btn btn-danger text-white">Xoá</button>
+                                                            <?php if (!empty($user['Image'])) : ?>
+                                                                <img src="<?= $user['Image'] ?>" alt="Avatar" width="50" height="50">
+                                                            <?php else : ?>
+                                                                <span>Không có</span>
+                                                            <?php endif; ?>
+                                                        </td>
+                                                        <td><?= $user['Role'] == 1 ? 'Admin' : 'User' ?></td>
+                                                       
+                                                        <td>
+                                                            <a href="/admin/users/<?= $user['User_ID'] ?>/edit" class="btn btn-primary">Sửa</a>
+                                                            <form action="/admin/users/<?= $user['User_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Bạn có chắc chắn muốn xóa?');">
+                                                                <input type="hidden" name="_method" value="DELETE">
+                                                                <button type="submit" class="btn btn-danger">Xóa</button>
                                                             </form>
                                                         </td>
                                                     </tr>
-                                                <?php
-                                                endforeach;
-
-
-                                                ?>
+                                                <?php endforeach; ?>
                                             </tbody>
                                         </table>
                                     </div>
-                                <?php
-                                else :
-
-                                ?>
+                                <?php else : ?>
                                     <h4 class="text-center text-danger">Không có dữ liệu</h4>
-                                <?php
-                                endif;
-
-                                ?>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
-                <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
-                <!-- ============================================================== -->
-                <!-- End Right sidebar -->
+                <!-- End Page Content -->
                 <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-            <!-- ============================================================== -->
-
-
-    <?php
+        </div>
+<?php
     }
 }
