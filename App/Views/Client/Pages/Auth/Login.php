@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Views\Client\Pages\Page;
+namespace App\Views\Client\Pages\Auth;
 
 use App\Views\BaseView;
 

@@ -12,9 +12,9 @@ use App\Views\Client\Pages\Page\Contact;
 use App\Views\Client\Pages\Page\Blog;
 use App\Views\Client\Pages\Page\Cart;
 use App\Views\Client\Pages\Page\Checkout;
-use App\Views\Client\Pages\Page\Login;
+use App\Views\Client\Pages\Auth\Login;
 
-use App\Views\Client\Pages\Page\Register;
+use App\Views\Client\Pages\Auth\Register;
 
 
 class HomeController

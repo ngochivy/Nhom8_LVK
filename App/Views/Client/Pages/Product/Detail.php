@@ -26,18 +26,17 @@ class Detail extends BaseView
         <link href="/public/assets/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
         <!-- Customized Bootstrap Stylesheet -->
-
         <link href="/public/assets/client/css/style.css" rel="stylesheet">
 
 
         <!-- Page Header Start -->
         <div class="container-fluid bg-secondary mb-5">
             <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-                <h1 class="font-weight-semi-bold text-uppercase mb-3">Shop Detail</h1>
+                <h1 class="font-weight-semi-bold text-uppercase mb-3">Chi tiết sản phẩm</h1>
                 <div class="d-inline-flex">
-                    <p class="m-0"><a href="">Home</a></p>
+                    <p class="m-0"><a href="">Trang chủ</a></p>
                     <p class="m-0 px-2">-</p>
-                    <p class="m-0">Shop Detail</p>
+                    <p class="m-0">Thông tin sản phẩm</p>
                 </div>
             </div>
         </div>
@@ -51,32 +50,32 @@ class Detail extends BaseView
                     <div id="product-carousel" class="carousel slide" data-ride="carousel">
                         <div class="carousel-inner border">
                             <div class="carousel-item active">
-                                <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $data['product']['image'] ?>" alt="Image">
+                                <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $data['product']['Image'] ?>" alt="Image">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-7 pb-5">
-                    <h3 class="font-weight-bold" style="font-family:roboto;"><?= $data['product']['name'] ?></h3>
+                    <h3 class="font-weight-bold" style="font-family:roboto;"><?= $data['product']['Product_name'] ?></h3>
 
                     <div class="d-flex gap-3" style="font-family:montserrat;">
                         <?php
-                        if ($data['product']['discount_price'] > 0) :
+                        if ($data['product']['Discount_price'] > 0) :
                         ?>
 
-                            <h3 class=" mb-0"><strike><?= number_format($data['product']['price']) ?> đ</strike></h3>
-                            <h3 class=" mb-4"><strong class="text-danger"><?= number_format($data['product']['price'] - $data['product']['discount_price']) ?> đ</strong></h3>
+                            <h3 class=" mb-0"><strike><?= number_format($data['product']['Price']) ?> đ</strike></h3>
+                            <h3 class=" mb-4"><strong class="text-danger"><?= number_format($data['product']['Price'] - $data['product']['Discount_price']) ?> đ</strong></h3>
                         <?php
                         else :
                         ?>
                             <h6></h6>
-                            <h3 class="font-weight-semi-bold mb-4"><?= $data['product']['discount_price'] ?>Giá tiền: <?= number_format($data['product']['price']) ?> đ</h3>
+                            <h3 class="font-weight-semi-bold mb-4"><?= number_format($data['product']['Price']) ?> đ</h3>
                         <?php
                         endif;
                         ?>
                     </div>
 
-                    <p class="mb-4" style="min-height:150px;"><?= $data['product']['description'] ?></p>
+                    <p class="mb-4" style="min-height:150px;"><?= $data['product']['Description'] ?></p>
 
                     <div class="d-flex mb-4">
                         <p class="text-dark font-weight-medium mb-0 mr-3">Tính năng:</p>
@@ -147,18 +146,18 @@ class Detail extends BaseView
                     </div>
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="tab-pane-1">
-
-                            <h4 class="mb-3" style="font-family:roboto;"><?= $data['product']['name'] ?></h4>
-                            <p><?= $data['product']['description'] ?></p>
+                            <!-- Mô tả sản phẩm từ database -->
+                            <h4 class="mb-3" style="font-family:roboto;"><?= htmlspecialchars($data['product']['Product_name']); ?></h4>
+                            <p><?= nl2br(htmlspecialchars($data['product']['Description'])); ?></p>
                         </div>
                         <div class="tab-pane fade" id="tab-pane-2">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4 class="mb-4" style="font-family:roboto;">Bình luận của "<?= $data['product']['name'] ?>"</h4>
+                                    <h4 class="mb-4" style="font-family:roboto;">Bình luận của "<?= htmlspecialchars($data['product']['Product_name']); ?>"</h4>
                                     <div class="media mb-4">
-                                        <img src="/public/uploads/users/user1.jpeg" alt="Image" class="img-fluid mr-3 mt-1 rounded-circle" style="width: 45px; height:45px;">
+                                        <img src="/public/uploads/users/igkhang.png" alt="Image" class="img-fluid mr-3 mt-1 rounded-circle" style="width: 45px; height:45px;">
                                         <div class="media-body">
-                                            <h6>John Doe<small> - <i>10 tháng 11, 2025</i></small></h6>
+                                            <h6>Khang<small> - <i>10 tháng 11, 2025</i></small></h6>
                                             <div class="text-primary mb-2">
                                                 <i class="fas fa-star"></i>
                                                 <i class="fas fa-star"></i>
@@ -170,15 +169,14 @@ class Detail extends BaseView
                                             <button type="button" class="btn btn-warning btn-sm" data-toggle="collapse" data-target="#comment" aria-expanded="false" aria-controls="comment">Sửa</button>
                                             <form action="#" method="post" onsubmit="return confirm('Chắc chưa?')" style="display: inline-block">
                                                 <input type="hidden" name="method" value="DELETE" id="">
-                                                <input type="hidden" name="product_id" value="" id="">
+                                                <input type="hidden" name="product_id" value="<?= $data['product']['Product_ID']; ?>" id="">
                                                 <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
-
                                             </form>
                                             <div class="collapse" id="comment">
                                                 <div class="card card-body mt-5">
                                                     <form action="#" method="post">
                                                         <input type="hidden" name="method" value="PUT" id="">
-                                                        <input type="hidden" name="product_id" value="" id="">
+                                                        <input type="hidden" name="product_id" value="<?= $data['product']['Product_ID']; ?>" id="">
                                                         <div class="form-group">
                                                             <label for="">Bình luận</label>
                                                             <textarea class="form-control rounded-0" name="content" id="" rows="3" placeholder="Nhập bình luận...">Sản phẩm tốt.</textarea>
@@ -187,7 +185,6 @@ class Detail extends BaseView
                                                             <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
                                                         </div>
                                                     </form>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -230,54 +227,15 @@ class Detail extends BaseView
                     </div>
                 </div>
             </div>
+
         </div>
+        <!-- Shop Detail End -->
 
-        <!-- Products Start -->
-        <!-- <div class="container-fluid py-5">
-            <div class="text-center mb-4">
-                <h2 class="section-title px-5"><span class="px-2">You May Also Like</span></h2>
-            </div>
-            <div class="row px-xl-5">
-                <div class="col">
-                    <div class="owl-carousel related-carousel">
-                        <div class="card product-item border-0">
-                            <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                <img class="img-fluid w-100" src="img/product-1.jpg" alt="">
-                            </div>
-                            <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                <h6 class="text-truncate mb-3">Colorful Stylish Shirt</h6>
-                                <div class="d-flex justify-content-center">
-                                    <h6>$123.00</h6>
-                                    <h6 class="text-muted ml-2"><del>$123.00</del></h6>
-                                </div>
-                            </div>
-                            <div class="card-footer d-flex justify-content-between bg-light border">
-                                <a href='' class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>
-                                <a href="" class="btn btn-sm text-dark p-0"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- Products End -->
-
-
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="/public/assets/client/lib/easing/easing.min.js"></script>
+        <!-- Javascript Files -->
+        <script src="/public/assets/client/js/jquery-3.5.1.min.js"></script>
         <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
-        <!-- Contact Javascript File -->
-        <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
-        <script src="/public/assets/client/mail/contact.js"></script>
-
-        <!-- Template Javascript -->
         <script src="/public/assets/client/js/main.js"></script>
 
 <?php
-
     }
 }

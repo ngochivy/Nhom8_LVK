@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Views\Client\Pages\Page;
-
+namespace App\Views\Client\Pages\Auth;
 use App\Views\BaseView;
 
 class Register extends BaseView
