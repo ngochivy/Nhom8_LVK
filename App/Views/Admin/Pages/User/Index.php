@@ -16,12 +16,12 @@ class Index extends BaseView
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">QUẢN LÝ NGƯỜI DÙNG</h4>
+                        <h4 class="page-title">QUẢN LÝ LOẠI SẢN PHẨM</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Danh sách người dùng</li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Danh sách loại sản phẩm</li>
                                 </ol>
                             </nav>
                         </div>
@@ -49,6 +49,7 @@ class Index extends BaseView
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
+
                                                     <th>Tài khoản</th>
                                                     <th>Email</th>
                                                     <th>Tên</th>
@@ -56,30 +57,51 @@ class Index extends BaseView
                                                     <th>Vai trò</th>
                                                     
                                                     <th>Hành động</th>
+
+                                                    <th>ảnh đại diện</th>
+                                                    <th>Tên đăng nhập</th>
+                                                    <th>Họ tên</th>
+                                                    <th>Email</th>
+                                                    <th>Số điện thoại</th>
+                                                    <th>Địa chỉ</th>
+                                                    <th>Quyền</th>
+                                                    <th>Trạng thái</th>
+                                                    <th> <a href="/admin/users/create" class="btn btn-success ">Thêm mới</a></th>
+                                                    <th></th>
+
+                                                    <th></th>
+
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php foreach ($data as $user) : ?>
                                                     <tr>
-                                                        <td><?= $user['User_ID'] ?></td>
-                                                        <td><?= $user['Username'] ?></td>
-                                                        <td><?= $user['Email'] ?></td>
-                                                        <td><?= $user['Name'] ?></td>
+                                                        <td><?= $item['User_ID'] ?></td>
                                                         <td>
-                                                            <?php if (!empty($user['Image'])) : ?>
-                                                                <img src="<?= $user['Image'] ?>" alt="Avatar" width="50" height="50">
-                                                            <?php else : ?>
-                                                                <span>Không có</span>
-                                                            <?php endif; ?>
+                                                            <img src="<?= APP_URL ?>/public/uploads/users/<?= $item['Image'] ?>" alt="" width="100px">
                                                         </td>
-                                                        <td><?= $user['Role'] == 1 ? 'Admin' : 'User' ?></td>
-                                                       
+
+                                                        <td><?= $item['Username'] ?></td>
+                                                        <td><?= $item['Name'] ?></td>
+                                                        <td><?= $item['Email'] ?></td>
+                                                        <td><?= $item['Phone_number'] ?></td>
+                                                        <td><?= $item['Address'] ?></td>
+                                                        <td><?= ($item['Role'] == 1) ? 'Quản trị viên' : 'Khách hàng' ?></td>
+                                                        <td><?= ($item['Status'] == 1) ? 'Hoạt động' : 'khóa' ?></td>
+
+
                                                         <td>
-                                                            <a href="/admin/users/<?= $user['User_ID'] ?>/edit" class="btn btn-primary">Sửa</a>
-                                                            <form action="/admin/users/<?= $user['User_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Bạn có chắc chắn muốn xóa?');">
-                                                                <input type="hidden" name="_method" value="DELETE">
-                                                                <button type="submit" class="btn btn-danger">Xóa</button>
-                                                            </form>
+                                                            <a href="/admin/users/<?= $item['User_ID'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <?php
+                                                            if (isset($_SESSION['users']['User_ID']) && $_SESSION['users']['User_ID'] != $item['User_ID']) :
+                                                            ?>
+                                                                <form action="/admin/users/<?= $item['User_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                                    <input type="hidden" name="method" value="DELETE">
+                                                                    <button type="submit" class="btn btn-danger text-white">Xoá</button>
+                                                                </form>
+                                                            <?php
+                                                            endif;
+                                                            ?>
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>

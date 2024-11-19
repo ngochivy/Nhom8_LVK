@@ -20,7 +20,7 @@ class Index extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Danh sách loại sản phẩm</li>
                                 </ol>
                             </nav>
@@ -53,8 +53,9 @@ class Index extends BaseView
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Tên</th>
+                                                    <th>Mô tả</th>
                                                     <th>Trạng thái</th>
-                                                    <th><a href="/admin/categories/create" class="btn btn-success ">Thêm mới</a></th>
+                                                    <th><a href="/admin/categories/create" class="btn btn-success ">Thêm</a></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -62,12 +63,13 @@ class Index extends BaseView
                                                 foreach ($data as $item) :
                                                 ?>
                                                     <tr>
-                                                        <td><?= $item['id'] ?></td>
-                                                        <td><?= $item['name'] ?></td>
-                                                        <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
+                                                        <td><?= $item['Category_ID'] ?></td>
+                                                        <td><?= $item['Category_name'] ?></td>
+                                                        <td><?= $item['Category_description'] ?></td>
+                                                        <td><?= ($item['Status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>
-                                                            <a href="/admin/categories/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
-                                                            <form action="/admin/categories/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                            <a href="/admin/categories/<?= $item['Category_ID'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <form action="/admin/categories/<?= $item['Category_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
                                                                 <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>

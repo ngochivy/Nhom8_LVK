@@ -23,7 +23,7 @@ class Create extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Thêm người dùng</li>
                                 </ol>
                             </nav>
@@ -44,37 +44,56 @@ class Create extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/users" method="POST">
+                            <form class="form-horizontal" action="/admin/users" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Thêm người dùng</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
-                                        <label for="name">Tài khoản*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập Tài khoản..." name="name" required>
+                                        <label for="Username">Tên đang nhập*</label>
+                                        <input type="text" class="form-control" id="Username" placeholder="Nhập tên tên đăng nhập..." name="Username" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Mật khẩu*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập Mật khẩu..." name="name" required>
+                                        <label for="Email">Email*</label>
+                                        <input type="Email" class="form-control" id="Email" placeholder="Nhập email..." name="Email" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">email*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập email..." name="name" required>
+                                        <label for="Name">Họ và tên*</label>
+                                        <input type="text" class="form-control" id="Name" placeholder="Nhập họ và tên người dùng..." name="Name" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Tên*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên ..." name="name" required>
+                                        <label for="Phone_number">Số điện thoại*</label>
+                                        <input type="text" class="form-control" id="Phone_number" placeholder="Nhập số điện thoại..." name="Phone_number" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">avatar*</label>
-                                        <input type="file" class="form-control" id="name"  name="name" required>
+                                        <label for="Address">Địa chỉ*</label>
+                                        <input type="text" class="form-control" id="Address" placeholder="Nhập địa chỉ..." name="Address" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Password">Mật khẩu*</label>
+                                        <input type="Password" class="form-control" id="Password" placeholder="Nhập mật khẩu..." name="Password" >
+                                    </div>  
+                                    <div class="form-group">
+                                        <label for="re_password">Nhập lại mật khẩu*</label>
+                                        <input type="password" class="form-control" id="re_password" placeholder="Nhập lại mật khẩu..." name="re_password" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">role*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập role..." name="name" required>
+                                        <label for="Image">Hình đại diện</label>
+                                        <input type="file" class="form-control" id="Image" placeholder="Chọn ảnh đại điện..." name="Image" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" required>
+                                        <label for="Role">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Role" name="Role">
+                                            <option value="" selected disabled>Vui lòng chọn...</option>
+                                            <option value="1">Admin</option>
+                                            <option value="0">Người dùng</option>
+
+                                        </select>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label for="Status">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status">
                                             <option value="" selected disabled>Vui lòng chọn...</option>
                                             <option value="1">Hiển thị</option>
                                             <option value="0">Ẩn</option>

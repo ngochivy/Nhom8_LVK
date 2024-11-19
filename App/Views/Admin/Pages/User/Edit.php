@@ -23,8 +23,8 @@ class Edit extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Sửa thông tin người dùng</li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Sửa người dùng</li>
                                 </ol>
                             </nav>
                         </div>
@@ -44,28 +44,59 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/users/<?= $data['id'] ?>" method="POST">
+                            <form class="form-horizontal" action="/admin/users/<?= $data['User_ID'] ?>" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
-                                    <h4 class="card-title">Sửa thông tin người dùng</h4>
+                                    <h4 class="card-title">Sửa người dùng</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
-                                    <div class="form-group">
-                                        <label for="id">ID</label>
-                                        <input type="text" class="form-control" id="id"  name="id" value="<?= $data['id'] ?>" disabled>
+                                    <div align="center">
+                                        <img src="<?=APP_URL?>/public/uploads/users/<?=$data['Image']?>" alt="" width="200px">
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Tên*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" value="<?= $data['name'] ?>" required>
+                                        <label for="User_ID">ID</label>
+                                        <input type="text" class="form-control" id="User_ID" name="User_ID" value="<?= $data['User_ID'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">avatar*</label>
-                                        <input type="file" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" value="<?= $data['name'] ?>" required>
+                                        <label for="Username">Tên đăng nhập</label>
+                                        <input type="text" class="form-control" id="Username" name="Username" value="<?= $data['Username'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" value="<?= $data['status'] ?>" required>
+                                        <label for="Email">Email*</label>
+                                        <input type="text" class="form-control" id="Email" placeholder="Nhập tên người dùng..." name="Email" value="<?= $data['Email'] ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Phone_number">Số điện thoại*</label>
+                                        <input type="text" class="form-control" id="Phone_number" placeholder="Nhập tên người dùng..." name="Phone_number" value="<?= $data['Phone_number'] ?>">
+                                    </div>                                    <div class="form-group">
+                                        <label for="Address">Địa chỉ*</label>
+                                        <input type="text" class="form-control" id="Address" placeholder="Nhập tên người dùng..." name="Address" value="<?= $data['Address'] ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Name">Họ và tên*</label>
+                                        <input type="text" class="form-control" id="Name" placeholder="Nhập họ và tên người dùng..." name="Name" value="<?= $data['Name'] ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Password">Mật khẩu*</label>
+                                        <input type="password" class="form-control" id="Password" placeholder="Nhập mật khẩu người dùng..." name="Password">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="re_password">Nhập lại mật khẩu*</label>
+                                        <input type="password" class="form-control" id="re_password" placeholder="Nhập lại mật khẩu người dùng..." name="re_password" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Image">Hình đại diện</label>
+                                        <input type="file" class="form-control" id="Image" placeholder="Chọn ảnh đại điện người dùng..." name="Image">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Role">Quyền</label>
+                                        <input type="text" class="form-control" id="Role" name="Role" value="<?= ($data['Role'] == 1) ? 'Quản trị viên' : 'Khách hàng' ?>" disabled>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Status">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status" >
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="1" <?= ($data['status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
-                                            <option value="0" <?= ($data['status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
+                                            <option value="1" <?= ($data['Status'] == 1 ? 'selected' : '') ?>>Hoạt động</option>
+                                            <option value="0" <?= ($data['Status'] == 0 ? 'selected' : '') ?>>Khóa</option>
 
                                         </select>
                                     </div>
