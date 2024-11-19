@@ -27,15 +27,18 @@ class ProductController
 
         // Lọc sản phẩm theo danh mục
         if (isset($_GET['category']) && $_GET['category'] != 'all') {
-            $categoryId = $_GET['category'];
+            $categoryId = (int)$_GET['category']; // Kiểm tra giá trị category hợp lệ
             $products = $productModel->getAllProductByCategory($categoryId);
         }
 
         // Lọc sản phẩm theo khoảng giá
         if (isset($_GET['min_price']) && isset($_GET['max_price'])) {
-            $minPrice = $_GET['min_price'];
-            $maxPrice = $_GET['max_price'];
-            $products = $productModel->getProductByPriceRange($minPrice, $maxPrice);
+            $minPrice = (int)$_GET['min_price']; // Chuyển đổi giá trị thành số nguyên
+            $maxPrice = (int)$_GET['max_price']; // Chuyển đổi giá trị thành số nguyên
+            // Kiểm tra giá trị khoảng giá hợp lệ
+            if ($minPrice >= 0 && $maxPrice > $minPrice) {
+                $products = $productModel->getProductByPriceRange($minPrice, $maxPrice);
+            }
         }
 
         // Dữ liệu truyền vào view
@@ -49,6 +52,7 @@ class ProductController
         Index::render($data);
         Footer::render();
     }
+
 
     // Hiển thị chi tiết sản phẩm
     public static function detail($id)

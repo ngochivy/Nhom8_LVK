@@ -53,6 +53,7 @@ class Product extends BaseModel
         }
     }
 
+
     public function getAllProductByCategory($categoryId)
     {
         try {
@@ -65,6 +66,21 @@ class Product extends BaseModel
             return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
         } catch (\Throwable $th) {
             error_log("Error in getAllProductByCategory(): " . $th->getMessage());
+            return [];
+        }
+    }
+
+    public function getFeaturedProducts()
+    {
+        try {
+            $conn = $this->getConnection(); // Sử dụng getConnection
+            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE is_feature = 1");
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+        } catch (\Throwable $th) {
+            error_log("Error in getFeaturedProducts(): " . $th->getMessage());
             return [];
         }
     }

@@ -17,55 +17,67 @@ use App\Views\Client\Pages\Auth\Login;
 use App\Views\Client\Pages\Auth\Register;
 
 
+
 class HomeController
 {
     // hiển thị danh sách
     public static function index()
     {
+        $productModel = new \App\Models\Product();
 
-        
+        // Lấy danh sách sản phẩm nổi bật
+        $featuredProducts = $productModel->getFeaturedProducts();
+
+        // Truyền dữ liệu vào view
+        $data = [
+            'featuredProducts' => $featuredProducts,
+        ];
+
         Header::render();
-        Home::render();
+        Home::render($data);
         Footer::render();
     }
+
+
 
     // hiển thị trang giới thiệu
-    public static function about() 
+    public static function about()
     {
         Header::render();
-        About::render(); 
+        About::render();
         Footer::render();
     }
 
-    public static function contact() 
+    public static function contact()
     {
         Header::render();
-        Contact::render(); 
+        Contact::render();
         Footer::render();
     }
 
-    public static function blog() 
+    public static function blog()
     {
         Header::render();
-        Blog::render(); 
+        Blog::render();
         Footer::render();
     }
 
-    public static function cart() 
+    public static function cart()
     {
         Header::render();
-        Cart::render(); 
+        Cart::render();
         Footer::render();
     }
 
-    public static function checkout() 
+    public static function checkout()
     {
         Header::render();
-        Checkout::render(); 
+        Checkout::render();
         Footer::render();
     }
 
-    public static function login() {
+    public static function login()
+    {
         Header::render();
         // Hiển thị giao diện đăng nhập
         Login::render();
@@ -73,11 +85,11 @@ class HomeController
     }
 
 
-    public static function register() {
+    public static function register()
+    {
         Header::render();
         // Hiển thị giao diện đăng ký
         Register::render();
         Footer::render();
     }
-
 }
