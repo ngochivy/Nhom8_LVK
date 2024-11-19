@@ -23,7 +23,7 @@ class Edit extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Sửa loại sản phẩm</li>
                                 </ol>
                             </nav>
@@ -44,24 +44,28 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/categories/<?= $data['id'] ?>" method="POST">
+                            <form class="form-horizontal" action="/admin/categories/<?= $data['Category_ID'] ?>" method="POST">
                                 <div class="card-body">
                                     <h4 class="card-title">Sửa loại sản phẩm</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
                                     <div class="form-group">
-                                        <label for="id">ID</label>
-                                        <input type="text" class="form-control" id="id"  name="id" value="<?= $data['id'] ?>" disabled>
+                                        <label for="Category_ID">ID</label>
+                                        <input type="text" class="form-control" id="Category_ID"  name="Category_ID" value="<?= $data['Category_ID'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">Tên*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" value="<?= $data['name'] ?>" required>
+                                        <label for="Category_name">Tên*</label>
+                                        <input type="text" class="form-control" id="Category_name" placeholder="Nhập tên loại sản phẩm..." name="Category_name" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Category_description">Mô tả*</label>
+                                        <input type="text" class="form-control" id="Category_description" placeholder="Nhập tên loại sản phẩm..." name="Category_description" >
                                     </div>
                                     <div class="form-group">
                                         <label for="status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" value="<?= $data['status'] ?>" required>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status" value="<?= $data['status'] ?>" required>
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="1" <?= ($data['status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
-                                            <option value="0" <?= ($data['status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
+                                            <option value="1" <?= ($data['Status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
+                                            <option value="0" <?= ($data['Status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
 
                                         </select>
                                     </div>

@@ -5,7 +5,7 @@ namespace App\Models;
 class Category extends BaseModel
 {
     protected $table = 'categories';
-    protected $id = 'id';
+    protected $id = 'Category_ID';
 
     public function getAllCategory()
     {
@@ -32,5 +32,11 @@ class Category extends BaseModel
     public function getAllCategoryByStatus()
     {
         return $this->getAllByStatus();
+    }
+
+
+    public function getOneCategoryByName($name)
+    {
+        return $this->getOneByName($name);
     }
 }

@@ -23,7 +23,7 @@ class Create extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Thêm loại sản phẩm</li>
                                 </ol>
                             </nav>
@@ -49,12 +49,16 @@ class Create extends BaseView
                                     <h4 class="card-title">Thêm loại sản phẩm</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
-                                        <label for="name">Tên*</label>
-                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" required>
+                                        <label for="Category_name">Tên*</label>
+                                        <input type="text" class="form-control" id="Category_name" placeholder="Nhập tên loại sản phẩm..." name="Category_name" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" required>
+                                        <label for="Category_description">Mô tả*</label>
+                                        <input type="text" class="form-control" id="Category_description" placeholder="Nhập tên loại sản phẩm..." name="Category_description" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Status">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status">
                                             <option value="" selected disabled>Vui lòng chọn...</option>
                                             <option value="1">Hiển thị</option>
                                             <option value="0">Ẩn</option>
