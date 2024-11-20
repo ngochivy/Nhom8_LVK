@@ -4,6 +4,7 @@ namespace App\Validations;
 
 use App\Helpers\NotificationHelper;
 
+
 class AuthValidation
 {
 
@@ -98,13 +99,14 @@ class AuthValidation
 
         //email
 
-        if (!isset($_POST['Email']) || $_POST['Email'] === '') {
-            NotificationHelper::error('Email', 'Email không được để trống');
+
+        if (!isset($_POST['email']) || $_POST['email'] === '') {
+            NotificationHelper::error('email', 'Email không được để trống');
             $is_valid = false;
         } else {
             $emailPattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
-            if (!preg_match($emailPattern, $_POST['Email'])) {
-                NotificationHelper::error('Email', 'Email không đúng định dạng');
+            if (!preg_match($emailPattern, $_POST['email'])) {
+                NotificationHelper::error('email', 'Email không đúng định dạng');
                 $is_valid = false;
             }
         }

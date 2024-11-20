@@ -68,10 +68,10 @@ class AuthHelper
 
         if ($data['remember']) {
             //luu cookie /sesstion
-            self::updateCookie($is_exist['User_ID']);
+            self::updateCookie($is_exist['id']);
         } else {
             //luu sesstion
-            self::updateSession($is_exist['User_ID']);
+            self::updateSession($is_exist['id']);
         }
 
         NotificationHelper::success('login', 'Đăng nhập thành công');
@@ -112,7 +112,7 @@ class AuthHelper
             $user = $_COOKIE['user'];
             $user_data = (array) json_decode($user);
 
-            self::updateCookie($user_data['User_ID']);
+            self::updateCookie($user_data['id']);
 
             // $_SESSION['user']=(array)$user_data;
 
@@ -120,7 +120,7 @@ class AuthHelper
         }
 
         if (isset($_SESSION['user'])) {
-            self::updateCookie($_SESSION['user']['User_ID']);
+            self::updateCookie($_SESSION['user']['id']);
             return true;
         }
 
@@ -144,7 +144,7 @@ class AuthHelper
             return false;
         }
         $data = $_SESSION['user'];
-        $user_id = $data['User_ID'];
+        $user_id = $data['id'];
 
         if (isset($_COOKIE['user'])) {
             self::updateCookie($user_id);

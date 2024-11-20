@@ -28,9 +28,26 @@ Route::get('/checkout', 'App\Controllers\Client\HomeController@checkout');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
 Route::get('/login', 'App\Controllers\Client\HomeController@login');
 
-Route::get('/register', 'App\Controllers\Client\HomeController@register');
+Route::get('/register','App\Controllers\Client\UserController@register');
+Route::post('/register', 'App\Controllers\Client\UserController@registerAction');
+
+Route::get('/logout','App\Controllers\Client\UserController@logout');
+
+Route::get('/login','App\Controllers\Client\UserController@login');
+Route::post('/login', 'App\Controllers\Client\UserController@loginAction');
+
+Route::get('/change-password','App\Controllers\Client\UserController@changePassword');
+Route::put('/change-password','App\Controllers\Client\UserController@changePasswordAction');
 
 
+Route::get('/forgot-password','App\Controllers\Client\UserController@forgotPassword');
+Route::post('/forgot-password','App\Controllers\Client\UserController@forgotPasswordAction');
+
+Route::get('/reset-password','App\Controllers\Client\UserController@resetPassword');
+Route::put('/reset-password','App\Controllers\Client\UserController@resetPasswordAction');
+
+Route::get('/users/{id}','App\Controllers\Client\UserController@edit');
+Route::put('/users/{id}','App\Controllers\Client\UserController@update');
 
 
 

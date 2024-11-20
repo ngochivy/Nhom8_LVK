@@ -4,7 +4,7 @@ namespace App\Views\Client\Pages\Auth;
 
 use App\Views\BaseView;
 
-class Login extends BaseView
+class ChangePassword extends BaseView
 {
     public static function render($data = null)
     {
@@ -20,7 +20,7 @@ class Login extends BaseView
             <link href="/public/assets/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
             <link href="/public/assets/client/css/style.css" rel="stylesheet">
-            <title>Login #2</title>
+            <title>Change Password</title>
         </head>
 
         <body>
@@ -35,30 +35,31 @@ class Login extends BaseView
                         <div class="container">
                             <div class="row align-items-center justify-content-center">
                                 <div class="col-md-10">
-                                    <h3>Đăng nhập vào <strong class="text-primary">LVK House</strong></h3>
-                                    <p class="mb-4">Chào mừng bạn! Đăng nhập để trải nghiệm các dịch vụ và tiện ích tuyệt vời từ chúng tôi.</p>
-                                    <form action="/login" method="post">
-                                        <input type="hidden" name="method" id="" value="POST">
+                                    <h3>Thay đổi mật khẩu </h3>
+
+                                    <form action="/change-password" method="post">
+                                        <input type="hidden" name="method" id="" value="PUT">
                                         <div class="form-group first">
                                             <label for="Username">Tên đăng nhập</label>
-                                            <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập" id="Username">
+                                            <input type="text" class="form-control" id="Username" name="username" placeholder="" value="<?= $data['Username'] ?>" disabled>
                                         </div>
                                         <div class="form-group last mb-3">
-                                            <label for="Password">Mật khẩu</label>
-                                            <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" id="Password">
+                                            <label  for="old_password">Mật khẩu cũ</label>
+                                            <input type="password" id="old_password" name="old_password" class="form-control" placeholder="Mật khẩu cũ">
                                         </div>
-                                        <div class="d-flex mb-5 align-items-center">
-                                            <label class="control control--checkbox mb-0"><span class="caption">Lưu mật khẩu</span>
-                                                <input type="checkbox" name="remember" checked="checked" />
-                                                <div class="control__indicator"></div>
-                                            </label>
-                                            <span class="ms-auto"><a href="/forgot-password" class="forgot-pass">Quên mật khẩu?</a></span>
+                                        <div class="form-group last mb-3">
+                                            <label for="new_password">Mật khẩu mới</label>
+                                            <input type="password" id="new_password" name="new_password" class="form-control" placeholder="Mật khẩu mới">
                                         </div>
-                                        <input type="submit" value="Đăng nhập" class="btn btn-block btn-primary rounded-1">
+                                        <div class="form-group last mb-3">
+                                            <label for="re_password">Nhập lại mật khẩu mới</label>
+                                            <input type="password" id="re_password" name="re_password" class="form-control" placeholder="Nhập lại mật khẩu mới">
+                                        </div>
+                                        <input type="submit" value="Cập nhật" class="btn btn-block btn-primary rounded-1">
                                     </form>
 
 
-                                    <p class="mt-3">Chưa có tài khoản? <a href="/register">Đăng ký ngay</a></p>
+
 
                                 </div>
                             </div>
