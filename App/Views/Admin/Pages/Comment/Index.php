@@ -20,7 +20,7 @@ class Index extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Danh sách bình luận</li>
                                 </ol>
                             </nav>
@@ -44,23 +44,19 @@ class Index extends BaseView
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Danh sách bình luận</h5>
-                                
                                 <?php
-                                
                                 if (count($data)) :
                                 ?>
                                     <div class="table-responsive">
                                         <table id="" class="table table-striped ">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>nội dung</th>
-                                                    <th>ngày đăng</th>
-                                                    <th>trạng thái</th>
-                                                    <th>id_product</th>
-                                                    <th>id_user</th>
-                                                    <th></th>
-                                                    
+                                                    <th>Comment_ID</th>
+                                                    <th>Content</th>
+                                                    <th>User_ID</th>
+                                                    <th>Proudct_ID </th>
+                                                    <th>Created_at</th>
+                                                    <th>Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -68,16 +64,25 @@ class Index extends BaseView
                                                 foreach ($data as $item) :
                                                 ?>
                                                     <tr>
-                                                        <td><?= $item['id'] ?></td>
-                                                        <td><?= $item['content'] ?></td>
-                                                        <td><?= $item['date'] ?></td>
-                                                        <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
-                                                        <td><?= $item['id_product'] ?></td>
-                                                        <td><?= $item['id_user'] ?></td>
-                                                       
+                                                        <td><?= $item['Comment_ID'] ?></td>
                                                         <td>
-                                                            <a href="/admin/comments/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
-                                                         
+                                                            <a href="/admin/users/<?= $item['User_ID'] ?>"></a>
+
+                                                        </td>
+                                                        <td>
+                                                            <a href="/admin/products/<?= $item['Product_ID'] ?>"></a>
+
+
+                                                        </td>
+                                                        <td><?= $item['Content'] ?></td>
+                                                        <td><?= $item['Created_at'] ?></td>
+                                                        <td><?= ($item['Status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
+                                                        <td>
+                                                            <a href="/admin/comments/<?= $item['Comment_ID'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <form action="/admin/comments/<?= $item['Comment_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                                <input type="hidden" name="method" value="DELETE" id="">
+                                                                <button type="submit" class="btn btn-danger text-white">Xoá</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 <?php

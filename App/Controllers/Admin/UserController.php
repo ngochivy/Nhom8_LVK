@@ -75,7 +75,6 @@ class UserController
             'Role' => $_POST['Role'],
             'Status' => $_POST['Status']
 
-
         ];
         $is_upload = UserValidation::uploadAvatar();
         if ($is_upload) {

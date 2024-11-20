@@ -23,8 +23,8 @@ class Edit extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Sửa Bình Luận</li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Sửa bình luận</li>
                                 </ol>
                             </nav>
                         </div>
@@ -44,14 +44,35 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/categories/<?= $data['id'] ?>" method="POST">
+                            <form class="form-horizontal" action="/admin/comments/<?= $data['Comment_ID'] ?>" method="POST">
                                 <div class="card-body">
+                                    <h4 class="card-title">Sửa bình luận</h4>
+                                    <input type="hidden" name="method" id="" value="PUT">
                                     <div class="form-group">
-                                        <label for="status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" value="<?= $data['status'] ?>" required>
+                                        <label for="Comment_ID">ID</label>
+                                        <input type="text" class="form-control" id="Comment_ID"  name="Comment_ID" value="<?= $data['Comment_ID'] ?>" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Content">Content</label><input type="text" class="form-control" id="Content"  name="Content" value="<?= $data['Content'] ?>" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="User_ID">User_ID</label>
+                                        <input type="text" class="form-control" id="User_ID"  name="User_ID" value="<?= $data['User_ID'] ?>" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Product_ID">Product_ID</label>
+                                        <textarea class="form-control" id="Product_ID"  name="Product_ID" rows="3" disabled><?= $data['Product_ID'] ?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Created_at">Created_at</label>
+                                        <input type="text" class="form-control" id="Created_at"  name="Created_at" value="<?= $data['Created_at'] ?>" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="Status">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status" value="<?= $data['Status'] ?>" required>
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="1" <?= ($data['status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
-                                            <option value="0" <?= ($data['status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
+                                            <option value="1" <?= ($data['Status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
+                                            <option value="0" <?= ($data['Status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
 
                                         </select>
                                     </div>
@@ -59,7 +80,7 @@ class Edit extends BaseView
                                 <div class="border-top">
                                     <div class="card-body">
                                         <button type="reset" class="btn btn-danger text-white" name="">Làm lại</button>
-                                        <button type="submit" class="btn btn-primary" name="" >Cập nhật</button>
+                                        <button type="submit" class="btn btn-primary" name="">Cập nhật</button>
                                     </div>
                                 </div>
                             </form>
@@ -74,8 +95,7 @@ class Edit extends BaseView
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Right sidebar -->
-                <!-- ============================================================== -->
-                <!-- .right-sidebar -->
+                <!-- ============================================================== --><!-- .right-sidebar -->
                 <!-- ============================================================== -->
                 <!-- End Right sidebar -->
                 <!-- ============================================================== -->

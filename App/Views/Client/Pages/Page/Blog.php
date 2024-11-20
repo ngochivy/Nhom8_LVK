@@ -54,7 +54,7 @@ class Blog extends BaseView
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     Sử dụng nồi cơm điện đa năng và máy xay sinh tố thông minh không chỉ giúp bạn tiết kiệm thời gian mà còn làm cho bữa ăn trở nên dễ dàng và ngon miệng hơn...
                                 </p>
-                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
+                                <a href="/emblog" class="btn btn-primary rounded-1">Xem thêm</a>
                     </div>
                     <div class="post">
                         <img src="https://th.bing.com/th/id/R.5e64dc17c45ce6dd64a8d42ab876d5a4?rik=Q0Wh4dKR%2bAaLGg&riu=http%3a%2f%2fbookdirtbusters.com%2fwp-content%2fuploads%2f2019%2f09%2fclean-home.jpeg&ehk=RzfBQ1NQwMrSgcNfxbCMfOP%2bvLV%2bO9h4LfxZ4da%2fAik%3d&risl=&pid=ImgRaw&r=0" alt="Hình ảnh bài viết">
@@ -63,7 +63,7 @@ class Blog extends BaseView
                         <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     Máy hút bụi thông minh và cây lau nhà tự động là những trợ thủ đắc lực giúp bạn duy trì ngôi nhà luôn sạch sẽ mà không tốn quá nhiều thời gian...
                                 </p>
-                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
+                                <a href="/emblog" class="btn btn-primary rounded-1">Xem thêm</a>
                     </div>
                     <div class="post">
                         <img src="https://www.cnet.com/a/img/resize/e2cd457709207d1abf51648466b077b61f8b11d2/hub/2024/06/04/8a97de33-f6d8-46b8-8821-c52cc5897929/best-home-security-system.jpg?auto=webp&width=1200" alt="Hình ảnh bài viết">
@@ -72,7 +72,7 @@ class Blog extends BaseView
                                 <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
                                     Những thiết bị công nghệ như loa thông minh và bóng đèn điều khiển từ xa giúp bạn dễ dàng điều khiển ngôi nhà, tiết kiệm năng lượng và nâng cao chất lượng sống...
                                 </p>
-                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
+                                <a href="/emblog" class="btn btn-primary rounded-1">Xem thêm</a>
                     </div>
                 </div>
 

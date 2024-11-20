@@ -51,7 +51,7 @@ class Index extends BaseView
                                         <table id="" class="table table-striped ">
                                             <thead>
                                                 <tr><th>ID</th>
-                                                    <th>ảnh đại diện</th>
+                                                    <th>Ảnh đại diện</th>
                                                     <th>Tên đăng nhập</th>
                                                     <th>Họ tên</th>
                                                     <th>Email</th>

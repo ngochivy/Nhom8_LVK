@@ -1,0 +1,87 @@
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+}
+h1 {
+    font-size: 24px;
+    text-align: center;
+}
+.meta {
+    font-size: 14px;
+    color: gray;
+    text-align: center;
+    margin-bottom: 20px;
+}
+img {
+    display: block;
+    margin: 0 auto 20px auto;
+    max-width: 100%;
+}
+.content {
+    margin-bottom: 40px;
+}
+.sidebar {
+    background: #f9f9f9;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-top: 20px;
+}
+.sidebar h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+.sidebar ul li a {
+    text-decoration: none;
+    color: #007BFF;
+}
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+.comment-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 1500px;
+    margin: auto;
+    border-radius: 20px;
+}
+.comment-box h3 {
+    margin-top: 0;
+    font-size: 18px;
+}
+.comment-box p {
+    font-size: 14px;
+    color: #555;
+}
+.comment-box textarea {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+.comment-box button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #ff9800;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+.comment-box button:hover {
+    background-color: #e68900;
+}

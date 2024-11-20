@@ -23,6 +23,7 @@ Route::get('/products', 'App\Controllers\Client\ProductController@index');
 Route::get('/about', 'App\Controllers\Client\HomeController@about');
 Route::get('/contact', 'App\Controllers\Client\HomeController@contact');
 Route::get('/blog', 'App\Controllers\Client\HomeController@blog');
+Route::get('/emblog', 'App\Controllers\Client\HomeController@emblog');
 Route::get('/cart', 'App\Controllers\Client\HomeController@cart');
 Route::get('/checkout', 'App\Controllers\Client\HomeController@checkout');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
@@ -129,20 +130,17 @@ Route::delete('/admin/blog/{id}', 'App\Controllers\Admin\BlogController@delete')
 
 
 //  *** Comment
-// GET /Comment (lấy danh sách loại sản phẩm)
+// GET /Comment (lấy danh sách  bình luận)
 Route::get('/admin/comments', 'App\Controllers\Admin\CommentController@index');
 
-// GET /Comment/create (hiển thị form thêm loại sản phẩm)
-Route::get('/admin/comments/create', 'App\Controllers\Admin\CommentController@create');
-
-// POST /Comment (tạo mới một loại sản phẩm)
-Route::post('/admin/comments', 'App\Controllers\Admin\CommentController@store');
-
-// GET /Comment/{id} (lấy chi tiết loại sản phẩm với id cu the)
+// GET /comments/{id} (lấy chi tiết  bình luận với id cụ thể)
 Route::get('/admin/comments/{id}', 'App\Controllers\Admin\CommentController@edit');
 
-// PUT /Comment/{id} (update loại sản phẩm với id cụ thể)
+// PUT /comments/{id} (update  bình luận với id cụ thể)
 Route::put('/admin/comments/{id}', 'App\Controllers\Admin\CommentController@update');
+
+// DELETE /comments/{id} (delete  bình luận với id cụ thể)
+Route::delete('/admin/comments/{id}', 'App\Controllers\Admin\CommentController@delete');
 
 
 

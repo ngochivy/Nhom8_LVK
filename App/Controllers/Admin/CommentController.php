@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Helpers\NotificationHelper;
 use App\Models\Comment;
+use App\Validations\CommentValidation;
 use App\Views\Admin\Layouts\Footer;
 use App\Views\Admin\Layouts\Header;
 use App\Views\Admin\Components\Notification;
@@ -17,91 +18,110 @@ class CommentController
     // hiển thị danh sách
     public static function index()
     {
-        // giả sử data là mảng dữ liệu lấy được từ database
-        $data = [
-            [
-                'id' => 1,
-                'content' => 'product 1',
-                'date' => '1/1/2025',
-                'status' => 1,
-                'id_product' => 2,
-                'id_user' => 3,
-            ],
-            [
-                'id' => 2,
-                'content' => 'content 2',
-                'date' => '1/1/2025',
-                'status' => 1,
-                'id_product' => 1,
-                'id_user' => 2,
-            ],
-            [
-                'id' => 3,
-                'content' => 'content 3',
-                'date' => '1/1/2025',
-                'status' => 1,
-                'id_product' => 3,
-                'id_user' => 1,
-            ],
 
 
-        ];
+        $comment = new Comment();
+        $data = $comment->getAllComment();
 
         Header::render();
+        Notification::render();
+        NotificationHelper::unset();
         // hiển thị giao diện danh sách
         Index::render($data);
         Footer::render();
     }
 
 
-    // hiển thị giao diện form thêm
    
 
-
-    // xử lý chức năng thêm
-    public static function store()
-    {
-        echo 'Thực hiện lưu vào database';
-    }
-
-
     // hiển thị chi tiết
-    public static function show() {}
+    public static function show()
+    {
+    }
 
 
     // hiển thị giao diện form sửa
     public static function edit(int $id)
     {
-        // giả sử data là mảng dữ liệu lấy được từ database
-        $data =             [
-            'id' => $id,
-            'content' => 'product 1',
-            'date' => '1/1/2025',
-            'status' => 1,
-            'id_product' => 2,
-            'id_user' => 3,
-        ];
-        if ($data) {
-            Header::render();
-            // hiển thị form sửa
-            Edit::render($data);
-            Footer::render();
-        } else {
+
+
+        $comment = new Comment();
+        $data = $comment->getOneComment($id);
+
+
+
+        if (!$data) {
+            NotificationHelper::error('edit', 'Không thể xem bình luận này');
             header('location: /admin/comments');
+            exit;
         }
+
+        Header::render();
+        Notification::render();
+        NotificationHelper::unset();
+        // hiển thị form sửa
+        Edit::render($data);
+        Footer::render();
     }
 
 
     // xử lý chức năng sửa (cập nhật)
     public static function update(int $id)
     {
-        echo 'Thực hiện cập nhật vào database';
+        //Validation cac truong du lieu
+
+        $is_valid = CommentValidation::edit();
+
+        if (!$is_valid) {
+
+            NotificationHelper::error('update', 'Cập nhật bình luận thất bại');
+            header("location: /admin/comments/$id");
+            exit;
+        }
+
+
+        $status = $_POST['Status'];
+
+
+        $comment = new Comment();
+
+
+
+
+
+        //thuc hien them cap nhat
+
+        $data = [
+
+            'Status' => $status
+        ];
+
+        $result = $comment->updateComment($id, $data);
+
+        if ($result) {
+            NotificationHelper::success('update', 'Cập nhật bình luận thành công');
+            header('location: /admin/comments');
+            exit;
+        } else {
+            NotificationHelper::error('update', 'Cập nhật bình luận thất bại');
+            header("location: /admin/comments/$id");
+        }
     }
 
 
     // thực hiện xoá
     public static function delete(int $id)
     {
-        echo 'Thực hiện xoá';
+        $comment=new Comment();
+        $result=$comment->deleteComment($id);
+
+        // var_dump($result);
+        if($result) {
+            NotificationHelper::success('delete', 'Xoá bình luận thành công');
+            header('location: /admin/comments');
+        } else{
+            NotificationHelper::error('delete', 'Xoá bình luận thất bại');
+            header('location: /admin/comments');
+        }
     }
 }
