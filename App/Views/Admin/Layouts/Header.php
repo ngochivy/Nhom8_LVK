@@ -63,25 +63,14 @@ class Header extends BaseView
                 <!-- ============================================================== -->
                 <header class="topbar" data-navbarbg="skin6">
                     <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                        <div class="navbar-header" data-logobg="skin6">
+                        <div class="navbar-header" >
                             <!-- ============================================================== -->
                             <!-- Logo -->
                             <!-- ============================================================== -->
-                            <a class="navbar-brand" href="/admin">
-                                <!-- Logo icon -->
-                                <b class="logo-icon">
-                                    <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-                                    <!-- Dark Logo icon -->
-                                    <img src="../../../../public/assets/admin/assets/images/logo-icon.png" alt="homepage" class="dark-logo" />
-
-                                </b>
-                                <!--End Logo icon -->
-                                <!-- Logo text -->
-                                <span class="logo-text">
-                                    <!-- dark Logo text -->
-                                    <img src="../../../../public/assets/admin/assets/images/logo-text.png" alt="homepage" class="dark-logo" />
-
-                                </span>
+                            <a class="navbar" href="/admin">
+                           
+                                <h1 class="text-white px-2 mt-2">LVK House</h1>
+                          
                             </a>
                             <!-- ============================================================== -->
                             <!-- End Logo -->
