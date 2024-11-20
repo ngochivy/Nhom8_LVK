@@ -102,7 +102,6 @@ abstract class BaseModel implements CrudInterface
             $sql = rtrim($sql, ", ");
 
             $sql .= " WHERE $this->id=$id";
-
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
             return $stmt->execute();
@@ -137,6 +136,10 @@ abstract class BaseModel implements CrudInterface
     }
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
     
     public function getOneByName($name){
         $result = [];
@@ -154,6 +157,7 @@ abstract class BaseModel implements CrudInterface
         }
     }
 
+<<<<<<< HEAD
     // dem users
     public function countTotal()
     {
@@ -171,4 +175,6 @@ abstract class BaseModel implements CrudInterface
     
 
 
+=======
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
 }

@@ -13,18 +13,32 @@ class AuthValidation
         $is_valid = true;
         //Tên đăng nhập
 
+<<<<<<< HEAD
         if (!isset($_POST['username']) || $_POST['username'] == '') {
             NotificationHelper::error('username', 'Tên đăng nhập không được để trống !');
+=======
+        if (!isset($_POST['Username']) || $_POST['Username'] == '') {
+            NotificationHelper::error('Username', 'Tên đăng nhập không được để trống !');
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
             $is_valid = false;
         }
         //Mật khẩu 
 
+<<<<<<< HEAD
         if (!isset($_POST['password']) || $_POST['password'] === '') {
             NotificationHelper::error('password', 'Mật khẩu không được để trống !');
             $is_valid = false;
         } else {
             if (strlen($_POST['password']) < 3) {
                 NotificationHelper::error('password', 'Mật khẩu phải ít nhất 3 ký tự !');
+=======
+        if (!isset($_POST['Password']) || $_POST['Password'] === '') {
+            NotificationHelper::error('Password', 'Mật khẩu không được để trống !');
+            $is_valid = false;
+        } else {
+            if (strlen($_POST['Password']) < 3) {
+                NotificationHelper::error('Password', 'Mật khẩu phải ít nhất 3 ký tự !');
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
                 $is_valid = false;
             }
         }
@@ -44,6 +58,7 @@ class AuthValidation
 
         //email
 
+<<<<<<< HEAD
         if (!isset($_POST['email']) || $_POST['email'] === '') {
             NotificationHelper::error('email', 'Email không được để trống');
             $is_valid = false;
@@ -51,13 +66,27 @@ class AuthValidation
             $emailPattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
             if (!preg_match($emailPattern, $_POST['email'])) {
                 NotificationHelper::error('email', 'Email không đúng định dạng');
+=======
+        if (!isset($_POST['Email']) || $_POST['Email'] === '') {
+            NotificationHelper::error('Email', 'Email không được để trống');
+            $is_valid = false;
+        } else {
+            $emailPattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+            if (!preg_match($emailPattern, $_POST['Email'])) {
+                NotificationHelper::error('Email', 'Email không đúng định dạng');
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
                 $is_valid = false;
             }
         }
 
         //ho va ten
+<<<<<<< HEAD
         if (!isset($_POST['name']) || $_POST['name'] === '') {
             NotificationHelper::error('name', 'Họ và tên không được để trống');
+=======
+        if (!isset($_POST['Name']) || $_POST['Name'] === '') {
+            NotificationHelper::error('Name', 'Họ và tên không được để trống');
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
             $is_valid = false;
         }
 
@@ -70,15 +99,25 @@ class AuthValidation
 
 
         //Tên đăng nhập
+<<<<<<< HEAD
         if (!isset($_POST['username']) || $_POST['username'] === '') {
             NotificationHelper::error('username', 'Tên đăng nhập không được để trống !');
+=======
+        if (!isset($_POST['Username']) || $_POST['Username'] === '') {
+            NotificationHelper::error('Username', 'Tên đăng nhập không được để trống !');
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
             $is_valid = false;
         }
 
 
         //Mật khẩu 
+<<<<<<< HEAD
         if (!isset($_POST['password']) || $_POST['password'] === '') {
             NotificationHelper::error('password', 'Mật khẩu không được để trống !');
+=======
+        if (!isset($_POST['Password']) || $_POST['Password'] === '') {
+            NotificationHelper::error('Password', 'Mật khẩu không được để trống !');
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
             $is_valid = false;
         }
 
@@ -98,6 +137,7 @@ class AuthValidation
 
         //email
 
+<<<<<<< HEAD
         if (!isset($_POST['email']) || $_POST['email'] === '') {
             NotificationHelper::error('email', 'Email không được để trống');
             $is_valid = false;
@@ -123,21 +163,43 @@ class AuthValidation
             $phonePattern = "/^[0-9]{10,11}$/";
             if (!preg_match($phonePattern, $_POST['phone'])) {
                 NotificationHelper::error('phone', 'Số điện thoại không đúng định dạng');
+=======
+        if (!isset($_POST['Email']) || $_POST['Email'] === '') {
+            NotificationHelper::error('Email', 'Email không được để trống');
+            $is_valid = false;
+        } else {
+            $emailPattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
+            if (!preg_match($emailPattern, $_POST['Email'])) {
+                NotificationHelper::error('Email', 'Email không đúng định dạng');
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
                 $is_valid = false;
             }
         }
 
         //ho va ten
+<<<<<<< HEAD
         if (!isset($_POST['name']) || $_POST['name'] === '') {
             NotificationHelper::error('name', 'Họ và tên không được để trống');
+=======
+        if (!isset($_POST['Name']) || $_POST['Name'] === '') {
+            NotificationHelper::error('Name', 'Họ và tên không được để trống');
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
             $is_valid = false;
         }
 
         return $is_valid;
     }
+<<<<<<< HEAD
     public static function uploadAvatar()
     {
         if (!file_exists($_FILES['avatar']['tmp_name']) || !is_uploaded_file($_FILES['avatar']['tmp_name'])) {
+=======
+
+    
+    public static function uploadAvatar()
+    {
+        if (!file_exists($_FILES['Image']['tmp_name']) || !is_uploaded_file($_FILES['Image']['tmp_name'])) {
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
             return false;
         }
 
@@ -145,7 +207,11 @@ class AuthValidation
         $target_dir = 'public/uploads/users/';
 
         //Kiem tra loai file uplaod co hop le khong.
+<<<<<<< HEAD
         $imageFileType = strtolower(pathinfo(basename($_FILES['avatar']['name']), PATHINFO_EXTENSION));
+=======
+        $imageFileType = strtolower(pathinfo(basename($_FILES['Image']['name']), PATHINFO_EXTENSION));
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
 
         if ($imageFileType != 'jpg' && $imageFileType != 'jpeg' && $imageFileType != 'png' && $imageFileType != 'gif') {
             NotificationHelper::error('type_upload', 'Chỉ nhận file ảnh JPG, PNG, GIF, JPEG');
@@ -157,7 +223,11 @@ class AuthValidation
         // duong dan day du de di chuyen file
         $target_file = $target_dir . $nameImage;
 
+<<<<<<< HEAD
         if (!move_uploaded_file($_FILES['avatar']['tmp_name'], $target_file)) {
+=======
+        if (!move_uploaded_file($_FILES['Image']['tmp_name'], $target_file)) {
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
             NotificationHelper::error('move_uplaod', 'Upload ảnh thất bại');
             return false;
         }

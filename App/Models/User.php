@@ -58,7 +58,13 @@ class User extends BaseModel
             $username = $data['Username'];
             $email = $data['Email'];
             $password = $data['Password'];
+<<<<<<< HEAD
             $sql = "UPDATE $this->table SET Password='$password' WHERE Username='$username' AND  Email='$email'";
+=======
+            $phone = $data['Phone_number'];
+            $address = $data['Address'];
+            $sql = "UPDATE $this->table SET  WHERE Username='$username' AND  Email='$email' AND Password='$password' AND Phone_number='$phone' AND Address='$address'";
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
 
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
@@ -71,8 +77,11 @@ class User extends BaseModel
             return false;
         }
     }
+<<<<<<< HEAD
 
     public function countTotalUser(){
         return $this->countTotal();
     }
+=======
+>>>>>>> fa253ba470afb82e7a467a963e3e6b86d0a08167
 }
