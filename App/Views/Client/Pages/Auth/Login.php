@@ -37,24 +37,26 @@ class Login extends BaseView
                                 <div class="col-md-10">
                                     <h3>Đăng nhập vào <strong class="text-primary">LVK House</strong></h3>
                                     <p class="mb-4">Chào mừng bạn! Đăng nhập để trải nghiệm các dịch vụ và tiện ích tuyệt vời từ chúng tôi.</p>
-                                    <form action="#" method="post">
+                                    <form action="/login" method="post">
+                                        <input type="hidden" name="method" id="" value="POST">
                                         <div class="form-group first">
-                                            <label for="username">Email</label>
-                                            <input type="text" class="form-control" placeholder="Nhập email" id="username">
+                                            <label for="Username">Tên đăng nhập</label>
+                                            <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập" id="Username">
                                         </div>
                                         <div class="form-group last mb-3">
-                                            <label for="password">Mật khẩu</label>
-                                            <input type="password" class="form-control" placeholder="Nhập mật khẩu" id="password">
+                                            <label for="Password">Mật khẩu</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" id="Password">
                                         </div>
                                         <div class="d-flex mb-5 align-items-center">
                                             <label class="control control--checkbox mb-0"><span class="caption">Lưu mật khẩu</span>
-                                                <input type="checkbox" checked="checked" />
+                                                <input type="checkbox" name="remember" checked="checked" />
                                                 <div class="control__indicator"></div>
                                             </label>
-                                            <span class="ms-auto"><a href="#" class="forgot-pass">Quên mật khẩu?</a></span>
+                                            <span class="ms-auto"><a href="/forgot-password" class="forgot-pass">Quên mật khẩu?</a></span>
                                         </div>
                                         <input type="submit" value="Đăng nhập" class="btn btn-block btn-primary rounded-1">
                                     </form>
+
 
                                     <p class="mt-3">Chưa có tài khoản? <a href="/register">Đăng ký ngay</a></p>
 
@@ -72,7 +74,7 @@ class Login extends BaseView
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
             <script src="/public/assets/client/js/main.js"></script>
 
-            
+
         </body>
 
         </html>

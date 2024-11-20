@@ -109,6 +109,24 @@ class AuthValidation
             }
         }
 
+        // address
+        if (!isset($_POST['address']) || $_POST['address'] === '') {
+            NotificationHelper::error('address', 'Địa chỉ không được để trống');
+            $is_valid = false;
+        }
+
+        // phone number
+        if (!isset($_POST['phone']) || $_POST['phone'] === '') {
+            NotificationHelper::error('phone', 'Số điện thoại không được để trống');
+            $is_valid = false;
+        } else {
+            $phonePattern = "/^[0-9]{10,11}$/";
+            if (!preg_match($phonePattern, $_POST['phone'])) {
+                NotificationHelper::error('phone', 'Số điện thoại không đúng định dạng');
+                $is_valid = false;
+            }
+        }
+
         //ho va ten
         if (!isset($_POST['name']) || $_POST['name'] === '') {
             NotificationHelper::error('name', 'Họ và tên không được để trống');

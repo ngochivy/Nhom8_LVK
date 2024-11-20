@@ -9,6 +9,8 @@ class Header extends BaseView
 {
     public static function render($data = null)
     {
+        // Kiểm tra đăng nhập và xử lý
+        $is_login = AuthHelper::checkLogin();
 ?>
 
         <!DOCTYPE html>
@@ -16,7 +18,7 @@ class Header extends BaseView
 
         <head>
 
-         <!-- Favicon -->
+            <!-- Favicon -->
             <link rel="icon" href="/favicon.png" />
 
             <!-- Google Web Fonts -->
@@ -35,8 +37,8 @@ class Header extends BaseView
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
             <link href="/public/assets/client/css/style.css" rel="stylesheet">
             <link href="/public/assets/client/css/style.min.css" rel="stylesheet">
-           <!-- Hiệu ứng ảnh -->
-             <link href="/public/lib/animate/animate.min.css" rel="stylesheet">
+            <!-- Hiệu ứng ảnh -->
+            <link href="/public/lib/animate/animate.min.css" rel="stylesheet">
 
             <!-- Favicon -->
             <link rel="icon" href="/favicon.png" />
@@ -51,11 +53,11 @@ class Header extends BaseView
             <!-- Libraries Stylesheet -->
             <link href="/public/assets/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-            <!-- Customized Bootstrap Stylesheet -->   
+            <!-- Customized Bootstrap Stylesheet -->
             <link href="/public//css//bootstrap.min.css" rel="stylesheet">
 
             <!-- Customized Bootstrap Stylesheet -->
-            
+
             <link href="/public/assets/client/css/style.css" rel="stylesheet">
             <link href="/public/assets/client/css/style.min.css" rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -113,11 +115,11 @@ class Header extends BaseView
                     <div class="col-lg-3 col-6 text-right">
                         <a href="" class="btn border">
                             <i class="fas fa-heart text-primary"></i>
-                            
+
                         </a>
                         <a href="/cart" class="btn border">
                             <i class="fas fa-shopping-cart text-primary"></i>
-                            
+
                         </a>
                     </div>
                 </div>
@@ -170,14 +172,44 @@ class Header extends BaseView
                                     <a href="/contact" class="nav-item nav-link">Liên hệ</a>
                                     <a href="/blog" class="nav-item nav-link">Bài viết</a>
                                 </div>
-                                <div class="navbar-nav ml-auto py-0">
+                                <!-- <div class="navbar-nav ml-auto py-0">
                                     <a href="/login" class="nav-item nav-link">Đăng nhập</a>
                                     <a href="/register" class="nav-item nav-link">Đăng ký</a>
                                     
-                                </div>
+                                </div> -->
+                                <?php if ($is_login) : ?>
+                                    <div class="dropdown">
+                                        <a class="dropdown-toggle d-flex align-items-center hidden-arrow border-0 text-decoration-none"
+                                            href="#"
+                                            id="navbarDropdownMenuAvatar"
+                                            role="button"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            <span class="ml-2 d-lg-inline-block font-weight-bold">Chào, <?= $_SESSION['user']['Username'] ?></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuAvatar">
+                                            <li>
+                                                <a class="dropdown-item" href="/users/<?= $_SESSION['user']['User_ID'] ?>">Tài khoản</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="/change-password">Đổi mật khẩu</a>
+                                            </li>
+                                            <li>
+                                                <a class="dropdown-item" href="/logout">Đăng xuất</a>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                <?php else : ?>
+                                    <div class="navbar-nav ml-auto py-0">
+                                        <a class="nav-item nav-link" href="/login">Đăng nhập</a>
+                                        <a class="nav-item nav-link" href="/register">Đăng ký</a>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </nav>
-                        
+
                     </div>
                 </div>
             </div>
