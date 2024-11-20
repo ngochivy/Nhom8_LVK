@@ -33,12 +33,12 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-5 border-right">
                         <?php
-                        if ($data && $data['Avatar']) :
+                        if ($data && $data['Image']) :
                         ?>
 
 
                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                <img class="rounded-3 mt-5" width="300px" src="<?= APP_URL ?>/public/uploads/users/<?= $data['Avatar'] ?>">
+                                <img class="rounded-3 mt-5" width="300px" src="<?= APP_URL ?>/public/uploads/users/<?= $data['Image'] ?>">
                                 <span class="font-weight-bold">Avatar</span><span class="text-black-50"></span>
                                 <span> </span>
                             </div>
@@ -73,7 +73,7 @@ class Edit extends BaseView
                                     <div class="col-md-12 mt-4"><label class="labels" for="name">Họ và tên</label><input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="<?= $data['Name'] ?>"></div>
                                     <div class="col-md-12 mt-4"><label class="labels" for="address">Địa chỉ</label><input type="text" id="address" name="address" class="form-control" placeholder="Địa chỉ" value="<?= $data['Address'] ?>"></div>
                                     <div class="col-md-12 mt-4"><label class="labels" for="phone">Số điện thoại</label><input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="<?= $data['Phone_number'] ?>"></div>
-                                    <div class="col-md-12 mt-4"><label class="labels" for="avatar">Ảnh đại diện</label><input type="file" id="avatar" name="avatar" class="form-control" placeholder="Chọn ảnh đại diện" value=""></div>
+                                    <div class="col-md-12 mt-4"><label class="labels" for="avatar">Ảnh đại diện</label><input type="file" id="avatar" name="image" class="form-control" placeholder="Chọn ảnh đại diện" value=""></div>
 
                                 </div>
 

@@ -190,7 +190,7 @@ class UserController
         // Kiểm tra và xử lý upload ảnh đại diện
         $is_upload = AuthValidation::uploadAvatar();
         if ($is_upload) {
-            $data['avatar'] = $is_upload;
+            $data['image'] = $is_upload;
         }
 
         // Cập nhật thông tin

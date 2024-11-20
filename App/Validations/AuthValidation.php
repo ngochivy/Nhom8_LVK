@@ -130,8 +130,8 @@ class AuthValidation
         }
 
         //ho va ten
-        if (!isset($_POST['Name']) || $_POST['Name'] === '') {
-            NotificationHelper::error('Name', 'Họ và tên không được để trống');
+        if (!isset($_POST['name']) || $_POST['name'] === '') {
+            NotificationHelper::error('name', 'Họ và tên không được để trống');
             $is_valid = false;
         }
 
