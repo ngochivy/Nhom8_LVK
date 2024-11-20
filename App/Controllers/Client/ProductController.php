@@ -2,9 +2,10 @@
 
 namespace App\Controllers\Client;
 
-use App\Helpers\AuthHelper;
 use App\Helpers\NotificationHelper;
+use App\Views\Admin\Components\Notification;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Layouts\Header;
@@ -14,88 +15,67 @@ use App\Views\Client\Pages\Product\Index;
 
 class ProductController
 {
-    // Hiển thị danh sách sản phẩm
+    // hiển thị danh sách
     public static function index()
     {
-        $productModel = new Product();
 
-        // Lấy danh mục
-        $categories = (new Category())->getAll();
+        $category = new Category();
+        $categories = $category->getAllCategoryByStatus();
+        $product = new Product();
+        $products = $product->getAllProductByStatus();
 
-        // Lấy tất cả sản phẩm theo trạng thái mặc định là active (status = 1)
-        $products = $productModel->getAllProductByStatus();
 
-        // Lọc sản phẩm theo danh mục
-        if (isset($_GET['category']) && $_GET['category'] != 'all') {
-            $categoryId = (int)$_GET['category']; // Kiểm tra giá trị category hợp lệ
-            $products = $productModel->getAllProductByCategory($categoryId);
-        }
-
-        // Lọc sản phẩm theo khoảng giá
-        if (isset($_GET['min_price']) && isset($_GET['max_price'])) {
-            $minPrice = (int)$_GET['min_price']; // Chuyển đổi giá trị thành số nguyên
-            $maxPrice = (int)$_GET['max_price']; // Chuyển đổi giá trị thành số nguyên
-            // Kiểm tra giá trị khoảng giá hợp lệ
-            if ($minPrice >= 0 && $maxPrice > $minPrice) {
-                $products = $productModel->getProductByPriceRange($minPrice, $maxPrice);
-            }
-        }
-
-        // Dữ liệu truyền vào view
         $data = [
-            'categories' => $categories,
             'products' => $products,
+            'categories' => $categories
         ];
-
-        // Render view
         Header::render();
+        Notification::render();
+        NotificationHelper::unset();
         Index::render($data);
         Footer::render();
     }
-
-
-    // Hiển thị chi tiết sản phẩm
     public static function detail($id)
     {
-        // Khởi tạo model sản phẩm
-        $productModel = new Product();
+   
 
-        // Lấy thông tin sản phẩm từ database
-        $product_detail = $productModel->getOneProduct($id);
+        $product=new Product();
+        $product_detail=$product->getOneProductByStatus($id);
 
-        // Kiểm tra nếu sản phẩm không tồn tại
-        if (!$product_detail) {
-            // Hiển thị thông báo hoặc chuyển hướng nếu không tìm thấy sản phẩm
-            echo "Sản phẩm không tồn tại.";
-            return;
+        if(!$product_detail){
+            NotificationHelper::error('product_detail','không thể xem sản phẩm này');
+            header('location: /products');
+            exit;
         }
 
-        // Dữ liệu truyền vào view
-        $data = [
-            'product' => $product_detail
-        ];
 
-        // Render view
-        Header::render();
-        Detail::render($data);
-        Footer::render();
+        // $comment=new Comment();
+        // $comments = $comment->get5commentNewestByProductAndStatus($id);
+        // $data = [
+        //     'product' => $product_detail,
+        //     'comments'=>$comments
+        // ];
+
+        // // echo '<pre>';
+        // // var_dump($data);
+        // Header::render();
+        // Notification::render();
+        // NotificationHelper::unset();
+        // Detail::render($data);
+        // Footer::render();
     }
 
-
-    // Lấy sản phẩm theo danh mục (đã có trong model)
     public static function getProductByCategory($id)
     {
-        $productModel = new Product();
+        $category= new Category();
+        $categories=$category->getAllCategoryByStatus();
+        $product=new Product();
+        $products=$product->getAllProductByCategoryAndStatus($id);
 
-        // Lấy sản phẩm theo danh mục
-        $products = $productModel->getAllProductByCategory($id);
-
-        // Dữ liệu truyền vào view
         $data = [
-            'products' => $products
+            'products' => $products,
+            'categories' => $categories
         ];
-
-        // Render view
         Header::render();
         ProductCategory::render($data);
         Footer::render();
