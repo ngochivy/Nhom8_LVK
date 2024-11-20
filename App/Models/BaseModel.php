@@ -130,7 +130,7 @@ abstract class BaseModel implements CrudInterface
     public function getAllByStatus()
     {
 
-        $sql = "SELECT * FROM $this->table WHERE status=" . self::STATUS_ENABLE;
+        $sql = "SELECT * FROM $this->table WHERE Status=" . self::STATUS_ENABLE;
         $result = $this->_conn->MySQLi()->query($sql);
         return $result->fetch_all(MYSQLI_ASSOC);
     }

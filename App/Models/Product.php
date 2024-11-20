@@ -11,6 +11,7 @@ class Product extends BaseModel
     {
         return $this->getAll();
     }
+
     public function getOneProduct($id)
     {
         return $this->getOne($id);
@@ -20,6 +21,7 @@ class Product extends BaseModel
     {
         return $this->create($data);
     }
+
     public function updateProduct($id, $data)
     {
         return $this->update($id, $data);
@@ -29,98 +31,57 @@ class Product extends BaseModel
     {
         return $this->delete($id);
     }
+
     public function getAllProductByStatus()
     {
-        $result = [];
-        try {
-            $sql = "SELECT products.* FROM products 
-        INNER JOIN categories ON products.Category_ID=Categories.Category_ID 
-        WHERE products.Status=" . self::STATUS_ENABLE . " 
-        AND categories.Status=" . self::STATUS_ENABLE;
-            $result = $this->_conn->MySQLi()->query($sql);
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } catch (\Throwable $th) {
-            error_log('Lỗi khi hiển thị tất cả dữ liệu: ' . $th->getMessage());
-            return $result;
-        }
+        return $this->getAllByStatus();
     }
 
-
-    public function getOneProductByName($name)
+    public function getProductByPriceRange($minPrice, $maxPrice)
     {
-        return $this->getOneByName($name);
-    }
-
-    public function getAllProductJoinCategory()
-    {
-        $result = [];
         try {
-            // $sql = "SELECT * FROM $this->table";
-            $sql = "SELECT products.*,categories.Category_name AS Category_name 
-            FROM products 
-            INNER JOIN categories ON products.Category_ID=categories.Category_ID;";
-            $result = $this->_conn->MySQLi()->query($sql);
-            return $result->fetch_all(MYSQLI_ASSOC);
-        } catch (\Throwable $th) {
-            error_log('Lỗi khi hiển thị tất cả dữ liệu: ' . $th->getMessage());
-            return $result;
-        }
-    }
-
-    public function getAllProductByCategoryAndStatus(int $id)
-    {
-        $result = [];
-        try {
-            $sql = "SELECT products.*,categories.Category_name AS Category_name FROM products 
-            INNER JOIN categories ON products.Category_ID=categories.Category_ID 
-            WHERE products.Status=" . self::STATUS_ENABLE . " 
-            AND categories.Status=" . self::STATUS_ENABLE . " AND products.Category_ID=?";
-            $conn = $this->_conn->MySQLi();
-            $stmt = $conn->prepare($sql);
-
-            $stmt->bind_param('i', $id);
+            $conn = $this->getConnection(); // Sử dụng getConnection
+            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE Price BETWEEN ? AND ?");
+            $stmt->bind_param("ii", $minPrice, $maxPrice);
             $stmt->execute();
-            return $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+            $result = $stmt->get_result();
+            return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
         } catch (\Throwable $th) {
-            error_log('Lỗi khi hiển thị dữ liệu: ' . $th->getMessage());
-            return $result;
+            error_log("Error in getProductByPriceRange(): " . $th->getMessage());
+            return [];
         }
     }
 
 
-    public function getOneProductByStatus (int $id)
+    public function getAllProductByCategory($categoryId)
     {
-        $result = [];
         try {
-            $sql = "SELECT products.*,categories.Category_name AS Category_name FROM products 
-            INNER JOIN categories ON products.Category_ID=categories.Category_ID 
-            WHERE products.Status=" . self::STATUS_ENABLE . " 
-            AND categories.Status=" . self::STATUS_ENABLE . " AND products.id=?";
-            $conn = $this->_conn->MySQLi();
-            $stmt = $conn->prepare($sql);
-
-            $stmt->bind_param('i', $id);
+            $conn = $this->getConnection(); // Sử dụng getConnection
+            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE Category_ID = ?");
+            $stmt->bind_param("i", $categoryId);
             $stmt->execute();
-            return $stmt->get_result()->fetch_assoc();
+
+            $result = $stmt->get_result();
+            return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
         } catch (\Throwable $th) {
-            error_log('Lỗi khi hiển thị chi tiết dữ liệu: ' . $th->getMessage());
-            return $result;
+            error_log("Error in getAllProductByCategory(): " . $th->getMessage());
+            return [];
         }
     }
-    // public function countTotalProduct()
-    // {
-    //     return $this->countTotal();
-    // }
-    public function countProductByCategory()
+
+    public function getFeaturedProducts()
     {
-        $result = [];
         try {
-            $sql = "SELECT  COUNT(*) AS count,categories.Category_name FROM products INNER JOIN categories ON products.Category_ID=categories.Category_ID GROUP BY products.Category_ID;";
-            $result = $this->_conn->MySQLi()->query($sql);
-            return $result->fetch_all(MYSQLI_ASSOC);
+            $conn = $this->getConnection(); // Sử dụng getConnection
+            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE is_feature = 1");
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
         } catch (\Throwable $th) {
-            error_log('Lỗi khi hiển thị tất cả dữ liệu: ' . $th->getMessage());
-            return $result;
+            error_log("Error in getFeaturedProducts(): " . $th->getMessage());
+            return [];
         }
     }
 }

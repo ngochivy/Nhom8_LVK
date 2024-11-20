@@ -10,7 +10,6 @@ use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Page\About;
 use App\Views\Client\Pages\Page\Contact;
 use App\Views\Client\Pages\Page\Blog;
-use App\Views\Client\Pages\Page\Emblog;
 use App\Views\Client\Pages\Page\Cart;
 use App\Views\Client\Pages\Page\Checkout;
 use App\Views\Client\Pages\Auth\Login;
@@ -24,13 +23,22 @@ class HomeController
     // hiển thị danh sách
     public static function index()
     {
-        Header::render();
-        Notification::render();
-        NotificationHelper::unset();
-        
-        Home::render();
+        $productModel = new \App\Models\Product();
 
+        // Lấy danh sách sản phẩm nổi bật
+        $featuredProducts = $productModel->getFeaturedProducts();
+
+        // Truyền dữ liệu vào view
+        $data = [
+            'featuredProducts' => $featuredProducts,
+        ];
+
+        Header::render();
+        Home::render($data);
+        Footer::render();
     }
+
+
 
     // hiển thị trang giới thiệu
     public static function about()
@@ -51,13 +59,6 @@ class HomeController
     {
         Header::render();
         Blog::render();
-        Footer::render();
-    }
-
-    public static function emblog()
-    {
-        Header::render();
-        Emblog::render();
         Footer::render();
     }
 
