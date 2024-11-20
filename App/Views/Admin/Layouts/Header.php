@@ -161,6 +161,9 @@ class Header extends BaseView
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                         href="/admin/comments" aria-expanded="false"><i class="me-3 fa fa-font"
                                             aria-hidden="true"></i><span class="hide-menu">Bình luận</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/admin/comments" aria-expanded="false"><i class="me-3 fa fa-font"
+                                            aria-hidden="true"></i><span class="hide-menu">Bài viết</span></a></li>
 
 
 

@@ -88,6 +88,29 @@ Route::delete('/admin/products/{id}', 'App\Controllers\Admin\ProductController@d
 
 
 
+//  *** Blog
+// GET /Blog (lấy danh blog)
+Route::get('/admin/blog', 'App\Controllers\Admin\BlogController@index');
+
+// GET /Product/create (hiển thị form thêm blog)
+Route::get('/admin/blog/create', 'App\Controllers\Admin\BlogController@create');
+
+// POST /Product (tạo mới một blog)
+Route::post('/admin/blog', 'App\Controllers\Admin\BlogController@store');
+
+// GET /Product/{id} (lấy chi tiết blog với id cu the)
+Route::get('/admin/blog/{id}', 'App\Controllers\Admin\BlogController@edit');
+
+// PUT /Product/{id} (update loại blog với id cụ thể)
+Route::put('/admin/blog/{id}', 'App\Controllers\Admin\BlogController@update');
+
+// DELETE /Product/{id} (delete loại blog với id cụ thể)
+Route::delete('/admin/blog/{id}', 'App\Controllers\Admin\BlogController@delete');
+
+
+
+
+
 //  *** Comment
 // GET /Comment (lấy danh sách loại sản phẩm)
 Route::get('/admin/comments', 'App\Controllers\Admin\CommentController@index');

@@ -39,154 +39,60 @@ class Blog extends BaseView
 
         <!-- Template Stylesheet -->
         <link href="/public/css/style1.css" rel="stylesheet">
-
+        <link href="/public/assets//client//css//blog.css" rel="stylesheet">
 
         <body>
             <!-- Blog Start -->
-            <div class="container-fluid py-5">
-                <div class="container py-5">
-                    <div class="text-center mx-auto mb-5" style="max-width: 500px;">
-                        <h1 class="display-5 fw-bold h2">TẤT CẢ BÀI VIẾT</h1>
-                        <hr class="w-25 mx-auto text-primary" style="opacity: 1;">
+            <div class="container">
+                <!-- Cột bên trái -->
+                <div class="left-column">
+                    <h2>Tất cả bài viết</h2>
+                    <div class="post">
+                        <img src="https://www.zecible.fr/wp-content/uploads/2018/02/644455-POO5SL-571-scaled.jpg" alt="Hình ảnh bài viết">
+                        <p class="post-date">19, tháng 9 năm 2024</p>
+                        <h5 class="card-title">Mẹo Chọn Thiết Bị Nấu Ăn Tiết Kiệm Thời Gian</h5>
+                                <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    Sử dụng nồi cơm điện đa năng và máy xay sinh tố thông minh không chỉ giúp bạn tiết kiệm thời gian mà còn làm cho bữa ăn trở nên dễ dàng và ngon miệng hơn...
+                                </p>
+                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
                     </div>
-                    <div class="row g-3">
-                        <div class="col-xl-4 col-lg-6">
-                            <div class="blog-item ">
-                            <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4 rounded-4" style="width: 60px; height: 100px; position:absolute; left:0; top:0;">
-                                        <i class="fa fa-calendar-alt text-primary mb-2"></i>
-                                        <p class="m-0 text-black">1 tháng 1</p>
-                                        <small class="text-black">2045</small>
-                                    </div>
-                                <img class="img-fluid w-100 rounded-3" src="https://www.zecible.fr/wp-content/uploads/2018/02/644455-POO5SL-571-scaled.jpg" style="height: 200px; object-fit: cover;" alt="Blog 3">
-                                <div class="d-flex align-items-center">
-                                    
-                                    <a class="h6 m-0 text-truncate me-4 fw-bold " href="">Mẹo Chọn Thiết Bị Nấu Ăn Tiết Kiệm Thời Gian</a>
-                                </div>
-                                <div class="d-flex justify-content-between border-top border-secondary p-4">
-                                    <div class="d-flex align-items-center">
-                                        <img class="rounded-circle me-2" src="/public//uploads//users//igkhang.png" width="30" height="30" alt="">
-                                        <small class="text-uppercase">Lee Khang</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <small class="ms-3"><i class="fa fa-eye text-secondary me-2"></i>12345</small>
-                                        <small class="ms-3"><i class="fa fa-comment text-secondary me-2"></i>123</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6">
-                            <div class="blog-item ">
-                            <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4 rounded-4" style="width: 60px; height: 100px; position:absolute; left:0; top:0;">
-                                        <i class="fa fa-calendar-alt text-primary mb-2"></i>
-                                        <p class="m-0 text-black">1 tháng 1</p>
-                                        <small class="text-black">2045</small>
-                                    </div>
-                                <img class="img-fluid w-100 rounded-3" src="https://th.bing.com/th/id/R.5e64dc17c45ce6dd64a8d42ab876d5a4?rik=Q0Wh4dKR%2bAaLGg&riu=http%3a%2f%2fbookdirtbusters.com%2fwp-content%2fuploads%2f2019%2f09%2fclean-home.jpeg&ehk=RzfBQ1NQwMrSgcNfxbCMfOP%2bvLV%2bO9h4LfxZ4da%2fAik%3d&risl=&pid=ImgRaw&r=0" style="height: 200px; object-fit: cover;" alt="Blog 3">
-                                <div class="d-flex align-items-center">
-                                    
-                                    <a class="h6 m-0 text-truncate me-4 fw-bold " href="">Mẹo Dọn Dẹp Tiện Lợi Cho Nhà Bận Rộn</a>
-                                </div>
-                                <div class="d-flex justify-content-between border-top border-secondary p-4">
-                                    <div class="d-flex align-items-center">
-                                        <img class="rounded-circle me-2" src="/public//uploads//users//igkhang.png" width="30" height="30" alt="">
-                                        <small class="text-uppercase">Lee Khang</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <small class="ms-3"><i class="fa fa-eye text-secondary me-2"></i>12345</small>
-                                        <small class="ms-3"><i class="fa fa-comment text-secondary me-2"></i>123</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6">
-                            <div class="blog-item">
-                            <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4 rounded-4" style="width: 60px; height: 100px; position:absolute; left:0; top:0;">
-                                        <i class="fa fa-calendar-alt text-primary mb-2"></i>
-                                        <p class="m-0 text-black">1 tháng 1</p>
-                                        <small class="text-black">2045</small>
-                                    </div>
-                                <img class="img-fluid w-100 rounded-3" src="https://www.cnet.com/a/img/resize/e2cd457709207d1abf51648466b077b61f8b11d2/hub/2024/06/04/8a97de33-f6d8-46b8-8821-c52cc5897929/best-home-security-system.jpg?auto=webp&width=1200" style="height: 200px; object-fit: cover;" alt="Blog 3">
-                                <div class="d-flex align-items-center">
-                                    
-                                    <a class="h6 m-0 text-truncate me-4 fw-bold " href="">Kiến Thức Về Công Nghệ Thông Minh Trong Nhà</a>
-                                </div>
-                                <div class="d-flex justify-content-between border-top border-secondary p-4">
-                                    <div class="d-flex align-items-center">
-                                        <img class="rounded-circle me-2" src="/public//uploads//users//igkhang.png" width="30" height="30" alt="">
-                                        <small class="text-uppercase">Lee Khang</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <small class="ms-3"><i class="fa fa-eye text-secondary me-2"></i>12345</small>
-                                        <small class="ms-3"><i class="fa fa-comment text-secondary me-2"></i>123</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-lg-6">
-                            <div class="blog-item ">
-                            <div class="bg-secondary mt-n4 d-flex flex-column flex-shrink-0 justify-content-center text-center me-4 rounded-4" style="width: 60px; height: 100px; position:absolute; left:0; top:0;">
-                                        <i class="fa fa-calendar-alt text-primary mb-2"></i>
-                                        <p class="m-0 text-black">1 tháng 1</p>
-                                        <small class="text-black">2045</small>
-                                    </div>
-                                <img class="img-fluid w-100 rounded-3" src="https://th.bing.com/th/id/R.2926339bcbd95498310983e22be67c38?rik=0poh7t3ysTCxOQ&pid=ImgRaw&r=0" style="height: 200px; object-fit: cover;" alt="Blog 3">
-                                <div class="d-flex align-items-center">
-                                    
-                                    <a class="h6 m-0 text-truncate me-4 fw-bold " href="">Mẹo Tận Dụng Không Gian Phòng Tắm</a>
-                                </div>
-                                <div class="d-flex justify-content-between border-top border-secondary p-4">
-                                    <div class="d-flex align-items-center">
-                                        <img class="rounded-circle me-2" src="/public//uploads//users//igkhang.png" width="30" height="30" alt="">
-                                        <small class="text-uppercase">Lee Khang</small>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <small class="ms-3"><i class="fa fa-eye text-secondary me-2"></i>12345</small>
-                                        <small class="ms-3"><i class="fa fa-comment text-secondary me-2"></i>123</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">...</a></li>
-                                <li class="page-item"><a class="page-link" href="#">9</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
-                      
+                    <div class="post">
+                        <img src="https://th.bing.com/th/id/R.5e64dc17c45ce6dd64a8d42ab876d5a4?rik=Q0Wh4dKR%2bAaLGg&riu=http%3a%2f%2fbookdirtbusters.com%2fwp-content%2fuploads%2f2019%2f09%2fclean-home.jpeg&ehk=RzfBQ1NQwMrSgcNfxbCMfOP%2bvLV%2bO9h4LfxZ4da%2fAik%3d&risl=&pid=ImgRaw&r=0" alt="Hình ảnh bài viết">
+                        <p class="post-date">20 Th9</p>
+                        <h5 class="card-title">Mẹo Dọn Dẹp Tiện Lợi Cho Nhà Bận Rộn</h5>
+                        <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    Máy hút bụi thông minh và cây lau nhà tự động là những trợ thủ đắc lực giúp bạn duy trì ngôi nhà luôn sạch sẽ mà không tốn quá nhiều thời gian...
+                                </p>
+                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
+                    </div>
+                    <div class="post">
+                        <img src="https://www.cnet.com/a/img/resize/e2cd457709207d1abf51648466b077b61f8b11d2/hub/2024/06/04/8a97de33-f6d8-46b8-8821-c52cc5897929/best-home-security-system.jpg?auto=webp&width=1200" alt="Hình ảnh bài viết">
+                        <p class="post-date">20 Th9</p>
+                        <h5 class="card-title">Kiến Thức Về Công Nghệ Thông Minh Trong Nhà</h5>
+                                <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
+                                    Những thiết bị công nghệ như loa thông minh và bóng đèn điều khiển từ xa giúp bạn dễ dàng điều khiển ngôi nhà, tiết kiệm năng lượng và nâng cao chất lượng sống...
+                                </p>
+                                <a href="#" class="btn btn-primary rounded-1">Xem thêm</a>
+                    </div>
+                </div>
+
+                <!-- Cột bên phải -->
+                <div class="right-column">
+                    <h2>Bài viết mới nhất</h2>
+                    <div class="post">
+                    <img src="https://www.zecible.fr/wp-content/uploads/2018/02/644455-POO5SL-571-scaled.jpg" alt="Hình ảnh bài viết">
+                    <p class="post-title">Mẹo Chọn Thiết Bị Nấu Ăn Tiết Kiệm Thời Gian</p>
+                    </div>
+                    <div class="post">
+                    <img src="https://th.bing.com/th/id/R.5e64dc17c45ce6dd64a8d42ab876d5a4?rik=Q0Wh4dKR%2bAaLGg&riu=http%3a%2f%2fbookdirtbusters.com%2fwp-content%2fuploads%2f2019%2f09%2fclean-home.jpeg&ehk=RzfBQ1NQwMrSgcNfxbCMfOP%2bvLV%2bO9h4LfxZ4da%2fAik%3d&risl=&pid=ImgRaw&r=0" alt="Hình ảnh bài viết">
+                    <p class="post-title">Mẹo Dọn Dẹp Tiện Lợi Cho Nhà Bận Rộn</p>
+                    </div>
+                    <div class="post">
+                    <img src="https://www.cnet.com/a/img/resize/e2cd457709207d1abf51648466b077b61f8b11d2/hub/2024/06/04/8a97de33-f6d8-46b8-8821-c52cc5897929/best-home-security-system.jpg?auto=webp&width=1200" alt="Hình ảnh bài viết">
+                    <p class="post-title">Kiến Thức Về Công Nghệ Thông Minh Trong Nhà</p>
                     </div>
                 </div>
             </div>
-            <!-- Blog End -->
-
-            <!-- Back to Top -->
-            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-            </div>
-
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-            <script src="/public/assets/client/lib/easing/easing.min.js"></script>
-            <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
-            <!-- Contact Javascript File -->
-            <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
-            <script src="/public/assets/client/mail/contact.js"></script>
-
-            <!-- Template Javascript -->
-            <script src="/public/assets/client/js/main.js"></script>
         </body>
 
 <?php
