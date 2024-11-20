@@ -78,7 +78,7 @@ class ProductValidation
         $target_dir = 'public/uploads/products/';
 
         //Kiem tra loai file uplaod co hop le khong.
-        $imageFileType = strtolower(pathinfo(basename($_FILES['Image']['name']), PATHINFO_EXTENSION));
+        $imageFileType = strtolower(pathinfo(basename($_FILES['Image']['Product_name']), PATHINFO_EXTENSION));
 
         if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif') {
             NotificationHelper::error('type_upload', 'Chỉ nhận file ảnh JPG, PNG, GIF, JPEG');
