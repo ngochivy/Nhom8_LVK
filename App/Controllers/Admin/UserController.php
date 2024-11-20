@@ -133,16 +133,12 @@ class UserController
         $user = new User();
         // thực hiện cập nhật
         $data = [
-            'Email' => $_POST['Email'],
             'Name' => $_POST['Name'],
+            'Email' => $_POST['Email'],
             'Address' => $_POST['Address'],
             'Phone_number' => $_POST['Phone_number'],
-            'Role' => $_POST['Role'],
             'Status' => $_POST['Status']
         ];
-        if ($_POST['Password'] !== '') {
-            $data['Password'] = password_hash($_POST['Password'], PASSWORD_DEFAULT);
-        }
         $is_upload = UserValidation::uploadAvatar();
         if ($is_upload) {
             $data['Image'] = $is_upload;
@@ -152,7 +148,7 @@ class UserController
             NotificationHelper::success('update', 'Cập nhật người dùng thành công');
             header('location: /admin/users');
         } else {
-            NotificationHelper::error('update', 'Cập nhật người dùng thất bại');
+            NotificationHelper::error('update', 'Cập nht người dùng thất bại');
             header("location: /admin/users/$id");
             exit;
         }

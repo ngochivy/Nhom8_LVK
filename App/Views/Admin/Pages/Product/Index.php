@@ -43,7 +43,7 @@ class Index extends BaseView
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Danh sáchsản phẩm</h5>
+                                <h5 class="card-title">Danh sách sản phẩm</h5>
                                 <?php
                                 if (count($data)) :
                                 ?>
@@ -55,10 +55,15 @@ class Index extends BaseView
                                                     <th>Hình ảnh</th>
                                                     <th>Tên</th>
                                                     <th>Giá</th>
-                                                    <th>Giá Giảm</th>                                                  
-                                                    <th>Loại</th>
+                                                    <th>Giá giảm</th>
+                                                    <th>Danh mục</th>
+                                                  
+                                                    <th>Số lượng</th>
+                                                    <th>hướng dẫn</th>
+                                                  
+                                                    <th>nổi bật</th>
                                                     <th>Trạng thái</th>
-                                                    <th></th>
+                                                    <th> <a href="/admin/products/create" class="btn btn-success ">Thêm mới</a></th></tr>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -66,18 +71,26 @@ class Index extends BaseView
                                                 foreach ($data as $item) :
                                                 ?>
                                                     <tr>
-                                                        <td><?= $item['id'] ?></td>
+                                                        <td><?= $item['Product_ID'] ?></td>
                                                         <td>
-                                                            <img src="<?=APP_URL?>/public/uploads/products/<?=$item['image']?>" alt="" width="100px">
+                                                            <img src="<?=APP_URL?>/public/uploads/products/<?=$item['Image']?>" alt="" width="100px">
                                                         </td>
-                                                        <td><?= $item['name'] ?></td>
-                                                        <td><?=number_format( $item['price']) ?></td>   
-                                                        <td><?=number_format( $item['discount_price']) ?></td>
-                                                        <td><?= $item['category_name'] ?></td>
-                                                        <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
+
+                                                        <td><?= $item['Product_name']?></td>
+
+                                                        <td><?=number_format($item['Price'])  ?></td>
+
+                                                        <td><?=number_format($item['Discount_price'])  ?></td>
+
+                                                        <td><?=($item['Category_ID'])  ?></td>
+                                                        <td><?=($item['Quantity'])  ?></td>
+                                                        <td><?=($item['User_manual'])  ?></td>
+
+                                                        <td><?= ($item['is_feature'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
+                                                        <td><?= ($item['Status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>
-                                                            <a href="/admin/products/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
-                                                            <form action="/admin/products/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                            <a href="/admin/products/<?= $item['Product_ID'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <form action="/admin/products/<?= $item['Product_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
                                                                 <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>

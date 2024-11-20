@@ -73,25 +73,7 @@ class UserValidation
     {
         $is_valid = true;
 
-        //Mật khẩu 
-        if (isset($_POST['Password']) && $_POST['Password'] !== '') {
-            if (strlen($_POST['Password']) < 3) {
-                NotificationHelper::error('Password', 'Mật khẩu phải ít nhất 3 ký tự !');
-                $is_valid = false;
-            }
-        //Nhập lại mật khẩu
-        if (!isset($_POST['re_password']) || $_POST['re_password'] === '') {
-            NotificationHelper::error('re_password', 'Nhập lại mật khẩu không được để trống');
-            $is_valid = false;
-        } else {
-            if ($_POST['Password'] != $_POST['re_password']) {
-                NotificationHelper::error('re_password', 'Mật khẩu nhập lại phải trùng khớp');
-                $is_valid = false;
-            }
-        }
-
-
-        }
+    
 
         //email
 

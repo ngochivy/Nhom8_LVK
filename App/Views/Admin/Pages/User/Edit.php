@@ -73,19 +73,11 @@ class Edit extends BaseView
                                     <div class="form-group">
                                         <label for="Name">Họ và tên*</label>
                                         <input type="text" class="form-control" id="Name" placeholder="Nhập họ và tên người dùng..." name="Name" value="<?= $data['Name'] ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Password">Mật khẩu*</label>
-                                        <input type="password" class="form-control" id="Password" placeholder="Nhập mật khẩu người dùng..." name="Password">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="re_password">Nhập lại mật khẩu*</label>
-                                        <input type="password" class="form-control" id="re_password" placeholder="Nhập lại mật khẩu người dùng..." name="re_password" >
-                                    </div>
-                                    <div class="form-group">
+                                    </div>                             
+                                    <!-- <div class="form-group">
                                         <label for="Image">Hình đại diện</label>
                                         <input type="file" class="form-control" id="Image" placeholder="Chọn ảnh đại điện người dùng..." name="Image">
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="Role">Quyền</label>
                                         <input type="text" class="form-control" id="Role" name="Role" value="<?= ($data['Role'] == 1) ? 'Quản trị viên' : 'Khách hàng' ?>" disabled>
