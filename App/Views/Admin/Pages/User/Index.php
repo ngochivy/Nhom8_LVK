@@ -40,24 +40,17 @@ class Index extends BaseView
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
+
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">Danh sách người dùng</h5>
-                                <?php if (!empty($data) && count($data)) : ?>
+                                <?php
+                                if (count($data)) :
+                                ?>
                                     <div class="table-responsive">
-                                        <table class="table table-striped">
+                                        <table id="" class="table table-striped ">
                                             <thead>
-                                                <tr>
-                                                    <th>ID</th>
-
-                                                    <th>Tài khoản</th>
-                                                    <th>Email</th>
-                                                    <th>Tên</th>
-                                                    <th>Avatar</th>
-                                                    <th>Vai trò</th>
-                                                    
-                                                    <th>Hành động</th>
-
+                                                <tr><th>ID</th>
                                                     <th>ảnh đại diện</th>
                                                     <th>Tên đăng nhập</th>
                                                     <th>Họ tên</th>
@@ -66,15 +59,12 @@ class Index extends BaseView
                                                     <th>Địa chỉ</th>
                                                     <th>Quyền</th>
                                                     <th>Trạng thái</th>
-                                                    <th> <a href="/admin/users/create" class="btn btn-success ">Thêm mới</a></th>
-                                                    <th></th>
-
-                                                    <th></th>
-
-                                                </tr>
+                                                    <th> <a href="/admin/users/create" class="btn btn-success ">Thêm mới</a></th></tr>
                                             </thead>
                                             <tbody>
-                                                <?php foreach ($data as $user) : ?>
+                                                <?php
+                                                foreach ($data as $item) :
+                                                ?>
                                                     <tr>
                                                         <td><?= $item['User_ID'] ?></td>
                                                         <td>
@@ -104,25 +94,44 @@ class Index extends BaseView
                                                             ?>
                                                         </td>
                                                     </tr>
-                                                <?php endforeach; ?>
+                                                <?php
+                                                endforeach;
+
+
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
-                                <?php else : ?>
+                                <?php
+                                else :
+
+                                ?>
                                     <h4 class="text-center text-danger">Không có dữ liệu</h4>
-                                <?php endif; ?>
+                                <?php
+                                endif;
+
+                                ?>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- ============================================================== -->
-                <!-- End Page Content -->
+                <!-- End PAge Content -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Right sidebar -->
+                <!-- ============================================================== -->
+                <!-- .right-sidebar -->
+                <!-- ============================================================== -->
+                <!-- End Right sidebar -->
                 <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
-        </div>
-<?php
+            <!-- ============================================================== -->
+
+
+    <?php
     }
 }

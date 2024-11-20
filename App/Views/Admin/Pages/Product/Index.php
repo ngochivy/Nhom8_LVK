@@ -20,7 +20,7 @@ class Index extends BaseView
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/admin">Dashboard</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
                                     <li class="breadcrumb-item active" aria-current="page">Danh sách sản phẩm</li>
                                 </ol>
                             </nav>
@@ -43,10 +43,8 @@ class Index extends BaseView
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Danh sách sản phẩm</h5>
-                                
+                                <h5 class="card-title">Danh sáchsản phẩm</h5>
                                 <?php
-                                
                                 if (count($data)) :
                                 ?>
                                     <div class="table-responsive">
@@ -57,10 +55,10 @@ class Index extends BaseView
                                                     <th>Hình ảnh</th>
                                                     <th>Tên</th>
                                                     <th>Giá</th>
-                                                    <th>Giảm Giá</th>
-                                                    <th>Ngày đăng</th>
+                                                    <th>Giá Giảm</th>                                                  
+                                                    <th>Loại</th>
                                                     <th>Trạng thái</th>
-                                                    <th><a href="/admin/products/create" class="btn btn-success ">Thêm mới</a></th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -69,15 +67,17 @@ class Index extends BaseView
                                                 ?>
                                                     <tr>
                                                         <td><?= $item['id'] ?></td>
-                                                        <td><img src="../../../../../public/assets/admin/assets/images/bc.jpg" alt="" width="100px" height="100px"></td>
+                                                        <td>
+                                                            <img src="<?=APP_URL?>/public/uploads/products/<?=$item['image']?>" alt="" width="100px">
+                                                        </td>
                                                         <td><?= $item['name'] ?></td>
-                                                        <td><?= $item['price'] ?></td>
-                                                        <td><?= $item['discount_price'] ?></td>
-                                                        <td><?= $item['date'] ?></td>
+                                                        <td><?=number_format( $item['price']) ?></td>   
+                                                        <td><?=number_format( $item['discount_price']) ?></td>
+                                                        <td><?= $item['category_name'] ?></td>
                                                         <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>
                                                             <a href="/admin/products/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
-                                                            <form action="/admin/products/ <?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                            <form action="/admin/products/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
                                                                 <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>
