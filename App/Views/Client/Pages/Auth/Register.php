@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Views\Client\Pages\Auth;
+
 use App\Views\BaseView;
 
 class Register extends BaseView
@@ -36,25 +37,28 @@ class Register extends BaseView
                                 <div class="col-md-10">
                                     <h3>Đăng ký tài khoản mới</h3>
                                     <p class="mb-4">Tạo tài khoản để trải nghiệm dịch vụ tốt nhất từ chúng tôi.</p>
-                                    <form action="#" method="post">
+                                    <form action="/register" method="post">
+                                    <input type="hidden" name="method" id="" value="POST">
                                         <div class="form-group first">
-                                            <label for="username">Tên đăng nhập</label>
-                                            <input type="text" class="form-control" placeholder="Nhập tên đăng nhập" id="username" required>
+                                            <label for="Username">Tên đăng nhập</label>
+                                            <input type="text" class="form-control" name="Username" placeholder="Nhập tên đăng nhập" id="Username">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="email">Email</label>
-                                            <input type="email" class="form-control" placeholder="Nhập Email" id="email" required>
+                                            <label for="Email">Email</label>
+                                            <input type="email" class="form-control" name="Email" placeholder="Nhập Email" id="Email" >
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="password">Mật khẩu</label>
-                                            <input type="password" class="form-control" placeholder="Nhập mật khẩu" id="password" required>
+                                            <label for="Password">Mật khẩu</label>
+                                            <input type="password" class="form-control" name="Password" placeholder="Nhập mật khẩu" id="Password" >
                                         </div>
                                         <div class="form-group last mb-3">
-                                            <label for="confirm_password">Xác nhận mật khẩu</label>
-                                            <input type="password" class="form-control" placeholder="Xác nhận mật khẩu" id="confirm_password" required>
+                                            <label for="re_password">Xác nhận mật khẩu</label>
+                                            <input type="password" class="form-control" name="re_password" placeholder="Xác nhận mật khẩu" id="re_password" >
                                         </div>
                                         <input type="submit" value="Đăng ký" class="btn btn-block btn-primary">
                                     </form>
+
+
                                     <p class="mt-3">Đã có tài khoản? <a href="/login">Đăng nhập ngay</a></p>
                                 </div>
                             </div>
@@ -69,7 +73,7 @@ class Register extends BaseView
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
             <script src="/public/assets/client/js/main.js"></script>
 
-           
+
         </body>
 
         </html>

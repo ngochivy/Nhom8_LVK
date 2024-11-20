@@ -28,7 +28,8 @@ Route::get('/checkout', 'App\Controllers\Client\HomeController@checkout');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
 Route::get('/login', 'App\Controllers\Client\HomeController@login');
 
-Route::get('/register', 'App\Controllers\Client\HomeController@register');
+Route::get('/register','App\Controllers\Client\UserController@register');
+Route::post('/register', 'App\Controllers\Client\UserController@registerAction');
 
 
 
