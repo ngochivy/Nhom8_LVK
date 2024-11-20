@@ -15,9 +15,11 @@ use App\Views\Admin\Pages\User\Index;
 class UserController
 {
 
+
     // hiển thị danh sách
     public static function index()
-    {        $user = new User();
+    {
+        $user = new User();
         $data = $user->getAllUser();
         // var_dump($data);
         Header::render();
@@ -25,9 +27,12 @@ class UserController
         NotificationHelper::unset();
         // hiển thị giao diện danh sách
         Index::render($data);
-        Footer::render(); } 
+        Footer::render();
+    } // hiển thị giao diện form thêm
     public static function create()
-    {    Header::render();
+    {
+        // var_dump($_SESSION);
+        Header::render();
         Notification::render();
         NotificationHelper::unset();
         // hiển thị form thêm
@@ -84,7 +89,11 @@ class UserController
         } else {
             NotificationHelper::error('store', 'Thêm người dùng thất bại');
             header('location: /admin/users/create');
-            exit;        }    }
+            exit;
+        }
+    }
+
+
     // // hiển thị chi tiết
     // public static function show()
     // {
@@ -96,7 +105,7 @@ class UserController
     {
 
         $user = new User();
-$data = $user->getOneUser($id);
+         $data = $user->getOneUser($id);
 
         if (!$data) {
             NotificationHelper::error('edit', 'không thể xem người dùng này');
@@ -163,4 +172,6 @@ $data = $user->getOneUser($id);
             NotificationHelper::error('delete', 'Xóa người dùng thất bại');
 
         }
-        header('location: /admin/users'); }}
+        header('location: /admin/users');
+    }
+}

@@ -124,7 +124,6 @@ abstract class BaseModel implements CrudInterface
     }
 
 
-
     
     public function getOneByName($name){
         $result = [];
@@ -141,6 +140,5 @@ abstract class BaseModel implements CrudInterface
             return $result;
         }
     }
-
 }
 ?>
