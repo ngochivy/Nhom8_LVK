@@ -71,15 +71,15 @@ class AuthValidation
 
 
         //Tên đăng nhập
-        if (!isset($_POST['Username']) || $_POST['Username'] === '') {
-            NotificationHelper::error('Username', 'Tên đăng nhập không được để trống !');
+        if (!isset($_POST['username']) || $_POST['username'] === '') {
+            NotificationHelper::error('username', 'Tên đăng nhập không được để trống !');
             $is_valid = false;
         }
 
 
         //Mật khẩu 
-        if (!isset($_POST['Password']) || $_POST['Password'] === '') {
-            NotificationHelper::error('Password', 'Mật khẩu không được để trống !');
+        if (!isset($_POST['password']) || $_POST['password'] === '') {
+            NotificationHelper::error('password', 'Mật khẩu không được để trống !');
             $is_valid = false;
         }
 

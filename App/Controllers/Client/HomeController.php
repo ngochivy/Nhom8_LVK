@@ -10,6 +10,7 @@ use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Page\About;
 use App\Views\Client\Pages\Page\Contact;
 use App\Views\Client\Pages\Page\Blog;
+use App\Views\Client\Pages\Page\Emblog;
 use App\Views\Client\Pages\Page\Cart;
 use App\Views\Client\Pages\Page\Checkout;
 use App\Views\Client\Pages\Auth\Login;
@@ -59,6 +60,12 @@ class HomeController
     {
         Header::render();
         Blog::render();
+        Footer::render();
+    }
+    public static function emblog()
+    {
+        Header::render();
+        Emblog::render();
         Footer::render();
     }
 

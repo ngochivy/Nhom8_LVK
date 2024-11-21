@@ -38,17 +38,17 @@ class ProductValidation
 
         // id loại sản phẩm
         if (!isset($_POST['Category_ID']) || $_POST['Category_ID'] === '') {
-            NotificationHelper::error('Category_ID', 'Không để trống sản phẩm !');
+            NotificationHelper::error('Category_ID', 'Không để trống loại sản phẩm !');
             $is_valid = false;
         }
         if (!isset($_POST['Quantity']) || $_POST['Quantity'] === '') {
             NotificationHelper::error('Quantity', 'Không để trống số lượng !');
             $is_valid = false;
         }
-        if (!isset($_POST['User_manual']) || $_POST['User_manual'] === '') {
-            NotificationHelper::error('User_manual', 'Không để trống hướng dẫn !');
-            $is_valid = false;
-        }
+        // if (!isset($_POST['User_manual']) || $_POST['User_manual'] === '') {
+        //     NotificationHelper::error('User_manual', 'Không để trống hướng dẫn !');
+        //     $is_valid = false;
+        // }
         // Nổi bật
         if (!isset($_POST['is_feature']) || $_POST['is_feature'] === '') {
             NotificationHelper::error('is_feature', 'Không để trống Nổi bật !');
@@ -57,7 +57,7 @@ class ProductValidation
         // Trạng thái
         //trạng thái
         if (!isset($_POST['Status']) || $_POST['Status'] === '') {
-            NotificationHelper::error('Status', ' Không được để trạng thái');
+            NotificationHelper::error('Status', ' Không được để trống trạng thái');
             $is_valid = false;
         }
 

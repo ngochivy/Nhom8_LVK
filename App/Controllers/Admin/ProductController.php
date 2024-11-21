@@ -159,7 +159,7 @@ class ProductController
         $is_valid = ProductValidation::edit();
 
         if (!$is_valid) {
-            NotificationHelper::error('update', 'Cập nhật loại sản phẩm thất bại');
+            NotificationHelper::error('update', 'Cập nhật sản phẩm thất bại');
             header("location: /admin/products/$id");
             exit;
         }
@@ -171,7 +171,7 @@ class ProductController
 
         if ($is_exist) {
             if($is_exist['Product_ID']!=$id){
-                NotificationHelper::error('update', 'Tên loại sản phẩm đã tồn  tại');
+                NotificationHelper::error('update', 'Tên sản phẩm đã tồn  tại');
                 header("location: /admin/products/$id");
                 exit;
             }
@@ -188,7 +188,7 @@ class ProductController
             'User_manual' => $_POST['User_manual'],
             'is_feature' => $_POST['is_feature'],
             'Status' => $_POST['Status'],
-            'Category_id' => $_POST['Category_id'],
+            'Category_ID' => $_POST['Category_ID'],
         ];
 
         $is_upload=ProductValidation::uploadImage();
@@ -199,12 +199,12 @@ class ProductController
         $result=$Product->updateProduct($id,$data);
 
         if ($result) {
-            NotificationHelper::success('update','Cập nhật loại sản phẩm thành công');
+            NotificationHelper::success('update','Cập nhật sản phẩm thành công');
             header('location: /admin/products');
         }
         else {
-            NotificationHelper::error('update', 'Cập nhật loại sản phẩm thất bại');
-            header('location: /admin/products/create');
+            NotificationHelper::error('update', 'Cập nhật sản phẩm thất bại');
+            header("location: /admin/products/$id");
             exit;
 
         }
@@ -218,11 +218,10 @@ class ProductController
         $result=$Product->deleteProduct($id);
         // var_dump($result);
         if ($result) {
-            NotificationHelper::success('delete','Xóa loại sản phẩm thành công');
+            NotificationHelper::success('delete','Xóa sản phẩm thành công');
 
         }else{
-            NotificationHelper::error('delete', 'Xóa loại sản phẩm thất bại');
-
+            NotificationHelper::error('delete', 'Xóa sản phẩm thất bại');
         }
         header('location: /admin/products');
     }

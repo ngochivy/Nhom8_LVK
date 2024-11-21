@@ -86,7 +86,7 @@ class Index extends BaseView
                                                         <td><?=($item['Quantity'])  ?></td>
                                                         <td><?=($item['User_manual'])  ?></td>
 
-                                                        <td><?= ($item['is_feature'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
+                                                        <td><?= ($item['is_feature'] == 1) ? 'Nổi bật' : 'Không' ?></td>
                                                         <td><?= ($item['Status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>
                                                             <a href="/admin/products/<?= $item['Product_ID'] ?>" class="btn btn-primary ">Sửa</a>

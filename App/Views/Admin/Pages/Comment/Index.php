@@ -51,7 +51,7 @@ class Index extends BaseView
                                         <table id="" class="table table-striped ">
                                             <thead>
                                                 <tr>
-                                                    <th>Comment_ID</th>
+                                                    <th>#</th>
                                                     <th>Content</th>
                                                     <th>User_ID</th>
                                                     <th>Proudct_ID </th>
@@ -65,16 +65,15 @@ class Index extends BaseView
                                                 ?>
                                                     <tr>
                                                         <td><?= $item['Comment_ID'] ?></td>
-                                                        <td>
-                                                            <a href="/admin/users/<?= $item['User_ID'] ?>"></a>
-
-                                                        </td>
-                                                        <td>
-                                                            <a href="/admin/products/<?= $item['Product_ID'] ?>"></a>
-
-
-                                                        </td>
                                                         <td><?= $item['Content'] ?></td>
+                                                        <td>
+                                                            <?= $item['User_ID'] ?>
+
+                                                        </td>
+                                                        <td>
+                                                            <?= $item['Product_ID'] ?>
+                                                        </td>
+                                                        
                                                         <td><?= $item['Created_at'] ?></td>
                                                         <td><?= ($item['Status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>

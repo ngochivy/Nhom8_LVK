@@ -55,7 +55,7 @@ class Home extends BaseView
                                 <div class="card-body">
                                     <h4 class="card-title">Doanh thu hằng ngày</h4>
                                     <div class="text-end">
-                                        <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> $120</h2>
+                                        <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> 3,000,000 đ</h2>
                                         <span class="text-muted">Thu nhập hôm nay</span>
                                     </div>
                                     <span class="text-success">80%</span>
@@ -74,7 +74,7 @@ class Home extends BaseView
                                 <div class="card-body">
                                     <h4 class="card-title">Doanh thu tuần</h4>
                                     <div class="text-end">
-                                        <h2 class="font-light mb-0"><i class="ti-arrow-up text-info"></i> $5,000</h2>
+                                        <h2 class="font-light mb-0"><i class="ti-arrow-up text-info"></i> 20,000,000 đ</h2>
                                         <span class="text-muted">Thu nhập hôm nay</span>
                                     </div>
                                     <span class="text-info">30%</span>

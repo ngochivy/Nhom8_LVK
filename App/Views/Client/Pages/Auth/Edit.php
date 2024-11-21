@@ -73,7 +73,7 @@ class Edit extends BaseView
                                     <div class="col-md-12 mt-4"><label class="labels" for="name">Họ và tên</label><input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="<?= $data['Name'] ?>"></div>
                                     <div class="col-md-12 mt-4"><label class="labels" for="address">Địa chỉ</label><input type="text" id="address" name="address" class="form-control" placeholder="Địa chỉ" value="<?= $data['Address'] ?>"></div>
                                     <div class="col-md-12 mt-4"><label class="labels" for="phone">Số điện thoại</label><input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="<?= $data['Phone_number'] ?>"></div>
-                                    <div class="col-md-12 mt-4"><label class="labels" for="avatar">Ảnh đại diện</label><input type="file" id="avatar" name="image" class="form-control" placeholder="Chọn ảnh đại diện" value=""></div>
+                                    <div class="col-md-12 mt-4"><label class="labels" for="image">Ảnh đại diện</label><input type="file" id="image" name="image" class="form-control" placeholder="Chọn ảnh đại diện" value=""></div>
 
                                 </div>
 

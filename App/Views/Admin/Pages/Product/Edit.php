@@ -44,7 +44,7 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/products/<?= $data['product']['Product_id'] ?>" method="POST" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="/admin/products/<?= $data['product']['Product_ID'] ?>" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Sửa sản phẩm</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
@@ -120,7 +120,7 @@ class Edit extends BaseView
 
                                     <div class="form-group">
                                         <label for="Status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="status" value="<?= $data['Status'] ?>" required>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status" value="<?= $data['Status'] ?>" required>
                                             <option value="" selected disabled>Vui lòng chọn...</option>
                                             <option value="1" <?= ($data['product']['Status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
                                             <option value="0" <?= ($data['product']['Status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
