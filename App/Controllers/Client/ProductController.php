@@ -5,6 +5,7 @@ namespace App\Controllers\Client;
 use App\Helpers\AuthHelper;
 use App\Helpers\NotificationHelper;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Product;
 use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Layouts\Header;
@@ -60,6 +61,10 @@ class ProductController
         // Khởi tạo model sản phẩm
         $productModel = new Product();
 
+        // Khởi tạo model bình luận
+        $comment = new Comment();
+        $comments = $comment->get5CommentNewestByProductAndStatus($id);
+
         // Lấy thông tin sản phẩm từ database
         $product_detail = $productModel->getOneProduct($id);
 
@@ -72,7 +77,9 @@ class ProductController
 
         // Dữ liệu truyền vào view
         $data = [
-            'product' => $product_detail
+            'product' => $product_detail,
+            'comments' => $comments, // Thêm bình luận vào dữ liệu
+            'is_login' => isset($_SESSION['User']), // Kiểm tra trạng thái đăng nhập
         ];
 
         // Render view
@@ -80,6 +87,7 @@ class ProductController
         Detail::render($data);
         Footer::render();
     }
+
 
 
     // Lấy sản phẩm theo danh mục (đã có trong model)

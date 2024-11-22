@@ -21,8 +21,8 @@ class Edit extends BaseView
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
             <link href="/public/assets/client/css/style.css" rel="stylesheet">
             <title>Document</title>
-       
-            
+
+
 
         </head>
 
@@ -38,16 +38,22 @@ class Edit extends BaseView
 
 
                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-                                <img class="rounded-3 mt-5" width="300px" src="<?= APP_URL ?>/public/uploads/users/<?= $data['Image'] ?>">
-                                <span class="font-weight-bold">Avatar</span><span class="text-black-50"></span>
-                                <span> </span>
+                                <img
+                                    class="mt-5"
+                                    style="width: 400px; height: 400px; border-radius: 50%; object-fit: cover;"
+                                    src="<?= APP_URL ?>/public/uploads/users/<?= $data['Image'] ?>"
+                                    alt="Avatar">
+                                <span class="font-weight-bold">Ảnh đại diện</span>
+                                <span class="text-black-50"></span>
+                                <span></span>
                             </div>
+
                         <?php
                         else :
                         ?>
                             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                                 <img class="rounded-circle mt-5" width="400px" src="<?= APP_URL ?>/public/uploads/users/user.png">
-                                <span class="font-weight-bold">Avatar</span><span class="text-black-50"></span>
+                                <span class="font-weight-bold">Ảnh đại diện</span><span class="text-black-50"></span>
                                 <span> </span>
                             </div>
 
@@ -81,7 +87,7 @@ class Edit extends BaseView
                         </div>
 
                         <div>
-                            
+
                             <a href="/change-password" class="text-dark font-weight-bold" style="font-family:roboto;">Đổi mật khẩu</a>
                         </div>
 

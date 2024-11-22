@@ -138,35 +138,39 @@ class AuthValidation
         return $is_valid;
     }
 
-    
+
     public static function uploadAvatar()
     {
-        if (!file_exists($_FILES['Image']['tmp_name']) || !is_uploaded_file($_FILES['Image']['tmp_name'])) {
+        if (!file_exists($_FILES['image']['tmp_name']) || !is_uploaded_file($_FILES['image']['tmp_name'])) {
             return false;
         }
 
-        // noi luu tru hinh anh trong sourcecode
+        // Nơi lưu trữ hình ảnh
         $target_dir = 'public/uploads/users/';
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0755, true);
+        }
 
-        //Kiem tra loai file uplaod co hop le khong.
-        $imageFileType = strtolower(pathinfo(basename($_FILES['Image']['name']), PATHINFO_EXTENSION));
-
-        if ($imageFileType != 'jpg' && $imageFileType != 'jpeg' && $imageFileType != 'png' && $imageFileType != 'gif') {
+        // Kiểm tra loại file upload
+        $imageFileType = strtolower(pathinfo(basename($_FILES['image']['name']), PATHINFO_EXTENSION));
+        if (!in_array($imageFileType, ['jpg', 'jpeg', 'png', 'gif'])) {
             NotificationHelper::error('type_upload', 'Chỉ nhận file ảnh JPG, PNG, GIF, JPEG');
             return false;
         }
-        // Thay doi ten file thanh dang nam thang gio giay phut 
-        $nameImage = date('YmdHmi') . '.' . $imageFileType;
 
-        // duong dan day du de di chuyen file
+        // Tạo tên file duy nhất
+        $nameImage = date('YmdHis') . '.' . $imageFileType;
         $target_file = $target_dir . $nameImage;
 
-        if (!move_uploaded_file($_FILES['Image']['tmp_name'], $target_file)) {
-            NotificationHelper::error('move_uplaod', 'Upload ảnh thất bại');
+        // Di chuyển file upload
+        if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+            NotificationHelper::error('move_upload', 'Upload ảnh thất bại');
             return false;
         }
+
         return $nameImage;
     }
+
 
 
     public static function changePassword(): bool
@@ -207,28 +211,27 @@ class AuthValidation
     }
     public static function forgotPassword(): bool
     {
-        $is_valid=true;
+        $is_valid = true;
         //Tên đăng nhập
 
-        if(!isset($_POST['username']) || $_POST['username']==''){
+        if (!isset($_POST['username']) || $_POST['username'] == '') {
             NotificationHelper::error('username', 'Tên đăng nhập không được để trống !');
-            $is_valid=false;
+            $is_valid = false;
         }
-        
+
         //email
 
-        if(!isset($_POST['email']) || $_POST['email'] === ''){
+        if (!isset($_POST['email']) || $_POST['email'] === '') {
             NotificationHelper::error('email', 'Email không được để trống');
-            $is_valid=false;
+            $is_valid = false;
         } else {
             $emailPattern = "/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/";
             if (!preg_match($emailPattern, $_POST['email'])) {
                 NotificationHelper::error('email', 'Email không đúng định dạng');
-                $is_valid=false;
+                $is_valid = false;
             }
         }
         return $is_valid;
-
     }
     public static function resetPassword(): bool
     {

@@ -5,10 +5,13 @@ namespace App\Views\Client\Layouts;
 use App\Helpers\AuthHelper;
 use App\Views\BaseView;
 
+
 class Header extends BaseView
 {
     public static function render($data = null)
     {
+
+        ob_start();
         // Kiểm tra đăng nhập và xử lý
         $is_login = AuthHelper::checkLogin();
 ?>
@@ -232,4 +235,5 @@ class Header extends BaseView
 <?php
     }
 }
-?>
+
+ob_end_flush();

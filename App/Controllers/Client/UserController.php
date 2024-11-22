@@ -112,8 +112,9 @@ class UserController
         $is_valid = AuthValidation::login();
 
         if (!$is_valid) {
-            NotificationHelper::error('login', 'Đăng nhập thất bại');
+            
             header('Location: /login');
+            NotificationHelper::error('login', 'Đăng nhập thất bại');
             exit();
         }
 
@@ -127,8 +128,9 @@ class UserController
         // Gọi hàm xử lý đăng nhập
         $result = AuthHelper::login($data);
         if ($result) {
-            NotificationHelper::success('login', 'Đăng nhập thành công');
+            
             header('location:/');
+            NotificationHelper::success('login', 'Đăng nhập thành công');
             exit();
         } else {
             header('location:/login');
@@ -141,8 +143,9 @@ class UserController
     public static function logout()
     {
         AuthHelper::logout();
-        NotificationHelper::success('logout', 'Đăng xuất thành công');
+        
         header('location:/');
+        NotificationHelper::success('logout', 'Đăng xuất thành công');
     }
 
 
