@@ -50,6 +50,10 @@ Route::put('/reset-password','App\Controllers\Client\UserController@resetPasswor
 Route::get('/users/{id}','App\Controllers\Client\UserController@edit');
 Route::put('/users/{id}','App\Controllers\Client\UserController@update');
 
+Route::post('/comments', 'App\Controllers\Client\CommentController@store');
+Route::put('/comments/{id}', 'App\Controllers\Client\CommentController@update');
+Route::delete('/comments/{id}', 'App\Controllers\Client\CommentController@delete');
+
 
 
 // *** Admin
