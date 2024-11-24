@@ -66,7 +66,7 @@ class Edit extends BaseView
                     <div class="col-md-7 border-right">
                         <div class="p-3 py-5">
                             <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="text-right text-info">Tài khoản người dùng</h4>
+                                <h1 class="text-right text-primary">Tài khoản người dùng</h1>
                             </div>
                             <form action="/users/<?= $data['User_ID'] ?>" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="method" value="PUT" id="">

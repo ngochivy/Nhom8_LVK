@@ -117,8 +117,8 @@ class Index extends BaseView
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right">
                                             <a class="dropdown-item" href="#">Mới nhất</a>
-                                            <a class="dropdown-item" href="#">Phổ biến</a>
-                                            <a class="dropdown-item" href="#">Bán chạy</a>
+                                            <a class="dropdown-item" href="#">Tên</a>
+                                            <a class="dropdown-item" href="#">Giá tiền</a>
                                         </div>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@ class Index extends BaseView
                                             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                                                 <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $item['Product_ID'] ?>'">
                                                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                                        <img class="img-fluid w-100" src="<?= APP_URL ?>/public/uploads/products/<?= $item['Image'] ?>" alt="<?= $item['Product_name'] ?>">
+                                                        <img class="img-fluid w-100" src="<?= APP_URL ?>/public/uploads/products/<?= $item['Image'] ?>" alt="<?= $item['Product_name'] ?>" style="height:200px; width:200px; object-fit:cover ;">
                                                     </div>
                                                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                                         <h6 class="text-truncate mb-3" style="font-family:roboto;"><?= $item['Product_name'] ?></h6>
@@ -166,7 +166,7 @@ class Index extends BaseView
             <!-- Shop Section End -->
 
             <!-- JavaScript -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
             <script>
                 function updatePriceRange() {

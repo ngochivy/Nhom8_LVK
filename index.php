@@ -7,6 +7,7 @@ ini_set('log_errors', TRUE);
 ini_set('error_log', './logs/php/php-errors.log');
 
 use App\Route;
+use App\Helpers\AuthHelper;
 
 require_once 'vendor/autoload.php';
 
@@ -14,7 +15,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 require_once 'config.php';
-
+AuthHelper::middleware();
 
 
 // *** Client
