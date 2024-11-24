@@ -40,12 +40,12 @@ class ForgotPassword extends BaseView
                                     <form action="/forgot-password" method="post">
                                         <input type="hidden" name="method" id="" value="POST">
                                         <div class="form-group first">
-                                            <label for="Username">Tên đăng nhập</label>
-                                            <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập" id="Username">
+                                            <label for="username">Tên đăng nhập</label>
+                                            <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập" id="username">
                                         </div>
                                         <div class="form-group last mb-3">
-                                            <label for="Email">Email</label>
-                                            <input type="email" class="form-control" name="email" placeholder="Nhập email" id="Email">
+                                            <label for="umail">Email</label>
+                                            <input type="email" class="form-control" name="email" placeholder="Nhập email" id="email">
                                         </div>
                                         <input type="submit" value="Cập nhật" class="btn btn-block btn-primary rounded-1">
                                     </form>

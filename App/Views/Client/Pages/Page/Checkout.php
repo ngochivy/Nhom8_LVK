@@ -68,96 +68,30 @@ class Checkout extends BaseView
                                         <input class="form-control" type="text" placeholder="+84 123 456 789">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label>Địa chỉ 1</label>
-                                        <input class="form-control" type="text" placeholder="123 Đường ABC">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Địa chỉ 2</label>
-                                        <input class="form-control" type="text" placeholder="Tòa nhà XYZ">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Quốc gia</label>
-                                        <select class="custom-select">
-                                            <option selected>Việt Nam</option>
-                                            <option>Trung Quốc</option>
-                                            <option>Thái Lan</option>
-                                            <option>Singapore</option>
+                                        <label>Tỉnh/Thành phố</label>
+                                        <select id="province" class="form-control">
+                                            <option value="">Chọn tỉnh</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label>Thành phố</label>
-                                        <input class="form-control" type="text" placeholder="Hà Nội">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Tỉnh/Thành phố</label>
-                                        <input class="form-control" type="text" placeholder="Hà Nội">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Mã ZIP</label>
-                                        <input class="form-control" type="text" placeholder="100000">
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="newaccount">
-                                            <label class="custom-control-label" for="newaccount">Tạo tài khoản mới</label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <div class="custom-control custom-checkbox">
-                                            <input type="checkbox" class="custom-control-input" id="shipto">
-                                            <label class="custom-control-label" for="shipto" data-toggle="collapse" data-target="#shipping-address">Gửi đến địa chỉ khác</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="collapse mb-4" id="shipping-address">
-                                <h4 class="font-weight-semi-bold mb-4">Địa chỉ nhận hàng</h4>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <label>Họ</label>
-                                        <input class="form-control" type="text" placeholder="Nguyễn">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Tên</label>
-                                        <input class="form-control" type="text" placeholder="Văn A">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" type="text" placeholder="example@email.com">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Số điện thoại</label>
-                                        <input class="form-control" type="text" placeholder="+84 123 456 789">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Địa chỉ 1</label>
-                                        <input class="form-control" type="text" placeholder="123 Đường ABC">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Địa chỉ 2</label>
-                                        <input class="form-control" type="text" placeholder="Tòa nhà XYZ">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Quốc gia</label>
-                                        <select class="custom-select">
-                                            <option selected>Việt Nam</option>
-                                            <option>Trung Quốc</option>
-                                            <option>Thái Lan</option>
-                                            <option>Singapore</option>
+                                        <label>Huyện/Quận</label>
+                                        <select id="district" class="form-control">
+                                            <option value="">Chọn huyện</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label>Thành phố</label>
-                                        <input class="form-control" type="text" placeholder="Hà Nội">
+                                        <label>Phường/Xã</label>
+                                        <select id="ward" class="form-control">
+                                            <option value="">Chọn phường</option>
+                                        </select>
                                     </div>
+
+
                                     <div class="col-md-6 form-group">
-                                        <label>Tỉnh/Thành phố</label>
-                                        <input class="form-control" type="text" placeholder="Hà Nội">
+                                        <label>Địa chỉ chi tiết</label>
+                                        <input class="form-control" type="text" placeholder="">
                                     </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Mã ZIP</label>
-                                        <input class="form-control" type="text" placeholder="100000">
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -241,24 +175,80 @@ class Checkout extends BaseView
                 Đặt hàng thành công!
             </div>
 
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-oBqDVmMz4fnFO9gybGSKkqdYupqj7c39Q2NUmewilKxN0qxF0epwS4cXALYMzKG9" crossorigin="anonymous"></script>
-            <script src="/public/assets/client/js/main.js"></script>
             <script>
-                document.getElementById('checkout-button').addEventListener('click', function(event) {
-                    event.preventDefault(); // Ngăn không cho chuyển trang ngay lập tức
+                $(document).ready(function() {
+                    // Gọi API để lấy danh sách các tỉnh khi trang được tải lần đầu
+                    $.get('https://provinces.open-api.vn/api/p', function(data) {
+                        console.log(data); // Kiểm tra dữ liệu trả về
+                        $('#province').empty().append(new Option('Chọn tỉnh', ''));
 
-                    // Hiển thị alert thông báo
-                    const alertBox = document.getElementById('success-alert');
-                    alertBox.style.display = 'block';
+                        // Thêm các tỉnh vào dropdown
+                        if (data && data.length > 0) {
+                            data.forEach(function(province) {
+                                $('#province').append(new Option(province.name, province.code));
+                            });
+                        } else {
+                            $('#province').append(new Option('Không có tỉnh', ''));
+                        }
+                    });
 
-                    // Đặt thời gian để tự động chuyển về trang chủ sau khi hiển thị thông báo
-                    setTimeout(function() {
-                        window.location.href = '/'; // Chuyển về trang chủ
-                    }, 1000); // 2000ms tương ứng với 2 giây
+                    // Khi người dùng chọn tỉnh
+                    $('#province').change(function() {
+                        var provinceCode = $(this).val();
+                        console.log('Province Code:', provinceCode); // Kiểm tra mã tỉnh
+
+                        if (provinceCode) {
+                            // Gọi API lấy huyện
+                            $.get('https://provinces.open-api.vn/api/p/' + provinceCode + '/d', function(data) {
+                                console.log(data); // Kiểm tra dữ liệu trả về
+
+                                // Xử lý huyện
+                                $('#district').empty().append(new Option('Chọn huyện', ''));
+                                if (data && data.length > 0) {
+                                    data.forEach(function(district) {
+                                        $('#district').append(new Option(district.name, district.code));
+                                    });
+                                } else {
+                                    $('#district').append(new Option('Không có huyện', ''));
+                                }
+                            });
+                        } else {
+                            $('#district').empty().append(new Option('Chọn huyện', ''));
+                            $('#ward').empty().append(new Option('Chọn phường', ''));
+                        }
+                    });
+
+                    // Khi người dùng chọn huyện
+                    $('#district').change(function() {
+                        var districtCode = $(this).val();
+                        console.log('District Code:', districtCode); // Kiểm tra mã huyện
+
+                        if (districtCode) {
+                            // Gọi API lấy phường
+                            $.get('https://provinces.open-api.vn/api/d/' + districtCode + '/w', function(data) {
+                                console.log(data); // Kiểm tra dữ liệu trả về
+
+                                // Xử lý phường/xã
+                                $('#ward').empty().append(new Option('Chọn phường', ''));
+                                if (data && data.length > 0) {
+                                    data.forEach(function(ward) {
+                                        $('#ward').append(new Option(ward.name, ward.code));
+                                    });
+                                } else {
+                                    $('#ward').append(new Option('Không có phường', ''));
+                                }
+                            });
+                        } else {
+                            $('#ward').empty().append(new Option('Chọn phường', ''));
+                        }
+                    });
                 });
             </script>
         </body>
-<?php }
+
+        </html>
+<?php
+    }
 }

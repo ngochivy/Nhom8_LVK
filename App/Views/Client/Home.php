@@ -244,7 +244,7 @@ class Home extends BaseView
                         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                             <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $product['Product_ID'] ?>'">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img class="img-fluid w-100" src="/public/uploads/products/<?= $product['Image'] ?>" alt="<?= $product['Product_name'] ?>">
+                                    <img class="img-fluid w-100" src="/public/uploads/products/<?= $product['Image'] ?>" alt="<?= $product['Product_name'] ?>" style="height:200px; width:100px; object-fit:cover ;">
                                 </div>
                                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                     <h6 class="text-truncate mb-3"><?= $product['Product_name'] ?></h6>
@@ -379,17 +379,24 @@ class Home extends BaseView
 
 
 
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <!-- jQuery -->
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+            <!-- CounterUp -->
+            <script src="https://cdn.jsdelivr.net/npm/jquery-counterup@1.0.0/jquery.counterup.min.js"></script>
+
+            <!-- Bootstrap -->
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+
+            <!-- Thư viện khác -->
             <script src="/public/assets/client/lib/easing/easing.min.js"></script>
             <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
 
-            <!-- Contact Javascript File -->
-            <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
+            <!-- jqBootstrapValidation -->
+            <script src="https://cdn.jsdelivr.net/npm/jqbootstrapvalidation@1.4.0/dist/jqBootstrapValidation.min.js"></script>
+
+            <!-- Contact form handler -->
             <script src="/public/assets/client/mail/contact.js"></script>
-
-
 
             <!-- Template Javascript -->
             <script src="/public/assets/client/js/main.js"></script>
