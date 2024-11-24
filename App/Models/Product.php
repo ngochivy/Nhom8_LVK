@@ -52,6 +52,32 @@ class Product extends BaseModel
             return [];
         }
     }
+    public function getAllProductWithCategoryName()
+{
+    try {
+        // Kết nối cơ sở dữ liệu
+        $conn = $this->getConnection();
+
+        // Truy vấn lấy tất cả sản phẩm và tên danh mục (JOIN với bảng categories)
+        $stmt = $conn->prepare(
+            "SELECT p.Product_ID, p.Product_name, p.Price, p.Discount_price, p.Quantity, p.User_manual, p.is_feature, p.Status, p.Image, c.Category_name
+             FROM {$this->table} p
+             LEFT JOIN categories c ON p.Category_ID = c.Category_ID"
+        );
+        $stmt->execute();
+
+        // Lấy kết quả
+        $result = $stmt->get_result();
+        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+    } catch (\Throwable $th) {
+        // Xử lý lỗi và ghi lại lỗi nếu có
+        error_log("Error in getAllProductWithCategoryName(): " . $th->getMessage());
+        return [];
+    }
+}
+
+    
+
 
 
     public function getAllProductByCategory($categoryId)

@@ -22,7 +22,8 @@ class ProductController
     {
 
         $Product = new Product();
-        $data = $Product->getAllProduct();
+        $data = $Product->getAllProductWithCategoryName();
+        // $data = $Product->getAllProduct();
         // echo '<pre>';
         // var_dump($data);
 
@@ -225,4 +226,7 @@ class ProductController
         }
         header('location: /admin/products');
     }
+
+
 }
+

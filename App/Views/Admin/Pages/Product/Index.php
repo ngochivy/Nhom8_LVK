@@ -82,7 +82,7 @@ class Index extends BaseView
 
                                                         <td><?=number_format($item['Discount_price'])  ?></td>
 
-                                                        <td><?=($item['Category_ID'])  ?></td>
+                                                        <td><?=($item['Category_name'])  ?></td>
                                                         <td><?=($item['Quantity'])  ?></td>
                                                         <td><?=($item['User_manual'])  ?></td>
 

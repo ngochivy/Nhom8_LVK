@@ -68,32 +68,58 @@ class ProductValidation
       return self::create();
     }
 
+
+
+
+
+    // thêm ảnh
     public static function uploadImage()
-    {
-        if (!file_exists($_FILES['Image']['tmp_name']) || !is_uploaded_file($_FILES['Image']['tmp_name'])) {
-            return false;
-        }
-
-        // noi luu tru hinh anh trong sourcecode
-        $target_dir = 'public/uploads/products/';
-
-        //Kiem tra loai file uplaod co hop le khong.
-        $imageFileType = strtolower(pathinfo(basename($_FILES['Image']['Product_name']), PATHINFO_EXTENSION));
-
-        if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif') {
-            NotificationHelper::error('type_upload', 'Chỉ nhận file ảnh JPG, PNG, GIF, JPEG');
-            return false;
-        }
-        // Thay doi ten file thanh dang nam thang gio giay phut 
-        $nameImage = date('YmdHmi') . '.' . $imageFileType;
-
-        // duong dan day du de di chuyen file
-        $target_file = $target_dir . $nameImage;
-
-        if (!move_uploaded_file($_FILES['Image']['tmp_name'], $target_file)) {
-            NotificationHelper::error('move_upload', 'Upload ảnh thất bại');
-            return false;
-        }
-        return $nameImage;
+{
+    // Kiểm tra nếu không có file hoặc file không được upload đúng cách
+    if (!isset($_FILES['Image']) || !is_uploaded_file($_FILES['Image']['tmp_name'])) {
+        NotificationHelper::error('no_file', 'Chưa chọn ảnh để upload!');
+        return false;
     }
+
+    // Đường dẫn lưu trữ file ảnh
+    $target_dir = 'public/uploads/products/';
+
+    // Lấy phần mở rộng của file (jpg, png, jpeg, gif)
+    $imageFileType = strtolower(pathinfo(basename($_FILES['Image']['name']), PATHINFO_EXTENSION));
+
+    // Kiểm tra nếu file ảnh có đúng định dạng không
+    if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif') {
+        NotificationHelper::error('type_upload', 'Chỉ nhận file ảnh JPG, PNG, GIF, JPEG');
+        return false;
+    }
+
+    // Kiểm tra kích thước file (ví dụ, giới hạn 5MB)
+    if ($_FILES['Image']['size'] > 5 * 1024 * 1024) {  // 5MB
+        NotificationHelper::error('size_upload', 'Kích thước ảnh không được vượt quá 5MB');
+        return false;
+    }
+
+    // Tạo tên ảnh duy nhất bằng cách sử dụng ngày giờ hiện tại
+    $nameImage = date('YmdHis') . '.' . $imageFileType;
+
+    // Đường dẫn đầy đủ để lưu trữ file
+    $target_file = $target_dir . $nameImage;
+
+    // Kiểm tra xem file đã tồn tại chưa
+    if (file_exists($target_file)) {
+        NotificationHelper::error('file_exists', 'File đã tồn tại!');
+        return false;
+    }
+
+    // Di chuyển file từ thư mục tạm thời đến thư mục đích
+    if (!move_uploaded_file($_FILES['Image']['tmp_name'], $target_file)) {
+        NotificationHelper::error('move_upload', 'Upload ảnh thất bại');
+        return false;
+    }
+
+    // Trả về tên file ảnh đã lưu
+    return $nameImage;
+}
+
+
 }
