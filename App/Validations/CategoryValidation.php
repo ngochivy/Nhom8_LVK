@@ -8,12 +8,12 @@ class CategoryValidation{
     public static function create():bool{
         $is_valid = true;
         //Tên loại
-        if (!isset($_POST['Category_name']) || $_POST['Category_name'] === '') {
-            NotificationHelper::error('Category_name', 'Không để trống tên loại sản phẩm !');
+        if (!isset($_POST['name']) || $_POST['name'] === '') {
+            NotificationHelper::error('name', 'Không để trống tên loại sản phẩm !');
             $is_valid = false;
         }
-        if (!isset($_POST['Category_description']) || $_POST['Category_description'] === '') {
-            NotificationHelper::error('Category_description', 'Không để trống mô tả !');
+        if (!isset($_POST['description']) || $_POST['description'] === '') {
+            NotificationHelper::error('description', 'Không để trống mô tả !');
             $is_valid = false;
         }
         // Trạng thái
@@ -27,17 +27,17 @@ class CategoryValidation{
     public static function edit():bool{
         $is_valid = true;
         //Tên loại
-        if (!isset($_POST['Category_name']) || $_POST['Category_name'] === '') {
-            NotificationHelper::error('Category_name', 'Không để trống tên loại sản phẩm !');
+        if (!isset($_POST['name']) || $_POST['name'] === '') {
+            NotificationHelper::error('name', 'Không để trống tên loại sản phẩm !');
             $is_valid = false;
         }
-        if (!isset($_POST['Category_description']) || $_POST['Category_description'] === '') {
-            NotificationHelper::error('Category_description', 'Không để trống mmoo tả !');
+        if (!isset($_POST['description']) || $_POST['description'] === '') {
+            NotificationHelper::error('description', 'Không để trống mmoo tả !');
             $is_valid = false;
         }
         // Trạng thái
-        if (!isset($_POST['Status']) || $_POST['Status'] === '') {
-            NotificationHelper::error('Status', 'Không để trống trạng thái !');
+        if (!isset($_POST['status']) || $_POST['status'] === '') {
+            NotificationHelper::error('status', 'Không để trống trạng thái !');
             $is_valid = false;
         }
 

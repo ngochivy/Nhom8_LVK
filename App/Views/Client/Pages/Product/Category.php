@@ -29,7 +29,7 @@ class Category extends BaseView
                     <?php
                     if (isset($data) && isset($data['products']) && $data && $data['products']) :
                     ?>
-                        <h1 class="text-center mb-3"><?= $data['products'][0]['category_name'] ?></h1>
+                        <h1 class="text-center mb-3"><?= $data['products'][0]['name'] ?></h1>
 
                         <div class="row">
                             <?php

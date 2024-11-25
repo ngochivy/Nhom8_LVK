@@ -65,7 +65,7 @@ class Index extends BaseView
                                 </li>
                                 <?php foreach ($data['categories'] as $category): ?>
                                     <li class="mb-3">
-                                        <a href="?category=<?= $category['Category_ID'] ?>" class="category-link"><?= $category['Category_name'] ?></a>
+                                        <a href="?category=<?= $category['id'] ?>" class="category-link"><?= $category['name'] ?></a>
                                     </li>
                                 <?php endforeach; ?>
                             </ul>
@@ -116,10 +116,14 @@ class Index extends BaseView
                                             Lọc
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right">
-                                            <a class="dropdown-item" href="#">Mới nhất</a>
-                                            <a class="dropdown-item" href="#">Tên</a>
-                                            <a class="dropdown-item" href="#">Giá tiền</a>
+                                            <a class="dropdown-item" href="?sort=latest">Mới nhất</a>
+                                            <a class="dropdown-item" href="?sort=name_asc">Tên (A-Z)</a>
+                                            <a class="dropdown-item" href="?sort=name_desc">Tên (Z-A)</a>
+                                            <a class="dropdown-item" href="?sort=price_asc">Giá (Thấp -> Cao)</a>
+                                            <a class="dropdown-item" href="?sort=price_desc">Giá (Cao -> Thấp)</a>
                                         </div>
+
+
                                     </div>
                                 </div>
                             </div>
@@ -130,23 +134,23 @@ class Index extends BaseView
                                     <div class="row">
                                         <?php foreach ($data['products'] as $item) : ?>
                                             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                                                <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $item['Product_ID'] ?>'">
+                                                <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $item['id'] ?>'">
                                                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                                        <img class="img-fluid w-100" src="<?= APP_URL ?>/public/uploads/products/<?= $item['Image'] ?>" alt="<?= $item['Product_name'] ?>" style="height:200px; width:200px; object-fit:cover ;">
+                                                        <img class="img-fluid w-100" src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:200px; width:200px; object-fit:cover ;">
                                                     </div>
                                                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                                        <h6 class="text-truncate mb-3" style="font-family:roboto;"><?= $item['Product_name'] ?></h6>
+                                                        <h6 class="text-truncate mb-3" style="font-family:roboto;"><?= $item['name'] ?></h6>
                                                         <div class="d-flex justify-content-center">
-                                                            <?php if ($item['Discount_price'] > 0) : ?>
-                                                                <h6><?= number_format($item['Price'] - $item['Discount_price']) ?> đ</h6>
-                                                                <h6 class="text-muted ml-2"><del><?= number_format($item['Price']) ?> đ</del></h6>
+                                                            <?php if ($item['discount_price'] > 0) : ?>
+                                                                <h6><?= number_format($item['price'] - $item['discount_price']) ?> đ</h6>
+                                                                <h6 class="text-muted ml-2"><del><?= number_format($item['price']) ?> đ</del></h6>
                                                             <?php else : ?>
-                                                                <h6><?= number_format($item['Price']) ?> đ</h6>
+                                                                <h6><?= number_format($item['price']) ?> đ</h6>
                                                             <?php endif; ?>
                                                         </div>
                                                     </div>
                                                     <div class="card-footer d-flex justify-content-between bg-light border">
-                                                        <a href="#" class="btn btn-sm text-dark p-0" onclick="event.stopPropagation(); addToCart(<?= $item['Category_ID'] ?>)">
+                                                        <a href="#" class="btn btn-sm text-dark p-0" onclick="event.stopPropagation(); addToCart(<?= $item['id'] ?>)">
                                                             <i class="fas fa-shopping-cart text-primary mr-1"></i> Thêm vào giỏ hàng
                                                         </a>
                                                     </div>

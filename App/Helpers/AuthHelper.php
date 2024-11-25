@@ -51,8 +51,8 @@ class AuthHelper
         }
 
         // Kiểm tra trạng thái tài khoản
-        if ($is_exist['Status'] == 0) {
-            NotificationHelper::error('Status', 'Tài khoản đã bị khoá');
+        if ($is_exist['status'] == 0) {
+            NotificationHelper::error('status', 'Tài khoản đã bị khoá');
             return false;
         }
 
@@ -60,9 +60,9 @@ class AuthHelper
         //Neu co kiem tra remember . --> lu seetion/ cookie ==> thong bao thanh cong, tra ve true
 
         if ($data['remember']) {
-            self::updateCookie($is_exist['User_ID']);
+            self::updateCookie($is_exist['id']);
         } else {
-            self::updateSession($is_exist['User_ID']);
+            self::updateSession($is_exist['id']);
         }
 
         NotificationHelper::success('login', 'Đăng nhập thành công');
@@ -105,12 +105,12 @@ class AuthHelper
             $user = $_COOKIE['user'];
             $user_data = (array) json_decode($user);
 
-            self::updateCookie($user_data['User_ID']);
+            self::updateCookie($user_data['id']);
             return true;
         }
 
         if (isset($_SESSION['user'])) {
-            self::updateCookie($_SESSION['user']['User_ID']);
+            self::updateCookie($_SESSION['user']['id']);
             return true;
         }
 
@@ -134,7 +134,7 @@ class AuthHelper
             return false;
         }
         $data = $_SESSION['user'];
-        $user_id = $data['User_ID'];
+        $user_id = $data['id'];
 
         if (isset($_COOKIE['user'])) {
             self::updateCookie($user_id);
@@ -143,7 +143,7 @@ class AuthHelper
         self::updateCookie($user_id);
 
         if ($user_id != $id) {
-            NotificationHelper::error('user_id', 'Không có quyền xem thông tin tài khoản này');
+            NotificationHelper::error('id', 'Không có quyền xem thông tin tài khoản này');
             return false;
         }
 
@@ -234,7 +234,7 @@ class AuthHelper
         $admin = explode('/', $_SERVER['REQUEST_URI']);
         $admin = $admin[1];
 
-        if ($admin == 'Admin') {
+        if ($admin == 'admin') {
             if (!isset($_SESSION['user'])) {
                 NotificationHelper::error('admin', 'Vui lòng đăng nhập');
                 // Sử dụng ob_start() và ob_end_flush()
@@ -244,7 +244,7 @@ class AuthHelper
                 exit;
             }
 
-            if ($_SESSION['user']['Role'] != 1) {
+            if ($_SESSION['user']['role'] != 1) {
                 NotificationHelper::error('admin', 'Tài khoản này không có quyền truy cập');
                 // Sử dụng ob_start() và ob_end_flush()
                 ob_start();

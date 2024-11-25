@@ -139,27 +139,27 @@ class Home extends BaseView
                                 <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
                                     <div class="row justify-content-start py-2" style="gap: 0px;">
                                         <?php foreach ($chunk as $product) : ?>
-                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex mb-2" style="padding: 0 10px;" onclick="window.location.href='/products/<?= $product['Product_ID'] ?>'">
+                                            <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex mb-2" style="padding: 0 10px;" onclick="window.location.href='/products/<?= $product['id'] ?>'">
                                                 <div class="product-card product-item p-2 d-flex flex-column" style="height: 100%; width: 100%;">
 
                                                     <!-- Discount Tag -->
                                                     <div class="discount-tag float-lg-right text-danger font-weight-bolder" style="text-align: right;">
-                                                        -<?= round(($product['Discount_price'] / $product['Price']) * 100, 1) ?>%
+                                                        -<?= round(($product['discount_price'] / $product['price']) * 100, 1) ?>%
                                                     </div>
 
                                                     <!-- Product Image -->
                                                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border-0 p-0 mb-2" style="height: 200px;">
-                                                        <img src="/public/uploads/products/<?= $product['Image'] ?>" alt="<?= $product['Product_name'] ?>" class="img-fluid w-100" style="object-fit: cover; height: 100%; border-radius: 8px;">
+                                                        <img src="/public/uploads/products/<?= $product['image'] ?>" alt="<?= $product['name'] ?>" class="img-fluid w-100" style="object-fit: cover; height: 100%; border-radius: 8px;">
                                                     </div>
 
                                                     <!-- Product Info -->
                                                     <div class="product-info flex-grow-1 d-flex flex-column justify-content-between" style="min-height: 150px;">
                                                         <p class="product-name mb-1" style="font-size: 14px; font-weight: bold; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; min-height: 3rem;">
-                                                            <?= $product['Product_name'] ?>
+                                                            <?= $product['name'] ?>
                                                         </p>
                                                         <div class="product-price mb-1 d-flex justify-content-center" style="font-size: 18px; font-weight: bold; color: #d9534f;">
-                                                            <p class="text-muted px-2 font-weight-light"><del><?= number_format($product['Price'], 0, ',', '.') ?>₫</del></p>
-                                                            <?= number_format($product['Price'] - $product['Discount_price'], 0, ',', '.') ?>₫
+                                                            <p class="text-muted px-2 font-weight-light"><del><?= number_format($product['price'], 0, ',', '.') ?>₫</del></p>
+                                                            <?= number_format($product['price'] - $product['discount_price'], 0, ',', '.') ?>₫
                                                         </div>
                                                         <div class="sold-info" style="font-size: 14px; color: #5bc0de;">
                                                             Đã bán <?= rand(1, 200) ?>
@@ -242,15 +242,15 @@ class Home extends BaseView
                 <div class="row px-xl-5 pb-3">
                     <?php foreach ($data['featuredProducts'] as $product): ?>
                         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                            <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $product['Product_ID'] ?>'">
+                            <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $product['id'] ?>'">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-                                    <img class="img-fluid w-100" src="/public/uploads/products/<?= $product['Image'] ?>" alt="<?= $product['Product_name'] ?>" style="height:200px; width:100px; object-fit:cover ;">
+                                    <img class="img-fluid w-100" src="/public/uploads/products/<?= $product['image'] ?>" alt="<?= $product['name'] ?>" style="height:200px; width:100px; object-fit:cover ;">
                                 </div>
                                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
-                                    <h6 class="text-truncate mb-3"><?= $product['Product_name'] ?></h6>
+                                    <h6 class="text-truncate mb-3"><?= $product['name'] ?></h6>
                                     <div class="d-flex justify-content-center">
-                                        <h6><?= number_format($product['Price'] - $product['Discount_price'], 0, ',', '.') ?> đ</h6>
-                                        <h6 class="text-muted ml-2"><del><?= number_format($product['Price'], 0, ',', '.') ?> đ</del></h6>
+                                        <h6><?= number_format($product['price'] - $product['discount_price'], 0, ',', '.') ?> đ</h6>
+                                        <h6 class="text-muted ml-2"><del><?= number_format($product['price'], 0, ',', '.') ?> đ</del></h6>
                                     </div>
                                 </div>
                                 <div class="card-footer d-flex justify-content-center bg-light border">

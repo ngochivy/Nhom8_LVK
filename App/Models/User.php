@@ -7,7 +7,7 @@ use App\Helpers\NotificationHelper;
 class User extends BaseModel
 {
     protected $table = 'users';
-    protected $id = 'User_ID';
+    protected $id = 'id';
 
     public function getAllUser()
     {
@@ -40,7 +40,7 @@ class User extends BaseModel
     {
         $result = [];
         try {
-            $sql = "SELECT * FROM users WHERE Username=?";
+            $sql = "SELECT * FROM users WHERE username=?";
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
 
@@ -55,12 +55,10 @@ class User extends BaseModel
     public function updateUserByUsernameAndEmail(array $data)
     {
         try {
-            $username = $data['Username'];
-            $email = $data['Email'];
-            $password = $data['Password'];
-            $phone = $data['Phone_number'];
-            $address = $data['Address'];
-            $sql = "UPDATE $this->table SET  WHERE Username='$username' AND  Email='$email' AND Password='$password' AND Phone_number='$phone' AND Address='$address'";
+            $username = $data['username'];
+            $email = $data['email'];
+            $password = $data['password'];
+            $sql = "UPDATE $this->table SET password='$password' WHERE username='$username' AND  email='$email'";
 
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);

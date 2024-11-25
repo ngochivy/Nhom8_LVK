@@ -17,42 +17,75 @@ class ProductController
 {
     // Hiển thị danh sách sản phẩm
     public static function index()
-    {
-        $productModel = new Product();
+{
+    $productModel = new Product();
 
-        // Lấy danh mục
-        $categories = (new Category())->getAll();
+    // Lấy danh mục
+    $categories = (new Category())->getAll();
 
-        // Lấy tất cả sản phẩm theo trạng thái mặc định là active (status = 1)
-        $products = $productModel->getAllProductByStatus();
+    // Lấy tất cả sản phẩm theo trạng thái mặc định là active (status = 1)
+    $products = $productModel->getAllProductByStatus();
 
-        // Lọc sản phẩm theo danh mục
-        if (isset($_GET['category']) && $_GET['category'] != 'all') {
-            $categoryId = (int)$_GET['category']; // Kiểm tra giá trị category hợp lệ
-            $products = $productModel->getAllProductByCategory($categoryId);
-        }
-
-        // Lọc sản phẩm theo khoảng giá
-        if (isset($_GET['min_price']) && isset($_GET['max_price'])) {
-            $minPrice = (int)$_GET['min_price']; // Chuyển đổi giá trị thành số nguyên
-            $maxPrice = (int)$_GET['max_price']; // Chuyển đổi giá trị thành số nguyên
-            // Kiểm tra giá trị khoảng giá hợp lệ
-            if ($minPrice >= 0 && $maxPrice > $minPrice) {
-                $products = $productModel->getProductByPriceRange($minPrice, $maxPrice);
-            }
-        }
-
-        // Dữ liệu truyền vào view
-        $data = [
-            'categories' => $categories,
-            'products' => $products,
-        ];
-
-        // Render view
-        Header::render();
-        Index::render($data);
-        Footer::render();
+    // Lọc sản phẩm theo danh mục
+    if (isset($_GET['category']) && $_GET['category'] != 'all') {
+        $categoryId = (int)$_GET['category']; // Kiểm tra giá trị category hợp lệ
+        $products = $productModel->getAllProductByCategory($categoryId);
     }
+
+    // Lọc sản phẩm theo khoảng giá
+    if (isset($_GET['min_price']) && isset($_GET['max_price'])) {
+        $minPrice = (int)$_GET['min_price']; // Chuyển đổi giá trị thành số nguyên
+        $maxPrice = (int)$_GET['max_price']; // Chuyển đổi giá trị thành số nguyên
+        // Kiểm tra giá trị khoảng giá hợp lệ
+        if ($minPrice >= 0 && $maxPrice > $minPrice) {
+            $products = $productModel->getProductByPriceRange($minPrice, $maxPrice);
+        }
+    }
+
+    // Lọc sản phẩm theo thứ tự
+    if (isset($_GET['sort'])) {
+        switch ($_GET['sort']) {
+            case 'latest': // Sắp xếp theo sản phẩm mới nhất
+                usort($products, function ($a, $b) {
+                    return strtotime($b['created_at']) - strtotime($a['created_at']);
+                });
+                break;
+            case 'name_asc': // Sắp xếp theo tên từ A-Z
+                usort($products, function ($a, $b) {
+                    return strcmp($a['name'], $b['name']);
+                });
+                break;
+            case 'name_desc': // Sắp xếp theo tên từ Z-A
+                usort($products, function ($a, $b) {
+                    return strcmp($b['name'], $a['name']);
+                });
+                break;
+            case 'price_asc': // Sắp xếp theo giá thấp đến cao
+                usort($products, function ($a, $b) {
+                    return $a['price'] - $b['price'];
+                });
+                break;
+            case 'price_desc': // Sắp xếp theo giá cao đến thấp
+                usort($products, function ($a, $b) {
+                    return $b['price'] - $a['price'];
+                });
+                break;
+        }
+    }
+
+    // Dữ liệu truyền vào view
+    $data = [
+        'categories' => $categories,
+        'products' => $products,
+    ];
+
+    // Render view
+    Header::render();
+    Index::render($data);
+    Footer::render();
+}
+
+
 
 
     // Hiển thị chi tiết sản phẩm

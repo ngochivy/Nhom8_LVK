@@ -152,7 +152,7 @@ class UserController
     public static function edit($id)
     {
         // Kiểm tra quyền truy cập
-        if (!isset($_SESSION['user']) || $_SESSION['user']['User_ID'] != $id) {
+        if (!isset($_SESSION['user']) || $_SESSION['user']['id'] != $id) {
             NotificationHelper::error('user_id', 'Không có quyền truy cập.');
             header('Location: /login');
             exit;
@@ -316,7 +316,7 @@ class UserController
     {
         if (!isset($_SESSION['reset_password'])) {
             NotificationHelper::error('reset_password', 'Vui lòng nhập đầy đủ thông tin của form nay');
-            header('location: /forgot-password');
+            header('location: /reset-password');
             exit;
         }
         Header::render();
@@ -332,7 +332,7 @@ class UserController
 
         if (!$is_valid) {
             NotificationHelper::error('reset_password', 'Đặt lại mật khẩu thất bại');
-            header('location: /reset-password ');
+            header('location: /reset-password');
             exit;
         }
 
@@ -354,7 +354,7 @@ class UserController
             header('location: /login');
         } else {
             NotificationHelper::error('reset_password', 'Đặt lại mật khẩu thất bại');
-            header('location: /reset-password ');
+            header('location: /reset-password');
         }
     }
 }

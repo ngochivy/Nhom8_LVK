@@ -5,7 +5,7 @@ namespace App\Models;
 class Product extends BaseModel
 {
     protected $table = 'products';
-    protected $id = 'Product_ID';
+    protected $id = 'id';
 
     public function getAllProduct()
     {
@@ -60,9 +60,9 @@ class Product extends BaseModel
 
         // Truy vấn lấy tất cả sản phẩm và tên danh mục (JOIN với bảng categories)
         $stmt = $conn->prepare(
-            "SELECT p.Product_ID, p.Product_name, p.Price, p.Discount_price, p.Quantity, p.User_manual, p.is_feature, p.Status, p.Image, c.Category_name
+            "SELECT p.id, p.name, p.price, p.discount_price, p.quantity, p.user_manual, p.is_feature, p.status, p.image, c.name
              FROM {$this->table} p
-             LEFT JOIN categories c ON p.Category_ID = c.Category_ID"
+             LEFT JOIN categories c ON p.category_id = c.id"
         );
         $stmt->execute();
 
@@ -84,7 +84,7 @@ class Product extends BaseModel
     {
         try {
             $conn = $this->getConnection(); // Sử dụng getConnection
-            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE Category_ID = ?");
+            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE category_id = ?");
             $stmt->bind_param("i", $categoryId);
             $stmt->execute();
 

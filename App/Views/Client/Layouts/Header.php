@@ -181,18 +181,20 @@ class Header extends BaseView
                                     
                                 </div> -->
                                 <?php if ($is_login) : ?>
-                                    <div class="dropdown">
+                                    <div class="dropdown mr-3" style="width:81px !important;">
                                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow border-0 text-decoration-none"
                                             href="#"
                                             id="navbarDropdownMenuAvatar"
                                             role="button"
                                             data-bs-toggle="dropdown"
                                             aria-expanded="false">
-                                            <span class="ml-2 d-lg-inline-block font-weight-bold">Chào, <?= $_SESSION['user']['Username'] ?></span>
+                                            <img src="/public/assets/client/img/profile-user.png" alt="user" style="width:25px;"><span class="text-muted pl-2"><?= $_SESSION['user']['username'] ?></span>
                                         </a>
-                                        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuAvatar">
+                                        <ul class="dropdown-menu dropdown-menu-start"
+                                            style=""
+                                            aria-labelledby="navbarDropdownMenuAvatar">
                                             <li>
-                                                <a class="dropdown-item" href="/users/<?= $_SESSION['user']['User_ID'] ?>">Tài khoản</a>
+                                                <a class="dropdown-item" href="/users/<?= $_SESSION['user']['id'] ?>">Tài khoản</a>
                                             </li>
                                             <li>
                                                 <a class="dropdown-item" href="/change-password">Đổi mật khẩu</a>
@@ -201,8 +203,9 @@ class Header extends BaseView
                                                 <a class="dropdown-item" href="/logout">Đăng xuất</a>
                                             </li>
                                         </ul>
-
                                     </div>
+
+
 
                                 <?php else : ?>
                                     <div class="navbar-nav ml-auto py-0">

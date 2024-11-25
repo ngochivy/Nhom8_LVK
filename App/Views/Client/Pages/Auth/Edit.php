@@ -41,7 +41,7 @@ class Edit extends BaseView
                                 <img
                                     class="mt-5"
                                     style="width: 400px; height: 400px; border-radius: 50%; object-fit: cover;"
-                                    src="<?= APP_URL ?>/public/uploads/users/<?= $data['Image'] ?>"
+                                    src="<?= APP_URL ?>/public/uploads/users/<?= $data['image'] ?>"
                                     alt="Avatar">
                                 <span class="font-weight-bold">Ảnh đại diện</span>
                                 <span class="text-black-50"></span>
@@ -68,17 +68,17 @@ class Edit extends BaseView
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h1 class="text-right text-primary">Tài khoản người dùng</h1>
                             </div>
-                            <form action="/users/<?= $data['User_ID'] ?>" method="post" enctype="multipart/form-data">
+                            <form action="/users/<?= $data['id'] ?>" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="method" value="PUT" id="">
                                 <div class="row mt-2">
-                                    <div class="col-md-12"><label class="labels" for="username">Tên đăng nhập</label><input type="text" class="form-control" id="username" name="username" placeholder="" value="<?= $data['Username'] ?>" disabled></div>
+                                    <div class="col-md-12"><label class="labels" for="username">Tên đăng nhập</label><input type="text" class="form-control" id="username" name="username" placeholder="" value="<?= $data['username'] ?>" disabled></div>
 
                                 </div>
                                 <div class="row mt-1">
-                                    <div class="col-md-12 mt-4"><label class="labels" for="email">Email</label><input type="email" id="email" name="email" class="form-control" placeholder="Email" value="<?= $data['Email'] ?>"></div>
-                                    <div class="col-md-12 mt-4"><label class="labels" for="name">Họ và tên</label><input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="<?= $data['Name'] ?>"></div>
-                                    <div class="col-md-12 mt-4"><label class="labels" for="address">Địa chỉ</label><input type="text" id="address" name="address" class="form-control" placeholder="Địa chỉ" value="<?= $data['Address'] ?>"></div>
-                                    <div class="col-md-12 mt-4"><label class="labels" for="phone">Số điện thoại</label><input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="<?= $data['Phone_number'] ?>"></div>
+                                    <div class="col-md-12 mt-4"><label class="labels" for="email">Email</label><input type="email" id="email" name="email" class="form-control" placeholder="Email" value="<?= $data['email'] ?>"></div>
+                                    <div class="col-md-12 mt-4"><label class="labels" for="name">Họ và tên</label><input type="text" id="name" name="name" class="form-control" placeholder="Họ và tên" value="<?= $data['name'] ?>"></div>
+                                    <div class="col-md-12 mt-4"><label class="labels" for="address">Địa chỉ</label><input type="text" id="address" name="address" class="form-control" placeholder="Địa chỉ" value="<?= $data['address'] ?>"></div>
+                                    <div class="col-md-12 mt-4"><label class="labels" for="phone">Số điện thoại</label><input type="text" id="phone" name="phone" class="form-control" placeholder="Số điện thoại" value="<?= $data['phone_number'] ?>"></div>
                                     <div class="col-md-12 mt-4"><label class="labels" for="image">Ảnh đại diện</label><input type="file" id="image" name="image" class="form-control" placeholder="Chọn ảnh đại diện" value=""></div>
 
                                 </div>

@@ -20,7 +20,7 @@ class ResetPassword extends BaseView
             <link href="/public/assets/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
             <link href="/public/assets/client/css/style.css" rel="stylesheet">
-            <title>Change Password</title>
+            <title>Reset Password</title>
         </head>
 
         <body>
@@ -38,10 +38,10 @@ class ResetPassword extends BaseView
                                     <h3>Đặt lại mật khẩu </h3>
 
                                     <form action="/reset-password" method="post">
-                                        <input type="hidden" name="method" id="" value="POST">
+                                        <input type="hidden" name="method" id="" value="PUT">
                                         <div class="form-group last mb-3">
-                                            <label  for="old_password">Mật khẩu</label>
-                                            <input type="password" id="old_password" name="old_password" class="form-control" placeholder="Nhập mật khẩu">
+                                            <label  for="password">Mật khẩu</label>
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Nhập mật khẩu">
                                         </div>
                                         <div class="form-group last mb-3">
                                             <label for="re_password">Nhập lại mật khẩu</label>

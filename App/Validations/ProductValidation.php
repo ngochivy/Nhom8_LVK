@@ -10,39 +10,39 @@ class ProductValidation
     {
         $is_valid = true;
         //Tên sản phẩm
-        if (!isset($_POST['Product_name']) || $_POST['Product_name'] === '') {
-            NotificationHelper::error('Product_name', 'Không để trống tên sản phẩm !');
+        if (!isset($_POST['name']) || $_POST['name'] === '') {
+            NotificationHelper::error('name', 'Không để trống tên sản phẩm !');
             $is_valid = false;
         }
 
         //giá tiền
-        if (!isset($_POST['Price']) || $_POST['Price'] === '') {
-            NotificationHelper::error('Price', 'Không để trống giá tiền !');
+        if (!isset($_POST['price']) || $_POST['price'] === '') {
+            NotificationHelper::error('price', 'Không để trống giá tiền !');
             $is_valid = false;
-        } elseif ((int) $_POST['Price'] <= 0) {
-            NotificationHelper::error('Price', 'giá tiền phải lớn hơn 0 !');
+        } elseif ((int) $_POST['price'] <= 0) {
+            NotificationHelper::error('price', 'giá tiền phải lớn hơn 0 !');
             $is_valid = false;
         }
 
         //giá tiền giảm
-        if (!isset($_POST['Discount_price']) || $_POST['Discount_price'] === '') {
-            NotificationHelper::error('Discount_price', 'Không để trống giá tiền giảm !');
+        if (!isset($_POST['discount_price']) || $_POST['discount_price'] === '') {
+            NotificationHelper::error('discount_price', 'Không để trống giá tiền giảm !');
             $is_valid = false;
-        } elseif ((int) $_POST['Discount_price'] <= 0) {
-            NotificationHelper::error('Discount_price', 'giá tiền giảm phải lớn hơn hoặc bằng 0 !');
+        } elseif ((int) $_POST['discount_price'] <= 0) {
+            NotificationHelper::error('discount_price', 'giá tiền giảm phải lớn hơn hoặc bằng 0 !');
             $is_valid = false;
-        }elseif ((int) $_POST['Discount_price']> (int) $_POST['Price']) {
-            NotificationHelper::error('Discount_price', 'giảm giá tiền phải nhỏ hơn giá tiền !');
+        }elseif ((int) $_POST['discount_price']> (int) $_POST['price']) {
+            NotificationHelper::error('discount_price', 'giảm giá tiền phải nhỏ hơn giá tiền !');
             $is_valid = false;
         }
 
         // id loại sản phẩm
-        if (!isset($_POST['Category_ID']) || $_POST['Category_ID'] === '') {
-            NotificationHelper::error('Category_ID', 'Không để trống loại sản phẩm !');
+        if (!isset($_POST['category_id']) || $_POST['category_id'] === '') {
+            NotificationHelper::error('category_id', 'Không để trống loại sản phẩm !');
             $is_valid = false;
         }
-        if (!isset($_POST['Quantity']) || $_POST['Quantity'] === '') {
-            NotificationHelper::error('Quantity', 'Không để trống số lượng !');
+        if (!isset($_POST['quantity']) || $_POST['quantity'] === '') {
+            NotificationHelper::error('quantity', 'Không để trống số lượng !');
             $is_valid = false;
         }
         // if (!isset($_POST['User_manual']) || $_POST['User_manual'] === '') {
@@ -56,8 +56,8 @@ class ProductValidation
         }
         // Trạng thái
         //trạng thái
-        if (!isset($_POST['Status']) || $_POST['Status'] === '') {
-            NotificationHelper::error('Status', ' Không được để trống trạng thái');
+        if (!isset($_POST['status']) || $_POST['status'] === '') {
+            NotificationHelper::error('status', ' Không được để trống trạng thái');
             $is_valid = false;
         }
 
@@ -76,7 +76,7 @@ class ProductValidation
     public static function uploadImage()
 {
     // Kiểm tra nếu không có file hoặc file không được upload đúng cách
-    if (!isset($_FILES['Image']) || !is_uploaded_file($_FILES['Image']['tmp_name'])) {
+    if (!isset($_FILES['image']) || !is_uploaded_file($_FILES['image']['tmp_name'])) {
         NotificationHelper::error('no_file', 'Chưa chọn ảnh để upload!');
         return false;
     }
@@ -85,7 +85,7 @@ class ProductValidation
     $target_dir = 'public/uploads/products/';
 
     // Lấy phần mở rộng của file (jpg, png, jpeg, gif)
-    $imageFileType = strtolower(pathinfo(basename($_FILES['Image']['name']), PATHINFO_EXTENSION));
+    $imageFileType = strtolower(pathinfo(basename($_FILES['image']['name']), PATHINFO_EXTENSION));
 
     // Kiểm tra nếu file ảnh có đúng định dạng không
     if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif') {
@@ -94,7 +94,7 @@ class ProductValidation
     }
 
     // Kiểm tra kích thước file (ví dụ, giới hạn 5MB)
-    if ($_FILES['Image']['size'] > 5 * 1024 * 1024) {  // 5MB
+    if ($_FILES['image']['size'] > 5 * 1024 * 1024) {  // 5MB
         NotificationHelper::error('size_upload', 'Kích thước ảnh không được vượt quá 5MB');
         return false;
     }
@@ -112,7 +112,7 @@ class ProductValidation
     }
 
     // Di chuyển file từ thư mục tạm thời đến thư mục đích
-    if (!move_uploaded_file($_FILES['Image']['tmp_name'], $target_file)) {
+    if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
         NotificationHelper::error('move_upload', 'Upload ảnh thất bại');
         return false;
     }

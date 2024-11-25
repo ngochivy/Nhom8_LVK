@@ -40,16 +40,16 @@ class Register extends BaseView
                                     <form action="/register" method="post">
                                     <input type="hidden" name="method" id="" value="POST">
                                         <div class="form-group first">
-                                            <label for="Username">Tên đăng nhập</label>
-                                            <input type="text" class="form-control" name="Username" placeholder="Nhập tên đăng nhập" id="Username">
+                                            <label for="username">Tên đăng nhập</label>
+                                            <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập" id="username">
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="Email">Email</label>
-                                            <input type="email" class="form-control" name="Email" placeholder="Nhập Email" id="Email" >
+                                            <label for="email">Email</label>
+                                            <input type="email" class="form-control" name="email" placeholder="Nhập Email" id="email" >
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label for="Password">Mật khẩu</label>
-                                            <input type="password" class="form-control" name="Password" placeholder="Nhập mật khẩu" id="Password" >
+                                            <label for="password">Mật khẩu</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" id="password" >
                                         </div>
                                         <div class="form-group last mb-3">
                                             <label for="re_password">Xác nhận mật khẩu</label>

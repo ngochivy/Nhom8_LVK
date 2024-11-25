@@ -40,8 +40,8 @@ class ChangePassword extends BaseView
                                     <form action="/change-password" method="post">
                                         <input type="hidden" name="method" id="" value="PUT">
                                         <div class="form-group first">
-                                            <label for="Username">Tên đăng nhập</label>
-                                            <input type="text" class="form-control" id="Username" name="username" placeholder="" value="<?= $data['Username'] ?>" disabled>
+                                            <label for="username">Tên đăng nhập</label>
+                                            <input type="text" class="form-control" id="username" name="username" placeholder="" value="<?= $data['username'] ?>" disabled>
                                         </div>
                                         <div class="form-group last mb-3">
                                             <label  for="old_password">Mật khẩu cũ</label>

@@ -40,12 +40,12 @@ class Login extends BaseView
                                     <form action="/login" method="post">
                                         <input type="hidden" name="method" id="" value="POST">
                                         <div class="form-group first">
-                                            <label for="Username">Tên đăng nhập</label>
-                                            <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập" id="Username">
+                                            <label for="username">Tên đăng nhập</label>
+                                            <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập" id="username">
                                         </div>
                                         <div class="form-group last mb-3">
-                                            <label for="Password">Mật khẩu</label>
-                                            <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" id="Password">
+                                            <label for="password">Mật khẩu</label>
+                                            <input type="password" class="form-control" name="password" placeholder="Nhập mật khẩu" id="password">
                                         </div>
                                         <div class="d-flex mb-5 align-items-center">
                                             <label class="control control--checkbox mb-0"><span class="caption">Lưu mật khẩu</span>
