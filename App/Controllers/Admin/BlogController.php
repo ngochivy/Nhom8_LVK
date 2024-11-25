@@ -68,16 +68,16 @@ class BlogController
 
         // thực hiện thêm
         $data = [
-            'Title' =>  $_POST['Title'],
-            'Content' => $_POST['Content'],
-            'Author_ID' => $_POST['Author_ID'],
+            'title' =>  $_POST['title'],
+            'content' => $_POST['content'],
+            'author_id' => $_POST['author_id'],
         ];
 
 
 
         $is_upload=BlogValidation::uploadImage();
         if($is_upload){
-            $data['Image']= $is_upload;
+            $data['image']= $is_upload;
         }
         $create = new Blog();
         $result = $create->createBlog($data);
@@ -130,12 +130,12 @@ $is_valid = BlogValidation::edit();
            exit;
        }
 
-       $Title=$_POST['Title'];
-       $Content=$_POST['Content'];
-       $Author_ID=$_POST['Author_ID'];
+       $title=$_POST['title'];
+       $content=$_POST['content'];
+       $author_id=$_POST['author_id'];
        
        $blog=new Blog();
-       $is_exist=$blog->getOneBlogByName($Title);
+       $is_exist=$blog->getOneBlogByName($title);
 
        if ($is_exist) {
            if($is_exist['id']!=$id){
@@ -148,9 +148,9 @@ $is_valid = BlogValidation::edit();
 
        // thực hiện cập nhật
        $data=[
-           'Title'=>$Title,
-           'Content'=>$Content,
-           'Author_ID'=>$Author_ID
+           'title'=>$title,
+           'content'=>$content,
+           'author_id'=>$author_id
        ];
        $result=$blog->updateBlog($id,$data);
 

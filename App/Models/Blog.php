@@ -5,7 +5,7 @@ namespace App\Models;
 class Blog extends BaseModel
 {
     protected $table = 'blogs';
-    protected $id = 'Blog_ID';
+    protected $id = 'id';
 
     public function getAllBlog()
     {
@@ -46,7 +46,7 @@ class Blog extends BaseModel
     {
         $result = [];
         try {
-            $sql = "SELECT * FROM $this->table WHERE Title=?";
+            $sql = "SELECT * FROM $this->table WHERE title=?";
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
 

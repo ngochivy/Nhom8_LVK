@@ -52,11 +52,11 @@ class UserController
             exit;
         }
 
-        $Username = $_POST['Username'];
+        $username = $_POST['username'];
         // không đc trùng tên đăng nhập
 
         $user = new User();
-        $is_exist = $user->getOneUserByUsername($Username);
+        $is_exist = $user->getOneUserByUsername($username);
         if ($is_exist) {
             NotificationHelper::error('store', 'Tên người dùng đã tồn  tại');
             header('location: /admin/users/create');
@@ -66,14 +66,14 @@ class UserController
         // thực hiện thêm
         $data = [
 
-            'Username' => $Username,
-            'Email' => $_POST['Email'],
-            'Address' => $_POST['Address'],
-            'Phone_number' => $_POST['Phone_number'],
+            'username' => $username,
+            'email' => $_POST['email'],
+            'address' => $_POST['address'],
+            'phone_number' => $_POST['phone_number'],
             'Name' => $_POST['Name'],
-            'Password' => password_hash($_POST['Password'], PASSWORD_DEFAULT),
-            'Role' => $_POST['Role'],
-            'Status' => $_POST['Status']
+            'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
+            'role' => $_POST['role'],
+            'status' => $_POST['status']
 
         ];
         $is_upload = UserValidation::uploadAvatar();
@@ -133,10 +133,10 @@ class UserController
         // thực hiện cập nhật
         $data = [
             'Name' => $_POST['Name'],
-            'Email' => $_POST['Email'],
-            'Address' => $_POST['Address'],
-            'Phone_number' => $_POST['Phone_number'],
-            'Status' => $_POST['Status']
+            'email' => $_POST['email'],
+            'address' => $_POST['address'],
+            'phone_number' => $_POST['phone_number'],
+            'status' => $_POST['status']
         ];
         $is_upload = UserValidation::uploadAvatar();
         if ($is_upload) {

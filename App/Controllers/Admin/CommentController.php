@@ -80,7 +80,7 @@ class CommentController
         }
 
 
-        $status = $_POST['Status'];
+        $status = $_POST['status'];
 
 
         $comment = new Comment();

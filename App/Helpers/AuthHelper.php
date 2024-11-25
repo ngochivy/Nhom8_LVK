@@ -40,13 +40,13 @@ class AuthHelper
         $is_exist = $user->getOneUserByUsername($data['username']);
 
         if (!$is_exist) {
-            NotificationHelper::error('Username', 'Tên đăng nhập không tồn tại');
+            NotificationHelper::error('username', 'Tên đăng nhập không tồn tại');
             return false;
         }
 
         // Kiểm tra mật khẩu
-        if (!password_verify($data['password'], $is_exist['Password'])) { // Đảm bảo sử dụng đúng key
-            NotificationHelper::error('Password', 'Mật khẩu không đúng');
+        if (!password_verify($data['password'], $is_exist['password'])) { // Đảm bảo sử dụng đúng key
+            NotificationHelper::error('password', 'Mật khẩu không đúng');
             return false;
         }
 
@@ -186,7 +186,7 @@ class AuthHelper
         }
 
         // Kiểm tra mật khẩu cũ
-        if (!password_verify($data['old_password'], $result['Password'])) {
+        if (!password_verify($data['old_password'], $result['password'])) {
             NotificationHelper::error('password_verify', 'Mật khẩu cũ không đúng');
             return false;
         }

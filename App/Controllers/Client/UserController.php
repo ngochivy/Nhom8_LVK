@@ -41,8 +41,8 @@ class UserController
     public static function registerAction()
     {
         // Kiểm tra nếu các trường bắt buộc không rỗng
-        $username = $_POST["Username"];
-        $email = $_POST["Email"];
+        $username = $_POST["username"];
+        $email = $_POST["email"];
         $password = $_POST["Password"];
         $re_password = $_POST["re_password"];
 

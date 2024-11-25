@@ -59,12 +59,12 @@ class CategoryController
             exit;
         }
 
-        $Category_name=$_POST['Category_name'];
-        $Category_description=$_POST['Category_description'];
-        $Status=$_POST['Status'];
+        $category_name=$_POST['name'];
+        $category_description=$_POST['description'];
+        $status=$_POST['status'];
 
         $category=new Category();
-        $is_exist=$category->getOneCategoryByName($Category_name);
+        $is_exist=$category->getOneCategoryByName($category_name);
         if ($is_exist) {
             NotificationHelper::error('store', 'Tên loại sản phẩm đã tồn  tại');
             header('location: /admin/categories/create');
@@ -73,9 +73,9 @@ class CategoryController
 
         // thực hiện thêm
         $data=[
-            'Category_name'=>$Category_name,
-            'Category_description'=>$Category_description,
-            'Status'=>$Status
+            'name'=>$category_name,
+            'description'=>$category_description,
+            'status'=>$status
         ];
         $result=$category->createCategory($data);
 
@@ -139,12 +139,12 @@ class CategoryController
             exit;
         }
 
-        $Category_name=$_POST['Category_name'];
-        $Category_description=$_POST['Category_description'];
-        $Status=$_POST['Status'];
+        $category_name=$_POST['name'];
+        $category_description=$_POST['description'];
+        $status=$_POST['status'];
 
         $category=new Category();
-        $is_exist=$category->getOneCategoryByName($Category_name);
+        $is_exist=$category->getOneCategoryByName($category_name);
 
         if ($is_exist) {
             if($is_exist['id']!=$id){
@@ -157,9 +157,9 @@ class CategoryController
 
         // thực hiện cập nhật
         $data=[
-            'Category_name'=>$Category_name,
-            'Category_description'=>$Category_description,
-            'Status'=>$Status
+            'category_name'=>$category_name,
+            'category_description'=>$category_description,
+            'status'=>$status
         ];
         $result=$category->updateCategory($id,$data);
 

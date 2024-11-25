@@ -65,10 +65,10 @@ class ProductController
             exit;
         }
 
-        $Product_name = $_POST['Product_name'];
+        $product_name = $_POST['name'];
         // kiểm tra sản phẩm có tồn tại chưa ==> Khong duoc trung ten
         $Product = new Product();
-        $is_exist = $Product->getOneProductByName($Product_name);
+        $is_exist = $Product->getOneProductByName($product_name);
 
         if ($is_exist) {
             NotificationHelper::error('store', 'Tên sản phẩm đã tồn tại');
@@ -78,15 +78,15 @@ class ProductController
 
         // thực hiện thêm
         $data = [
-            'Product_name' => $Product_name,
-            'Price' => $_POST['Price'],
-            'Discount_price' => $_POST['Discount_price'],
-            'Description' => $_POST['Description'],
-            'Quantity' => $_POST['Quantity'],
-            'User_manual' => $_POST['User_manual'],
+            'name' => $product_name,
+            'price' => $_POST['price'],
+            'discount_price' => $_POST['discount_price'],
+            'description' => $_POST['description'],
+            'quantity' => $_POST['quantity'],
+            'user_manual' => $_POST['user_manual'],
             'is_feature' => $_POST['is_feature'],
-            'Status' => $_POST['Status'],
-            'Category_ID' => $_POST['Category_ID'],
+            'status' => $_POST['status'],
+            'category_id' => $_POST['category_id'],
         ];
 
 
@@ -165,13 +165,13 @@ class ProductController
             exit;
         }
 
-        $Product_name=$_POST['Product_name'];
+        $product_name=$_POST['name'];
       
         $Product=new Product();
-        $is_exist=$Product->getOneProductByName($Product_name);
+        $is_exist=$Product->getOneProductByName($product_name);
 
         if ($is_exist) {
-            if($is_exist['Product_ID']!=$id){
+            if($is_exist['id']!=$id){
                 NotificationHelper::error('update', 'Tên sản phẩm đã tồn  tại');
                 header("location: /admin/products/$id");
                 exit;
@@ -181,15 +181,15 @@ class ProductController
 
         // thực hiện cập nhật
         $data = [
-            'Product_name' => $Product_name,
-            'Price' => $_POST['Price'],
-            'Discount_price' => $_POST['Discount_price'],
-            'Description' => $_POST['Description'],
-            'Quantity' => $_POST['Quantity'],
-            'User_manual' => $_POST['User_manual'],
+            'name' => $product_name,
+            'price' => $_POST['price'],
+            'discount_price' => $_POST['discount_price'],
+            'description' => $_POST['description'],
+            'quantity' => $_POST['quantity'],
+            'user_manual' => $_POST['user_manual'],
             'is_feature' => $_POST['is_feature'],
-            'Status' => $_POST['Status'],
-            'Category_ID' => $_POST['Category_ID'],
+            'status' => $_POST['status'],
+            'category_id' => $_POST['category_id'],
         ];
 
         $is_upload=ProductValidation::uploadImage();

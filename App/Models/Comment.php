@@ -7,7 +7,7 @@ class Comment extends BaseModel
 
 {
     protected $table = 'comments';
-    protected $id = 'Comment_ID';
+    protected $id = 'id';
 
     public function getAllComment()
     {
@@ -40,10 +40,10 @@ class Comment extends BaseModel
     public function getAllCommentJoinProductAndUser()
     {
         try {
-            $sql = "SELECT comments.*, products.Product_name AS product_name, users.Username 
+            $sql = "SELECT comments.*, products.name AS product_name, users.username 
                 FROM comments 
-                INNER JOIN products ON comments.Product_ID = products.ID 
-                INNER JOIN users ON comments.User_ID = users.ID";
+                INNER JOIN products ON comments.product_id = products.id 
+                INNER JOIN users ON comments.user_id = users.id";
             $conn = $this->_conn->MySQLi();
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -58,10 +58,10 @@ class Comment extends BaseModel
     {
         $result = [];
         try {
-            $sql = "SELECT comments.*, products.Product_name AS product_name, users.Username 
-            FROM comments INNER JOIN products ON comments.Product_ID=Products.ID 
-            INNER JOIN users ON comments.User_ID=Users.ID
-            WHERE comments.Comment_ID=?";
+            $sql = "SELECT comments.*, products.name AS product_name, users.username 
+            FROM comments INNER JOIN products ON comments.product_id=products.id 
+            INNER JOIN users ON comments.user_id=users.id
+            WHERE comments.id=?";
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
 

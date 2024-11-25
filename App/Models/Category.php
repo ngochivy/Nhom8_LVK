@@ -5,7 +5,7 @@ namespace App\Models;
 class Category extends BaseModel
 {
     protected $table = 'categories';
-    protected $id = 'Category_ID';
+    protected $id = 'id';
 
     public function getAllCategory()
     {
