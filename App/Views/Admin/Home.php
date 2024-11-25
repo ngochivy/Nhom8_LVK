@@ -143,35 +143,35 @@ class Home extends BaseView
                                                     <th class="border-top-0">Ngân sách</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody style="font-family:roboto;">
                                                 <tr class="active">
-                                                    <td><span class="round"><img src="../../../../public/assets/admin/assets/images/users/vy.jpg"
-                                                                alt="user" width="50"></span></td>
+                                                    <td><span class=""><img class="rounded-circle" src="../../../../public/assets/admin/assets/images/users/vy.jpg"
+                                                                alt="user" style="height: 50px; width:50px; "></span></td>
                                                     <td class="align-middle">
                                                         <h6>Ngô Chí Vỹ</h6><small class="text-muted">Nhà thiết kế website</small>
                                                     </td>
                                                     <td class="align-middle">Dự án thiết kế giao diện</td>
-                                                    <td class="align-middle">$3.9K</td>
+                                                    <td class="align-middle">10,000,000 đ</td>
                                                 </tr>
 
                                                 <tr class="active">
-                                                    <td><span class="round"><img src="../../../../public/assets/admin/assets/images/users/linhh.jpg"
-                                                                alt="user" width="50"></span></td>
+                                                    <td><span class=""><img class="rounded-circle" src="../../../../public/assets/admin/assets/images/users/linhh.jpg"
+                                                                alt="user" style="height: 50px; width:50px; "></span></td>
                                                     <td class="align-middle">
                                                         <h6>Trần Nhựt Linh</h6><small class="text-muted">Quản lý dự án</small>
                                                     </td>
                                                     <td class="align-middle">Dự án cải tiến quy trình</td>
-                                                    <td class="align-middle">$23.9K</td>
+                                                    <td class="align-middle">8,000,000 đ</td>
                                                 </tr>
                                                 <tr class="active">
-                                                    <td><span class="round"><img src="../../../../public/assets/admin/assets/images/users/khang.jpg"
-                                                                alt="user" width="50"></span></td>
+                                                    <td><span class="round"><img class="rounded-circle" src="../../../../public/assets/admin/assets/images/users/khang.jpg"
+                                                                alt="user" style="height: 50px; width:50px; "></span></td>
 
                                                     <td class="align-middle">
                                                         <h6>Lê Hoàng Khang</h6><small class="text-muted">Lập trình viên</small>
                                                     </td>
                                                     <td class="align-middle">Dự án phát triển website</td>
-                                                    <td class="align-middle">$12.9K</td>
+                                                    <td class="align-middle">6,000,000 đ</td>
                                                 </tr>
                                             </tbody>
                                         </table>

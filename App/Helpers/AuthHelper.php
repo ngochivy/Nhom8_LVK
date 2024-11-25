@@ -228,7 +228,7 @@ class AuthHelper
         $result = $user->updateUserByUsernameAndEmail($data);
         return $result;
     }
-// chỉ có admin mới vào được
+    // chỉ có admin mới vào được
     public static function middleware()
     {
         $admin = explode('/', $_SERVER['REQUEST_URI']);
