@@ -23,10 +23,6 @@ class Blog extends BaseModel
     }
 
  
-
-
-
-
     public function updateBlog($id, $data)
     {
         return $this->update($id, $data);
