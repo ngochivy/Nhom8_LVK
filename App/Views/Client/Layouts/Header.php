@@ -104,9 +104,9 @@ class Header extends BaseView
                         </a>
                     </div>
                     <div class="col-lg-6 col-6 text-left">
-                        <form action="">
+                        <form action="" id="search-form" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Tìm kiếm...">
+                                <input type="text" class="form-control" id="search-input" name="search" placeholder="Tìm kiếm..." onkeyup="searchProducts()">
                                 <div class="input-group-append">
                                     <span class="input-group-text bg-transparent text-primary">
                                         <i class="fa fa-search"></i>
@@ -114,7 +114,10 @@ class Header extends BaseView
                                 </div>
                             </div>
                         </form>
+                        <div id="search-suggestions" style="display: none; position: absolute; background-color: #fff; border: 1px solid #ccc; width: 100%; z-index: 1000;"></div>
                     </div>
+                    
+
                     <div class="col-lg-3 col-6 text-right">
                         <a href="" class="btn border">
                             <i class="fas fa-heart text-primary"></i>

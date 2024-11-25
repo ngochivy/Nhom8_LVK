@@ -32,6 +32,12 @@ class ProductController
         $products = $productModel->getAllProductByCategory($categoryId);
     }
 
+    // Tìm kiếm sản phẩm theo từ khóa
+    if (isset($_GET['keyword']) && !empty($_GET['keyword'])) {
+        $keyword = htmlspecialchars($_GET['keyword']); // Lấy từ khóa và xử lý an toàn
+        $products = $productModel->searchProducts($keyword);
+    }
+
     // Lọc sản phẩm theo khoảng giá
     if (isset($_GET['min_price']) && isset($_GET['max_price'])) {
         $minPrice = (int)$_GET['min_price']; // Chuyển đổi giá trị thành số nguyên

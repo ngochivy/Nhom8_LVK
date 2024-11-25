@@ -53,30 +53,30 @@ class Product extends BaseModel
         }
     }
     public function getAllProductWithCategoryName()
-{
-    try {
-        // Kết nối cơ sở dữ liệu
-        $conn = $this->getConnection();
+    {
+        try {
+            // Kết nối cơ sở dữ liệu
+            $conn = $this->getConnection();
 
-        // Truy vấn lấy tất cả sản phẩm và tên danh mục (JOIN với bảng categories)
-        $stmt = $conn->prepare(
-            "SELECT p.id, p.name, p.price, p.discount_price, p.quantity, p.user_manual, p.is_feature, p.status, p.image, c.name
+            // Truy vấn lấy tất cả sản phẩm và tên danh mục (JOIN với bảng categories)
+            $stmt = $conn->prepare(
+                "SELECT p.id, p.name, p.price, p.discount_price, p.quantity, p.user_manual, p.is_feature, p.status, p.image, c.name
              FROM {$this->table} p
              LEFT JOIN categories c ON p.category_id = c.id"
-        );
-        $stmt->execute();
+            );
+            $stmt->execute();
 
-        // Lấy kết quả
-        $result = $stmt->get_result();
-        return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
-    } catch (\Throwable $th) {
-        // Xử lý lỗi và ghi lại lỗi nếu có
-        error_log("Error in getAllProductWithCategoryName(): " . $th->getMessage());
-        return [];
+            // Lấy kết quả
+            $result = $stmt->get_result();
+            return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+        } catch (\Throwable $th) {
+            // Xử lý lỗi và ghi lại lỗi nếu có
+            error_log("Error in getAllProductWithCategoryName(): " . $th->getMessage());
+            return [];
+        }
     }
-}
 
-    
+
 
 
 
@@ -111,6 +111,21 @@ class Product extends BaseModel
         }
     }
 
+    public function getNewestProducts()
+    {
+        try {
+            $conn = $this->getConnection(); // Sử dụng getConnection
+            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE status = 1 ORDER BY id DESC LIMIT 4");
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+        } catch (\Throwable $th) {
+            error_log("Error in getNewestProducts(): " . $th->getMessage());
+            return [];
+        }
+    }
+
     public function getOneProductByName(string $productName)
     {
         $result = [];
@@ -127,4 +142,28 @@ class Product extends BaseModel
             return $result;
         }
     }
+
+    public function searchProducts(string $keyword)
+    {
+        try {
+            // Kết nối cơ sở dữ liệu
+            $conn = $this->getConnection();
+
+            // Truy vấn tìm kiếm
+            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE name LIKE ?");
+            $search = '%' . $keyword . '%';
+            $stmt->bind_param('s', $search);
+            $stmt->execute();
+
+            // Lấy kết quả
+            $result = $stmt->get_result();
+            return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
+        } catch (\Throwable $th) {
+            // Xử lý lỗi
+            error_log("Error in searchProducts(): " . $th->getMessage());
+            return [];
+        }
+    }
+
+    
 }

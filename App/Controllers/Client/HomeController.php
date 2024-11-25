@@ -29,9 +29,13 @@ class HomeController
         // Lấy danh sách sản phẩm nổi bật
         $featuredProducts = $productModel->getFeaturedProducts();
 
+        //lấy sản phẩm mới nhất
+        $newestProducts = $productModel->getNewestProducts();
+
         // Truyền dữ liệu vào view
         $data = [
             'featuredProducts' => $featuredProducts,
+            'newestProducts' => $newestProducts,
         ];
 
         Header::render();

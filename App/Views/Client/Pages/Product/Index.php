@@ -105,12 +105,14 @@ class Index extends BaseView
                                 <div class="d-flex align-items-center justify-content-between mb-4">
                                     <form action="" method="GET">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" name="search" placeholder="Tìm kiếm">
+                                            <input type="text" class="form-control" name="keyword" placeholder="Tìm kiếm" value="<?= isset($_GET['keyword']) ? htmlspecialchars($_GET['keyword']) : '' ?>">
                                             <div class="input-group-append">
-                                                <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                                                <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                                             </div>
+
                                         </div>
                                     </form>
+
                                     <div class="dropdown ml-4">
                                         <button class="btn border dropdown-toggle" type="button" data-toggle="dropdown">
                                             Lọc

@@ -237,10 +237,10 @@ class Home extends BaseView
             <!-- Products Start -->
             <div class="container-fluid pt-5">
                 <div class="text-center mb-4">
-                    <h2 class="section-title px-5"><span class="px-2" style="font-family:roboto;">Sản phẩm nổi bật</span></h2>
+                    <h2 class="section-title px-5"><span class="px-2" style="font-family:roboto;">Sản phẩm mới nhất</span></h2>
                 </div>
                 <div class="row px-xl-5 pb-3">
-                    <?php foreach ($data['featuredProducts'] as $product): ?>
+                    <?php foreach ($data['newestProducts'] as $product): ?>
                         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                             <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $product['id'] ?>'">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
