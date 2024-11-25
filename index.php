@@ -15,7 +15,7 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 require_once 'config.php';
-// AuthHelper::middleware();
+AuthHelper::middleware();
 
 
 

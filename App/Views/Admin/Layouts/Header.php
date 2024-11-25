@@ -19,6 +19,8 @@ class Header extends BaseView
             <!-- Tell the browser to be responsive to screen width -->
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Admin</title>
+
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
             <!-- Favicon icon -->
             <!-- <link rel="icon" type="image/png" sizes="16x16" href="<?= APP_URL ?>/public/assets/admin/images/favicon.png"> -->
             <!-- CSS -->
@@ -30,6 +32,9 @@ class Header extends BaseView
             <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/jquery-minicolors/jquery.minicolors.css">
             <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
             <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/quill/dist/quill.snow.css"> -->
+
+
+
 
             <!-- Custom CSS -->
             <!-- <link href="<?= APP_URL ?>/public/assets/admin/dist/css/style.min.css" rel="stylesheet"> -->
@@ -63,14 +68,14 @@ class Header extends BaseView
                 <!-- ============================================================== -->
                 <header class="topbar" data-navbarbg="skin6">
                     <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-                        <div class="navbar-header" >
+                        <div class="navbar-header">
                             <!-- ============================================================== -->
                             <!-- Logo -->
                             <!-- ============================================================== -->
                             <a class="navbar" href="/admin">
-                           
+
                                 <h1 class="text-white px-2 mt-2">LVK House</h1>
-                          
+
                             </a>
                             <!-- ============================================================== -->
                             <!-- End Logo -->
@@ -110,12 +115,20 @@ class Header extends BaseView
                                 <!-- User profile and search -->
                                 <!-- ============================================================== -->
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="navbarDropdown"
-                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <img src="../../../../public/assets/admin/assets/images/users/linh.jpg" alt="user" class="profile-pic me-2">Admin
+                                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <img src="<?= APP_URL ?>/public/assets/admin/images/users/1.jpg" alt="user" class="rounded-circle me-2" width="31">
+                                        Admin
                                     </a>
-                                    <ul class="dropdown-menu show" aria-labelledby="navbarDropdown"></ul>
+                                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                        <li><a class="dropdown-item" href="#">Thông tin cá nhân</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="/logout"><i class="fa fa-power-off me-1"></i> Đăng xuất</a></li>
+                                    </ul>
                                 </li>
+
+
                             </ul>
                         </div>
                     </nav>
@@ -151,7 +164,7 @@ class Header extends BaseView
                                         href="/admin/comments" aria-expanded="false"><i class="me-3 fa fa-font"
                                             aria-hidden="true"></i><span class="hide-menu">Bình luận</span></a></li>
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/comments" aria-expanded="false"><i class="me-3 fa fa-font"
+                                        href="/admin/blog" aria-expanded="false"><i class="me-3 fa fa-font"
                                             aria-hidden="true"></i><span class="hide-menu">Bài viết</span></a></li>
 
 
@@ -181,6 +194,12 @@ class Header extends BaseView
 
 
         </body>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+
+
 <?php
 
     }
