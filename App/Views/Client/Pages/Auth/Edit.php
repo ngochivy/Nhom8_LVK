@@ -41,7 +41,11 @@ class Edit extends BaseView
                                 <img
                                     class="mt-5"
                                     style="width: 400px; height: 400px; border-radius: 50%; object-fit: cover;"
+<<<<<<< HEAD
                                     src="<?= APP_URL ?>/public/uploads/users/<?= $data['image'] ?>"
+=======
+                                    src="<?= APP_URL ?>/public/uploads/users/<?= $data['Image'] ?>"
+>>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
                                     alt="Avatar">
                                 <span class="font-weight-bold">Ảnh đại diện</span>
                                 <span class="text-black-50"></span>

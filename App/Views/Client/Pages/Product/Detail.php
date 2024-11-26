@@ -56,12 +56,17 @@ class Detail extends BaseView
                         <div id="product-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner border">
                                 <div class="carousel-item active">
+<<<<<<< HEAD
                                     <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $data['product']['image'] ?>" alt="Image">
+=======
+                                    <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $data['product']['Image'] ?>" alt="Image">
+>>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-7 pb-5">
+<<<<<<< HEAD
                         <h3 class="font-weight-bold" style="font-family:roboto;"><?= $data['product']['name'] ?></h3>
 
                         <div class="d-flex gap-3" style="font-family:montserrat;">
@@ -71,17 +76,36 @@ class Detail extends BaseView
 
                                 <h3 class=" mb-0"><strike><?= number_format($data['product']['price']) ?> đ</strike></h3>
                                 <h3 class=" mb-4"><strong class="text-danger"><?= number_format($data['product']['price'] - $data['product']['discount_price']) ?> đ</strong></h3>
+=======
+                        <h3 class="font-weight-bold" style="font-family:roboto;"><?= $data['product']['Product_name'] ?></h3>
+
+                        <div class="d-flex gap-3" style="font-family:montserrat;">
+                            <?php
+                            if ($data['product']['Discount_price'] > 0) :
+                            ?>
+
+                                <h3 class=" mb-0"><strike><?= number_format($data['product']['Price']) ?> đ</strike></h3>
+                                <h3 class=" mb-4"><strong class="text-danger"><?= number_format($data['product']['Price'] - $data['product']['Discount_price']) ?> đ</strong></h3>
+>>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
                             <?php
                             else :
                             ?>
                                 <h6></h6>
+<<<<<<< HEAD
                                 <h3 class="font-weight-semi-bold mb-4"><?= number_format($data['product']['price']) ?> đ</h3>
+=======
+                                <h3 class="font-weight-semi-bold mb-4"><?= number_format($data['product']['Price']) ?> đ</h3>
+>>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
                             <?php
                             endif;
                             ?>
                         </div>
 
+<<<<<<< HEAD
                         <p class="mb-4" style="min-height:150px;"><?= $data['product']['description'] ?></p>
+=======
+                        <p class="mb-4" style="min-height:150px;"><?= $data['product']['Description'] ?></p>
+>>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
 
                         <div class="d-flex mb-4">
                             <p class="text-dark font-weight-medium mb-0 mr-3">Tính năng:</p>

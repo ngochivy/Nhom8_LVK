@@ -118,11 +118,17 @@ class Index extends BaseView
                                             Lọc
                                         </button>
                                         <div class="dropdown-menu dropdown-menu-right">
+<<<<<<< HEAD
                                             <a class="dropdown-item" href="?sort=latest">Mới nhất</a>
                                             <a class="dropdown-item" href="?sort=name_asc">Tên (A-Z)</a>
                                             <a class="dropdown-item" href="?sort=name_desc">Tên (Z-A)</a>
                                             <a class="dropdown-item" href="?sort=price_asc">Giá (Thấp -> Cao)</a>
                                             <a class="dropdown-item" href="?sort=price_desc">Giá (Cao -> Thấp)</a>
+=======
+                                            <a class="dropdown-item" href="#">Mới nhất</a>
+                                            <a class="dropdown-item" href="#">Tên</a>
+                                            <a class="dropdown-item" href="#">Giá tiền</a>
+>>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
                                         </div>
 
 
@@ -138,7 +144,11 @@ class Index extends BaseView
                                             <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                                                 <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $item['id'] ?>'">
                                                     <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
+<<<<<<< HEAD
                                                         <img class="img-fluid w-100" src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:200px; width:200px; object-fit:cover ;">
+=======
+                                                        <img class="img-fluid w-100" src="<?= APP_URL ?>/public/uploads/products/<?= $item['Image'] ?>" alt="<?= $item['Product_name'] ?>" style="height:200px; width:200px; object-fit:cover ;">
+>>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
                                                     </div>
                                                     <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                                         <h6 class="text-truncate mb-3" style="font-family:roboto;"><?= $item['name'] ?></h6>
