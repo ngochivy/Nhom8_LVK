@@ -60,9 +60,7 @@ class Product extends BaseModel
 
             // Truy vấn lấy tất cả sản phẩm và tên danh mục (JOIN với bảng categories)
             $stmt = $conn->prepare(
-                "SELECT p.id, p.name, p.price, p.discount_price, p.quantity, p.user_manual, p.is_feature, p.status, p.image, c.name
-             FROM {$this->table} p
-             LEFT JOIN categories c ON p.category_id = c.id"
+                "SELECT {$this->table}.*, categories.name AS category_name FROM {$this->table} INNER JOIN categories on products.category_id= categories.id"
             );
             $stmt->execute();
 

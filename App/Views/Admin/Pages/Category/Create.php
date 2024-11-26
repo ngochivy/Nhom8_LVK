@@ -49,16 +49,16 @@ class Create extends BaseView
                                     <h4 class="card-title">Thêm loại sản phẩm</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
-                                        <label for="Category_name">Tên*</label>
-                                        <input type="text" class="form-control" id="Category_name" placeholder="Nhập tên loại sản phẩm..." name="Category_name" >
+                                        <label for="name">Tên*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên loại sản phẩm..." name="name" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="Category_description">Mô tả*</label>
-                                        <input type="text" class="form-control" id="Category_description" placeholder="Nhập tên loại sản phẩm..." name="Category_description" >
+                                        <label for="description">Mô tả*</label>
+                                        <input type="text" class="form-control" id="description" placeholder="Nhập tên loại sản phẩm..." name="description" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="Status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status">
+                                        <label for="status ">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status">
                                             <option value="" selected disabled>Vui lòng chọn...</option>
                                             <option value="1">Hiển thị</option>
                                             <option value="0">Ẩn</option>

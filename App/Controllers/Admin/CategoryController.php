@@ -59,12 +59,12 @@ class CategoryController
             exit;
         }
 
-        $category_name=$_POST['name'];
-        $category_description=$_POST['description'];
+        $name=$_POST['name'];
+        $description=$_POST['description'];
         $status=$_POST['status'];
 
         $category=new Category();
-        $is_exist=$category->getOneCategoryByName($category_name);
+        $is_exist=$category->getOneCategoryByName($name);
         if ($is_exist) {
             NotificationHelper::error('store', 'Tên loại sản phẩm đã tồn  tại');
             header('location: /admin/categories/create');
@@ -73,8 +73,8 @@ class CategoryController
 
         // thực hiện thêm
         $data=[
-            'name'=>$category_name,
-            'description'=>$category_description,
+            'name'=>$name,
+            'description'=>$description,
             'status'=>$status
         ];
         $result=$category->createCategory($data);
@@ -157,8 +157,8 @@ class CategoryController
 
         // thực hiện cập nhật
         $data=[
-            'category_name'=>$category_name,
-            'category_description'=>$category_description,
+            'name'=>$category_name,
+            'description'=>$category_description,
             'status'=>$status
         ];
         $result=$category->updateCategory($id,$data);

@@ -122,7 +122,11 @@ class Detail extends BaseView
                                     </button>
                                 </div>
                             </div>
-                            <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                            <form method="POST" action="/cart/add">
+                            <input type="hidden" name="product_id" value="123"> <!-- ID sản phẩm -->
+                            <input type="number" name="quantity" value="1" min="1">
+                            <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                            </form>
                         </div>
                         <div class="d-flex pt-2">
                             <p class="text-dark font-weight-bold mb-0 mr-2" style="font-family:montserrat;">Chia sẻ:</p>
@@ -170,7 +174,7 @@ class Detail extends BaseView
                                                     <?php endif; ?>
                                                     <div class="media-body px-2">
                                                         <h5><?= htmlspecialchars($item['username']) ?><small> - <i><?= htmlspecialchars($item['created_at']) ?></i></small></h5>
-                                                        <p><?= htmlspecialchars($item['content']) ?></p>
+                                                        <p><?= htmlspecialchars($item['Content']) ?></p>
                                                         <?php
                                                         if (isset($data) && $is_login && ($_SESSION['user']['id'] == $item['id'])):
                                                         ?>
@@ -180,7 +184,7 @@ class Detail extends BaseView
                                                                 <input type="hidden" name="product_id" value="<?= $data['product']['Product_ID']; ?>" id="">
                                                                 <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
                                                             </form>
-                                                            <div class="collapse" id="<?= $item['username'] ?><?= $item['id'] ?>">
+                                                            <div class="collapse" id="<?= $item['Username'] ?><?= $item['id'] ?>">
                                                                 <div class="card card-body mt-5">
                                                                     <form action="/comments/<?= $item['id'] ?>" method="post">
                                                                         <input type="hidden" name="method" value="PUT" id="">

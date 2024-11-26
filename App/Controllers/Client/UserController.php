@@ -185,7 +185,7 @@ class UserController
             'email' => $_POST['email'],
             'name' => $_POST['name'],
             'address' => $_POST['address'],
-            'Phone_number' => $_POST['phone'], // Đúng tên cột
+            'phone_number' => $_POST['phone'], // Đúng tên cột
         ];
 
 

@@ -44,7 +44,7 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/products/<?= $data['product']['Product_ID'] ?>" method="POST" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="/admin/products/<?= $data['product']['id'] ?>" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Sửa sản phẩm</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
@@ -55,50 +55,50 @@ class Edit extends BaseView
 
 
                                     <div class="form-group">
-                                        <label for="Product_ID">ID</label>
-                                        <input type="text" class="form-control" id="Product_ID" name="Product_ID" value="<?= $data['product']['Product_ID'] ?>" disabled>
+                                        <label for="id">ID</label>
+                                        <input type="text" class="form-control" id="id" name="id" value="<?= $data['product']['id'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Product_name">Tên*</label>
-                                        <input type="text" class="form-control" id="Product_name" placeholder="Nhập tên sản phẩm..." name="Product_name" value="<?= $data['product']['Product_name'] ?>">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="Image">Hình ảnh</label>
-                                        <input type="file" class="form-control" id="Image" placeholder="chọn hình ảnh..." name="Image">
+                                        <label for="name">Tên*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập tên sản phẩm..." name="name" value="<?= $data['product']['name'] ?>">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Price">Giá tiền*</label>
-                                        <input type="number" class="form-control" id="Price" placeholder="Nhập giá tiền..." name="Price" value="<?= $data['product']['Price'] ?>">
+                                        <label for="image">Hình ảnh</label>
+                                        <input type="file" class="form-control" id="image" placeholder="chọn hình ảnh..." name="image">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Discount_price">Giảm Giá*</label>
-                                        <input type="number" class="form-control" id="Discount_price" placeholder="Nhập giảm giá..." name="Discount_price" value="<?= $data['product']['Discount_price'] ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Quantity">Số lượng*</label>
-                                        <input type="text" class="form-control" id="Quantity" placeholder="Nhập tên sản phẩm..." name="Quantity" value="<?= $data['product']['Quantity'] ?>">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="User_manual">Hướng dẫn*</label>
-                                        <input type="text" class="form-control" id="User_manual" placeholder="Nhập tên sản phẩm..." name="User_manual" value="<?= $data['product']['User_manual'] ?>">
+                                        <label for="price">Giá tiền*</label>
+                                        <input type="number" class="form-control" id="price" placeholder="Nhập giá tiền..." name="price" value="<?= $data['product']['price'] ?>">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Description"> Mô tả</label>
-                                        <textarea class="form-control" id="Description" placeholder="Nhập mô tả..." name="Description"><?= $data['product']['Description'] ?></textarea>
+                                        <label for="discount_price">Giảm Giá*</label>
+                                        <input type="number" class="form-control" id="discount_price" placeholder="Nhập giảm giá..." name="discount_price" value="<?= $data['product']['discount_price'] ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Category_ID">Loại sản phẩm</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Category_ID" name="Category_ID">
+                                        <label for="quantity">Số lượng*</label>
+                                        <input type="text" class="form-control" id="quantity" placeholder="Nhập tên sản phẩm..." name="quantity" value="<?= $data['product']['quantity'] ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="user_manual">Hướng dẫn*</label>
+                                        <input type="text" class="form-control" id="user_manual" placeholder="Nhập tên sản phẩm..." name="user_manual" value="<?= $data['product']['user_manual'] ?>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="description"> Mô tả</label>
+                                        <textarea class="form-control" id="description" placeholder="Nhập mô tả..." name="description"><?= $data['product']['description'] ?></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="category_id">Loại sản phẩm</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="category_id" name="category_id">
                                             <option value="" selected disabled>vui lòng chọn...</option>
 
                                             <?php
                                             foreach ($data['category'] as $item) :
                                             ?>
-                                                <option value="<?= $item['Category_ID'] ?>" <?= ($item['Category_ID'] == $data['product']['Product_ID']) ? 'selected' : '' ?>><?= $item['Category_name'] ?></option>
+                                                <option value="<?= $item['id'] ?>" <?= ($item['id'] == $data['product']['id']) ? 'selected' : '' ?>><?= $item['name'] ?></option>
                                             <?php
                                             endforeach;
                                             ?>
@@ -119,11 +119,11 @@ class Edit extends BaseView
 
 
                                     <div class="form-group">
-                                        <label for="Status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status" value="<?= $data['Status'] ?>" required>
+                                        <label for="status">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" value="<?= $data['status'] ?>" required>
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="1" <?= ($data['product']['Status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
-                                            <option value="0" <?= ($data['product']['Status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
+                                            <option value="1" <?= ($data['product']['status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
+                                            <option value="0" <?= ($data['product']['status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
 
                                         </select>
                                     </div>

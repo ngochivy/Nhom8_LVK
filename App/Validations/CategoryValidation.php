@@ -17,8 +17,8 @@ class CategoryValidation{
             $is_valid = false;
         }
         // Trạng thái
-        if (!isset($_POST['Status']) || $_POST['Status'] === '') {
-            NotificationHelper::error('Status', 'Không để trống trạng thái !');
+        if (!isset($_POST['status']) || $_POST['status'] === '') {
+            NotificationHelper::error('status', 'Không để trống trạng thái !');
             $is_valid = false;
         }
 

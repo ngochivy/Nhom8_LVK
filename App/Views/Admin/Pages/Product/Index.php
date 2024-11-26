@@ -71,26 +71,26 @@ class Index extends BaseView
                                                 foreach ($data as $item) :
                                                 ?>
                                                     <tr>
-                                                        <td><?= $item['Product_ID'] ?></td>
+                                                        <td><?= $item['id'] ?></td>
                                                         <td>
-                                                            <img src="<?=APP_URL?>/public/uploads/products/<?=$item['Image']?>" alt="" width="100px">
+                                                            <img src="<?=APP_URL?>/public/uploads/products/<?=$item['image']?>" alt="" width="100px">
                                                         </td>
 
-                                                        <td><?= $item['Product_name']?></td>
+                                                        <td><?= $item['name']?></td>
 
-                                                        <td><?=number_format($item['Price'])  ?></td>
+                                                        <td><?=number_format($item['price'])  ?></td>
 
-                                                        <td><?=number_format($item['Discount_price'])  ?></td>
+                                                        <td><?=number_format($item['discount_price'])  ?></td>
 
-                                                        <td><?=($item['Category_name'])  ?></td>
-                                                        <td><?=($item['Quantity'])  ?></td>
-                                                        <td><?=($item['User_manual'])  ?></td>
+                                                        <td><?=($item['category_name'])  ?></td>
+                                                        <td><?=($item['quantity'])  ?></td>
+                                                        <td><?=($item['user_manual'])  ?></td>
 
                                                         <td><?= ($item['is_feature'] == 1) ? 'Nổi bật' : 'Không' ?></td>
-                                                        <td><?= ($item['Status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
+                                                        <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>
-                                                            <a href="/admin/products/<?= $item['Product_ID'] ?>" class="btn btn-primary ">Sửa</a>
-                                                            <form action="/admin/products/<?= $item['Product_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                            <a href="/admin/products/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <form action="/admin/products/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
                                                                 <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>

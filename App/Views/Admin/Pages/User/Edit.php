@@ -44,51 +44,51 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/users/<?= $data['User_ID'] ?>" method="POST" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="/admin/users/<?= $data['id'] ?>" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Sửa người dùng</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
                                     <div align="center">
-                                        <img src="<?=APP_URL?>/public/uploads/users/<?=$data['Image']?>" alt="" width="200px">
+                                        <img src="<?=APP_URL?>/public/uploads/users/<?=$data['image']?>" alt="" width="200px">
                                     </div>
                                     <div class="form-group">
-                                        <label for="User_ID">ID</label>
-                                        <input type="text" class="form-control" id="User_ID" name="User_ID" value="<?= $data['User_ID'] ?>" disabled>
+                                        <label for="id">ID</label>
+                                        <input type="text" class="form-control" id="id" name="id" value="<?= $data['id'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Username">Tên đăng nhập</label>
-                                        <input type="text" class="form-control" id="Username" name="Username" value="<?= $data['Username'] ?>" disabled>
+                                        <label for="username">Tên đăng nhập</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="<?= $data['username'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Email">Email*</label>
-                                        <input type="text" class="form-control" id="Email" placeholder="Nhập tên người dùng..." name="Email" value="<?= $data['Email'] ?>">
+                                        <label for="email">Email*</label>
+                                        <input type="text" class="form-control" id="email" placeholder="Nhập tên người dùng..." name="email" value="<?= $data['email'] ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Phone_number">Số điện thoại*</label>
-                                        <input type="text" class="form-control" id="Phone_number" placeholder="Nhập tên người dùng..." name="Phone_number" value="<?= $data['Phone_number'] ?>">
+                                        <label for="phone_number">Số điện thoại*</label>
+                                        <input type="text" class="form-control" id="phone_number" placeholder="Nhập tên người dùng..." name="phone_number" value="<?= $data['phone_number'] ?>">
                                     </div>                                    <div class="form-group">
-                                        <label for="Address">Địa chỉ*</label>
-                                        <input type="text" class="form-control" id="Address" placeholder="Nhập tên người dùng..." name="Address" value="<?= $data['Address'] ?>">
+                                        <label for="address">Địa chỉ*</label>
+                                        <input type="text" class="form-control" id="address" placeholder="Nhập tên người dùng..." name="address" value="<?= $data['address'] ?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Name">Họ và tên*</label>
-                                        <input type="text" class="form-control" id="Name" placeholder="Nhập họ và tên người dùng..." name="Name" value="<?= $data['Name'] ?>">
+                                        <label for="name">Họ và tên*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên người dùng..." name="name" value="<?= $data['name'] ?>">
                                     </div>                             
                                     <!-- <div class="form-group">
                                         <label for="Image">Hình đại diện</label>
                                         <input type="file" class="form-control" id="Image" placeholder="Chọn ảnh đại điện người dùng..." name="Image">
                                     </div> -->
                                     <div class="form-group">
-                                        <label for="Role">Quyền</label>
-                                        <input type="text" class="form-control" id="Role" name="Role" value="<?= ($data['Role'] == 1) ? 'Quản trị viên' : 'Khách hàng' ?>" disabled>
+                                        <label for="role">Quyền</label>
+                                        <input type="text" class="form-control" id="role" name="role" value="<?= ($data['role'] == 1) ? 'Quản trị viên' : 'Khách hàng' ?>" disabled>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status" >
+                                        <label for="status">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" >
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="1" <?= ($data['Status'] == 1 ? 'selected' : '') ?>>Hoạt động</option>
-                                            <option value="0" <?= ($data['Status'] == 0 ? 'selected' : '') ?>>Khóa</option>
+                                            <option value="1" <?= ($data['status'] == 1 ? 'selected' : '') ?>>Hoạt động</option>
+                                            <option value="0" <?= ($data['status'] == 0 ? 'selected' : '') ?>>Khóa</option>
 
                                         </select>
                                     </div>

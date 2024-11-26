@@ -118,13 +118,13 @@ class AuthValidation
         }
 
         // phone number
-        if (!isset($_POST['phone']) || $_POST['phone'] === '') {
-            NotificationHelper::error('phone', 'Số điện thoại không được để trống');
+        if (!isset($_POST['phone_number']) || $_POST['phone_number'] === '') {
+            NotificationHelper::error('phone_number', 'Số điện thoại không được để trống');
             $is_valid = false;
         } else {
             $phonePattern = "/^[0-9]{10,11}$/";
-            if (!preg_match($phonePattern, $_POST['phone'])) {
-                NotificationHelper::error('phone', 'Số điện thoại không đúng định dạng');
+            if (!preg_match($phonePattern, $_POST['phone_number'])) {
+                NotificationHelper::error('phone_number', 'Số điện thoại không đúng định dạng');
                 $is_valid = false;
             }
         }
