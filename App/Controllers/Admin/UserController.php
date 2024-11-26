@@ -70,7 +70,7 @@ class UserController
             'email' => $_POST['email'],
             'address' => $_POST['address'],
             'phone_number' => $_POST['phone_number'],
-            'Name' => $_POST['Name'],
+            'name' => $_POST['name'],
             'password' => password_hash($_POST['password'], PASSWORD_DEFAULT),
             'role' => $_POST['role'],
             'status' => $_POST['status']
@@ -78,7 +78,7 @@ class UserController
         ];
         $is_upload = UserValidation::uploadAvatar();
         if ($is_upload) {
-            $data['Image'] = $is_upload;
+            $data['image'] = $is_upload;
         }
         $result = $user->createUser($data);
 
@@ -132,7 +132,7 @@ class UserController
         $user = new User();
         // thực hiện cập nhật
         $data = [
-            'Name' => $_POST['Name'],
+            'name' => $_POST['name'],
             'email' => $_POST['email'],
             'address' => $_POST['address'],
             'phone_number' => $_POST['phone_number'],
@@ -140,7 +140,7 @@ class UserController
         ];
         $is_upload = UserValidation::uploadAvatar();
         if ($is_upload) {
-            $data['Image'] = $is_upload;
+            $data['image'] = $is_upload;
         }
         $result = $user->updateUser($id, $data);
         if ($result) {

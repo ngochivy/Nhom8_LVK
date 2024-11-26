@@ -66,26 +66,26 @@ class Index extends BaseView
                                                 foreach ($data as $item) :
                                                 ?>
                                                     <tr>
-                                                        <td><?= $item['User_ID'] ?></td>
+                                                        <td><?= $item['id'] ?></td>
                                                         <td>
-                                                            <img src="<?= APP_URL ?>/public/uploads/users/<?= $item['Image'] ?>" alt="" width="100px">
+                                                            <img src="<?= APP_URL ?>/public/uploads/users/<?= $item['image'] ?>" alt="" width="100px">
                                                         </td>
 
-                                                        <td><?= $item['Username'] ?></td>
-                                                        <td><?= $item['Name'] ?></td>
-                                                        <td><?= $item['Email'] ?></td>
-                                                        <td><?= $item['Phone_number'] ?></td>
-                                                        <td><?= $item['Address'] ?></td>
-                                                        <td><?= ($item['Role'] == 1) ? 'Quản trị viên' : 'Khách hàng' ?></td>
-                                                        <td><?= ($item['Status'] == 1) ? 'Hoạt động' : 'khóa' ?></td>
+                                                        <td><?= $item['username'] ?></td>
+                                                        <td><?= $item['name'] ?></td>
+                                                        <td><?= $item['email'] ?></td>
+                                                        <td><?= $item['phone_number'] ?></td>
+                                                        <td><?= $item['address'] ?></td>
+                                                        <td><?= ($item['role'] == 1) ? 'Quản trị viên' : 'Khách hàng' ?></td>
+                                                        <td><?= ($item['status'] == 1) ? 'Hoạt động' : 'khóa' ?></td>
 
 
                                                         <td>
-                                                            <a href="/admin/users/<?= $item['User_ID'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <a href="/admin/users/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
                                                             <?php
-                                                            if (isset($_SESSION['user']['id']) != $item['User_ID']) :
+                                                            if (isset($_SESSION['user']['id']) != $item['id']) :
                                                             ?>
-                                                                <form action="/admin/users/<?= $item['User_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                                <form action="/admin/users/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
                                                                     <input type="hidden" name="method" value="DELETE">
                                                                     <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                                 </form>

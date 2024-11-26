@@ -65,10 +65,10 @@ class ProductController
             exit;
         }
 
-        $product_name = $_POST['name'];
+        $name = $_POST['name'];
         // kiểm tra sản phẩm có tồn tại chưa ==> Khong duoc trung ten
         $Product = new Product();
-        $is_exist = $Product->getOneProductByName($product_name);
+        $is_exist = $Product->getOneProductByName($name);
 
         if ($is_exist) {
             NotificationHelper::error('store', 'Tên sản phẩm đã tồn tại');
@@ -78,7 +78,7 @@ class ProductController
 
         // thực hiện thêm
         $data = [
-            'name' => $product_name,
+            'name' => $name,
             'price' => $_POST['price'],
             'discount_price' => $_POST['discount_price'],
             'description' => $_POST['description'],
@@ -93,7 +93,7 @@ class ProductController
 
         $is_upload=ProductValidation::uploadImage();
         if($is_upload){
-            $data['Image']= $is_upload;
+            $data['image']= $is_upload;
         }
 
         $result = $Product->createProduct($data);
@@ -194,7 +194,7 @@ class ProductController
 
         $is_upload=ProductValidation::uploadImage();
         if($is_upload){
-            $data['Image']= $is_upload;
+            $data['image']= $is_upload;
         }
 
         $result=$Product->updateProduct($id,$data);

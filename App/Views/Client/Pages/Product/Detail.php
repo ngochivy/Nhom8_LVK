@@ -122,7 +122,11 @@ class Detail extends BaseView
                                     </button>
                                 </div>
                             </div>
-                            <button class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                            <form method="POST" action="/cart/add">
+                            <input type="hidden" name="product_id" value="123"> <!-- ID sản phẩm -->
+                            <input type="number" name="quantity" value="1" min="1">
+                            <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                            </form>
                         </div>
                         <div class="d-flex pt-2">
                             <p class="text-dark font-weight-bold mb-0 mr-2" style="font-family:montserrat;">Chia sẻ:</p>
@@ -153,26 +157,26 @@ class Detail extends BaseView
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tab-pane-1">
                                 <!-- Mô tả sản phẩm từ database -->
-                                <h4 class="mb-3" style="font-family:roboto;"><?= htmlspecialchars($data['product']['Product_name']); ?></h4>
-                                <p><?= nl2br(htmlspecialchars($data['product']['Description'])); ?></p>
+                                <h4 class="mb-3" style="font-family:roboto;"><?= htmlspecialchars($data['product']['name']); ?></h4>
+                                <p><?= nl2br(htmlspecialchars($data['product']['description'])); ?></p>
                             </div>
                             <div class="tab-pane fade" id="tab-pane-2">
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <h4 class="mb-4" style="font-family:roboto;">Bình luận của "<?= htmlspecialchars($data['product']['Product_name']); ?>"</h4>
+                                        <h4 class="mb-4" style="font-family:roboto;">Bình luận của "<?= htmlspecialchars($data['product']['name']); ?>"</h4>
                                         <?php if (isset($data['comments']) && !empty($data['comments'])) : ?>
                                             <?php foreach ($data['comments'] as $item) : ?>
                                                 <div class="media mb-4">
-                                                    <?php if ($item['Image']) : ?>
-                                                        <img src="<?= APP_URL ?>/public/uploads/users/<?= $item['Image'] ?>" alt="user" width="50" height="50" style="border-radius: 50%; object-fit: cover;" class="rounded-circle">
+                                                    <?php if ($item['image']) : ?>
+                                                        <img src="<?= APP_URL ?>/public/uploads/users/<?= $item['image'] ?>" alt="user" width="50" height="50" style="border-radius: 50%; object-fit: cover;" class="rounded-circle">
                                                     <?php else : ?>
                                                         <img src="<?= APP_URL ?>/public/uploads/users/user.png" alt="user" width="50" class="rounded-circle">
                                                     <?php endif; ?>
                                                     <div class="media-body px-2">
-                                                        <h5><?= htmlspecialchars($item['Username']) ?><small> - <i><?= htmlspecialchars($item['Created_at']) ?></i></small></h5>
+                                                        <h5><?= htmlspecialchars($item['username']) ?><small> - <i><?= htmlspecialchars($item['created_at']) ?></i></small></h5>
                                                         <p><?= htmlspecialchars($item['Content']) ?></p>
                                                         <?php
-                                                        if (isset($data) && $is_login && ($_SESSION['user']['User_ID'] == $item['User_ID'])):
+                                                        if (isset($data) && $is_login && ($_SESSION['user']['id'] == $item['id'])):
                                                         ?>
                                                             <button type="button" class="btn btn-warning btn-sm" data-toggle="collapse" data-target="#comment" aria-expanded="false" aria-controls="comment">Sửa</button>
                                                             <form action="#" method="post" onsubmit="return confirm('Bạn có chắc chắn xóa bình luận này?')" style="display: inline-block">
@@ -180,11 +184,11 @@ class Detail extends BaseView
                                                                 <input type="hidden" name="product_id" value="<?= $data['product']['Product_ID']; ?>" id="">
                                                                 <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
                                                             </form>
-                                                            <div class="collapse" id="<?= $item['Username'] ?><?= $item['Comment_ID'] ?>">
+                                                            <div class="collapse" id="<?= $item['Username'] ?><?= $item['id'] ?>">
                                                                 <div class="card card-body mt-5">
-                                                                    <form action="/comments/<?= $item['Comment_ID'] ?>" method="post">
+                                                                    <form action="/comments/<?= $item['id'] ?>" method="post">
                                                                         <input type="hidden" name="method" value="PUT" id="">
-                                                                        <input type="hidden" name="product_id" value="<?= $data['products']['Product_ID']; ?>" id="">
+                                                                        <input type="hidden" name="product_id" value="<?= $data['products']['id']; ?>" id="">
                                                                         <div class="form-group">
                                                                             <label for="">Bình luận</label>
                                                                             <textarea class="form-control rounded-0" name="content" id="" rows="3" placeholder="Nhập bình luận..."><?= $item['Content'] ?></textarea>

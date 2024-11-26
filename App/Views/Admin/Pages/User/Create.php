@@ -49,41 +49,41 @@ class Create extends BaseView
                                     <h4 class="card-title">Thêm người dùng</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
-                                        <label for="Username">Tên đang nhập*</label>
-                                        <input type="text" class="form-control" id="Username" placeholder="Nhập tên tên đăng nhập..." name="Username" >
+                                        <label for="username">Tên đang nhập*</label>
+                                        <input type="text" class="form-control" id="username" placeholder="Nhập tên tên đăng nhập..." name="username" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="Email">Email*</label>
-                                        <input type="Email" class="form-control" id="Email" placeholder="Nhập email..." name="Email" >
+                                        <label for="email">Email*</label>
+                                        <input type="email" class="form-control" id="email" placeholder="Nhập email..." name="email" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="Name">Họ và tên*</label>
-                                        <input type="text" class="form-control" id="Name" placeholder="Nhập họ và tên người dùng..." name="Name" >
+                                        <label for="name">Họ và tên*</label>
+                                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên người dùng..." name="name" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="Phone_number">Số điện thoại*</label>
-                                        <input type="text" class="form-control" id="Phone_number" placeholder="Nhập số điện thoại..." name="Phone_number" >
+                                        <label for="phone_number">Số điện thoại*</label>
+                                        <input type="text" class="form-control" id="phone_number" placeholder="Nhập số điện thoại..." name="phone_number" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="Address">Địa chỉ*</label>
-                                        <input type="text" class="form-control" id="Address" placeholder="Nhập địa chỉ..." name="Address" >
+                                        <label for="address">Địa chỉ*</label>
+                                        <input type="text" class="form-control" id="address" placeholder="Nhập địa chỉ..." name="address" >
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Password">Mật khẩu*</label>
-                                        <input type="Password" class="form-control" id="Password" placeholder="Nhập mật khẩu..." name="Password" >
+                                        <label for="password">Mật khẩu*</label>
+                                        <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu..." name="password" >
                                     </div>  
                                     <div class="form-group">
                                         <label for="re_password">Nhập lại mật khẩu*</label>
                                         <input type="password" class="form-control" id="re_password" placeholder="Nhập lại mật khẩu..." name="re_password" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="Image">Hình đại diện</label>
-                                        <input type="file" class="form-control" id="Image" placeholder="Chọn ảnh đại điện..." name="Image" >
+                                        <label for="image">Hình đại diện</label>
+                                        <input type="file" class="form-control" id="image" placeholder="Chọn ảnh đại điện..." name="image" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="Role">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Role" name="Role">
+                                        <label for="role">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="role" name="role">
                                             <option value="" selected disabled>Vui lòng chọn...</option>
                                             <option value="1">Admin</option>
                                             <option value="0">Người dùng</option>
@@ -92,8 +92,8 @@ class Create extends BaseView
                                     </div>
                                     
                                     <div class="form-group">
-                                        <label for="Status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status">
+                                        <label for="status">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status">
                                             <option value="" selected disabled>Vui lòng chọn...</option>
                                             <option value="1">Hiển thị</option>
                                             <option value="0">Ẩn</option>
