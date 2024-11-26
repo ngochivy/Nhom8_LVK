@@ -33,7 +33,7 @@ class Edit extends BaseView
                 <div class="row">
                     <div class="col-md-5 border-right">
                         <?php
-                        if ($data && $data['Image']) :
+                        if ($data && $data['image']) :
                         ?>
 
 

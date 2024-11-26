@@ -18,7 +18,6 @@ require_once 'config.php';
 AuthHelper::middleware();
 
 
-
 // *** Client
 Route::get('/', 'App\Controllers\Client\HomeController@index');
 Route::get('/products', 'App\Controllers\Client\ProductController@index');
