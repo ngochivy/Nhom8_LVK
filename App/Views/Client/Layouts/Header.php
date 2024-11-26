@@ -184,7 +184,7 @@ class Header extends BaseView
                                     
                                 </div> -->
                                 <?php if ($is_login) : ?>
-                                    <div class="dropdown mr-3" style="width:81px !important;">
+                                    <div class="dropdown mr-4" style="width:81px !important;">
                                         <a class="dropdown-toggle d-flex align-items-center hidden-arrow border-0 text-decoration-none"
                                             href="#"
                                             id="navbarDropdownMenuAvatar"
