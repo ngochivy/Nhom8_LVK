@@ -40,17 +40,10 @@ class Comment extends BaseModel
     public function getAllCommentJoinProductAndUser()
     {
         try {
-<<<<<<< HEAD
             $sql = "SELECT comments.*, products.name AS product_name, users.username 
                 FROM comments 
                 INNER JOIN products ON comments.product_id = products.id 
                 INNER JOIN users ON comments.user_id = users.id";
-=======
-            $sql = "SELECT comments.*, products.Product_name AS product_name, users.Username 
-                FROM comments 
-                INNER JOIN products ON comments.Product_ID = products.ID 
-                INNER JOIN users ON comments.User_ID = users.ID";
->>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
             $conn = $this->_conn->MySQLi();
             $result = $conn->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
@@ -65,17 +58,10 @@ class Comment extends BaseModel
     {
         $result = [];
         try {
-<<<<<<< HEAD
             $sql = "SELECT comments.*, products.name AS product_name, users.username 
             FROM comments INNER JOIN products ON comments.product_id=products.id 
             INNER JOIN users ON comments.user_id=users.id
             WHERE comments.id=?";
-=======
-            $sql = "SELECT comments.*, products.Product_name AS product_name, users.Username 
-            FROM comments INNER JOIN products ON comments.Product_ID=Products.ID 
-            INNER JOIN users ON comments.User_ID=Users.ID
-            WHERE comments.Comment_ID=?";
->>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
 
@@ -94,15 +80,9 @@ class Comment extends BaseModel
         $result = [];
         try {
 
-<<<<<<< HEAD
             $sql = "SELECT comments.*,users.username, users.name, users.image 
             FROM comments INNER JOIN users ON comments.user_id=users.id 
             WHERE comments.product_id=? AND comments.status=" . self::STATUS_ENABLE   . " ORDER BY created_at DESC LIMIT 5;";
-=======
-            $sql = "SELECT comments.*,users.Username, users.Name, users.Image 
-            FROM comments INNER JOIN users ON comments.User_ID=users.User_ID 
-            WHERE comments.Product_ID=? AND comments.Status=" . self::STATUS_ENABLE   . " ORDER BY Created_at DESC LIMIT 5;";
->>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
 
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
@@ -123,7 +103,7 @@ class Comment extends BaseModel
     {
         $result = [];
         try {
-            $sql = "SELECT COUNT(*) AS count,products.Product_name FROM comments INNER JOIN products ON comments.Product_ID = Products.ID GROUP BY comments.Product_ID ORDER BY count DESC LIMIT 5;";
+            $sql = "SELECT COUNT(*) AS count,products.name FROM comments INNER JOIN products ON comments.product_id = products.id GROUP BY comments.product_id ORDER BY count DESC LIMIT 5;";
             $result = $this->_conn->MySQLi()->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
         } catch (\Throwable $th) {

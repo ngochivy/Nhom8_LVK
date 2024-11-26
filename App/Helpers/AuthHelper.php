@@ -234,7 +234,7 @@ class AuthHelper
         $admin = explode('/', $_SERVER['REQUEST_URI']);
         $admin = $admin[1];
 
-        if ($admin == 'admin') {
+        if ($admin == 'Admin') {
             if (!isset($_SESSION['user'])) {
                 NotificationHelper::error('admin', 'Vui lòng đăng nhập');
                 // Sử dụng ob_start() và ob_end_flush()
@@ -244,7 +244,7 @@ class AuthHelper
                 exit;
             }
 
-            if ($_SESSION['user']['role'] != 1) {
+            if ($_SESSION['user']['role'] != 'Admin') {
                 NotificationHelper::error('admin', 'Tài khoản này không có quyền truy cập');
                 // Sử dụng ob_start() và ob_end_flush()
                 ob_start();

@@ -16,10 +16,6 @@ $dotenv->load();
 
 require_once 'config.php';
 AuthHelper::middleware();
-<<<<<<< HEAD
-
-=======
->>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
 
 
 // *** Client

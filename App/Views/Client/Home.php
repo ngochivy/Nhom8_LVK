@@ -244,11 +244,7 @@ class Home extends BaseView
                         <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
                             <div class="card product-item border-0 mb-4" onclick="window.location.href='/products/<?= $product['id'] ?>'">
                                 <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">
-<<<<<<< HEAD
                                     <img class="img-fluid w-100" src="/public/uploads/products/<?= $product['image'] ?>" alt="<?= $product['name'] ?>" style="height:200px; width:100px; object-fit:cover ;">
-=======
-                                    <img class="img-fluid w-100" src="/public/uploads/products/<?= $product['Image'] ?>" alt="<?= $product['Product_name'] ?>" style="height:200px; width:100px; object-fit:cover ;">
->>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
                                 </div>
                                 <div class="card-body border-left border-right text-center p-0 pt-4 pb-3">
                                     <h6 class="text-truncate mb-3"><?= $product['name'] ?></h6>
