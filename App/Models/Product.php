@@ -195,4 +195,16 @@ class Product extends BaseModel
             return [];
         }
     }
+
+    public function searchProductsByName($query, $limit = 5)
+    {
+        $conn = $this->getConnection();
+        $sql = "SELECT id, name FROM products WHERE name LIKE ? LIMIT ?";
+        $stmt = $conn->prepare($sql);
+        $searchTerm = "%$query%";
+        $stmt->bind_param("si", $searchTerm, $limit);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_all(MYSQLI_ASSOC);
+    }
 }

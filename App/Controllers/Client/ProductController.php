@@ -124,7 +124,7 @@ class ProductController
             'is_login' => isset($_SESSION['User']),
         ];
 
-      
+
 
 
 
@@ -154,4 +154,13 @@ class ProductController
         ProductCategory::render($data);
         Footer::render();
     }
+
+    public function searchSuggestions()
+{
+    $query = $_GET['query'] ?? '';
+    $productModel = new Product();
+    $products = $productModel->searchProductsByName($query, 5);
+    header('Content-Type: application/json');
+    echo json_encode($products);
+}
 }
