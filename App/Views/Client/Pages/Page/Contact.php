@@ -67,31 +67,31 @@ class Contact extends BaseView
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
+                                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                                                 <label for="name">Tên</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input type="phone_number" name="phone_number" class="form-control" id="phone_number" placeholder="Your phone_number">
+                                                <input type="phone_number" name="phone_number" class="form-control" id="phone_number" placeholder="Your phone_number" required>
                                                 <label for="phone_number">Số điện thoại</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                                                 <label for="email">Email</label>
                                             </div>
                                         </div>
                                       
                                         <div class="col-12">
                                             <div class="form-floating">
-                                                <textarea class="form-control" placeholder="Leave a message here" name="message" id="message" style="height: 150px"></textarea>
+                                                <textarea class="form-control" placeholder="Leave a message here" name="message" id="message" style="height: 150px" required></textarea>
                                                 <label for="message">Nhập ý kiến của bạn</label>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button class="btn btn-primary w-100 py-3" type="submit">Gửi</button>
+                                            <button class="btn btn-primary w-100 py-3" type="submit" onclick="validateAndSubmit()">Gửi</button>
                                         </div>
                                     </div>
                                 </form>
@@ -103,6 +103,37 @@ class Contact extends BaseView
             <!-- Contact End -->
 
             
+<script>
+      function validateAndSubmit() {
+    // Lấy giá trị từ các trường thông tin
+    const email = document.getElementById("email").value.trim();
+    const message = document.getElementById("message").value.trim();
+
+    // Kiểm tra xem các trường đã được nhập đầy đủ hay chưa
+    if (!email || !message) {
+        Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Vui lòng điền đầy đủ thông tin!",
+            showConfirmButton: true
+        });
+    } else {
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Bạn đã gửi Email thành công!",
+            showConfirmButton: false,
+            timer: 3000
+        });
+
+        // Sau khi thông báo thành công, có thể reset form hoặc thực hiện hành động khác
+        document.getElementById("emailForm").reset();
+    }
+}
+
+</script>
+
+
 
             <!-- Back to Top -->
             <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -120,6 +151,15 @@ class Contact extends BaseView
 
             <!-- Template Javascript -->
             <script src="/public/assets/client/js/main.js"></script>
+
+            <!-- SweetAlert2 CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+<!-- SweetAlert2 JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script src="/App/Views/Client/Components/Notification.php"></script>
+
         </body>
 
 <?php

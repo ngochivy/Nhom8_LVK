@@ -6,10 +6,10 @@ use App\Helpers\AuthHelper;
 use App\Helpers\NotificationHelper;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use App\Views\Client\Components\Notification;
+
 use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Layouts\Header;
-use App\Controllers\BaseController;
+
 
 
 use App\Views\Client\Pages\Page\Contact;
@@ -17,7 +17,7 @@ use App\Views\Client\Pages\Page\Contact;
 class ContactController 
 {
     // hiển thị danh sách
-    public static function index()
+    public static function contact()
     {
         // giả sử data là mảng dữ liệu lấy được từ database
         

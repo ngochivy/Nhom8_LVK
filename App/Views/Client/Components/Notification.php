@@ -8,7 +8,7 @@ class Notification extends BaseView
 {
     public static function render($data = null)
     {
-        ?>
+?>
         <style>
             .notification-wrapper {
                 position: fixed;
@@ -46,6 +46,7 @@ class Notification extends BaseView
             }
         </style>
 
+
         <div class="notification-wrapper">
             <?php if (isset($_SESSION['success'])) : ?>
                 <?php foreach ($_SESSION['success'] as $value) : ?>
@@ -78,8 +79,10 @@ class Notification extends BaseView
                     });
                 }, 5000);
             });
+
+          
         </script>
-        <?php
+<?php
     }
 }
 ?>
