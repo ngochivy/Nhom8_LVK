@@ -144,7 +144,8 @@ class Product extends BaseModel
     {
         $result = [];
         try {
-            $sql = "SELECT * FROM $this->table WHERE status=1";
+            $sql = "SELECT products.*,categories.name as category_name FROM `products` INNER JOIN categories ON products.category_id=categories.id 
+            WHERE products.status=" . self::STATUS_ENABLE . " AND categories.status=" . self::STATUS_ENABLE . " AND products.id=?";
             $conn = $this->_conn->MySQLi();
             $stmt = $conn->prepare($sql);
 
@@ -152,7 +153,7 @@ class Product extends BaseModel
             $stmt->execute();
             return $stmt->get_result()->fetch_assoc();
         } catch (\Throwable $th) {
-            error_log('Lỗi khi kiểm tra tên sản phẩm: ' . $th->getMessage());
+            error_log('Lỗi khi hiển thị chi tiết dữ liệu: ' . $th->getMessage());
             return $result;
         }
     }

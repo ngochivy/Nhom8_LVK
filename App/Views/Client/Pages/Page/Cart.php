@@ -56,6 +56,9 @@ class Cart extends BaseView
     <div class="container-fluid pt-5">
         <div class="row px-xl-5">
             <div class="col-lg-8 table-responsive mb-5">
+            <?php if (empty($cart)): ?>
+                    <p class="text-center">Giỏ hàng của bạn đang trống!</p>
+                <?php else: ?>
                 <table class="table table-bordered text-center mb-0">
                     <thead class="bg-secondary text-dark">
                         <tr>
@@ -70,7 +73,7 @@ class Cart extends BaseView
                     <tbody>
                             <?php foreach ($cart as $id => $item): ?>
                                 <tr>
-                                    <td><img src="<?= $item['image'] ?>" alt="<?= $item['name'] ?>" class="product-image"></td>
+                                    <td><img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:150px; width:150px; class="product-image"></td>
                                     <td><?= $item['name'] ?></td>
                                     <td>
                                     <form action="/cart/update" method="post">
@@ -95,6 +98,7 @@ class Cart extends BaseView
                             <?php endforeach; ?>
                         </tbody>
                 </table>
+                <?php endif; ?>
             </div>
             <div class="col-lg-4">
                 <form class="mb-5" action="">
@@ -112,7 +116,7 @@ class Cart extends BaseView
                     <div class="card-body">
                         <div class="d-flex justify-content-between mb-3 pt-1">
                             <h6 class="font-weight-medium">Tổng tiền hàng</h6>
-                            <h6 class="font-weight-medium">2,600,000 đ</h6>
+                            <h6 class="font-weight-medium"><?= number_format($total, 0, ',', '.') ?> VND</h6>
                         </div>
                         <div class="d-flex justify-content-between">
                             <h6 class="font-weight-medium">Phí vận chuyển</h6>
@@ -122,7 +126,7 @@ class Cart extends BaseView
                     <div class="card-footer border-secondary bg-transparent">
                         <div class="d-flex justify-content-between mt-2">
                             <h5 class="font-weight-bold">Tổng</h5>
-                            <h5 class="font-weight-bold">2,600,000 đ</h5>
+                            <h5 class="font-weight-bold"><?= number_format($total, 0, ',', '.') ?> VND </h5>
                         </div>
                         <a class="text-light text-decoration-none" href="/checkout">
                         <button class="btn btn-block btn-primary my-3 py-3">Mua hàng</button>
@@ -135,7 +139,7 @@ class Cart extends BaseView
     <!-- Cart End -->
         
 
-        
+   
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
