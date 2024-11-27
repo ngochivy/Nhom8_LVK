@@ -1,93 +1,137 @@
 <?php
 
-namespace App\Controllers;
+namespace App\Controllers\Client;
 
 use App\Models\Product;
+use App\Views\Client\Layouts\Footer;
+use App\Views\Client\Layouts\Header;
+use App\Views\Client\Pages\Page\Cart;
 use App\Helpers\NotificationHelper;
 
 class CartController
 {
-    private $productModel;
-
-    public function __construct()
+    public static function index()
     {
-        $this->productModel = new Product();
+        if (!isset($_SESSION['user'])) {
+            // Chuyển hướng tới trang đăng nhập
+            NotificationHelper::error('login', 'Vui lòng đăng nhập');
+            header('Location: /login');
+            exit();
+        }
+        // Lấy dữ liệu giỏ hàng từ cookie
+        $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+
+        $data = [
+            'cart' => $cart,
+        ];
+        Header::render();
+        Cart::render($data);
+        Footer::render();
     }
 
-    // Thêm sản phẩm vào giỏ hàng (lưu cookie)
-    public function addToCartAction()
+    public static function add()
     {
-        if (isset($_POST['product_id']) && isset($_POST['quantity'])) {
-            $productId = $_POST['product_id'];
-            $quantity = (int)$_POST['quantity'];
+        if (!isset($_SESSION['user'])) {
+            // Chuyển hướng tới trang đăng nhập
+            NotificationHelper::error('login', 'Vui lòng đăng nhập');
+            header('Location: /login');
+            exit();
+        }
+        $productId = $_POST['id'] ?? null;
+        $quantity = $_POST['quantity'] ?? 1;
 
-            // Kiểm tra sản phẩm tồn tại
-            $product = $this->productModel->getOne($productId);
-            if ($product) {
-                // Lấy giỏ hàng từ cookie (nếu có)
-                $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-
-                // Thêm hoặc cập nhật sản phẩm vào giỏ hàng
-                if (isset($cart[$productId])) {
-                    $cart[$productId] += $quantity;
-                } else {
-                    $cart[$productId] = $quantity;
-                }
-
-                // Lưu giỏ hàng vào cookie
-                setcookie('cart', json_encode($cart), time() + (86400 * 7), "/"); // Lưu 7 ngày
-                NotificationHelper::success('add_cart', 'Sản phẩm đã được thêm vào giỏ hàng');
-            } else {
-                NotificationHelper::error('add_cart', 'Sản phẩm không tồn tại');
-            }
+        if (!$productId) {
+            header('Location: /cart');
+            exit();
         }
 
-        // Chuyển hướng về trang giỏ hàng
-        header('Location: /cart');
-    }
+        $product = (new Product())->getOneProductByStatus($productId);
 
-    // Hiển thị giỏ hàng (lấy từ cookie)
-    public function showCartAction()
-    {
-        $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-        $cartItems = [];
-        $cartTotal = 0;
-
-        foreach ($cart as $productId => $quantity) {
-            $product = $this->productModel->getOne($productId);
-            if ($product) {
-                $product['quantity'] = $quantity;
-                $product['total_price'] = $quantity * $product['price'];
-                $cartItems[] = $product;
-                $cartTotal += $product['total_price'];
-            }
+        if (!$product) {
+            header('Location: /cart');
+            exit();
         }
 
-        // Load view giỏ hàng
-        require 'views/cart.php'; // Hoặc sử dụng template engine như Twig
-    }
-
-    // Xóa sản phẩm khỏi giỏ hàng
-    public function removeFromCartAction($productId)
-    {
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+
         if (isset($cart[$productId])) {
-            unset($cart[$productId]);
-            setcookie('cart', json_encode($cart), time() + (86400 * 7), "/");
-            NotificationHelper::success('remove_cart', 'Sản phẩm đã được xóa khỏi giỏ hàng');
+            $cart[$productId]['quantity'] += $quantity;
+            $cart[$productId]['total_price'] = $cart[$productId]['quantity'] * $cart[$productId]['price'];
+        } else {
+
+            $cart[$productId] = [
+                'id' => $product['product_id'],
+                'name' => $product['name'],
+                'image' => $product['image'],
+                'price' => $product['price'],
+                'quantity' => $quantity,
+                'total_price' => $product['price'] * $quantity,
+            ];
         }
 
-        // Chuyển hướng lại trang giỏ hàng
+        // Lưu lại giỏ hàng vào cookie
+        setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/'); // Lưu trong 30 ngày
+
         header('Location: /cart');
+        exit();
     }
 
-    // Xóa toàn bộ giỏ hàng
-    public function clearCartAction()
+    public static function remove()
     {
-        setcookie('cart', '', time() - 3600, "/"); // Xóa cookie
-        NotificationHelper::success('clear_cart', 'Giỏ hàng đã được xóa');
+        // Lấy ID của sản phẩm từ POST
+        $productId = $_POST['id'] ?? null;
 
-        // Chuyển hướng về trang chủ
-        header('Location: /');
+        // Nếu không có ID, chuyển hướng về giỏ hàng
+        if (!$productId) {
+            header('Location: /cart');
+            exit();
+        }
+
+        // Kiểm tra xem có cookie 'cart' hay không
+        $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+
+        // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
+        if (isset($cart[$productId])) {
+unset($cart[$productId]);  // Xóa sản phẩm khỏi giỏ hàng
+        }
+
+        // Cập nhật lại cookie với giỏ hàng đã sửa đổi
+        setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
+
+        // Chuyển hướng về giỏ hàng sau khi xóa
+        header('Location: /cart');
+        exit();
+    }
+
+
+    public static function update()
+    {
+        // Lấy ID sản phẩm và số lượng từ POST
+        $productId = $_POST['id'] ?? null;
+        $quantity = $_POST['quantity'] ?? null;
+
+        // Nếu không có ID hoặc số lượng, chuyển hướng về giỏ hàng
+        if (!$productId || !$quantity) {
+            header('Location: /cart');
+            exit();
+        }
+
+        // Kiểm tra xem có cookie 'cart' hay không
+        $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+
+        // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
+        if (isset($cart[$productId])) {
+            // Cập nhật số lượng
+            $cart[$productId]['quantity'] = $quantity;
+            // Cập nhật lại tổng giá của sản phẩm
+            $cart[$productId]['total_price'] = $cart[$productId]['price'] * $quantity;
+        }
+
+        // Cập nhật lại cookie với giỏ hàng đã sửa đổi
+        setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
+
+        // Chuyển hướng về giỏ hàng sau khi cập nhật
+        header('Location: /cart');
+        exit();
     }
 }

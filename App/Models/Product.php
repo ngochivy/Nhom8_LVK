@@ -140,6 +140,22 @@ class Product extends BaseModel
             return $result;
         }
     }
+    public function getOneProductByStatus(int $id)
+    {
+        $result = [];
+        try {
+            $sql = "SELECT * FROM $this->table WHERE status=1";
+            $conn = $this->_conn->MySQLi();
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bind_param('i', $id);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_assoc();
+        } catch (\Throwable $th) {
+            error_log('Lỗi khi kiểm tra tên sản phẩm: ' . $th->getMessage());
+            return $result;
+        }
+    }
 
     public function searchProducts(string $keyword)
     {

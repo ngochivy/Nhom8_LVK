@@ -122,10 +122,10 @@ class Detail extends BaseView
                                     </button>
                                 </div>
                             </div>
-                            <form method="POST" action="/cart/add">
-                            <input type="hidden" name="product_id" value="123"> <!-- ID sản phẩm -->
-                            <input type="number" name="quantity" value="1" min="1">
-                            <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                            <form action="/cart/add" method="post">
+                                <input type="hidden" name="method" id="" value="POST">
+                                <input type="hidden" name="id" id="" value="<?= $data['product']['id'] ?>" required>
+                                <button type="submit" class="btn btn-sm btn-outline-success">Thêm vào giỏ hàng</button>
                             </form>
                         </div>
                         <div class="d-flex pt-2">
