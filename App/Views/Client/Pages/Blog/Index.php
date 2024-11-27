@@ -59,7 +59,12 @@ class Index extends BaseView
                                             <?= htmlspecialchars($item['content']) ?>
                                         </p>
                                         <a href="/emblog" class="btn btn-primary">Xem thêm</a>
+                                        <br>
+                                        <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; float:right;">
+                                          Ngày đăng:  <?= ($item['created_at']) ?>
+                                        </p>
                                     </div>
+                                  
                                 </div>
                                 </div>
 

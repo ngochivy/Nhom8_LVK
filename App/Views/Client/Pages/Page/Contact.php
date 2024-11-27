@@ -63,30 +63,30 @@ class Contact extends BaseView
                         </div>
                         <div class="col-md-6">
                             <div class="wow fadeInUp" data-wow-delay="0.2s">
-                                <form>
+                                <form class="contact-form" method="POST" action="/contact/send-email">
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name">
                                                 <label for="name">Tên</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input type="email" class="form-control" id="email" placeholder="Your Email">
-                                                <label for="email">Số điện thoại</label>
+                                                <input type="phone_number" name="phone_number" class="form-control" id="phone_number" placeholder="Your phone_number">
+                                                <label for="phone_number">Số điện thoại</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-floating">
-                                                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
                                                 <label for="email">Email</label>
                                             </div>
                                         </div>
                                       
                                         <div class="col-12">
                                             <div class="form-floating">
-                                                <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
+                                                <textarea class="form-control" placeholder="Leave a message here" name="message" id="message" style="height: 150px"></textarea>
                                                 <label for="message">Nhập ý kiến của bạn</label>
                                             </div>
                                         </div>
