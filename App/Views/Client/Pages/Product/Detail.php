@@ -174,7 +174,7 @@ class Detail extends BaseView
                                                     <?php endif; ?>
                                                     <div class="media-body px-2">
                                                         <h5><?= htmlspecialchars($item['username']) ?><small> - <i><?= htmlspecialchars($item['created_at']) ?></i></small></h5>
-                                                        <p><?= htmlspecialchars($item['Content']) ?></p>
+                                                        <p><?= htmlspecialchars($item['content']) ?></p>
                                                         <?php
                                                         if (isset($data) && $is_login && ($_SESSION['user']['id'] == $item['id'])):
                                                         ?>
@@ -184,7 +184,7 @@ class Detail extends BaseView
                                                                 <input type="hidden" name="product_id" value="<?= $data['product']['Product_ID']; ?>" id="">
                                                                 <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
                                                             </form>
-                                                            <div class="collapse" id="<?= $item['Username'] ?><?= $item['id'] ?>">
+                                                            <div class="collapse" id="<?= $item['username'] ?><?= $item['id'] ?>">
                                                                 <div class="card card-body mt-5">
                                                                     <form action="/comments/<?= $item['id'] ?>" method="post">
                                                                         <input type="hidden" name="method" value="PUT" id="">

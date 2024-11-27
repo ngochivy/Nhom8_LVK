@@ -44,7 +44,11 @@ class ForgotPassword extends BaseView
                                             <input type="text" class="form-control" name="username" placeholder="Nhập tên đăng nhập" id="username">
                                         </div>
                                         <div class="form-group last mb-3">
+<<<<<<< HEAD
                                             <label for="email">Email</label>
+=======
+                                            <label for="umail">Email</label>
+>>>>>>> 3b23fd1e1a3907859dcee351efa83fa411ff4bce
                                             <input type="email" class="form-control" name="email" placeholder="Nhập email" id="email">
                                         </div>
                                         <input type="submit" value="Cập nhật" class="btn btn-block btn-primary rounded-1">
