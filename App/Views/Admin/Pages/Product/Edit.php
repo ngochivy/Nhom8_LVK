@@ -50,7 +50,7 @@ class Edit extends BaseView
                                     <input type="hidden" name="method" id="" value="PUT">
 
                                     <div align="center">
-                                        <img src="<?=APP_URL?>/public/uploads/products/<?=$data['product']['Image']?>" alt="" width="300px">
+                                        <img src="<?=APP_URL?>/public/uploads/products/<?=$data['product']['image']?>" alt="" width="300px">
                                     </div>
 
 

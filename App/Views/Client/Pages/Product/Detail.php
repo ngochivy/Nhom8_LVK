@@ -109,19 +109,6 @@ class Detail extends BaseView
                             </form>
                         </div>
                         <div class="d-flex align-items-center mb-4 pt-2">
-                            <div class="input-group quantity mr-3" style="width: 130px;">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary btn-minus">
-                                        <i class="fa fa-minus"></i>
-                                    </button>
-                                </div>
-                                <input type="text" class="form-control bg-secondary text-center" value="1">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-primary btn-plus">
-                                        <i class="fa fa-plus"></i>
-                                    </button>
-                                </div>
-                            </div>
                             <form method="POST" action="/cart/add">
                             <input type="hidden" name="product_id" value="123"> <!-- ID sản phẩm -->
                             <input type="number" name="quantity" value="1" min="1">
@@ -174,24 +161,24 @@ class Detail extends BaseView
                                                     <?php endif; ?>
                                                     <div class="media-body px-2">
                                                         <h5><?= htmlspecialchars($item['username']) ?><small> - <i><?= htmlspecialchars($item['created_at']) ?></i></small></h5>
-                                                        <p><?= htmlspecialchars($item['Content']) ?></p>
+                                                        <p><?= htmlspecialchars($item['content']) ?></p>
                                                         <?php
-                                                        if (isset($data) && $is_login && ($_SESSION['user']['id'] == $item['id'])):
+                                                        if (isset($data) && $is_login && ($_SESSION['user']['id'] == $item['user_id'])):
                                                         ?>
-                                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="collapse" data-target="#comment" aria-expanded="false" aria-controls="comment">Sửa</button>
-                                                            <form action="#" method="post" onsubmit="return confirm('Bạn có chắc chắn xóa bình luận này?')" style="display: inline-block">
+                                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="collapse" data-target="#<?= $item['username'] ?><?= $item['id'] ?>" aria-expanded="false" aria-controls="<?= $item['username'] ?><?= $item['id'] ?>">Sửa</button>
+                                                            <form action="/comments/<?= $item['id'] ?>" method="post" onsubmit="return confirm('Bạn có chắc chắn xóa bình luận này?')" style="display: inline-block">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
-                                                                <input type="hidden" name="product_id" value="<?= $data['product']['Product_ID']; ?>" id="">
+                                                                <input type="hidden" name="product_id" value="<?= $data['product']['id']; ?>" id="">
                                                                 <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
                                                             </form>
-                                                            <div class="collapse" id="<?= $item['Username'] ?><?= $item['id'] ?>">
+                                                            <div class="collapse" id="<?= $item['username'] ?><?= $item['id'] ?>">
                                                                 <div class="card card-body mt-5">
                                                                     <form action="/comments/<?= $item['id'] ?>" method="post">
                                                                         <input type="hidden" name="method" value="PUT" id="">
-                                                                        <input type="hidden" name="product_id" value="<?= $data['products']['id']; ?>" id="">
+                                                                        <input type="hidden" name="product_id" value="<?= $data['product']['id']; ?>" id="">
                                                                         <div class="form-group">
                                                                             <label for="">Bình luận</label>
-                                                                            <textarea class="form-control rounded-0" name="content" id="" rows="3" placeholder="Nhập bình luận..."><?= $item['Content'] ?></textarea>
+                                                                            <textarea class="form-control rounded-0" name="content" id="" rows="3" placeholder="Nhập bình luận..."><?= $item['content'] ?></textarea>
                                                                         </div>
                                                                         <div class="comment-footer">
                                                                             <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
