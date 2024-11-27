@@ -36,7 +36,7 @@ class Index extends BaseView
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                <!-- Start Page Content -->
+                <!-- Start Page content -->
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-12">
@@ -51,12 +51,12 @@ class Index extends BaseView
                                         <table id="" class="table table-striped ">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
-                                                    <th>Content</th>
-                                                    <th>User_ID</th>
-                                                    <th>Proudct_ID </th>
-                                                    <th>Created_at</th>
-                                                    <th>Status</th>
+                                                    <th>ID</th>
+                                                    <th>Nội dung</th>
+                                                    <th>ID_Người Dùng</th>
+                                                    <th>ID_Sản Phẩm </th>
+                                                    <th>Thời gian</th>
+                                                    <th>Trạng thái</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -64,21 +64,21 @@ class Index extends BaseView
                                                 foreach ($data as $item) :
                                                 ?>
                                                     <tr>
-                                                        <td><?= $item['Comment_ID'] ?></td>
-                                                        <td><?= $item['Content'] ?></td>
+                                                        <td><?= $item['id'] ?></td>
+                                                        <td><?= $item['content'] ?></td>
                                                         <td>
-                                                            <?= $item['User_ID'] ?>
+                                                            <?= $item['user_id'] ?>
 
                                                         </td>
                                                         <td>
-                                                            <?= $item['Product_ID'] ?>
+                                                            <?= $item['product_id'] ?>
                                                         </td>
                                                         
-                                                        <td><?= $item['Created_at'] ?></td>
-                                                        <td><?= ($item['Status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
+                                                        <td><?= $item['created_at'] ?></td>
+                                                        <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
                                                         <td>
-                                                            <a href="/admin/comments/<?= $item['Comment_ID'] ?>" class="btn btn-primary ">Sửa</a>
-                                                            <form action="/admin/comments/<?= $item['Comment_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                            <a href="/admin/comments/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <form action="/admin/comments/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
                                                                 <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>
@@ -106,7 +106,7 @@ class Index extends BaseView
                     </div>
                 </div>
                 <!-- ============================================================== -->
-                <!-- End PAge Content -->
+                <!-- End PAge content -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Right sidebar -->

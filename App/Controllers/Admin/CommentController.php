@@ -80,7 +80,7 @@ class CommentController
         }
 
 
-        $status = $_POST['status'];
+        $Satatus = $_POST['status'];
 
 
         $comment = new Comment();
@@ -93,7 +93,7 @@ class CommentController
 
         $data = [
 
-            'Status' => $status
+            'status' => $Satatus
         ];
 
         $result = $comment->updateComment($id, $data);

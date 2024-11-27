@@ -24,7 +24,6 @@ class BlogController
         $data = $Blog->getAllBlog();
         // echo '<pre>';
         // var_dump($data);
-
         Header::render();
         Notification::render();
         NotificationHelper::unset();
@@ -48,15 +47,12 @@ class BlogController
         // hiển thị form thêm
         Create::render($data);
         Footer::render();
-
-      
     }
 
 
     // xử lý chức năng thêm
     public static function store()
     {
-
         //validation các trường dữ liệu
         $is_valid = BlogValidation::create();
 
@@ -75,9 +71,9 @@ class BlogController
 
 
 
-        $is_upload=BlogValidation::uploadImage();
-        if($is_upload){
-            $data['image']= $is_upload;
+        $is_upload = BlogValidation::uploadImage();
+        if ($is_upload) {
+            $data['image'] = $is_upload;
         }
         $create = new Blog();
         $result = $create->createBlog($data);
@@ -102,12 +98,12 @@ class BlogController
     // hiển thị giao diện form sửa
     public static function edit(int $id)
     {
-       
-        $blog=new Blog();
-        $data=$blog->getOneBlog($id);
+
+        $blog = new Blog();
+        $data = $blog->getOneBlog($id);
 
         if (!$data) {
-            NotificationHelper::error('edit','không thể xem ');
+            NotificationHelper::error('edit', 'không thể xem ');
             header('location: /admin/blogs');
             exit;
         }
@@ -119,27 +115,27 @@ class BlogController
         Footer::render();
     }
 
-   // xử lý chức năng sửa (cập nhật)
+    // xử lý chức năng sửa (cập nhật)
    public static function update(int $id)
    {
-$is_valid = BlogValidation::edit();
+       $is_valid = BlogValidation::edit();
 
        if (!$is_valid) {
-           NotificationHelper::error('update', 'Cập nhật loại bài viết thất bại');
+           NotificationHelper::error('update', 'Cập nhật bài viết thất bại');
            header("location: /admin/blogs/$id");
            exit;
        }
 
-       $title=$_POST['title'];
-       $content=$_POST['content'];
-       $author_id=$_POST['author_id'];
+       $Title=$_POST['title'];
+       $Content=$_POST['content'];
+       $Author_ID=$_POST['author_id'];
        
        $blog=new Blog();
-       $is_exist=$blog->getOneBlogByName($title);
+       $is_exist=$blog->getOneBlogByName($Title);
 
        if ($is_exist) {
            if($is_exist['id']!=$id){
-               NotificationHelper::error('update', 'Tên loại bài viết đã tồn tại');
+               NotificationHelper::error('update', 'Tên bài viết đã tồn tại');
                header("location: /admin/blogs/$id");
                exit;
            }
@@ -148,35 +144,51 @@ $is_valid = BlogValidation::edit();
 
        // thực hiện cập nhật
        $data=[
-           'title'=>$title,
-           'content'=>$content,
-           'author_id'=>$author_id
+           'title'=>$Title,
+           'content'=>$Content,
+           'author_id'=>$Author_ID
        ];
        $result=$blog->updateBlog($id,$data);
 
        if ($result) {
-           NotificationHelper::success('update','Cập nhật loại bài viết thành công');
+           NotificationHelper::success('update','Cập nhật bài viết thành công');
            header('location: /admin/blogs');
        }
        else {
-           NotificationHelper::error('update', 'Cập nhật loại bài viết thất bại');
+           NotificationHelper::error('update', 'Cập nhật bài viết thất bại');
            header('location: /admin/blogs/create');
            exit;
 
        }
-   }
+       $is_upload=BlogValidation::uploadImage();
+        if($is_upload){
+            $data['image']= $is_upload;
+        }
 
+       $result=$blog->updateBlog($id,$data);
+
+        if ($result) {
+            NotificationHelper::success('update','Cập nhật bài viét thành công');
+            header('location: /admin/blogs');
+        }
+        else {
+            NotificationHelper::error('update', 'Cập nhật bài viết thất bại');
+            header("location: /admin/blogs/$id");
+            exit;
+
+        }
+   }
+    
 
     // // thực hiện xoá
     public static function delete(int $id)
     {
-        $Blog=new Blog();
-        $result=$Blog->deleteBlog($id);
+        $Blog = new Blog();
+        $result = $Blog->deleteBlog($id);
         // var_dump($result);
         if ($result) {
-            NotificationHelper::success('delete','Xóa bài viết thành công');
-
-        }else{
+            NotificationHelper::success('delete', 'Xóa bài viết thành công');
+        } else {
             NotificationHelper::error('delete', 'Xóa bài viết thất bại');
         }
         header('location: /admin/blogs');
