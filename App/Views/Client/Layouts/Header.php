@@ -104,19 +104,20 @@ class Header extends BaseView
                         </a>
                     </div>
                     <div class="col-lg-6 col-6 text-left">
-                        <form action="" id="search-form" method="GET">
+                        <form method="GET" action="/products" id="search-form">
                             <div class="input-group">
-                                <input type="text" class="form-control" id="search-input" name="search" placeholder="Tìm kiếm..." onkeyup="searchProducts()">
+                                <input type="text" name="keyword" id="search-input" class="form-control" placeholder="Tìm kiếm sản phẩm..." onkeyup="searchProducts()" />
                                 <div class="input-group-append">
-                                    <span class="input-group-text bg-transparent text-primary">
+                                    <button type="submit" class="input-group-text bg-transparent text-primary">
                                         <i class="fa fa-search"></i>
-                                    </span>
+                                    </button>
                                 </div>
                             </div>
                         </form>
+
                         <div id="search-suggestions" style="display: none; position: absolute; background-color: #fff; border: 1px solid #ccc; width: 100%; z-index: 1000;"></div>
                     </div>
-                    
+
 
                     <div class="col-lg-3 col-6 text-right">
                         <a href="" class="btn border">
@@ -194,7 +195,7 @@ class Header extends BaseView
                                             <img src="/public/assets/client/img/profile-user.png" alt="user" style="width:25px;"><span class="text-muted pl-2"><?= $_SESSION['user']['username'] ?></span>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-start"
-                                            style=""
+
                                             aria-labelledby="navbarDropdownMenuAvatar">
                                             <li>
                                                 <a class="dropdown-item" href="/users/<?= $_SESSION['user']['id'] ?>">Tài khoản</a>
@@ -237,6 +238,45 @@ class Header extends BaseView
 
         <!-- Template Javascript -->
         <script src="/public/assets/client/js/main.js"></script>
+        <script>
+            function searchProducts() {
+                const query = document.getElementById('search-input').value;
+                const suggestions = document.getElementById('search-suggestions');
+
+                if (query.length > 2) {
+                    fetch(`/search-suggestions?query=${encodeURIComponent(query)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.length > 0) {
+                                suggestions.innerHTML = data.map(product => `
+                        <div style="padding: 5px;">
+                            <a href="/product/${product.id}" style="text-decoration: none; color: black;">
+                                ${product.name}
+                            </a>
+                        </div>
+                    `).join('');
+                                suggestions.style.display = 'block';
+                            } else {
+                                suggestions.innerHTML = '<div style="padding: 5px;">Không tìm thấy sản phẩm</div>';
+                            }
+                        })
+                        .catch(() => {
+                            suggestions.innerHTML = '<div style="padding: 5px;">Lỗi khi tìm kiếm</div>';
+                        });
+                } else {
+                    suggestions.style.display = 'none';
+                }
+            }
+
+            // Hide suggestions when clicking outside
+            document.addEventListener('click', function(event) {
+                const suggestions = document.getElementById('search-suggestions');
+                if (!suggestions.contains(event.target) && event.target.id !== 'search-input') {
+                    suggestions.style.display = 'none';
+                }
+            });
+        </script>
+
 
 <?php
     }

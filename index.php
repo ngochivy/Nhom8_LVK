@@ -55,6 +55,10 @@ Route::post('/comments', 'App\Controllers\Client\CommentController@store');
 Route::put('/comments/{id}', 'App\Controllers\Client\CommentController@update');
 Route::delete('/comments/{id}', 'App\Controllers\Client\CommentController@delete');
 
+// Route::get('/search-suggestions', 'App\Controller\Client\ProductController@searchSuggestions');
+
+
+
 
 
 // *** Admin

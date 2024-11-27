@@ -172,24 +172,24 @@ class Detail extends BaseView
                                                     <?php endif; ?>
                                                     <div class="media-body px-2">
                                                         <h5><?= htmlspecialchars($item['username']) ?><small> - <i><?= htmlspecialchars($item['created_at']) ?></i></small></h5>
-                                                        <p><?= htmlspecialchars($item['Content']) ?></p>
+                                                        <p><?= htmlspecialchars($item['content']) ?></p>
                                                         <?php
-                                                        if (isset($data) && $is_login && ($_SESSION['user']['id'] == $item['id'])):
+                                                        if (isset($data) && $is_login && ($_SESSION['user']['id'] == $item['user_id'])):
                                                         ?>
-                                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="collapse" data-target="#comment" aria-expanded="false" aria-controls="comment">Sửa</button>
-                                                            <form action="#" method="post" onsubmit="return confirm('Bạn có chắc chắn xóa bình luận này?')" style="display: inline-block">
+                                                            <button type="button" class="btn border-0 btn-sm" data-toggle="collapse" data-target="#<?= $item['username'] ?><?= $item['id'] ?>" aria-expanded="false" aria-controls="<?= $item['username'] ?><?= $item['id'] ?>">Sửa</button>
+                                                            <form action="/comments/<?= $item['id'] ?>" method="post" onsubmit="return confirm('Bạn có chắc chắn xóa bình luận này?')" style="display: inline-block">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
-                                                                <input type="hidden" name="product_id" value="<?= $data['product']['Product_ID']; ?>" id="">
-                                                                <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
+                                                                <input type="hidden" name="product_id" value="<?= $data['product']['id']; ?>" id="">
+                                                                <button type="submit" class="btn border-0 btn-sm">Xoá</button>
                                                             </form>
-                                                            <div class="collapse" id="<?= $item['Username'] ?><?= $item['id'] ?>">
+                                                            <div class="collapse" id="<?= $item['username'] ?><?= $item['id'] ?>">
                                                                 <div class="card card-body mt-5">
                                                                     <form action="/comments/<?= $item['id'] ?>" method="post">
                                                                         <input type="hidden" name="method" value="PUT" id="">
-                                                                        <input type="hidden" name="product_id" value="<?= $data['products']['id']; ?>" id="">
+                                                                        <input type="hidden" name="product_id" value="<?= $data['product']['id']; ?>" id="">
                                                                         <div class="form-group">
                                                                             <label for="">Bình luận</label>
-                                                                            <textarea class="form-control rounded-0" name="content" id="" rows="3" placeholder="Nhập bình luận..."><?= $item['Content'] ?></textarea>
+                                                                            <textarea class="form-control rounded-0" name="content" id="" rows="3" placeholder="Nhập bình luận..."><?= $item['content'] ?></textarea>
                                                                         </div>
                                                                         <div class="comment-footer">
                                                                             <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
@@ -206,9 +206,12 @@ class Detail extends BaseView
                                         <?php endif; ?>
                                     </div>
                                     <div class="col-md-6">
-                                        <form method="POST" action="/comments/add">
+                                        <form action="/comments" method="post">
+                                            <input type="hidden" name="method" value="POST" id="" required>
+                                            <input type="hidden" name="product_id" id="product_id" value="<?= $data['product']['id'] ?>" required>
+                                            <input type="hidden" name="user_id" id="user_id" value="<?= $_SESSION['user']['id'] ?>" required>
                                             <h4 class="mb-4">Thêm bình luận</h4>
-                                            <textarea name="comment" class="form-control" rows="5" required></textarea>
+                                            <textarea name="content" class="form-control" rows="5" required></textarea>
                                             <button type="submit" class="btn btn-primary mt-3">Đăng bình luận</button>
                                         </form>
                                     </div>
