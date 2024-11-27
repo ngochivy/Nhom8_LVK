@@ -229,3 +229,4 @@ class Detail extends BaseView
         }
     }
 }
+ob_end_flush();

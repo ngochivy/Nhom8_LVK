@@ -152,14 +152,12 @@ Route::delete('/admin/comments/{id}', 'App\Controllers\Admin\CommentController@d
 
 
 
+// cart
+Route::get('/cart', 'App\Controllers\Client\CartController@index');
+Route::post('/cart/add', 'App\Controllers\Client\CartController@add');
 
-// Cart routes
-Route::get('/cart', 'App\Controllers\Client\CartController@index'); // Hiển thị giỏ hàng
-Route::post('/cart/add', 'App\Controllers\Client\CartController@add'); // Thêm sản phẩm vào giỏ hàng
-Route::post('/cart/update', 'App\Controllers\Client\CartController@update'); // Cập nhật giỏ hàng
-Route::post('/cart/remove', 'App\Controllers\Client\CartController@remove'); // Xóa sản phẩm khỏi giỏ hàng
-Route::post('/cart/clear', 'App\Controllers\Client\CartController@clear'); // Xóa toàn bộ giỏ hàng
-
+Route::post('/cart/remove', 'App\Controllers\Client\CartController@remove');
+Route::post('/cart/update', 'App\Controllers\Client\CartController@update');
 
 
 
