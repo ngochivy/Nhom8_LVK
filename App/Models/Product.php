@@ -41,7 +41,7 @@ class Product extends BaseModel
     {
         try {
             $conn = $this->getConnection(); // Sử dụng getConnection
-            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE Price BETWEEN ? AND ?");
+            $stmt = $conn->prepare("SELECT * FROM {$this->table} WHERE price BETWEEN ? AND ?");
             $stmt->bind_param("ii", $minPrice, $maxPrice);
             $stmt->execute();
 
@@ -163,5 +163,36 @@ class Product extends BaseModel
         }
     }
 
-    
+    public function getVariantsByProduct($productId)
+    {
+        try {
+            $conn = $this->getConnection();
+
+            // Lấy danh sách biến thể
+            $stmt = $conn->prepare("
+    SELECT pv.id as variant_id, pv.name as variant_name, pvo.id as option_id, pvo.name as option_name, pvo.additional_price
+    FROM product_variants pv
+    JOIN product_variant_options pvo ON pv.id = pvo.product_variant_id
+    WHERE pv.product_id = ?
+");
+            $stmt->bind_param("i", $productId);
+            $stmt->execute();
+
+
+            $result = $stmt->get_result();
+            $variants = [];
+            while ($row = $result->fetch_assoc()) {
+                $variants[$row['variant_id']]['name'] = $row['variant_name'];
+                $variants[$row['variant_id']]['options'][] = [
+                    'id' => $row['option_id'],
+                    'name' => $row['option_name'],
+                    'price' => $row['additional_price'],
+                ];
+            }
+            return $variants;
+        } catch (\Throwable $th) {
+            error_log("Error in getVariantsByProduct(): " . $th->getMessage());
+            return [];
+        }
+    }
 }

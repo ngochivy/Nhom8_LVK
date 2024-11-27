@@ -75,44 +75,55 @@ class Detail extends BaseView
                             else :
                             ?>
                                 <h6></h6>
-                                <h3 class="font-weight-semi-bold mb-4"><?= number_format($data['product']['price']) ?> đ</h3>
+                                <!-- Giá cơ bản của sản phẩm -->
+                                <h3 id="base-price" data-base-price="<?= $data['product']['price'] ?>" class="font-weight-semi-bold mb-4"><?= number_format($data['product']['price']) ?> đ</h3>
+
+                                <!-- Giá sau khi chọn biến thể -->
+                                <h3 id="final-price" class="font-weight-semi-bold mb-4"><?= number_format($data['product']['price']) ?> đ</h3>
+
                             <?php
                             endif;
                             ?>
                         </div>
 
-                        <p class="mb-4" style="min-height:150px;"><?= $data['product']['description'] ?></p>
+                        <!-- Biến thể -->
+                        <?php foreach ($data['variants'] as $variant): ?>
+                            <div class="d-flex mb-4">
+                                <p class="text-dark font-weight-medium mb-0 mr-3"><?= htmlspecialchars($variant['name']) ?>:</p>
+                                <form>
+                                    <?php foreach ($variant['options'] as $option): ?>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="option-<?= $option['id'] ?>" name="variant-<?= $variant['name'] ?>" value="<?= $option['id'] ?>" data-price="<?= $option['price'] ?>">
+                                            <label class="custom-control-label" for="option-<?= $option['id'] ?>"><?= htmlspecialchars($option['name']) ?></label>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </form>
+                            </div>
+                        <?php endforeach; ?>
 
-                        <div class="d-flex mb-4">
-                            <p class="text-dark font-weight-medium mb-0 mr-3">Tính năng:</p>
-                            <form>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="color-1" name="color">
-                                    <label class="custom-control-label" for="color-1">A</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="color-2" name="color">
-                                    <label class="custom-control-label" for="color-2">B</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="color-3" name="color">
-                                    <label class="custom-control-label" for="color-3">C</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="color-4" name="color">
-                                    <label class="custom-control-label" for="color-4">D</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="color-5" name="color">
-                                    <label class="custom-control-label" for="color-5">E</label>
-                                </div>
-                            </form>
-                        </div>
+                        <script>
+                            // Cập nhật giá khi chọn biến thể
+                            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                                radio.addEventListener('change', function() {
+                                    let basePrice = parseFloat(document.getElementById('base-price').dataset.basePrice); // Lấy giá cơ bản
+                                    let additionalPrice = 0;
+
+                                    // Duyệt qua tất cả các lựa chọn đã chọn và cộng giá
+                                    document.querySelectorAll('input[type="radio"]:checked').forEach(selected => {
+                                        additionalPrice += parseFloat(selected.dataset.price || 0); // Lấy giá thêm từ thuộc tính data-price
+                                    });
+
+                                    // Cập nhật giá cuối cùng
+                                    document.getElementById('final-price').innerText = (basePrice + additionalPrice).toLocaleString('vi-VN') + ' đ';
+                                });
+                            });
+                        </script>
+
                         <div class="d-flex align-items-center mb-4 pt-2">
                             <form method="POST" action="/cart/add">
-                            <input type="hidden" name="product_id" value="123"> <!-- ID sản phẩm -->
-                            <input type="number" name="quantity" value="1" min="1">
-                            <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                                <input type="hidden" name="product_id" value="<?= $data['product']['id'] ?>"> <!-- ID sản phẩm -->
+                                <input type="number" name="quantity" value="1" min="1">
+                                <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
                             </form>
                         </div>
                         <div class="d-flex pt-2">
@@ -161,86 +172,32 @@ class Detail extends BaseView
                                                     <?php endif; ?>
                                                     <div class="media-body px-2">
                                                         <h5><?= htmlspecialchars($item['username']) ?><small> - <i><?= htmlspecialchars($item['created_at']) ?></i></small></h5>
-                                                        <p><?= htmlspecialchars($item['content']) ?></p>
-                                                        <?php
-                                                        if (isset($data) && $is_login && ($_SESSION['user']['id'] == $item['user_id'])):
-                                                        ?>
-                                                            <button type="button" class="btn btn-warning btn-sm" data-toggle="collapse" data-target="#<?= $item['username'] ?><?= $item['id'] ?>" aria-expanded="false" aria-controls="<?= $item['username'] ?><?= $item['id'] ?>">Sửa</button>
-                                                            <form action="/comments/<?= $item['id'] ?>" method="post" onsubmit="return confirm('Bạn có chắc chắn xóa bình luận này?')" style="display: inline-block">
-                                                                <input type="hidden" name="method" value="DELETE" id="">
-                                                                <input type="hidden" name="product_id" value="<?= $data['product']['id']; ?>" id="">
-                                                                <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
-                                                            </form>
-                                                            <div class="collapse" id="<?= $item['username'] ?><?= $item['id'] ?>">
-                                                                <div class="card card-body mt-5">
-                                                                    <form action="/comments/<?= $item['id'] ?>" method="post">
-                                                                        <input type="hidden" name="method" value="PUT" id="">
-                                                                        <input type="hidden" name="product_id" value="<?= $data['product']['id']; ?>" id="">
-                                                                        <div class="form-group">
-                                                                            <label for="">Bình luận</label>
-                                                                            <textarea class="form-control rounded-0" name="content" id="" rows="3" placeholder="Nhập bình luận..."><?= $item['content'] ?></textarea>
-                                                                        </div>
-                                                                        <div class="comment-footer">
-                                                                            <button type="submit" class="btn btn-primary btn-sm">Gửi</button>
-                                                                        </div>
-                                                                    </form>
-                                                                </div>
-                                                            </div>
-                                                        <?php endif; ?>
+                                                        <p><?= nl2br(htmlspecialchars($item['comment'])) ?></p>
                                                     </div>
                                                 </div>
                                             <?php endforeach; ?>
                                         <?php else : ?>
-                                            <h6 class="text-center text-danger">Chưa có bình luận</h6>
+                                            <p>Không có bình luận cho sản phẩm này.</p>
                                         <?php endif; ?>
                                     </div>
-                                    <!-- kiem tra dang nhap -->
-                                    <?php
-                                    if (isset($data) && $is_login):
-                                    ?>
-                                        <div class="col-md-6">
-                                            <h4 class="mb-4">Bình luận</h4>
-
-                                            <form action="/comments" method="post">
-                                                <input type="hidden" name="method" value="POST" id="" required>
-                                                <input type="hidden" name="product_id" id="product_id" value="<?= $data['product']['id'] ?>" required>
-                                                <input type="hidden" name="user_id" id="user_id" value="<?= $_SESSION['user']['id'] ?>" required>
-                                                <div class="form-group">
-                                                    <label for="content">Nội dung bình luận *</label>
-                                                    <textarea id="content" name="content" cols="30" rows="5" class="form-control"></textarea>
-                                                </div>
-                                                <div class="form-group mb-0">
-                                                    <input type="submit" value="Gửi bình luận" class="btn btn-primary px-3">
-                                                </div>
-                                            </form>
-                                        </div>
-
-                                    <?php
-                                    else:
-                                    ?>
-                                        <h5><a href="/login" class="text-danger text-decoration-none">*Đăng nhập để được phép bình luận</a></h5>
-
-                                    <?php
-                                    endif;
-                                    ?>
+                                    <div class="col-md-6">
+                                        <form method="POST" action="/comments/add">
+                                            <h4 class="mb-4">Thêm bình luận</h4>
+                                            <textarea name="comment" class="form-control" rows="5" required></textarea>
+                                            <button type="submit" class="btn btn-primary mt-3">Đăng bình luận</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
             <!-- Shop Detail End -->
 
-            <!-- Javascript Files -->
-            <script src="/public/assets/client/js/jquery-3.5.1.min.js"></script>
-            <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
-            <script src="/public/assets/client/js/main.js"></script>
+
 
 <?php
-        } else {
-            echo "<p>Không tìm thấy sản phẩm.</p>";
         }
     }
 }
-ob_end_flush();
