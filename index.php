@@ -113,22 +113,22 @@ Route::delete('/admin/products/{id}', 'App\Controllers\Admin\ProductController@d
 
 //  *** Blog
 // GET /Blog (lấy danh blog)
-Route::get('/admin/blog', 'App\Controllers\Admin\BlogController@index');
+Route::get('/admin/blogs', 'App\Controllers\Admin\BlogController@index');
 
 // GET /Product/create (hiển thị form thêm blog)
-Route::get('/admin/blog/create', 'App\Controllers\Admin\BlogController@create');
+Route::get('/admin/blogs/create', 'App\Controllers\Admin\BlogController@create');
 
 // POST /Product (tạo mới một blog)
-Route::post('/admin/blog', 'App\Controllers\Admin\BlogController@store');
+Route::post('/admin/blogs', 'App\Controllers\Admin\BlogController@store');
 
 // GET /Product/{id} (lấy chi tiết blog với id cu the)
-Route::get('/admin/blog/{id}', 'App\Controllers\Admin\BlogController@edit');
+Route::get('/admin/blogs/{id}', 'App\Controllers\Admin\BlogController@edit');
 
 // PUT /Product/{id} (update loại blog với id cụ thể)
-Route::put('/admin/blog/{id}', 'App\Controllers\Admin\BlogController@update');
+Route::put('/admin/blogs/{id}', 'App\Controllers\Admin\BlogController@update');
 
 // DELETE /Product/{id} (delete loại blog với id cụ thể)
-Route::delete('/admin/blog/{id}', 'App\Controllers\Admin\BlogController@delete');
+Route::delete('/admin/blogs/{id}', 'App\Controllers\Admin\BlogController@delete');
 
 
 

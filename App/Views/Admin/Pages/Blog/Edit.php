@@ -39,12 +39,12 @@ class Edit extends BaseView
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                <!-- Start Page Content -->
+                <!-- Start Page content -->
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/blogs/" method="POST" enctype="multipart/form-data">
+                            <form class="form-horizontal" action="/admin/blogs/<?= $data['id'] ?>" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Sửa bài viết</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
@@ -53,24 +53,25 @@ class Edit extends BaseView
                                         <img src="<?=APP_URL?>/public/uploads/blogs/" alt="" width="300px">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Blog_ID">ID</label>
-                                        <input type="text" class="form-control" id="Blog_ID" name="Blog_ID" disabled>
+                                        <label for="id">ID</label>
+                                        <input type="text" class="form-control" id="id" name="id" value="<?= $data['id'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Title">Title</label>
-                                        <input type="text" class="form-control" id="Title" name="Title">
+                                        <label for="title">Tiêu đề</label>
+                                        <input type="text" class="form-control" id="title" name="title" value="<?= $data['title']?>">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Content">Content</label>
-                                        <input type="text" class="form-control" id="Content" name="Content" >
+                                        <label for="content">Nội dung</label>
+                                        <textarea type="text" class="form-control" id="content" placeholder="Nhập nội dung bài viết..." name="content"><?= $data['content']?>  </textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="image">Hình ảnh</label>
+                                        <input type="file" class="form-control" id="image" value="<?= $data['image']?>" placeholder="..." name="image">
                                     </div>
                                     <div class="form-group">
-                                        <label for="Image">Hình ảnh</label>
-                                        <input type="text" class="form-control" id="Image" placeholder="..." name="Image">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="Author_ID">Author_ID</label>
-                                        <input type="text" class="form-control" id="Author_ID" placeholder="..." name="Author_ID">
+                                        <label for="author_id">Tác giả</label>
+                                        <input type="text" class="form-control" id="author_id" placeholder="..." name="author_id" value="<?= $data['author_id'] ?>">
                                     </div>
                                 </div>
                                 <div class="border-top">
@@ -87,7 +88,7 @@ class Edit extends BaseView
                 </div>
 
                 <!-- ============================================================== -->
-                <!-- End PAge Content -->
+                <!-- End PAge content -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Right sidebar -->

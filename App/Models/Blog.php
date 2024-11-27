@@ -8,6 +8,7 @@ class Blog extends BaseModel
     protected $id = 'id';
 
     public function getAllBlog()
+
     {
         return $this->getAll();
     }
@@ -50,9 +51,10 @@ class Blog extends BaseModel
             $stmt->execute();
             return $stmt->get_result()->fetch_assoc();
         } catch (\Throwable $th) {
-            error_log('Lỗi khi kiểm tra tên sản phẩm: ' . $th->getMessage());
+            error_log('Lỗi khi kiểm tra tên: ' . $th->getMessage());
             return $result;
         }
     }
 
+    
 }

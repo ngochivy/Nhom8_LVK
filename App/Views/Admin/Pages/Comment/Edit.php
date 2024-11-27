@@ -39,40 +39,40 @@ class Edit extends BaseView
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                <!-- Start Page Content -->
+                <!-- Start Page content -->
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <form class="form-horizontal" action="/admin/comments/<?= $data['Comment_ID'] ?>" method="POST">
+                            <form class="form-horizontal" action="/admin/comments/<?= $data['id'] ?>" method="POST">
                                 <div class="card-body">
                                     <h4 class="card-title">Sửa bình luận</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
                                     <div class="form-group">
-                                        <label for="Comment_ID">ID</label>
-                                        <input type="text" class="form-control" id="Comment_ID"  name="Comment_ID" value="<?= $data['Comment_ID'] ?>" disabled>
+                                        <label for="id">ID</label>
+                                        <input type="text" class="form-control" id="id"  name="id" value="<?= $data['id'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Content">Content</label><input type="text" class="form-control" id="Content"  name="Content" value="<?= $data['Content'] ?>" disabled>
+                                        <label for="content">content</label><input type="text" class="form-control" id="content"  name="content" value="<?= $data['content'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="User_ID">User_ID</label>
-                                        <input type="text" class="form-control" id="User_ID"  name="User_ID" value="<?= $data['User_ID'] ?>" disabled>
+                                        <label for="user_id">user_id</label>
+                                        <input type="text" class="form-control" id="user_id"  name="user_id" value="<?= $data['user_id'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Product_ID">Product_ID</label>
-                                        <textarea class="form-control" id="Product_ID"  name="Product_ID" rows="3" disabled><?= $data['Product_ID'] ?></textarea>
+                                        <label for="product_id">product_id</label>
+                                        <textarea class="form-control" id="product_id"  name="product_id" rows="3" disabled><?= $data['product_id'] ?></textarea>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Created_at">Created_at</label>
-                                        <input type="text" class="form-control" id="Created_at"  name="Created_at" value="<?= $data['Created_at'] ?>" disabled>
+                                        <label for="created_at">Created_at</label>
+                                        <input type="text" class="form-control" id="created_at"  name="created_at" value="<?= $data['created_at'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="Status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="Status" name="Status" value="<?= $data['Status'] ?>" required>
+                                        <label for="status">Trạng thái*</label>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" value="<?= $data['status'] ?>" required>
                                             <option value="" selected disabled>Vui lòng chọn...</option>
-                                            <option value="1" <?= ($data['Status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
-                                            <option value="0" <?= ($data['Status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
+                                            <option value="1" <?= ($data['status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
+                                            <option value="0" <?= ($data['status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
 
                                         </select>
                                     </div>
@@ -91,7 +91,7 @@ class Edit extends BaseView
                 </div>
 
                 <!-- ============================================================== -->
-                <!-- End PAge Content -->
+                <!-- End PAge content -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Right sidebar -->

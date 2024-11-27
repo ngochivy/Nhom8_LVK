@@ -4,11 +4,12 @@ namespace App\Views\Admin\Pages\Blog;
 
 use App\Views\BaseView;
 
-class index extends BaseView
+class Index extends BaseView
 {
     public static function render($data = null)
     {
 ?>
+
         <div class="page-wrapper">
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
@@ -54,8 +55,8 @@ class index extends BaseView
                                                     <th>Tiêu đề</th>
                                                     <th>Nội dung</th>
                                                     <th>Hình ảnh</th>
-                                                    <th>Tác giả</th>
-                                                    <th> <a href="/admin/blog/create" class="btn btn-success ">Thêm mới</a></th>
+                                                    <th>Tác giả_ID</th>
+                                                    <th> <a href="/admin/blogs/create" class="btn btn-success ">Thêm mới</a></th>
                                                 </tr>
                                                 </tr>
                                             </thead>
@@ -64,16 +65,21 @@ class index extends BaseView
                                                 foreach ($data as $item) :
                                                 ?>
                                                     <tr>
-                                                        <td><?= $item['Blog_ID'] ?></td>
-                                                        <td><?= $item['Title'] ?></td>
-                                                        <td><?= $item['Content'] ?></td>
+                                                        <td><?= $item['id'] ?></td>
+                                                        <td><?= $item['title'] ?></td>
                                                         <td>
-                                                            <img src="<?= APP_URL ?>/public/uploads/blogs/<?= $item['Image'] ?>" alt="" width="100px">
+                                                            <div class="text-truncate" style="max-width: 500px;" title="<?= htmlspecialchars($item['content']) ?>">
+                                                                <?= htmlspecialchars($item['content']) ?>
+                                                            </div>
                                                         </td>
-                                                        <td><?= $item['Author_ID'] ?></td>
+
                                                         <td>
-                                                            <a href="/admin/blog/<?= $item['Blog_ID'] ?>" class="btn btn-primary ">Sửa</a>
-                                                            <form action="/admin/blog/<?= $item['Blog_ID'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Bạn có chắc chắn sửa!?')">
+                                                            <img src="<?= APP_URL ?>/public/uploads/blogs/<?= $item['image'] ?>" alt="" width="100px">
+                                                        </td>
+                                                        <td><?= $item['author_id'] ?></td>
+                                                        <td>
+                                                            <a href="/admin/blogs/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <form action="/admin/blogs/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Bạn có chắc chắn sửa!?')">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
                                                                 <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>

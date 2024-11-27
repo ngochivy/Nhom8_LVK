@@ -4370,7 +4370,10 @@ input[type="button"].btn-block {
   display: flex;
   flex-direction: column;
   min-width: 0;
+  width: 100%;
+  margin: 0 auto;
   word-wrap: break-word;
+  /* height: 300px; */
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
@@ -4465,6 +4468,7 @@ input[type="button"].btn-block {
 .card-img-bottom {
   flex-shrink: 0;
   width: 100%;
+  height: 800px;
 }
 
 .card-deck .card {
@@ -9671,3 +9675,5 @@ a.text-dark:hover, a.text-dark:focus {
     margin-right: 0;
   }
 }
+
+

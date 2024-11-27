@@ -9,7 +9,7 @@ use App\Views\Client\Home;
 use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Page\About;
 use App\Views\Client\Pages\Page\Contact;
-use App\Views\Client\Pages\Page\Blog;
+use App\Views\Client\Pages\Blog\Index;
 use App\Views\Client\Pages\Page\Emblog;
 use App\Views\Client\Pages\Page\Cart;
 use App\Views\Client\Pages\Page\Checkout;
@@ -63,7 +63,7 @@ class HomeController
     public static function blog()
     {
         Header::render();
-        Blog::render();
+        Index::render();
         Footer::render();
     }
     public static function emblog()

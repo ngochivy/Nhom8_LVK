@@ -1,9 +1,14 @@
 
 
 .container {
-display: flex;
-max-width: 1200px;
-margin: 20px auto;
+    margin: 0 auto;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    min-height: 100vh; /* Đảm bảo toàn bộ chiều cao màn hình */
+    text-align: center;
 }
 
 .left-column, .right-column {
@@ -28,6 +33,7 @@ color: #333;
 
 .post {
 margin-bottom: 20px;
+text-align: center;
 }
 
 .post img {
@@ -69,8 +75,46 @@ border-radius: 5px;
 font-size: 16px;
 }
 .btn-primary {
-    color: #212529;
+    color: #ffffff;
     background-color: #D19C97;
     border-color: #D19C97;
-    margin-left: 300px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+
+h2{
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.post-date{
+    color: #888;
+    margin-top: 10px;
+    font-size: 14px;
+    text-align:right;
+}
+
+h5{
+    color: #333;
+    margin-top: 20px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* Đảm bảo khung giữ nguyên kích thước, nội dung sẽ bị cắt hoặc xuống dòng */
+.table td {
+    white-space: nowrap; /* Không xuống dòng */
+    overflow: hidden; /* Ẩn nội dung vượt quá */
+    text-overflow: ellipsis; /* Hiển thị "..." nếu nội dung bị cắt */
+    max-width: 150px; /* Đặt chiều rộng tối đa phù hợp */
+}
+
+/* Áp dụng cho toàn bộ form */
+.table-responsive {
+    max-width: 100%; /* Giữ kích thước form không vượt quá bố cục */
+    overflow-x: auto; /* Thêm cuộn ngang nếu cần */
 }

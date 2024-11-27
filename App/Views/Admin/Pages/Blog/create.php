@@ -4,11 +4,11 @@ namespace App\Views\Admin\Pages\Blog;
 
 use App\Views\BaseView;
 
-class create extends BaseView
+class Create extends BaseView
 {
     public static function render($data = null)
     {
-        
+
 ?>
 
         <!-- Page wrapper  -->
@@ -40,33 +40,33 @@ class create extends BaseView
             <!-- ============================================================== -->
             <div class="container-fluid">
                 <!-- ============================================================== -->
-                <!-- Start Page Content -->
+                <!-- Start Page content -->
                 <!-- ============================================================== -->
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                        <form class="form-horizontal fixed-form" action="/admin/blogs" method="POST" enctype="multipart/form-data">
+                            <form class="form-horizontal fixed-form" action="/admin/blogs" method="POST" enctype="multipart/form-data">
                                 <div class="card-body">
                                     <h4 class="card-title">Thêm bài viết</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
-                                        <label for="Title">Tên</label>
-                                        <input type="text" class="form-control" id="Title" placeholder="Nhập tên bài viết..." name="Title">
+                                        <label for="title">Tên</label>
+                                        <input type="text" class="form-control" id="title" placeholder="Nhập tên bài viết..." name="title">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Content">Nội dung</label>
-<textarea type="text" class="form-control" id="Content" placeholder="Nhập nội dung bài viết..." name="Content"></textarea>
+                                        <label for="content">Nội dung</label>
+                                        <textarea type="text" class="form-control" id="content" placeholder="Nhập nội dung bài viết..." name="content"></textarea>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Image">Hình ảnh</label>
-                                        <input type="file" class="form-control" id="Image" placeholder="chọn hình ảnh..." name="Image">
+                                        <input type="file" class="form-control" id="Image" placeholder="chọn hình ảnh..." name="image">
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="Author_ID">Tác giả</label>
-                                        <input type="text" class="form-control" id="Author_ID" placeholder="Nhập tên tác giả" name="Author_ID">
+                                        <label for="author_id">Tác giả</label>
+                                        <input type="text" class="form-control" id="author_id" placeholder="Nhập tên tác giả" name="author_id">
                                     </div>
                                 </div>
                                 <div class="border-top">
@@ -83,7 +83,7 @@ class create extends BaseView
                 </div>
 
                 <!-- ============================================================== -->
-                <!-- End PAge Content -->
+                <!-- End PAge content -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Right sidebar -->
