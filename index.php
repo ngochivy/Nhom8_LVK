@@ -85,9 +85,6 @@ Route::delete('/admin/categories/{id}', 'App\Controllers\Admin\CategoryControlle
 
 
 
-
-
-
 //  *** Product
 // GET /Product (lấy danh sách loại sản phẩm)
 Route::get('/admin/products', 'App\Controllers\Admin\ProductController@index');

@@ -104,8 +104,16 @@ class Route
             $controllerMethod = $controllerInstance->$method($id);
         }
         // không khớp với route đã định nghĩa
-        else {
-            echo 'not found';
+        $route = $_SERVER['REQUEST_URI']; // Lấy URL yêu cầu
+
+        // Route cho trang liên hệ (GET)
+        if ($route == '/contact' && $_SERVER['REQUEST_METHOD'] == 'GET') {
+            \App\Controllers\Client\ContactController::index(); // Hiển thị trang liên hệ
+        }
+
+        // Route cho gửi email (POST)
+        if ($route == '/contact/send-email' && $_SERVER['REQUEST_METHOD'] == 'POST') {
+            \App\Controllers\Client\ContactController::sendEmail(); // Xử lý gửi email
         }
     }
 }
