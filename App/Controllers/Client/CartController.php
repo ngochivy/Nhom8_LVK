@@ -60,7 +60,7 @@ class CartController
         } else {
 
             $cart[$productId] = [
-                'id' => $product['product_id'],
+                'id' => $product['id'],
                 'name' => $product['name'],
                 'image' => $product['image'],
                 'price' => $product['price'],
