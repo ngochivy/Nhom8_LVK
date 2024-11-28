@@ -33,7 +33,11 @@ class Detail extends BaseView
 
             <!-- Customized Bootstrap Stylesheet -->
             <link href="/public/assets/client/css/style.css" rel="stylesheet">
+            <style>
 
+
+
+            </style>
 
             <!-- Page Header Start -->
             <div class="container-fluid bg-secondary mb-5">
@@ -118,12 +122,16 @@ class Detail extends BaseView
                                 });
                             });
                         </script>
-
-                        <div class="d-flex align-items-center mb-4 pt-2">
-                            <form method="POST" action="/cart/add">
-                                <input type="hidden" name="product_id" value="<?= $data['product']['id'] ?>"> <!-- ID sản phẩm -->
-                                <input type="number" name="quantity" value="1" min="1">
-                                <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                        <div class="number" >
+                            <span class="minus">-</span>
+                            <input type="text" value="1" />
+                            <span class="plus">+</span>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center bg-light border">
+                            <form action="/cart/add" method="post">
+                                <input type="hidden" name="method" id="" value="POST">
+                                <input type="hidden" name="id" id="" value="<?= $data['product']['id'] ?>" required>
+                                <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng</button>
                             </form>
                         </div>
                         <div class="d-flex pt-2">
