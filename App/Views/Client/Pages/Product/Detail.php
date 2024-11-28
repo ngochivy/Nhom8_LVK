@@ -144,9 +144,11 @@ class Detail extends BaseView
                                         <button class="btn btn-primary plus" type="button">+</button>
                                     </div>
                                 </div>
-
-                                <!-- Nút thêm vào giỏ hàng -->
-                                <button type="submit" class="btn btn-primary" style="width:290px; margin-left:-50px;"><i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng</button>
+                            </div>
+                            <form method="POST" action="/cart/add">
+                            <input type="hidden" name="product_id" value="123"> <!-- ID sản phẩm -->
+                            <input type="number" name="quantity" value="1" min="1">
+                            <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
                             </form>
                         </div>
 
@@ -217,14 +219,14 @@ class Detail extends BaseView
                                                             <button type="button" class="btn border-0 btn-sm" data-toggle="collapse" data-target="#<?= $item['username'] ?><?= $item['id'] ?>" aria-expanded="false" aria-controls="<?= $item['username'] ?><?= $item['id'] ?>">Sửa</button>
                                                             <form action="/comments/<?= $item['id'] ?>" method="post" onsubmit="return confirm('Bạn có chắc chắn xóa bình luận này?')" style="display: inline-block">
                                                                 <input type="hidden" name="method" value="DELETE" id="">
-                                                                <input type="hidden" name="product_id" value="<?= $data['product']['id']; ?>" id="">
-                                                                <button type="submit" class="btn border-0 btn-sm">Xoá</button>
+                                                                <input type="hidden" name="product_id" value="<?= $data['product']['Product_ID']; ?>" id="">
+                                                                <button type="submit" class="btn btn-danger btn-sm">Xoá</button>
                                                             </form>
                                                             <div class="collapse" id="<?= $item['username'] ?><?= $item['id'] ?>">
                                                                 <div class="card card-body mt-5">
                                                                     <form action="/comments/<?= $item['id'] ?>" method="post">
                                                                         <input type="hidden" name="method" value="PUT" id="">
-                                                                        <input type="hidden" name="product_id" value="<?= $data['product']['id']; ?>" id="">
+                                                                        <input type="hidden" name="product_id" value="<?= $data['products']['id']; ?>" id="">
                                                                         <div class="form-group">
                                                                             <label for="">Bình luận</label>
                                                                             <textarea class="form-control rounded-0" name="content" id="" rows="3" placeholder="Nhập bình luận..."><?= $item['content'] ?></textarea>
