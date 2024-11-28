@@ -34,9 +34,37 @@ class Detail extends BaseView
             <!-- Customized Bootstrap Stylesheet -->
             <link href="/public/assets/client/css/style.css" rel="stylesheet">
             <style>
+                span {
+                    cursor: pointer;
+                }
 
+                .number {
+                    margin: 100px;
+                }
 
+                .minus,
+                .plus {
+                    width: 20px;
+                    height: 20px;
+                    background: #f2f2f2;
+                    border-radius: 4px;
+                    padding: 8px 5px 8px 5px;
+                    border: 1px solid #ddd;
+                    display: inline-block;
+                    vertical-align: middle;
+                    text-align: center;
+                }
 
+                input {
+                    height: 34px;
+                    width: 100px;
+                    text-align: center;
+                    font-size: 26px;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    display: inline-block;
+                    vertical-align: middle;
+                }
             </style>
 
             <!-- Page Header Start -->
@@ -122,12 +150,14 @@ class Detail extends BaseView
                                 });
                             });
                         </script>
-                        <div class="number" >
+
+
+                        <div class="card-footer d-flex justify-content-center bg-light border">
+                        <div class="number">
                             <span class="minus">-</span>
                             <input type="text" value="1" />
                             <span class="plus">+</span>
                         </div>
-                        <div class="card-footer d-flex justify-content-center bg-light border">
                             <form action="/cart/add" method="post">
                                 <input type="hidden" name="method" id="" value="POST">
                                 <input type="hidden" name="id" id="" value="<?= $data['product']['id'] ?>" required>
@@ -230,8 +260,25 @@ class Detail extends BaseView
                 </div>
             </div>
             <!-- Shop Detail End -->
-
-
+<script>
+    $(document).ready(function() {
+			$('.minus').click(function () {
+				var $input = $(this).parent().find('input');
+				var count = parseInt($input.val()) - 1;
+				count = count < 1 ? 1 : count;
+				$input.val(count);
+				$input.change();
+				return false;
+			});
+			$('.plus').click(function () {
+				var $input = $(this).parent().find('input');
+				$input.val(parseInt($input.val()) + 1);
+				$input.change();
+				return false;
+			});
+		});
+</script>
+            
 
 <?php
         }
