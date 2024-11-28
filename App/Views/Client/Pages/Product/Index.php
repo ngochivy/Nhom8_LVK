@@ -151,11 +151,11 @@ class Index extends BaseView
                                                             <?php endif; ?>
                                                         </div>
                                                     </div>
-                                                    <div  class="d-flex align-items-center mb-4 pt-2">
+                                                    <div class="d-flex justify-content-center bg-light border mb-4 pt-2">
                                                         <form action="/cart/add" method="post">
                                                             <input type="hidden" name="method" id="" value="POST">
                                                             <input type="hidden" name="id" id="" value="<?= $item['id'] ?>" required>
-                                                            <button  type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                                                            <button type="submit" class="btn btn-sm border-0 text-dark py-1"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</button>
                                                         </form>
                                                     </div>
                                                 </div>

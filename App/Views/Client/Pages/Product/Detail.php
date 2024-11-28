@@ -34,37 +34,6 @@ class Detail extends BaseView
             <!-- Customized Bootstrap Stylesheet -->
             <link href="/public/assets/client/css/style.css" rel="stylesheet">
             <style>
-                span {
-                    cursor: pointer;
-                }
-
-                .number {
-                    margin: 100px;
-                }
-
-                .minus,
-                .plus {
-                    width: 20px;
-                    height: 20px;
-                    background: #f2f2f2;
-                    border-radius: 4px;
-                    padding: 8px 5px 8px 5px;
-                    border: 1px solid #ddd;
-                    display: inline-block;
-                    vertical-align: middle;
-                    text-align: center;
-                }
-
-                input {
-                    height: 34px;
-                    width: 100px;
-                    text-align: center;
-                    font-size: 26px;
-                    border: 1px solid #ddd;
-                    border-radius: 4px;
-                    display: inline-block;
-                    vertical-align: middle;
-                }
             </style>
 
             <!-- Page Header Start -->
@@ -152,35 +121,66 @@ class Detail extends BaseView
                         </script>
 
 
-                        <div class="card-footer d-flex justify-content-center bg-light border">
-                        <div class="number">
-                            <span class="minus">-</span>
-                            <input type="text" value="1" />
-                            <span class="plus">+</span>
-                        </div>
-                            <form action="/cart/add" method="post">
-                                <input type="hidden" name="method" id="" value="POST">
-                                <input type="hidden" name="id" id="" value="<?= $data['product']['id'] ?>" required>
-                                <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng</button>
+                        <div class="card-footer d-flex justify-content-between bg-light align-items-center">
+                            <form action="/cart/add" method="post" class="d-flex align-items-center">
+                                <input type="hidden" name="method" value="POST">
+                                <input type="hidden" name="id" value="<?= $data['product']['id'] ?>" required>
+
+                                <!-- Lưu các biến thể đã chọn -->
+                                <input type="hidden" name="variants" id="selected-variants">
+
+                                <!-- Input số lượng -->
+                                <div class="input-group mr-3" style="max-width: 200px;">
+                                    <!-- Nút giảm số lượng -->
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-primary minus" type="button">-</button>
+                                    </div>
+
+                                    <!-- Input số lượng -->
+                                    <input type="number" name="quantity" value="1" min="1" class="form-control text-center" aria-label="Quantity" style="max-width: 60px;">
+
+                                    <!-- Nút tăng số lượng -->
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary plus" type="button">+</button>
+                                    </div>
+                                </div>
+
+                                <!-- Nút thêm vào giỏ hàng -->
+                                <button type="submit" class="btn btn-primary" style="width:290px; margin-left:-50px;"><i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng</button>
                             </form>
                         </div>
-                        <div class="d-flex pt-2">
-                            <p class="text-dark font-weight-bold mb-0 mr-2" style="font-family:montserrat;">Chia sẻ:</p>
-                            <div class="d-inline-flex">
-                                <a class="text-dark px-2" href="">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a class="text-dark px-2" href="">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a class="text-dark px-2" href="">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                                <a class="text-dark px-2" href="">
-                                    <i class="fab fa-pinterest"></i>
-                                </a>
-                            </div>
-                        </div>
+
+                        <script>
+                            // Thêm sự kiện cho nút tăng giảm số lượng
+                            document.querySelector('.plus').addEventListener('click', function() {
+                                let quantityInput = document.querySelector('input[name="quantity"]');
+                                quantityInput.value = parseInt(quantityInput.value) + 1;
+                            });
+
+                            document.querySelector('.minus').addEventListener('click', function() {
+                                let quantityInput = document.querySelector('input[name="quantity"]');
+                                if (quantityInput.value > 1) {
+                                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                                }
+                            });
+
+                            // Cập nhật các biến thể đã chọn
+                            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                                radio.addEventListener('change', function() {
+                                    let selectedVariants = [];
+                                    document.querySelectorAll('input[type="radio"]:checked').forEach(selected => {
+                                        selectedVariants.push({
+                                            variantId: selected.name.split('-')[1],
+                                            optionId: selected.value
+                                        });
+                                    });
+
+                                    // Lưu thông tin biến thể vào hidden input
+                                    document.getElementById('selected-variants').value = JSON.stringify(selectedVariants);
+                                });
+                            });
+                        </script>
+
                     </div>
 
                 </div>
@@ -260,24 +260,6 @@ class Detail extends BaseView
                 </div>
             </div>
             <!-- Shop Detail End -->
-<script>
-    $(document).ready(function() {
-			$('.minus').click(function () {
-				var $input = $(this).parent().find('input');
-				var count = parseInt($input.val()) - 1;
-				count = count < 1 ? 1 : count;
-				$input.val(count);
-				$input.change();
-				return false;
-			});
-			$('.plus').click(function () {
-				var $input = $(this).parent().find('input');
-				$input.val(parseInt($input.val()) + 1);
-				$input.change();
-				return false;
-			});
-		});
-</script>
             
 
 <?php
