@@ -84,7 +84,7 @@ class Footer extends BaseView
         </div>
         <!-- Footer End -->
 
-
+        <script src="//code.tidio.co/rnsskxxqiup0okczkpjjs7znonzqrzmf.js" async></script>
         <!-- Back to Top -->
         <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
 

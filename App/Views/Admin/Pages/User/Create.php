@@ -82,7 +82,7 @@ class Create extends BaseView
                                         <input type="file" class="form-control" id="image" placeholder="Chọn ảnh đại điện..." name="image" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="role">Trạng thái*</label>
+                                        <label for="role">Vai trò*</label>
                                         <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="role" name="role">
                                             <option value="" selected disabled>Vui lòng chọn...</option>
                                             <option value="1">Admin</option>

@@ -180,7 +180,7 @@ class Home extends BaseView
 
 
 
-            <script src="https://uhchat.net/code.php?f=e06ad1"></script>
+            <!-- <script src="https://uhchat.net/code.php?f=e06ad1"></script> -->
             <script>
                 // Countdown Timer Script
                 function startCountdown(durationInSeconds) {
@@ -378,7 +378,7 @@ class Home extends BaseView
 
 
 
-
+            <!-- <script src="//code.tidio.co/rnsskxxqiup0okczkpjjs7znonzqrzmf.js" async></script> -->
             <!-- jQuery -->
             <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
