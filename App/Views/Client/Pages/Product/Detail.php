@@ -201,6 +201,9 @@ class Detail extends BaseView
                                     <?= nl2br(htmlspecialchars($data['product']['description'] ?? 'Mô tả sản phẩm đang được cập nhật.')); ?>
                                 </p>
 
+                                <p><?= $data['product']['description'] ?></p>
+                                <h5 class="my-3">Hướng dẫn sử dụng</h5>
+                                <p><?= $data['product']['user_manual'] ?></p>
                             </div>
                             <div class="tab-pane fade" id="tab-pane-2">
                                 <div class="row">
