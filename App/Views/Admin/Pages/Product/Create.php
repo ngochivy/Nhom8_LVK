@@ -73,7 +73,7 @@ class Create extends BaseView
                                     </div>
                                     <div class="form-group">
                                         <label for="user_manual">Hướng dẫn*</label>
-                                        <input type="text" class="form-control" id="user_manual" placeholder="Nhập tên sản phẩm..." name="user_manual">
+                                        <textarea class="form-control" id="user_manual" placeholder="Nhập tên sản phẩm..." name="user_manual"></textarea>
                                     </div>
 
                                     <div class="form-group">

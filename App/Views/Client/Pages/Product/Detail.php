@@ -214,10 +214,12 @@ class Detail extends BaseView
                             <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Bình luận</a>
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tab-pane-1">
+                            <div class="tab-pane fade show active" id="tab-pane-1" >
                                 <!-- Mô tả sản phẩm từ database -->
                                 <h4 class="mb-3" style="font-family:roboto;"><?= htmlspecialchars($data['product']['name']); ?></h4>
-                                <p><?= nl2br(htmlspecialchars($data['product']['description'])); ?></p>
+                                <p><?= $data['product']['description'] ?></p>
+                                <h5 class="my-3">Hướng dẫn sử dụng</h5>
+                                <p><?= $data['product']['user_manual'] ?></p>
                             </div>
                             <div class="tab-pane fade" id="tab-pane-2">
                                 <div class="row">
