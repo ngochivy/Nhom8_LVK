@@ -91,6 +91,10 @@ class Edit extends BaseView
                                         <textarea class="form-control" id="description" placeholder="Nhập mô tả..." name="description" rows="6"><?= $data['product']['description'] ?></textarea>
                                     </div>
                                     <div class="form-group">
+                                        <label for="short_description"> Mô tả ngắn</label>
+                                        <textarea class="form-control" id="short_description" placeholder="Nhập mô tả ngắn..." name="short_description" rows="6"><?= $data['product']['short_description'] ?></textarea>
+                                    </div>
+                                    <div class="form-group">
                                         <label for="category_id">Loại sản phẩm</label>
                                         <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="category_id" name="category_id">
                                             <option value="" selected disabled>vui lòng chọn...</option>

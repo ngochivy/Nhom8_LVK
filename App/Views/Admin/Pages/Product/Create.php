@@ -77,8 +77,12 @@ class Create extends BaseView
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="description"> Mô tả</label>
+                                        <label for="description">Mô tả</label>
                                         <textarea class="form-control" id="description" placeholder="Nhập mô tả..." name="description"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="short_description">Mô tả ngắn</label>
+                                        <textarea class="form-control" id="short_description" placeholder="Nhập mô tả ngắn..." name="short_description"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <label for="category_id">Loại sản phẩm</label>
