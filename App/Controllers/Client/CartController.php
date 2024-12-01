@@ -76,11 +76,10 @@ class CartController
         exit();
     }
 
-    public static function remove()
+    public static function remove($id)
     {
         // Lấy ID của sản phẩm từ POST
-        $productId = $_POST['id'] ?? null;
-
+        $productId = $id;
         // Nếu không có ID, chuyển hướng về giỏ hàng
         if (!$productId) {
             header('Location: /cart');
@@ -92,7 +91,7 @@ class CartController
 
         // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
         if (isset($cart[$productId])) {
-unset($cart[$productId]);  // Xóa sản phẩm khỏi giỏ hàng
+        unset($cart[$productId]);  // Xóa sản phẩm khỏi giỏ hàng
         }
 
         // Cập nhật lại cookie với giỏ hàng đã sửa đổi

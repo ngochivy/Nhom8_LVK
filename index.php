@@ -23,11 +23,15 @@ AuthHelper::middleware();
 Route::get('/', 'App\Controllers\Client\HomeController@index');
 Route::get('/products', 'App\Controllers\Client\ProductController@index');
 Route::get('/about', 'App\Controllers\Client\HomeController@about');
-Route::get('/contact', 'App\Controllers\Client\HomeController@contact');
+Route::get('/contact', 'App\Controllers\Client\ContactController@contact');
+Route::post('/contact', 'App\Controllers\Client\ContactController@sendEmail');
+
+
+
 Route::get('/blog', 'App\Controllers\Client\HomeController@blog');
 Route::get('/emblog', 'App\Controllers\Client\HomeController@emblog');
 Route::get('/cart', 'App\Controllers\Client\HomeController@cart');
-Route::get('/checkout', 'App\Controllers\Client\HomeController@checkout');
+Route::post('/checkout', 'App\Controllers\Client\PayController@checkout');
 Route::get('/products/{id}', 'App\Controllers\Client\ProductController@detail');
 Route::get('/login', 'App\Controllers\Client\HomeController@login');
 
@@ -157,7 +161,7 @@ Route::delete('/admin/comments/{id}', 'App\Controllers\Admin\CommentController@d
 Route::get('/cart', 'App\Controllers\Client\CartController@index');
 Route::post('/cart/add', 'App\Controllers\Client\CartController@add');
 
-Route::post('/cart/remove', 'App\Controllers\Client\CartController@remove');
+Route::get('/cart/remove/{id}', 'App\Controllers\Client\CartController@remove');
 Route::post('/cart/update', 'App\Controllers\Client\CartController@update');
 
 
@@ -183,5 +187,10 @@ Route::put('/admin/users/{id}', 'App\Controllers\Admin\UserController@update');
 // DELETE /users/{id} (delete  người dùng với id cụ thể)
 Route::delete('/admin/users/{id}', 'App\Controllers\Admin\UserController@delete');
 
+Route::post('/pay', 'App\Controllers\Client\PayController@pay');
+Route::post('/vnpay', 'App\Controllers\Client\PayController@vnpay');
+Route::get('/returnPayment', 'App\Controllers\Client\PayController@returnPayment');
 
 Route::dispatch($_SERVER['REQUEST_URI']);
+
+//  Thanh toán

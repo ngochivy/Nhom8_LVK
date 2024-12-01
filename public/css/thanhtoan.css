@@ -1,0 +1,109 @@
+/* Tổng quan */
+.container {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+h4 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+h5 {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 8px;
+}
+
+input[type="text"], input[type="radio"], input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+/* Tùy chỉnh các radio buttons */
+input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+input[type="radio"]:checked {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Chọn ngôn ngữ */
+input[type="radio"] + label {
+    display: inline-block;
+    margin-right: 15px;
+    font-size: 16px;
+    color: #555;
+}
+
+input[type="radio"]:checked + label {
+    font-weight: bold;
+    color: #007bff;
+}
+
+/* Button */
+button[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+button[type="submit"]:active {
+    background-color: #003d7a;
+}
+
+/* Table responsive */
+.table-responsive {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+p {
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+}

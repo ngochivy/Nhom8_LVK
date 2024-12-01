@@ -36,6 +36,7 @@ class Detail extends BaseView
             <style>
             </style>
 
+
             <!-- Page Header Start -->
             <div class="container-fluid bg-secondary mb-5">
                 <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
@@ -50,9 +51,8 @@ class Detail extends BaseView
             <!-- Page Header End -->
 
             <!-- Shop Detail Start -->
-            <div class="container-fluid py-5">
-                <div class="row px-xl-5">
-
+            <div class="container product-details">
+                <div class="row">
                     <div class="col-lg-5 pb-5">
                         <div id="product-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner border">
@@ -143,33 +143,13 @@ class Detail extends BaseView
                             });
                         </script>
 
+                     
 
-                        <div class="card-footer d-flex justify-content-between bg-light align-items-center" style="margin-top:150px;">
-                            <form action="/cart/add" method="post" class="d-flex align-items-center">
-                                <input type="hidden" name="method" value="POST">
-                                <input type="hidden" name="id" value="<?= $data['product']['id'] ?>" required>
-
-                                <!-- Lưu các biến thể đã chọn -->
-                                <input type="hidden" name="variants" id="selected-variants">
-
-                                <!-- Input số lượng -->
-                                <div class="input-group mr-3" style="max-width: 200px;">
-                                    <!-- Nút giảm số lượng -->
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-primary minus" type="button">-</button>
-                                    </div>
-
-                                    <!-- Input số lượng -->
-                                    <input type="number" name="quantity" value="1" min="1" class="form-control text-center" aria-label="Quantity" style="max-width: 60px;">
-
-                                    <!-- Nút tăng số lượng -->
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary plus" type="button">+</button>
-                                    </div>
-                                </div>
-
-                                <!-- Nút thêm vào giỏ hàng -->
-                                <button type="submit" class="btn btn-primary" style="width:290px; margin-left:-50px;"><i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng</button>
+                        <div class="d-flex align-items-center mb-4 pt-2">
+                            <form method="POST" action="/cart/add">
+                                <input type="hidden" name="product_id" value="<?= $data['product']['id'] ?>"> <!-- ID sản phẩm -->
+                                <input type="number" name="quantity" value="1" min="1">
+                                <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
                             </form>
                         </div>
 
@@ -217,9 +197,10 @@ class Detail extends BaseView
                             <div class="tab-pane fade show active" id="tab-pane-1" >
                                 <!-- Mô tả sản phẩm từ database -->
                                 <h4 class="mb-3" style="font-family:roboto;"><?= htmlspecialchars($data['product']['name']); ?></h4>
-                                <p><?= $data['product']['description'] ?></p>
-                                <h5 class="my-3">Hướng dẫn sử dụng</h5>
-                                <p><?= $data['product']['user_manual'] ?></p>
+                                <p>
+                                    <?= nl2br(htmlspecialchars($data['product']['description'] ?? 'Mô tả sản phẩm đang được cập nhật.')); ?>
+                                </p>
+
                             </div>
                             <div class="tab-pane fade" id="tab-pane-2">
                                 <div class="row">

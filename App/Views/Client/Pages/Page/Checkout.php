@@ -8,7 +8,7 @@ class Checkout extends BaseView
 {
     public static function render($data = null)
     {
-
+        // var_dump($data);
 ?>
         <!-- Favicon -->
         <link rel="icon" href="/favicon.png" />
@@ -27,146 +27,181 @@ class Checkout extends BaseView
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="/public/assets/client/css/style.css" rel="stylesheet">
         <link href="/public/assets/client/css/style.min.css" rel="stylesheet">
+        <link href="/public//css//chechkout.css" rel="stylesheet">
+
 
         <body>
             <div class="container-xxl bg-white p-0">
 
-                <!-- Tiêu đề Trang Bắt đầu -->
-                <div class="container bg-secondary mb-5" style="min-width: 100%;">
-                    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-                        <h1 class="font-weight-semi-bold text-uppercase mb-3">Thanh toán</h1>
-                        <div class="d-inline-flex">
-                            <p class="m-0"><a href="">Trang chủ</a></p>
-                            <p class="m-0 px-2">-</p>
-                            <p class="m-0">Thanh toán</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Tiêu đề Trang Kết thúc -->
+                <div class="container-xxl bg-white p-0">
 
-                <!-- Thanh toán Bắt đầu -->
-                <div class="container-fluid pt-5">
-                    <div class="row px-xl-5">
-                        <div class="col-lg-8">
-                            <div class="mb-4">
-                                <h4 class="font-weight-semi-bold mb-4">Địa chỉ thanh toán</h4>
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        <label>Họ</label>
-                                        <input class="form-control" type="text" placeholder="Nguyễn">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Tên</label>
-                                        <input class="form-control" type="text" placeholder="Văn A">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Email</label>
-                                        <input class="form-control" type="text" placeholder="example@email.com">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Số điện thoại</label>
-                                        <input class="form-control" type="text" placeholder="+84 123 456 789">
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Tỉnh/Thành phố</label>
-                                        <select id="province" class="form-control">
-                                            <option value="">Chọn tỉnh</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Huyện/Quận</label>
-                                        <select id="district" class="form-control">
-                                            <option value="">Chọn huyện</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        <label>Phường/Xã</label>
-                                        <select id="ward" class="form-control">
-                                            <option value="">Chọn phường</option>
-                                        </select>
-                                    </div>
-
-
-                                    <div class="col-md-6 form-group">
-                                        <label>Địa chỉ chi tiết</label>
-                                        <input class="form-control" type="text" placeholder="">
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="card border-secondary mb-5">
-                                <div class="card-header bg-secondary border-0">
-                                    <h4 class="font-weight-semi-bold m-0">Tổng đơn hàng</h4>
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="font-weight-medium mb-3">Sản phẩm</h5>
-                                    <div class="d-flex justify-content-between">
-                                        <p>Bàn chải điện Xiaomi</p>
-                                        <p>280,000đ</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <p>Bếp lẩu nướng đa năng</p>
-                                        <p>950,000đ</p>
-                                    </div>
-                                    <div class="row d-flex justify-content-between">
-                                        <p class="col-6">Chuông cửa thông minh Xiaomi</p>
-                                        <p class="col-4" style="text-align:right;">1,100,000đ</p>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <p>Bộ sạc 5 cổng USB</p>
-                                        <p>270,000đ</p>
-                                    </div>
-                                    <hr class="mt-0">
-                                    <div class="d-flex justify-content-between mb-3 pt-1">
-                                        <h6 class="font-weight-medium">Tạm tính</h6>
-                                        <h6 class="font-weight-medium">2,600,000 đ</h6>
-                                    </div>
-                                    <div class="d-flex justify-content-between">
-                                        <h6 class="font-weight-medium">Phí vận chuyển</h6>
-                                        <h6 class="font-weight-medium">0 đ</h6>
-                                    </div>
-                                </div>
-                                <div class="card-footer border-secondary bg-transparent">
-                                    <div class="d-flex justify-content-between mt-2">
-                                        <h5 class="font-weight-bold">Tổng cộng</h5>
-                                        <h5 class="font-weight-bold">2,600,000 đ</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card border-secondary mb-5">
-                                <div class="card-header bg-secondary border-0">
-                                    <h4 class="font-weight-semi-bold m-0">Thanh toán</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" name="payment" id="paypal">
-                                            <label class="custom-control-label" for="paypal">Ví điện tử (Momo, VNPay,...)</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" name="payment" id="directcheck">
-                                            <label class="custom-control-label" for="directcheck">Chuyển khoản trực tiếp</label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group mb-4">
-                                        <div class="custom-control custom-radio">
-                                            <input type="radio" class="custom-control-input" name="payment" id="banktransfer">
-                                            <label class="custom-control-label" for="banktransfer">Chuyển khoản ngân hàng</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card-footer border-secondary bg-transparent">
-                                    <button id="checkout-button" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Thanh toán ngay</button>
-                                </div>
+                    <!-- Tiêu đề Trang Bắt đầu -->
+                    <div class="container bg-primary text-white mb-5" style="min-width: 100%;">
+                        <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+                            <h1 class="font-weight-semi-bold text-uppercase mb-3">Thanh toán</h1>
+                            <div class="d-inline-flex">
+                                <p class="m-0"><a href="" class="text-white">Trang chủ</a></p>
+                                <p class="m-0 px-2">-</p>
+                                <p class="m-0">Thanh toán</p>
                             </div>
                         </div>
                     </div>
+                    <!-- Tiêu đề Trang Kết thúc -->
+
+                    <form action="/pay" method="POST">
+                        <input type="hidden" name="method" value="POST">
+                        <!-- Thanh toán Bắt đầu -->
+                        <div class="container-fluid pt-5">
+                            <div class="row px-xl-5">
+                                <div class="col-lg-8">
+                                    <div class="mb-4">
+                                        <h4 class="font-weight-semi-bold mb-4">Địa chỉ</h4>
+                                        <div class="row">
+                                            <!-- Address fields -->
+                                            <div class="col-md-6 form-group">
+                                                <label>Họ</label>
+                                                <input class="form-control" type="text" name="first_name" placeholder="Nhập họ" required>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label>Tên</label>
+                                                <input class="form-control" type="text" name="last_name" placeholder="Nhập tên" required>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label>Email</label>
+                                                <input class="form-control" type="email" name="email" placeholder="Nhập email" required>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label>Số điện thoại</label>
+                                                <input class="form-control" type="tel" name="phone" placeholder="+84 123 456 789" required>
+                                            </div>
+                                            <div class="col-md-6 form-option">
+                                                <label>Tỉnh/Thành phố</label>
+                                                <select id="province" class="form-control" name="province" required>
+                                                    <option value="">Chọn tỉnh</option>
+                                                    <!-- Các tỉnh sẽ được load vào đây -->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label>Huyện/Quận</label>
+                                                <select id="district" class="form-control" name="district" required>
+                                                    <option value="">Chọn huyện</option>
+                                                    <!-- Các huyện sẽ được load vào đây -->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label>Phường/Xã</label>
+                                                <select id="ward" class="form-control" name="ward" required>
+                                                    <option value="">Chọn phường</option>
+                                                    <!-- Các phường sẽ được load vào đây -->
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label>Địa chỉ chi tiết</label>
+                                                <input class="form-control" type="text" name="address" placeholder="Nhập địa chỉ" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <!-- Order info card -->
+                                    <div class="card border-light shadow-sm mb-5">
+                                        <div class="card-header bg-light border-0">
+                                            <h4 class="font-weight-semi-bold m-0">Thông tin đơn hàng</h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <?php
+                                            $index = 0;
+                                            foreach ($data as $item):
+                                                $index += $item['price'] * $item['quantity'];
+                                            ?>
+                                                <div class="card-footer border-light bg-transparent">
+                                                    <div class="d-flex justify-content-between mt-2">
+                                                        <h6 class="font-weight-bold" style="display: inline-block; width: 100px;">Tên:</h6>
+                                                        <h6 style="display: inline-block;"><?= htmlspecialchars($item['name']) ?></h6>
+                                                        <input type="hidden" name="name" id="name" value="<?= $item['name'] ?>">
+                                                    </div>
+                                                </div>
+                                                <div class="card-footer border-light bg-transparent">
+                                                    <div class="d-flex justify-content-between mt-2">
+                                                        <h6 class="font-weight-bold">Số lượng: <?= $item['quantity'] ?></h6>
+                                                        <input type="hidden" name="quantity" id="quantity" value="<?= $item['quantity'] ?>">
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+
+                                            <hr class="mt-0">
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="font-weight-medium">Phí vận chuyển</h6>
+                                                <h6 class="font-weight-medium">0 đ</h6>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-footer border-light bg-transparent">
+                                            <div class="d-flex justify-content-between mt-2">
+                                                <h5 class="font-weight-bold">Tổng cộng</h5>
+                                                <input type="hidden" name="total_price" id="total_price" value="<?= $index ?>">
+                                                <h5 class="font-weight-bold"><?= number_format($index, 0, ',', ',') ?> VND</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Payment options -->
+                                    <div class="card border-light shadow-sm mb-5">
+                                        <div class="card-header bg-light border-0">
+                                            <h4 class="font-weight-semi-bold m-0">Thanh toán</h4>
+                                        </div>
+                                        <div class="payment-options">
+                                            <div class="payment-option">
+                                                <input type="radio" name="payment" id="in-store" class="custom-radio">
+                                                <label for="in-store">
+                                                    <div class="option-content">
+                                                        <span class="icon"><i class="fas fa-store"></i></span>
+                                                        <span class="text">Thanh toán khi nhận hàng</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+
+                                            <div class="payment-option">
+                                                <input type="radio" name="payment" id="zalopay" class="custom-radio">
+                                                <label for="zalopay">
+                                                    <div class="option-content">
+                                                        <img src="/public/uploads/checkout/zalopay.png" alt="ZaloPay" class="logo">
+                                                    </div>
+                                                </label>
+                                            </div>
+
+                                            <div class="payment-option">
+                                                <input type="radio" name="payment" id="vnpay" class="custom-radio">
+                                                <label for="vnpay">
+                                                    <div class="option-content">
+                                                        <img src="/public/uploads/checkout/vnpay.png" alt="Vnpay" class="logo">
+                                                    </div>
+                                                </label>
+                                            </div>
+
+                                            <div class="payment-option">
+                                                <input type="radio" name="payment" id="banktransfer" class="custom-radio">
+                                                <label for="banktransfer">
+                                                    <div class="option-content">
+                                                        <span class="icon"><i class="fas fa-university"></i></span>
+                                                        <span class="text">Chuyển khoản ngân hàng</span>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="card-footer border-light bg-transparent">
+                                            <button id="checkout-button" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Thanh toán ngay</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Thanh toán Kết thúc -->
+                    </form>
                 </div>
-                <!-- Thanh toán Kết thúc -->
+
 
             </div>
             <!-- Alert thông báo -->
@@ -178,70 +213,151 @@ class Checkout extends BaseView
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
             <script>
-                $(document).ready(function() {
-                    // Gọi API để lấy danh sách các tỉnh khi trang được tải lần đầu
-                    $.get('https://provinces.open-api.vn/api/p', function(data) {
-                        console.log(data); // Kiểm tra dữ liệu trả về
-                        $('#province').empty().append(new Option('Chọn tỉnh', ''));
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Giả sử bạn đã tải dữ liệu JSON vào `locationsData`
+                    var locationsData = {
+                        "Hà Nội": {
+                            "Ba Đình": ["Phường Cống Vị", "Phường Điện Biên", "Phường Đội Cấn"],
+                            "Cầu Giấy": ["Phường Dịch Vọng", "Phường Mai Dịch", "Phường Yên Hòa"]
+                        },
+                        "Hồ Chí Minh": {
+                            "Quận 1": ["Phường Bến Nghé", "Phường Bến Thành", "Phường Cô Giang"],
+                            "Quận 3": ["Phường Võ Thị Sáu", "Phường Đa Kao"]
+                        },
+                        "An Giang": {
+                            "Tri Tôn": [
+                                "Thị trấn Ba Chúc",
+                                "Thị trấn Cô Tô",
+                                "Thị trấn Tri Tôn",
+                                " An Tức",
+                                " Châu Lăng",
+                                " Lạc Quới",
+                                " Lê Trì",
+                                " Lương An Trà",
+                                " Lương Phi",
+                                " Núi Tô",
+                                " Ô Lâm",
+                                " Tà Đảnh",
+                                " Tân Tuyến",
+                                " Vĩnh Gia",
+                                " Vĩnh Phước"
+                            ],
+                            "Long Xuyên": [
+                                "Phường Mỹ Quý",
+                                "Phường Mỹ Hòa",
+                                "Phường Bình Đức",
+                                " Bình Long",
+                                " Bình Thạnh",
+                                " Mỹ Phú",
+                                " Mỹ Thới"
+                            ],
+                            "Châu Đốc": [
+                                "Phường Vĩnh Mỹ",
+                                "Phường Núi Sam",
+                                "Phường Châu Phú",
+                                " An Hòa",
+                                " Châu Phú",
+                                " Vĩnh Tế",
+                                " Vĩnh Ngươn"
+                            ],
+                            "Tân Châu": [
+                                "Phường Long Châu",
+                                "Phường Tân An",
+                                "Phường Châu Phú",
+                                " Vĩnh Hòa",
+                                " Vĩnh Bình",
+                                " Tân An",
+                                " Long Phú"
+                            ],
+                            "Châu Thành": [
+                                "Thị trấn Châu Thành",
+                                " An Hòa",
+                                " An Tân",
+                                " Bình Hòa",
+                                " Bình Tân",
+                                " Hòa Lạc",
+                                " Phú Lâm"
+                            ],
+                            "Tịnh Biên": [
+                                "Thị trấn Tịnh Biên",
+                                " An Cư",
+                                " An Hảo",
+                                " Vĩnh Trung",
+                                " Vĩnh Thanh",
+                                " Tân Lập"
+                            ],
+                            "Chợ Mới": [
+                                "Thị trấn Chợ Mới",
+                                " Bình Phú",
+                                " Bình Mỹ",
+                                " Hòa Bình",
+                                " Mỹ Hòa",
+                                " Long Điền A"
+                            ],
+                            "Thoại Sơn": [
+                                "Thị trấn Núi Sập",
+                                " An Hảo",
+                                " Cây Dương",
+                                " Vĩnh Hòa",
+                                " Vĩnh Chánh",
+                                " Thoại Giang"
+                            ]
+                        }
 
-                        // Thêm các tỉnh vào dropdown
-                        if (data && data.length > 0) {
-                            data.forEach(function(province) {
-                                $('#province').append(new Option(province.name, province.code));
-                            });
-                        } else {
-                            $('#province').append(new Option('Không có tỉnh', ''));
+
+
+
+                        // Add more provinces, districts, and wards here
+                    };
+
+                    // Populate provinces
+                    var provinceSelect = document.getElementById('province');
+                    for (var province in locationsData) {
+                        var option = document.createElement('option');
+                        option.value = province;
+                        option.textContent = province;
+                        provinceSelect.appendChild(option);
+                    }
+
+                    // Update districts when a province is selected
+                    provinceSelect.addEventListener('change', function() {
+                        var districtSelect = document.getElementById('district');
+                        var wardSelect = document.getElementById('ward');
+
+                        // Clear current options
+                        districtSelect.innerHTML = '<option value="">Chọn huyện</option>';
+                        wardSelect.innerHTML = '<option value="">Chọn phường</option>';
+
+                        var selectedProvince = this.value;
+                        if (selectedProvince) {
+                            var districts = locationsData[selectedProvince];
+                            for (var district in districts) {
+                                var option = document.createElement('option');
+                                option.value = district;
+                                option.textContent = district;
+                                districtSelect.appendChild(option);
+                            }
                         }
                     });
 
-                    // Khi người dùng chọn tỉnh
-                    $('#province').change(function() {
-                        var provinceCode = $(this).val();
-                        console.log('Province Code:', provinceCode); // Kiểm tra mã tỉnh
+                    // Update wards when a district is selected
+                    document.getElementById('district').addEventListener('change', function() {
+                        var wardSelect = document.getElementById('ward');
 
-                        if (provinceCode) {
-                            // Gọi API lấy huyện
-                            $.get('https://provinces.open-api.vn/api/p/' + provinceCode + '/d', function(data) {
-                                console.log(data); // Kiểm tra dữ liệu trả về
+                        // Clear current options
+                        wardSelect.innerHTML = '<option value="">Chọn phường</option>';
 
-                                // Xử lý huyện
-                                $('#district').empty().append(new Option('Chọn huyện', ''));
-                                if (data && data.length > 0) {
-                                    data.forEach(function(district) {
-                                        $('#district').append(new Option(district.name, district.code));
-                                    });
-                                } else {
-                                    $('#district').append(new Option('Không có huyện', ''));
-                                }
+                        var selectedProvince = document.getElementById('province').value;
+                        var selectedDistrict = this.value;
+
+                        if (selectedProvince && selectedDistrict) {
+                            var wards = locationsData[selectedProvince][selectedDistrict];
+                            wards.forEach(function(ward) {
+                                var option = document.createElement('option');
+                                option.value = ward;
+                                option.textContent = ward;
+                                wardSelect.appendChild(option);
                             });
-                        } else {
-                            $('#district').empty().append(new Option('Chọn huyện', ''));
-                            $('#ward').empty().append(new Option('Chọn phường', ''));
-                        }
-                    });
-
-                    // Khi người dùng chọn huyện
-                    $('#district').change(function() {
-                        var districtCode = $(this).val();
-                        console.log('District Code:', districtCode); // Kiểm tra mã huyện
-
-                        if (districtCode) {
-                            // Gọi API lấy phường
-                            $.get('https://provinces.open-api.vn/api/d/' + districtCode + '/w', function(data) {
-                                console.log(data); // Kiểm tra dữ liệu trả về
-
-                                // Xử lý phường/xã
-                                $('#ward').empty().append(new Option('Chọn phường', ''));
-                                if (data && data.length > 0) {
-                                    data.forEach(function(ward) {
-                                        $('#ward').append(new Option(ward.name, ward.code));
-                                    });
-                                } else {
-                                    $('#ward').append(new Option('Không có phường', ''));
-                                }
-                            });
-                        } else {
-                            $('#ward').empty().append(new Option('Chọn phường', ''));
                         }
                     });
                 });

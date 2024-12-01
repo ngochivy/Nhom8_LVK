@@ -1,0 +1,35 @@
+.product-details {
+    font-family: 'Roboto', sans-serif;
+}
+.product-image img {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+}
+.product-thumbnails img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.product-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+.product-prices .old-price {
+    font-size: 18px;
+    color: #888;
+}
+.product-prices .new-price {
+    font-size: 24px;
+    font-weight: bold;
+}
+.product-actions .quantity-input {
+    width: 60px;
+    text-align: center;
+}
+.product-share .btn {
+    margin-right: 10px;
+}

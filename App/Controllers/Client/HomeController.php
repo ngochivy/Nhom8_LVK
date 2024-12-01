@@ -12,7 +12,6 @@ use App\Views\Client\Pages\Page\Contact;
 use App\Views\Client\Pages\Blog\Index;
 use App\Views\Client\Pages\Page\Emblog;
 use App\Views\Client\Pages\Page\Cart;
-use App\Views\Client\Pages\Page\Checkout;
 use App\Views\Client\Pages\Auth\Login;
 
 use App\Views\Client\Pages\Auth\Register;
@@ -80,12 +79,8 @@ class HomeController
         Footer::render();
     }
 
-    public static function checkout()
-    {
-        Header::render();
-        Checkout::render();
-        Footer::render();
-    }
+    
+
 
     public static function login()
     {
@@ -103,4 +98,6 @@ class HomeController
         Register::render();
         Footer::render();
     }
+
+   
 }
