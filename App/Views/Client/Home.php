@@ -49,7 +49,7 @@ class Home extends BaseView
                 <div class="carousel-inner">
 
                     <div class="carousel-item active" style="height: 410px;">
-                        <img class="img-fluid" src="https://media3.bosch-home.com/Product_Shots/1200x675/22226362_MGM8856BIN_TrueMixxPro_Indien_Grinder_Flagship_visual_F39_def.jpg" alt="Image">
+                        <img class="img-fluid" src="/public//assets//client//img//banner1.png" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                             <div class="p-3" style="max-width: 700px;">
                                 <h4 class="text-light text-uppercase font-weight-medium mb-3">LVK House</h4>

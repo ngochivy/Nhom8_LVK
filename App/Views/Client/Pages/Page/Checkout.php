@@ -48,7 +48,7 @@ class Checkout extends BaseView
                     </div>
                     <!-- Tiêu đề Trang Kết thúc -->
 
-                    <form action="/pay" method="POST">
+                    <form action="/pay" method="POST" class="checkout-form" method="POST" action="/checkout/send-email">
                         <input type="hidden" name="method" value="POST">
                         <!-- Thanh toán Bắt đầu -->
                         <div class="container-fluid pt-5">
@@ -57,48 +57,61 @@ class Checkout extends BaseView
                                     <div class="mb-4">
                                         <h4 class="font-weight-semi-bold mb-4">Địa chỉ</h4>
                                         <div class="row">
-                                            <!-- Address fields -->
-                                            <div class="col-md-6 form-group">
-                                                <label>Họ</label>
-                                                <input class="form-control" type="text" name="first_name" placeholder="Nhập họ" required>
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label>Tên</label>
-                                                <input class="form-control" type="text" name="last_name" placeholder="Nhập tên" required>
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label>Email</label>
-                                                <input class="form-control" type="email" name="email" placeholder="Nhập email" required>
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label>Số điện thoại</label>
-                                                <input class="form-control" type="tel" name="phone" placeholder="+84 123 456 789" required>
-                                            </div>
-                                            <div class="col-md-6 form-option">
-                                                <label>Tỉnh/Thành phố</label>
-                                                <select id="province" class="form-control" name="province" required>
-                                                    <option value="">Chọn tỉnh</option>
-                                                    <!-- Các tỉnh sẽ được load vào đây -->
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label>Huyện/Quận</label>
-                                                <select id="district" class="form-control" name="district" required>
-                                                    <option value="">Chọn huyện</option>
-                                                    <!-- Các huyện sẽ được load vào đây -->
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label>Phường/Xã</label>
-                                                <select id="ward" class="form-control" name="ward" required>
-                                                    <option value="">Chọn phường</option>
-                                                    <!-- Các phường sẽ được load vào đây -->
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 form-group">
-                                                <label>Địa chỉ chi tiết</label>
-                                                <input class="form-control" type="text" name="address" placeholder="Nhập địa chỉ" required>
-                                            </div>
+                                            <form class="checkout-form" method="POST" action="/checkout/send-email">
+                                                <!-- Address fields -->
+                                                <div class="col-md-6 form-group">
+                                                    <label for="first_name">Họ</label>
+                                                    <input type="text" name="first_name" class="form-control" id="first_name" placeholder="Nhập họ" required>
+
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label for="last_name">Tên</label>
+                                                    <input type="text" name="last_name" class="form-control" id="first_name" placeholder="Your first_name" required>
+
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label for="email">Email</label>
+                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+
+                                                </div>
+
+                                                <div class="col-md-6 form-group">
+                                                    <label for="phone_number">Số điện thoại</label>
+                                                    <input type="phone_number" name="phone_number" class="form-control" id="phone_number" placeholder="Your phone_number" required>
+
+                                                </div>
+                                                <div class="col-md-6 form-option">
+                                                    <label>Tỉnh/Thành phố</label>
+                                                    <select id="province" class="form-control" name="province" required>
+                                                        <option value="">Chọn tỉnh</option>
+                                                        <!-- Các tỉnh sẽ được load vào đây -->
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>Huyện/Quận</label>
+                                                    <select id="district" class="form-control" name="district" required>
+                                                        <option value="">Chọn huyện</option>
+                                                        <!-- Các huyện sẽ được load vào đây -->
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>Phường/Xã</label>
+                                                    <select id="ward" class="form-control" name="ward" required>
+                                                        <option value="">Chọn phường</option>
+                                                        <!-- Các phường sẽ được load vào đây -->
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-6 form-group">
+                                                    <label>Địa chỉ chi tiết</label>
+                                                    <input class="form-control" type="text" name="address" placeholder="Nhập địa chỉ" required>
+                                                </div>
+                                                <div class="col-12">
+                                                    <div class="form-floating">
+                                                        <textarea class="form-control" placeholder="Leave a message here" name="message" id="message" style="height: 150px" required></textarea>
+                                                        <label for="message">Thông tin bổ sung...</label>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -190,17 +203,19 @@ class Checkout extends BaseView
                                                 </label>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="card-footer border-light bg-transparent">
-                                            <button id="checkout-button" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Thanh toán ngay</button>
-                                        </div>
+
+                                    <div class="card-footer border-light bg-transparent">
+                                        <button id="checkout-button" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="submit">Thanh toán ngay</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Thanh toán Kết thúc -->
-                    </form>
                 </div>
+                <!-- Thanh toán Kết thúc -->
+                </form>
+            </div>
 
 
             </div>
@@ -213,6 +228,9 @@ class Checkout extends BaseView
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
             <script>
+                function validateAndSubmit() {
+
+                }
                 document.addEventListener('DOMContentLoaded', function() {
                     // Giả sử bạn đã tải dữ liệu JSON vào `locationsData`
                     var locationsData = {

@@ -166,9 +166,9 @@ class Header extends BaseView
                             </button>
                             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                                 <div class="navbar-nav mr-auto py-0">
-                                    <a href="/" class="nav-item nav-link ">Trang chủ</a>
-                                    <a href="/products" class="nav-item nav-link">Sản phẩm</a>
-                                    <a href="/about" class="nav-item nav-link">Giới thiệu</a>
+                                    <a href="/" class="nav-item nav-link fw-bold">Trang chủ</a>
+                                    <a href="/products" class="nav-item nav-link fw-bold">Sản phẩm</a>
+                                    <a href="/about" class="nav-item nav-link fw-bold">Giới thiệu</a>
                                     <!-- <div class="nav-item dropdown">
                                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                         <div class="dropdown-menu rounded-0 m-0">
@@ -176,8 +176,8 @@ class Header extends BaseView
                                             <a href="checkout.html" class="dropdown-item">Checkout</a>
                                         </div>
                                     </div> -->
-                                    <a href="/contact" class="nav-item nav-link">Liên hệ</a>
-                                    <a href="/blog" class="nav-item nav-link">Bài viết</a>
+                                    <a href="/contact" class="nav-item nav-link fw-bold">Liên hệ</a>
+                                    <a href="/blog" class="nav-item nav-link fw-bold">Bài viết</a>
                                 </div>
                                 <!-- <div class="navbar-nav ml-auto py-0">
                                     <a href="/login" class="nav-item nav-link">Đăng nhập</a>

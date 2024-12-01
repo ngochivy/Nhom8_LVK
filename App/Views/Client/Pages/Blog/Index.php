@@ -10,7 +10,7 @@ class Index extends BaseView
     public static function render($data = null)
     {
         $blogs = new Blog();
-        $data = $blogs -> getAllBlog();
+        $data = $blogs->getAllBlog();
         // var_dump($data);
 
 ?>
@@ -41,41 +41,50 @@ class Index extends BaseView
         <link href="/public/assets/client/css/blog.css" rel="stylesheet">
 
         <body>
-            <!-- Blog Start -->
-            <div class="container mb-5">
-                <h2 class="text-center mb-4">TẤT CẢ BÀI VIẾT</h2>
-                    <div class="row">
-
-                    <?php if (!empty($data)) : 
-                                                ?>
+            <div class="container">
+                <div class="row">
+                    <?php if (!empty($data)) :
+                    ?>
                         <?php foreach ($data as $item) : ?>
-                            <div class="col-lg-12 col-md-6 mb-4">
-                                <div class="card">
-                                    <img src="<?= APP_URL ?>/public/uploads/blogs/<?= htmlspecialchars($item['image']) ?>" class="card-img-top"
-                                    height=""  alt="<?= htmlspecialchars($item['title']) ?>">
-                                    <div class="card-body">
-                                        <h5 class="card-title"><?= htmlspecialchars($item['title']) ?></h5>
-                                        <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;">
-                                            <?= htmlspecialchars($item['content']) ?>
-                                        </p>
-                                        <a href="/emblog" class="btn btn-primary">Xem thêm</a>
-                                        <br>
-                                        <p class="card-text" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis; float:right;">
-                                          Ngày đăng:  <?= ($item['created_at']) ?>
-                                        </p>
+                            <div class="col-lg-4 col-md-6 col-sm-12 mb-4"> 
+                                <!-- Danh sách bài viết -->
+                                <div class="grid">
+                                    <!-- Bài viết mẫu -->
+                                    <div class="card">
+                                        <img src="<?= APP_URL ?>/public/uploads/blogs/<?= htmlspecialchars($item['image']) ?>" class="card-img-top"
+                                            height="" alt="<?= htmlspecialchars($item['title']) ?>">
+                                        <div class="content">
+                                            <p class="date"> <?= ($item['created_at']) ?></p>
+                                            <h3 class="card-title"><?= htmlspecialchars($item['title']) ?></h3>
+                                            <h3 class="content">
+                                                <?= htmlspecialchars(strlen($item['content']) > 100 ? mb_substr($item['content'], 0, 100) . '...' : $item['content']) ?>
+                                            </h3>
+                                            <p> <a href="#" class="read-more ">Xem thêm</a></p>
+                                        </div>
                                     </div>
-                                  
+
+
                                 </div>
-                                </div>
+                            </div>
 
                         <?php endforeach; ?>
-                <?php else : ?>
-                    
-                <?php endif; ?>
+                    <?php else : ?>
+                    <?php endif; ?>
+                    <div class="newsletter">
+                        <h3>Nhận thông báo</h3>
+                        <p>Đăng ký nhận thông tin khuyến mãi mới nhất của chúng tôi!</p>
+                        <form action="/blog">
+                            <input type="email" placeholder="Email">
+                            <button type="submit">Đăng ký</button>
+                        </form>
+                    </div>
 
                 </div>
 
+
             </div>
+
+
             <!-- Blog End -->
 
             <!-- JavaScript -->

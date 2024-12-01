@@ -7,6 +7,8 @@ use App\Helpers\NotificationHelper;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+
+
 use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Layouts\Header;
 
@@ -31,6 +33,7 @@ class ContactController
 
     public static function sendEmail()
     {
+
         $is_valid = true;
 
         // Kiểm tra các trường dữ liệu từ form
@@ -53,6 +56,7 @@ class ContactController
             NotificationHelper::error('message', 'Nội dung không được để trống');
             $is_valid = false;
         }
+        
 
         // Nếu tất cả đều hợp lệ, gửi email
         if ($is_valid) {
@@ -65,7 +69,18 @@ class ContactController
             $mail = new PHPMailer(true); // Enable exceptions
 
             try {
+                $mail->setFrom('lvksports7@gmail.com', 'Contact Hỗ Trợ');
+                $mail->addAddress('recipient@example.com', 'Người nhận');
+
+
                 // Cấu hình SMTP
+
+                $mail = new PHPMailer(true);
+                $mail->CharSet = 'UTF-8';
+                $mail->isHTML(true); $mail->Body = '<meta charset="UTF-8">';
+      
+
+
                 $mail->isSMTP();
                 $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
@@ -74,14 +89,16 @@ class ContactController
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
+
+
                 // Người gửi
                 $mail->setFrom($email, $name); // Sử dụng email và tên nhập từ form
                 // Người nhận (Chủ trang web)
-                $mail->addAddress('lvksports7@gmail.com', 'Liên Hệ'); // Email của bạn là người nhận
+                $mail->addAddress('lvksports7@gmail.com', 'Contact'); // Email của bạn là người nhận
 
                 // Nội dung email gửi đến admin
                 $mail->isHTML(true);
-                $mail->Subject = "Liên hệ từ $name";
+                $mail->Subject = "Contact từ $name";
                 $mail->Body    = "<p>Bạn đã nhận được tin nhắn từ <strong>$name</strong>  <p>$phone_number</p> ($email):</p><p>$message</p>";
 
                 // Gửi email cho khách hàng
@@ -95,14 +112,14 @@ class ContactController
                 $mailCustomer->Port = 587;
 
                 // Người gửi là admin
-                $mailCustomer->setFrom('lvksports7@gmail.com', 'Liên Hệ');
+                $mailCustomer->setFrom('lvksports7@gmail.com', 'Contact');
                 // Người nhận là khách hàng
                 $mailCustomer->addAddress($email, $name);
 
                 // Nội dung email gửi cho khách hàng
                 $mailCustomer->isHTML(true);
-                $mailCustomer->Subject = 'Chúng tôi đã nhận được yêu cầu của bạn';
-                $mailCustomer->Body    = "<p>Chào <strong>$name</strong>,</p><p>Cảm ơn bạn đã liên hệ với chúng tôi. Dưới đây là thông tin bạn đã gửi:</p><p><strong>Số điện thoại:</strong> $phone_number</p><p><strong>Email:</strong> $email</p><p><strong>Nội dung:</strong> $message</p><p>Chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất.</p>";
+                $mailCustomer->Subject = '';
+                $mailCustomer->Body    = "<p>Chào <strong>$name</strong>,</p><p>Cảm ơn bạn đã Contact với chúng tôi. Dưới đây là thông tin bạn đã gửi:</p><p><strong>Số điện thoại:</strong> $phone_number</p><p><strong>Email:</strong> $email</p><p><strong>Nội dung:</strong> $message</p><p>Chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất.</p>";
 
                 // Gửi email cho cả admin và khách hàng
                 if ($mail->send() && $mailCustomer->send()) {
@@ -115,7 +132,7 @@ class ContactController
             }
         }
 
-        // Sau khi gửi email, điều hướng về trang liên hệ
+        // Sau khi gửi email, điều hướng về trang Contact
         header('Location: /contact');
         exit();
     }

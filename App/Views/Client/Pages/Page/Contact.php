@@ -123,7 +123,7 @@ class Contact extends BaseView
             icon: "success",
             title: "Bạn đã gửi Email thành công!",
             showConfirmButton: false,
-            timer: 3000
+            timer: 6000
         });
 
         // Sau khi thông báo thành công, có thể reset form hoặc thực hiện hành động khác

@@ -115,5 +115,15 @@ class Route
         if ($route == '/contact/send-email' && $_SERVER['REQUEST_METHOD'] == 'POST') {
             \App\Controllers\Client\ContactController::sendEmail(); // Xử lý gửi email
         }
+ 
+        // Route cho trang checkout (GET)
+        if ($route == '/checkout' && $_SERVER['REQUEST_METHOD'] == 'GET') {
+            // \App\Controllers\Client\ContactController::contact(); // Hiển thị trang liên hệ
+        }
+
+        // Route cho gửi email (POST)
+        if ($route == '/checkout/send-email' && $_SERVER['REQUEST_METHOD'] == 'POST') {
+            \App\Controllers\Client\CheckoutController::sendOderEmail(); // Xử lý gửi email
+        }
     }
 }

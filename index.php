@@ -26,6 +26,9 @@ Route::get('/about', 'App\Controllers\Client\HomeController@about');
 Route::get('/contact', 'App\Controllers\Client\ContactController@contact');
 Route::post('/contact', 'App\Controllers\Client\ContactController@sendEmail');
 
+Route::get('/checkout', 'App\Controllers\Client\CheckoutController@checkout');
+Route::post('/checkout', 'App\Controllers\Client\CheckoutController@sendOderEmail');
+
 
 
 Route::get('/blog', 'App\Controllers\Client\HomeController@blog');
