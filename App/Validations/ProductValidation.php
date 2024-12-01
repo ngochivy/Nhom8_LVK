@@ -74,52 +74,60 @@ class ProductValidation
 
     // thêm ảnh
     public static function uploadImage()
-{
-    // Kiểm tra nếu không có file hoặc file không được upload đúng cách
-    if (!isset($_FILES['image']) || !is_uploaded_file($_FILES['image']['tmp_name'])) {
-        NotificationHelper::error('no_file', 'Chưa chọn ảnh để upload!');
-        return false;
+    {
+        // Kiểm tra nếu không có file hoặc file không được upload đúng cách
+        if (!isset($_FILES['image']) || !is_uploaded_file($_FILES['image']['tmp_name'])) {
+            NotificationHelper::error('no_file', 'Chưa chọn ảnh để upload!');
+            return false;
+        }
+    
+        // Đường dẫn lưu trữ file ảnh
+        $target_dir = 'public/uploads/products/';
+    
+        // Lấy phần mở rộng của file (jpg, png, jpeg, gif)
+        $imageFileType = strtolower(pathinfo(basename($_FILES['image']['name']), PATHINFO_EXTENSION));
+    
+        // Kiểm tra nếu file ảnh có đúng định dạng không
+        if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif') {
+            NotificationHelper::error('type_upload', 'Chỉ nhận file ảnh JPG, PNG, GIF, JPEG');
+            return false;
+        }
+    
+        // Kiểm tra kích thước file (ví dụ, giới hạn 5MB)
+        if ($_FILES['image']['size'] > 5 * 1024 * 1024) {  // 5MB
+            NotificationHelper::error('size_upload', 'Kích thước ảnh không được vượt quá 5MB');
+            return false;
+        }
+    
+        // Kiểm tra MIME type của file ảnh để đảm bảo đây là ảnh thực sự (giảm nguy cơ upload file độc hại)
+        $mime_type = mime_content_type($_FILES['image']['tmp_name']);
+        if (strpos($mime_type, 'image') === false) {
+            NotificationHelper::error('mime_type', 'File phải là ảnh!');
+            return false;
+        }
+    
+        // Tạo tên ảnh duy nhất bằng cách sử dụng ngày giờ hiện tại và một mã ngẫu nhiên
+        $nameImage = uniqid('product_', true) . '.' . $imageFileType;
+    
+        // Đường dẫn đầy đủ để lưu trữ file
+        $target_file = $target_dir . $nameImage;
+    
+        // Kiểm tra xem file đã tồn tại chưa
+        if (file_exists($target_file)) {
+            NotificationHelper::error('file_exists', 'File đã tồn tại!');
+            return false;
+        }
+    
+        // Di chuyển file từ thư mục tạm thời đến thư mục đích
+        if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+            NotificationHelper::error('move_upload', 'Upload ảnh thất bại');
+            return false;
+        }
+    
+        // Trả về tên file ảnh đã lưu
+        return $nameImage;
     }
-
-    // Đường dẫn lưu trữ file ảnh
-    $target_dir = 'public/uploads/products/';
-
-    // Lấy phần mở rộng của file (jpg, png, jpeg, gif)
-    $imageFileType = strtolower(pathinfo(basename($_FILES['image']['name']), PATHINFO_EXTENSION));
-
-    // Kiểm tra nếu file ảnh có đúng định dạng không
-    if ($imageFileType != 'jpg' && $imageFileType != 'png' && $imageFileType != 'jpeg' && $imageFileType != 'gif') {
-        NotificationHelper::error('type_upload', 'Chỉ nhận file ảnh JPG, PNG, GIF, JPEG');
-        return false;
-    }
-
-    // Kiểm tra kích thước file (ví dụ, giới hạn 5MB)
-    if ($_FILES['image']['size'] > 5 * 1024 * 1024) {  // 5MB
-        NotificationHelper::error('size_upload', 'Kích thước ảnh không được vượt quá 5MB');
-        return false;
-    }
-
-    // Tạo tên ảnh duy nhất bằng cách sử dụng ngày giờ hiện tại
-    $nameImage = date('YmdHis') . '.' . $imageFileType;
-
-    // Đường dẫn đầy đủ để lưu trữ file
-    $target_file = $target_dir . $nameImage;
-
-    // Kiểm tra xem file đã tồn tại chưa
-    if (file_exists($target_file)) {
-        NotificationHelper::error('file_exists', 'File đã tồn tại!');
-        return false;
-    }
-
-    // Di chuyển file từ thư mục tạm thời đến thư mục đích
-    if (!move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
-        NotificationHelper::error('move_upload', 'Upload ảnh thất bại');
-        return false;
-    }
-
-    // Trả về tên file ảnh đã lưu
-    return $nameImage;
-}
+    
 
 
 }

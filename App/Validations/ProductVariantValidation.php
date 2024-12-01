@@ -13,7 +13,7 @@ class ProductVariantValidation{
             $is_valid = false;
         }
         if (!isset($_POST['product_id']) || $_POST['product_id'] === '') {
-            NotificationHelper::error('product_id', 'Không để trống mô tả !');
+            NotificationHelper::error('product_id', 'Không để trống tên sản phẩm !');
             $is_valid = false;
         }
       

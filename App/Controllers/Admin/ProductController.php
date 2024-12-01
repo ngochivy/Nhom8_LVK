@@ -54,60 +54,67 @@ class ProductController
 
     // xử lý chức năng thêm
     public static function store()
-    {
+{
+    // Kiểm tra validation
+    $is_valid = ProductValidation::create();
 
-        //validation các trường dữ liệu
-        $is_valid = ProductValidation::create();
-
-        if (!$is_valid) {
-            NotificationHelper::error('store', 'Thêm sản phẩm thất bại');
-            header('location: /admin/products/create');
-            exit;
-        }
-
-        $name = $_POST['name'];
-        // kiểm tra sản phẩm có tồn tại chưa ==> Khong duoc trung ten
-        $Product = new Product();
-        $is_exist = $Product->getOneProductByName($name);
-
-        if ($is_exist) {
-            NotificationHelper::error('store', 'Tên sản phẩm đã tồn tại');
-            header('location: /admin/products/create');
-            exit;
-        }
-
-        // thực hiện thêm
-        $data = [
-            'name' => $name,
-            'price' => $_POST['price'],
-            'discount_price' => $_POST['discount_price'],
-            'short_description' => $_POST['short_description'],
-            'description' => $_POST['description'],
-            'quantity' => $_POST['quantity'],
-            'user_manual' => $_POST['user_manual'],
-            'is_feature' => $_POST['is_feature'],
-            'status' => $_POST['status'],
-            'category_id' => $_POST['category_id'],
-        ];
-
-
-
-        $is_upload=ProductValidation::uploadImage();
-        if($is_upload){
-            $data['image']= $is_upload;
-        }
-
-        $result = $Product->createProduct($data);
-
-        if ($result) {
-            NotificationHelper::success('store', 'Thêm loại sản phẩm thành công');
-            header('location: /admin/products');
-        } else {
-            NotificationHelper::error('store', 'Thêm loại sản phẩm thất bại');
-            header('location: /admin/products/create');
-            exit;
-        }
+    if (!$is_valid) {
+        NotificationHelper::error('store', 'Thêm sản phẩm thất bại');
+        header('location: /admin/products/create');
+        exit;
     }
+
+    // Lấy dữ liệu từ form
+    if (!isset($_POST['name'], $_POST['price'], $_POST['category_id'])) {
+        NotificationHelper::error('store', 'Dữ liệu không hợp lệ');
+        header('location: /admin/products/create');
+        exit;
+    }
+
+    $name = $_POST['name'];
+    
+    // Kiểm tra sản phẩm có tồn tại chưa
+    $Product = new Product();
+    $is_exist = $Product->getOneProductByName($name);
+
+    if ($is_exist) {
+        NotificationHelper::error('store', 'Tên sản phẩm đã tồn tại');
+        header('location: /admin/products/create');
+        exit;
+    }
+
+    // Thực hiện thêm sản phẩm
+    $data = [
+        'name' => $name,
+        'price' => $_POST['price'],
+        'discount_price' => $_POST['discount_price'],
+        'description' => $_POST['description'],
+        'quantity' => $_POST['quantity'],
+        'user_manual' => $_POST['user_manual'],
+        'is_feature' => $_POST['is_feature'],
+        'status' => $_POST['status'],
+        'category_id' => $_POST['category_id'],
+    ];
+
+    // Xử lý ảnh nếu có
+    $is_upload = ProductValidation::uploadImage();
+    if ($is_upload) {
+        $data['image'] = $is_upload;
+    }
+
+    // Tạo sản phẩm
+    $result = $Product->createProduct($data);
+
+    if ($result) {
+        NotificationHelper::success('store', 'Thêm sản phẩm thành công');
+        header('location: /admin/products');
+    } else {
+        NotificationHelper::error('store', 'Thêm sản phẩm thất bại');
+        header('location: /admin/products/create');
+    }
+    exit;
+}
+
 
 
     // // hiển thị chi tiết
@@ -158,29 +165,34 @@ class ProductController
     // // xử lý chức năng sửa (cập nhật)
     public static function update(int $id)
     {
+        // Kiểm tra validation trước
         $is_valid = ProductValidation::edit();
-
+    
         if (!$is_valid) {
             NotificationHelper::error('update', 'Cập nhật sản phẩm thất bại');
             header("location: /admin/products/$id");
             exit;
         }
-
-        $product_name=$_POST['name'];
-      
-        $Product=new Product();
-        $is_exist=$Product->getOneProductByName($product_name);
-
-        if ($is_exist) {
-            if($is_exist['id']!=$id){
-                NotificationHelper::error('update', 'Tên sản phẩm đã tồn  tại');
-                header("location: /admin/products/$id");
-                exit;
-            }
-
+    
+        // Lấy dữ liệu từ POST
+        if (!isset($_POST['name'], $_POST['price'], $_POST['category_id'])) {
+            NotificationHelper::error('update', 'Dữ liệu không hợp lệ');
+            header("location: /admin/products/$id");
+            exit;
         }
-
-        // thực hiện cập nhật
+    
+        $product_name = $_POST['name'];
+        $Product = new Product();
+    
+        // Kiểm tra xem sản phẩm đã tồn tại chưa
+        $is_exist = $Product->getOneProductByName($product_name);
+        if ($is_exist && $is_exist['id'] != $id) {
+            NotificationHelper::error('update', 'Tên sản phẩm đã tồn tại');
+            header("location: /admin/products/$id");
+            exit;
+        }
+    
+        // Cập nhật sản phẩm
         $data = [
             'name' => $product_name,
             'price' => $_POST['price'],
@@ -193,23 +205,24 @@ class ProductController
             'status' => $_POST['status'],
             'category_id' => $_POST['category_id'],
         ];
-
-        $is_upload=ProductValidation::uploadImage();
-        if($is_upload){
-            $data['image']= $is_upload;
+    
+        // Kiểm tra và xử lý upload hình ảnh
+        $is_upload = ProductValidation::uploadImage();
+        if ($is_upload) {
+            $data['image'] = $is_upload;
         }
-
-        $result=$Product->updateProduct($id,$data);
-
+    
+        // Cập nhật sản phẩm trong cơ sở dữ liệu
+        $result = $Product->updateProduct($id, $data);
+    
         if ($result) {
-            NotificationHelper::success('update','Cập nhật sản phẩm thành công');
+            NotificationHelper::success('update', 'Cập nhật sản phẩm thành công');
             header('location: /admin/products');
-        }
-        else {
+            exit;
+        } else {
             NotificationHelper::error('update', 'Cập nhật sản phẩm thất bại');
             header("location: /admin/products/$id");
             exit;
-
         }
     }
 

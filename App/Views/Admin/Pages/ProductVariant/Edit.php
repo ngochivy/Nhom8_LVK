@@ -47,7 +47,7 @@ class Edit extends BaseView
                         <div class="card">
                             <form class="form-horizontal" action="/admin/productvariant/<?= $data['dataVariant']['id'] ?>" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Sửa loại sản phẩm</h4>
+                                    <h4 class="card-title">Sửa loại biến thể</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
                                     <div class="form-group">
                                         <label for="id">ID</label>
@@ -58,7 +58,7 @@ class Edit extends BaseView
                                         <input type="text" class="form-control" id="name"  value="<?= $data['dataVariant']['name'] ?>" placeholder="Nhập tên loại sản phẩm..." name="name" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="product_id">Loại sản phẩm</label>
+                                        <label for="product_id">Tên sản phẩm</label>
                                         <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="product_id" name="product_id">
                                             <option value="" selected disabled>vui lòng chọn...</option>
 

@@ -46,7 +46,7 @@ class Create extends BaseView
                         <div class="card">
                             <form class="form-horizontal" action="/admin/productvariant" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Thêm loại sản phẩm</h4>
+                                    <h4 class="card-title">Thêm loại biến thể</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
                                         <label for="name">Tên*</label>

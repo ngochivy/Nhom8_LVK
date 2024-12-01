@@ -2,12 +2,15 @@
 
 namespace App\Views\Admin\Pages\ProductVariantOption;
 
+use App\Models\ProductVariant;
 use App\Views\BaseView;
 
 class Index extends BaseView
 {
     public static function render($data = null)
     {
+      
+        
 ?>
         <div class="page-wrapper">
             <!-- ============================================================== -->
@@ -16,12 +19,13 @@ class Index extends BaseView
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">QUẢN LÝ LOẠI BIẾN THỂ</h4>
+                        <h4 class="page-title">QUẢN LÝ BIẾN THỂ</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Danh sách loại biến thể</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Danh sách biến thể</li>
+                                    
                                 </ol>
                             </nav>
                         </div>
@@ -43,7 +47,7 @@ class Index extends BaseView
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Danh sách loại biến thể</h5>
+                                <h5 class="card-title">Danh sách biến thể</h5>
                                 <?php
                                 if (count($data)) :
                                 ?>
@@ -53,7 +57,7 @@ class Index extends BaseView
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Tên</th>
-                                                    <th>ID sản phẩm</th>
+                                                    <th>Tên sản phẩm</th>
 
                                                     <th><a href="/admin/productvariantoption/create" class="btn btn-success ">Thêm</a></th>
                                                 </tr>
@@ -65,7 +69,7 @@ class Index extends BaseView
                                                     <tr>
                                                         <td><?= $item['id'] ?></td>
                                                         <td><?= $item['name'] ?></td>
-                                                        <td><?= $item['product_variant_id'] ?></td>
+                                                        <td><?= $item['product_variant_name'] ?></td>
                                                         <td>
                                                             <a href="/admin/productvariantoption/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
                                                             <form action="/admin/productvariantoption/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
