@@ -63,7 +63,80 @@ Route::delete('/comments/{id}', 'App\Controllers\Client\CommentController@delete
 
 // *** Admin
 
+
+//  *** productvariant
+// GET /productvariant (lấy danh sách loại sản phẩm)
 Route::get('/admin', 'App\Controllers\Admin\HomeController@index');
+
+// GET /productvariant (lấy danh sách loại sản phẩm)
+Route::get('/admin/productvariant', 'App\Controllers\Admin\ProductVariantController@index');
+
+// GET /productvariant/create (hiển thị form thêm loại sản phẩm)
+Route::get('/admin/productvariant/create', 'App\Controllers\Admin\ProductVariantController@create');
+
+// POST /productvariant (tạo mới một loại sản phẩm)
+Route::post('/admin/productvariant', 'App\Controllers\Admin\ProductVariantController@store');
+
+// GET /productvariant/{id} (lấy chi tiết loại sản phẩm với id cu the)
+Route::get('/admin/productvariant/{id}', 'App\Controllers\Admin\ProductVariantController@edit');
+
+// PUT /productvariant/{id} (update loại sản phẩm với id cụ thể)
+Route::put('/admin/productvariant/{id}', 'App\Controllers\Admin\ProductVariantController@update');
+
+// DELETE /productvariant/{id} (delete loại sản phẩm với id cụ thể)
+Route::delete('/admin/productvariant/{id}', 'App\Controllers\Admin\ProductVariantController@delete');
+
+
+
+
+
+//  *** ProductVariantOption
+
+Route::get('/admin/productvariantoption', 'App\Controllers\Admin\ProductVariantOptionController@index');
+
+// GET /ProductVariantOption/create (hiển thị form thêm loại sản phẩm)
+Route::get('/admin/productvariantoption/create', 'App\Controllers\Admin\ProductVariantOptionController@create');
+
+// POST /ProductVariantOption (tạo mới một loại sản phẩm)
+Route::post('/admin/productvariantoption', 'App\Controllers\Admin\ProductVariantOptionController@store');
+
+// GET /ProductVariantOption/{id} (lấy chi tiết loại sản phẩm với id cu the)
+Route::get('/admin/productvariantoption/{id}', 'App\Controllers\Admin\ProductVariantOptionController@edit');
+
+// PUT /ProductVariantOption/{id} (update loại sản phẩm với id cụ thể)
+Route::put('/admin/productvariantoption/{id}', 'App\Controllers\Admin\ProductVariantOptionController@update');
+
+// DELETE /ProductVariantOption/{id} (delete loại sản phẩm với id cụ thể)
+Route::delete('/admin/productvariantoption/{id}', 'App\Controllers\Admin\ProductVariantOptionController@delete');
+
+
+
+
+
+
+//  *** sku
+
+Route::get('/admin/skus', 'App\Controllers\Admin\SkuController@index');
+
+// GET /skus/create (hiển thị form thêm loại sản phẩm)
+Route::get('/admin/skus/create', 'App\Controllers\Admin\SkuController@create');
+
+// POST /skus (tạo mới một loại sản phẩm)
+Route::post('/admin/skus', 'App\Controllers\Admin\SkuController@store');
+
+// GET /skus/{id} (lấy chi tiết loại sản phẩm với id cu the)
+Route::get('/admin/skus/{id}', 'App\Controllers\Admin\SkuController@edit');
+
+// PUT /skus/{id} (update loại sản phẩm với id cụ thể)
+Route::put('/admin/skus/{id}', 'App\Controllers\Admin\SkuController@update');
+
+// DELETE /skus/{id} (delete loại sản phẩm với id cụ thể)
+Route::delete('/admin/skus/{id}', 'App\Controllers\Admin\SkuController@delete');
+
+
+
+
+
 
 //  *** Category
 // GET /categories (lấy danh sách loại sản phẩm)
