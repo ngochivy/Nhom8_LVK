@@ -19,12 +19,12 @@ class Create extends BaseView
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">QUẢN LÝ LOẠI BIẾN THỂ</h4>
+                        <h4 class="page-title">QUẢN LÝ BIẾN THỂ</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Thêm loại thể biến</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Thêm thể biến</li>
                                 </ol>
                             </nav>
                         </div>
@@ -46,7 +46,7 @@ class Create extends BaseView
                         <div class="card">
                             <form class="form-horizontal" action="/admin/productvariantoption" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Thêm loại sản phẩm</h4>
+                                    <h4 class="card-title">Thêm biến thể</h4>
                                     <input type="hidden" name="method" id="" value="POST">
                                     <div class="form-group">
                                         <label for="name">Tên*</label>
@@ -54,7 +54,7 @@ class Create extends BaseView
                                     </div>
                        
                                     <div class="form-group">
-                                        <label for="product_variant_id">Tên loại sản phẩm</label>
+                                        <label for="product_variant_id">Tên loại biến thể</label>
                                         <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="product_variant_id" name="product_variant_id">
                                         <option value="" selected disabled>vui lòng chọn...</option>
                                            

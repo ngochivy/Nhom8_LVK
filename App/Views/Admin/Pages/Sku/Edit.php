@@ -20,12 +20,12 @@ class Edit extends BaseView
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">QUẢN LÝ LOẠI BIẾN THỂ</h4>
+                        <h4 class="page-title">QUẢN LÝ SẢN PHẨM BIẾN THỂ</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Sửa loại biến thể</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Sửa sản phẩm biến thể</li>
                                 </ol>
                             </nav>
                         </div>
@@ -47,7 +47,7 @@ class Edit extends BaseView
                         <div class="card">
                             <form class="form-horizontal" action="/admin/skus/<?= $data['dataSku']['id'] ?>" method="POST">
                                 <div class="card-body">
-                                    <h4 class="card-title">Sửa loại sản phẩm</h4>
+                                    <h4 class="card-title">Sửa sản phẩm biến thể</h4>
                                     <input type="hidden" name="method" id="" value="PUT">
                                     <div class="form-group">
                                         <label for="id">ID</label>
@@ -80,7 +80,7 @@ class Edit extends BaseView
 
 
                                     <div class="form-group">
-                                        <label for="product_variant_option_id">Tên loại sản phẩm</label>
+                                        <label for="product_variant_option_id">Tên biến thể</label>
                                         <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="product_variant_option_id" name="product_variant_option_id">
                                             <option value="" selected disabled>vui lòng chọn...</option>
 

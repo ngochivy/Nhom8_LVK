@@ -53,7 +53,7 @@ class Index extends BaseView
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Tên</th>
-                                                    <th>ID sản phẩm</th>
+                                                    <th>Tên sản phẩm</th>
 
                                                     <th><a href="/admin/productvariant/create" class="btn btn-success ">Thêm</a></th>
                                                 </tr>
@@ -65,7 +65,7 @@ class Index extends BaseView
                                                     <tr>
                                                         <td><?= $item['id'] ?></td>
                                                         <td><?= $item['name'] ?></td>
-                                                        <td><?= $item['product_id'] ?></td>
+                                                        <td><?= $item['product_name'] ?></td>
                                                         <td>
                                                             <a href="/admin/productvariant/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
                                                             <form action="/admin/productvariant/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">

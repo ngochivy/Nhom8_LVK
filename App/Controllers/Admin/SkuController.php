@@ -79,7 +79,7 @@ class SkuController
         $is_valid = SkuValidation::create();
 
         if (!$is_valid) {
-            NotificationHelper::error('store', 'Thêm loại sản phẩm thất bại');
+            NotificationHelper::error('store', 'Thêm sản phẩm biến thể thất bại');
             header('location: /admin/skus/create');
             exit;
         }
@@ -92,7 +92,7 @@ class SkuController
         $Sku =new Sku();
         $is_exist=$Sku->getOneSkuByName($sku);
         if ($is_exist) {
-            NotificationHelper::error('store', 'Tên loại sản phẩm đã tồn  tại');
+            NotificationHelper::error('store', 'Tên sản phẩm biến thể đã tồn  tại');
             header('location: /admin/skus/create');
             exit;
         }
@@ -111,11 +111,11 @@ class SkuController
     // var_dump($_POST);
 
         if ($result) {
-            NotificationHelper::success('store','Thêm loại sản phẩm thành công');
+            NotificationHelper::success('store','Thêm sản phẩm biến thể thành công');
             header('location: /admin/skus');
         }
         else {
-            NotificationHelper::error('store', 'Thêm loại sản phẩm thất bạiccc');
+            NotificationHelper::error('store', 'Thêm sản phẩm biến thể thất bại');
             header('location: /admin/skus/create');
             exit;
 
@@ -157,7 +157,7 @@ class SkuController
             'data_product' => $data_product,
          ];
         if (!$data) {
-            NotificationHelper::error('edit','không thể xem loại sản phẩm này');
+            NotificationHelper::error('edit','không thể xem sản phẩm biến thể này');
             header('location: /admin/skus');
             exit;
         }
@@ -181,7 +181,7 @@ class SkuController
         $is_valid = SkuValidation::edit();
 
         if (!$is_valid) {
-            NotificationHelper::error('update', 'Cập nhật loại sản phẩm thất bại');
+            NotificationHelper::error('update', 'Cập nhật sản phẩm biến thể thất bại');
             header("location: /admin/skus/$id");
             exit;
         }
@@ -198,7 +198,7 @@ class SkuController
 
         if ($is_exist) {
             if($is_exist['id']!=$id){
-                NotificationHelper::error('update', 'Tên loại sản phẩm đã tồn  tại');
+                NotificationHelper::error('update', 'Tên sản phẩm biến thể đã tồn  tại');
                 header("location: /admin/skus/$id");
                 exit;
             }
@@ -215,11 +215,11 @@ class SkuController
         $result=$productvariantoption->updateSku($id,$data);
 
         if ($result) {
-            NotificationHelper::success('update','Cập nhật loại sản phẩm thành công');
+            NotificationHelper::success('update','Cập nhật sản phẩm biến thể thành công');
             header('location: /admin/skus');
         }
         else {
-            NotificationHelper::error('update', 'Cập nhật loại sản phẩm thất bại');
+            NotificationHelper::error('update', 'Cập nhật sản phẩm biến thể thất bại');
             header("location: /admin/skus/$id");
             exit;
 
@@ -234,10 +234,10 @@ class SkuController
         $result=$productvariantoption->deleteSku($id);
         // var_dump($result);
         if ($result) {
-            NotificationHelper::success('delete','Xóa loại biến thể thành công');
+            NotificationHelper::success('delete','Xóa sản phẩm biến thể thành công');
 
         }else{
-            NotificationHelper::error('delete', 'Xóa loại sản phẩm thất bại');
+            NotificationHelper::error('delete', 'Xóa sản phẩm biến thất bại');
 
         }
         header('location: /admin/skus');

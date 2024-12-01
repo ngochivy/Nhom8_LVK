@@ -9,11 +9,11 @@ class ProductVariantOptionValidation{
         $is_valid = true;
         //Tên loại
         if (!isset($_POST['name']) || $_POST['name'] === '') {
-            NotificationHelper::error('name', 'Không để trống tên loại biến thể !');
+            NotificationHelper::error('name', 'Không để trống tên biến thể !');
             $is_valid = false;
         }
         if (!isset($_POST['product_variant_id']) || $_POST['product_variant_id'] === '') {
-            NotificationHelper::error('product_variant_id', 'Không để trống mô tả !');
+            NotificationHelper::error('product_variant_id', 'Không để trống tên  !');
             $is_valid = false;
         }
       
@@ -24,7 +24,7 @@ class ProductVariantOptionValidation{
         $is_valid = true;
         //Tên loại
         if (!isset($_POST['name']) || $_POST['name'] === '') {
-            NotificationHelper::error('name', 'Không để trống tên loại biến thể !');
+            NotificationHelper::error('name', 'Không để trống tên biến thể !');
             $is_valid = false;
         }
 

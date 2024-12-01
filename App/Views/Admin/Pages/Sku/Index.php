@@ -16,12 +16,12 @@ class Index extends BaseView
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-12 d-flex no-block align-items-center">
-                        <h4 class="page-title">QUẢN LÝ LOẠI BIẾN THỂ</h4>
+                        <h4 class="page-title">QUẢN LÝ SẢN PHẨM BIẾN THỂ</h4>
                         <div class="ms-auto text-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/admin">Trang chủ</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Danh sách loại biến thể</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Danh sách sản phẩm biến thể</li>
                                 </ol>
                             </nav>
                         </div>
@@ -43,7 +43,7 @@ class Index extends BaseView
 
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Danh sách loại biến thể</h5>
+                                <h5 class="card-title">Danh sách sản phẩm biến thể</h5>
                                 <?php
                                 if (count($data)) :
                                 ?>
