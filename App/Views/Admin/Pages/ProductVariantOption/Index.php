@@ -9,8 +9,6 @@ class Index extends BaseView
 {
     public static function render($data = null)
     {
-      
-        
 ?>
         <div class="page-wrapper">
             <!-- ============================================================== -->

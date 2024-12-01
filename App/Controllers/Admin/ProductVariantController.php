@@ -23,7 +23,7 @@ class ProductVariantController
    
 
         $productvariant = new ProductVariant();
-        $data = $productvariant->getAllProductVariantName();
+        $data = $productvariant->getAllProductVariant();
 
         Header::render();
         Notification::render();
@@ -57,7 +57,7 @@ class ProductVariantController
         $is_valid = ProductVariantValidation::create();
 
         if (!$is_valid) {
-            NotificationHelper::error('store', 'Thêm loại biến thể thất bại');
+            NotificationHelper::error('store', 'Thêm loại sản phẩm thất bại');
             header('location: /admin/productvariant/create');
             exit;
         }
@@ -68,7 +68,7 @@ class ProductVariantController
         $ProductVariant=new ProductVariant();
         $is_exist=$ProductVariant->getOneProductVariantByName($name);
         if ($is_exist) {
-            NotificationHelper::error('store', 'Tên loại biến thể đã tồn  tại');
+            NotificationHelper::error('store', 'Tên loại sản phẩm đã tồn  tại');
             header('location: /admin/productvariant/create');
             exit;
         }
@@ -84,11 +84,11 @@ class ProductVariantController
         // var_dump($result);
 
         if ($result) {
-            NotificationHelper::success('store','Thêm loại biến thể thành công');
+            NotificationHelper::success('store','Thêm loại sản phẩm thành công');
             header('location: /admin/productvariant');
         }
         else {
-            NotificationHelper::error('store', 'Thêm loại biến thể thất bại');
+            NotificationHelper::error('store', 'Thêm loại sản phẩm thất bại');
             header('location: /admin/productvariant/create');
             exit;
 
@@ -123,7 +123,7 @@ class ProductVariantController
             'dataProduct' => $dataProduct,
          ];
         if (!$data) {
-            NotificationHelper::error('edit','không thể xem loại biến thể này');
+            NotificationHelper::error('edit','không thể xem loại sản phẩm này');
             header('location: /admin/productvariant');
             exit;
         }
@@ -147,7 +147,7 @@ class ProductVariantController
         $is_valid = ProductVariantValidation::edit();
 
         if (!$is_valid) {
-            NotificationHelper::error('update', 'Cập nhật loại biến thể thất bại');
+            NotificationHelper::error('update', 'Cập nhật loại sản phẩm thất bại');
             header("location: /admin/productvariant/$id");
             exit;
         }
@@ -162,7 +162,7 @@ class ProductVariantController
 
         if ($is_exist) {
             if($is_exist['id']!=$id){
-                NotificationHelper::error('update', 'Tên loại biến thể đã tồn  tại');
+                NotificationHelper::error('update', 'Tên loại sản phẩm đã tồn  tại');
                 header("location: /admin/productvariant/$id");
                 exit;
             }
@@ -177,11 +177,11 @@ class ProductVariantController
         $result=$ProductVariant->updateProductVariant($id,$data);
 
         if ($result) {
-            NotificationHelper::success('update','Cập nhật loại biến thể thành công');
+            NotificationHelper::success('update','Cập nhật loại sản phẩm thành công');
             header('location: /admin/productvariant');
         }
         else {
-            NotificationHelper::error('update', 'Cập nhật loại biến thể thất bại');
+            NotificationHelper::error('update', 'Cập nhật loại sản phẩm thất bại');
             header("location: /admin/productvariant/$id");
             exit;
 
@@ -199,7 +199,7 @@ class ProductVariantController
             NotificationHelper::success('delete','Xóa loại biến thể thành công');
 
         }else{
-            NotificationHelper::error('delete', 'Xóa loại biến thể thất bại');
+            NotificationHelper::error('delete', 'Xóa loại sản phẩm thất bại');
 
         }
         header('location: /admin/productvariant');
