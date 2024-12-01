@@ -166,7 +166,15 @@ class Header extends BaseView
                                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                                         href="/admin/blogs" aria-expanded="false"><i class="me-3 fa fa-font"
                                             aria-hidden="true"></i><span class="hide-menu">Bài viết</span></a></li>
-
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/admin/productvariant" aria-expanded="false"><i class="me-3 fa fa-font"
+                                            aria-hidden="true"></i><span class="hide-menu">Loại biến thể</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/admin/productvariantoption" aria-expanded="false"><i class="me-3 fa fa-font"
+                                            aria-hidden="true"></i><span class="hide-menu">Biến thể</span></a></li>
+                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                                        href="/admin/skus" aria-expanded="false"><i class="me-3 fa fa-font"
+                                            aria-hidden="true"></i><span class="hide-menu"> Sản phẩm biến thể</span></a></li>
 
 
                             </ul>
