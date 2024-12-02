@@ -23,7 +23,7 @@ class ProductVariantController
    
 
         $productvariant = new ProductVariant();
-        $data = $productvariant->getAllProductVariant();
+        $data = $productvariant->getAllProductVariantName();
 
         Header::render();
         Notification::render();

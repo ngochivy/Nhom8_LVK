@@ -24,7 +24,7 @@ class ProductVariantOptionController
    
 
         $productvariantoption = new ProductVariantOption();
-        $data = $productvariantoption->getAllProductVariantOption();
+        $data = $productvariantoption->getAllProductVariantOptionName();
 
         Header::render();
         Notification::render();
