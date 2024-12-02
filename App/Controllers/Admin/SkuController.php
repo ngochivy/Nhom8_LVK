@@ -25,7 +25,11 @@ class SkuController
    
 
         $sku = new Sku();
+<<<<<<< HEAD
         $data = $sku->getAllSkus();
+=======
+        $data = $sku->getAllSkuu();
+>>>>>>> fe25692aaf2c4d04fa4fd0190b7b0a3f9783a672
 
 
          
