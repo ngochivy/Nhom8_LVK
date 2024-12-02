@@ -25,6 +25,7 @@ class Sku extends BaseModel
         return $this->update($id, $data);
     }
 
+    
     public function deleteSku($id)
     {
         return $this->delete($id);
