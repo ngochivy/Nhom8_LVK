@@ -3,6 +3,7 @@
 namespace App\Views\Client\Pages\Page;
 
 use App\Views\BaseView;
+use App\Models\Sku;
 
 class Cart extends BaseView
 {
@@ -11,7 +12,8 @@ class Cart extends BaseView
         $cart = $data['cart'] ?? [];
         $total = array_sum(array_column($cart, 'total_price'));
 
-        // var_dump($cart);
+        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
+
 ?>
         <!-- Favicon -->
         <link rel="icon" href="/favicon.png" />
@@ -65,11 +67,11 @@ class Cart extends BaseView
                                     <p class="text-center">Giỏ hàng của bạn đang trống!</p>
                                 <?php else: ?>
                                     <table class="table table-bordered text-center mb-0">
-                                        <thead class="bg-secondary text-dark">
-                                            <tr>
+                                        <thead class="bg-secondary text-dark"><tr>
                                                 <th>Chọn</th>
                                                 <th>Hình ảnh</th>
                                                 <th>Sản phẩm</th>
+                                                <th>Tùy chọn</th>
                                                 <th>Số lượng</th>
                                                 <th>Giá</th>
                                                 <th></th>
@@ -87,28 +89,29 @@ class Cart extends BaseView
                                                             class="product-checkbox"
                                                             name="check"
                                                             id="check"> -->
-                                                            <input type="checkbox" id="check" name="check[]" value="<?= $item['id'] ?>">
+                                                        <input type="checkbox" id="check" name="check[]" value="<?= $item['id'] ?>">
 
                                                     </td>
 
-                                                   
+
                                                     <td><img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:150px; width:150px; class=" product-image></td>
                                                     <td><?= $item['name'] ?></td>
+                                                    <td><?= $sku[0]['product_variant_option_name']?></td>
                                                     <td>
                                                         <!-- <div action="/cart/update" method="post"> -->
                                                         <input type="hidden" name="id[]" id="id" value="<?= $item['id'] ?>">
-                                                        <input type="hidden" name="price[]" id="price" value="<?= $item['price'] ?>">
+                                                        <input type="hidden" name="price[]" id="price" value="<?= $sku[0]['prices'] ?>">
 
 
                                                         <input type="number"
                                                             name="quantity[]"
-                                                            value="<?= $item['quantity']?>"
+                                                            value="<?= $item['quantity'] ?>"
                                                             min="1"
                                                             class="form-control quantity-input"
                                                             data-id="<?= $item['id'] ?>"
-                                                            data-price="<?= $item['price'] ?>">
+                                                            data-price="<?= $sku[0]['prices'] ?>">
 
-                                                         
+
                             </div>
 
                             </td>
@@ -213,12 +216,15 @@ class Cart extends BaseView
                 });
             </script>
 
+
+
             <!-- Back to Top -->
             <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
 
             <!-- JavaScript Libraries -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
             <script src="/public/assets/client/lib/easing/easing.min.js"></script>
             <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
