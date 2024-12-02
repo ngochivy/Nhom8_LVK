@@ -124,14 +124,25 @@ class CartController
 
     public static function update()
     {
+        //take sku price to total price
+        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
+        
+
+        // Lấy ID sản phẩm và số lượng từ POST
+        $productId = $_POST['id'] ?? null;
+        $quantity = $_POST['quantity'] ?? null;
 
 
 {
     
 
-    // Lấy ID sản phẩm và số lượng từ POST
-    $productId = $_POST['id'] ?? null;
-    $quantity = $_POST['quantity'] ?? null;
+        // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
+        if (isset($cart[$productId])) {
+            // Cập nhật số lượng
+            $cart[$productId]['quantity'] = $quantity;
+            // Cập nhật lại tổng giá của sản phẩm
+            $cart[$productId]['total_price'] = $sku[0]['prices'] * $quantity;
+        }
 
     // Lấy dữ liệu SKU của sản phẩm từ bảng SKU và bảng liên quan
     $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption($productId);

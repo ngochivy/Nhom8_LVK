@@ -64,7 +64,7 @@ class Sku extends BaseModel
     }
 
 
-    public function getSkuInnerJoinVariantAndVariantOption($productId)
+    public function getSkuInnerJoinVariantAndVariantOption()
     {
         try {
             // Kết nối cơ sở dữ liệu
@@ -72,8 +72,8 @@ class Sku extends BaseModel
 
             // Truy vấn lấy SKU và các thông tin liên quan chỉ cho sản phẩm có ID cụ thể
             $stmt = $conn->prepare(
-                "SELECT skus.*, products.*, 
-            product_variant_options.name as product_variant_option_name, 
+                "SELECT skus.*, products.*,
+            product_variant_options.name as product_variant_option_name,
             product_variants.name as product_variant_name
             FROM `skus` 
             INNER JOIN product_variant_options 
@@ -119,4 +119,5 @@ class Sku extends BaseModel
         // Lấy kết quả và trả về
         return $stmt->get_result()->fetch_assoc(); // Dùng get_result() để lấy kết quả
     }
+
 }

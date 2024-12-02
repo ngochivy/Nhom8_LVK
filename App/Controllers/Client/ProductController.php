@@ -108,35 +108,6 @@ class ProductController
     // Lấy thông tin sản phẩm từ database
     $product_detail = $productModel->getOneProduct($id);
 
-        // Kiểm tra nếu sản phẩm không tồn tại
-        if (!$product_detail) {
-            // Hiển thị thông báo hoặc chuyển hướng nếu không tìm thấy sản phẩm
-            echo "Sản phẩm không tồn tại.";
-            return;
-        }
-
-        // Lấy SKU và thông tin biến thể
-        $skuModel = new Sku();
-        $skuData = $skuModel->getSkuInnerJoinVariantAndVariantOption($id);
-
-        // Kiểm tra và xử lý nếu không có SKU dữ liệu
-        if (empty($skuData)) {
-            echo "Không có SKU cho sản phẩm này.";
-            return;
-        }
-
-        // Chuẩn bị dữ liệu truyền vào view
-        $data = [
-            'product' => $product_detail,
-            'skus' => $skuData, // Thêm dữ liệu SKU và biến thể
-            'comments' => $comments,
-            'is_login' => isset($_SESSION['User']),
-        ];
-
-        // Render view
-        Header::render();
-        Detail::render($data);
-        Footer::render();
     // Kiểm tra nếu sản phẩm không tồn tại
     if (!$product_detail) {
         // Hiển thị thông báo hoặc chuyển hướng nếu không tìm thấy sản phẩm
@@ -144,17 +115,17 @@ class ProductController
         return;
     }
 
-    // // Lấy SKU và thông tin biến thể
-    // $skuModel = new Sku();
-    // $skuData = array_filter(
-    //     $skuModel->getSkuInnerJoinVariantAndVariantOption($id),
-    //     fn($sku) => $sku['product_id'] == $id // Lọc SKU liên quan đến sản phẩm hiện tại
-    // );
+    // Lấy SKU và thông tin biến thể
+    $skuModel = new Sku();
+    $skuData = array_filter(
+        $skuModel->getSkuInnerJoinVariantAndVariantOption($id),
+        fn($sku) => $sku['product_id'] == $id // Lọc SKU liên quan đến sản phẩm hiện tại
+    );
 
     // Chuẩn bị dữ liệu truyền vào view
     $data = [
         'product' => $product_detail,
-        // 'skus' => $skuData, // Thêm dữ liệu SKU và biến thể
+        'skus' => $skuData, // Thêm dữ liệu SKU và biến thể
         'comments' => $comments,
         'is_login' => isset($_SESSION['User']),
     ];
@@ -164,9 +135,6 @@ class ProductController
     Detail::render($data);
     Footer::render();
 }
-
-
-
 
 
 

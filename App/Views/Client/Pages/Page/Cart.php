@@ -4,7 +4,6 @@ namespace App\Views\Client\Pages\Page;
 
 use App\Views\BaseView;
 use App\Models\Sku;
-use App\Models\Product;
 
 class Cart extends BaseView
 {
@@ -14,15 +13,8 @@ class Cart extends BaseView
         $total = array_sum(array_column($cart, 'total_price'));
         $productId = array_column($cart, 'product_id');
 
-        // Khởi tạo model SKU
-        $skuModel = new Sku();
+        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
 
-        // Duyệt qua từng sản phẩm trong giỏ hàng để lấy thông tin biến thể
-        foreach ($cart as $key => $item) {
-            $skuData = $skuModel->getSkuInnerJoinVariantAndVariantOption($productId);
-            $cart[$key]['variant_options'] = $skuData; // Lưu biến thể vào từng sản phẩm
-        }
-        
 ?>
 
         <!-- Favicon -->
@@ -84,8 +76,7 @@ class Cart extends BaseView
                                     <p class="text-center">Giỏ hàng của bạn đang trống!</p>
                                 <?php else: ?>
                                     <table class="table table-bordered text-center mb-0">
-                                        <thead class="bg-secondary text-dark">
-                                            <tr>
+                                        <thead class="bg-secondary text-dark"><tr>
                                                 <th>Chọn</th>
                                                 <th>Hình ảnh</th>
                                                 <th>Sản phẩm</th>
@@ -102,25 +93,24 @@ class Cart extends BaseView
                                             ?>
                                                 <tr>
                                                     <td>
-                                                        <input type="checkbox" name="check[]" value="<?= $item['id'] ?>">
+                                                        <!-- <input
+                                                            type="checkbox"
+                                                            class="product-checkbox"
+                                                            name="check"
+                                                            id="check"> -->
+                                                        <input type="checkbox" id="check" name="check[]" value="<?= $item['id'] ?>">
+
                                                     </td>
-                                                    <td><img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:150px; width:150px;"></td>
+
+
+                                                    <td><img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:150px; width:150px; class=" product-image></td>
                                                     <td><?= $item['name'] ?></td>
+                                                    <td><?= $sku[0]['product_variant_option_name']?></td>
                                                     <td>
-                                                        <!-- Hiển thị biến thể -->
-                                                        <?php if (!empty($item['variant_options'])): ?>
-                                                            <ul>
-                                                                <?php foreach ($item['variant_options'] as $variant): ?>
-                                                                    <li><?= htmlspecialchars($variant['product_variant_name'] . ': ' . $variant['product_variant_option_name']) ?></li>
-                                                                <?php endforeach; ?>
-                                                            </ul>
-                                                        <?php else: ?>
-                                                            Không có tùy chọn
-                                                        <?php endif; ?>
-                                                    </td>
-                                                    <td>
-                                                        <input type="hidden" name="id[]" value="<?= $item['id'] ?>">
-                                                        <input type="hidden" name="price[]" value="<?= $item['price'] ?>">
+                                                        <!-- <div action="/cart/update" method="post"> -->
+                                                        <input type="hidden" name="id[]" id="id" value="<?= $item['id'] ?>">
+                                                        <input type="hidden" name="price[]" id="price" value="<?= $sku[0]['prices'] ?>">
+
 
                                                         <input type="number"
                                                             name="quantity[]"
@@ -141,6 +131,9 @@ class Cart extends BaseView
                                         </tbody>
                                     </table>
                                 <?php endif; ?>
+                                                            data-price="<?= $sku[0]['prices'] ?>">
+
+
                             </div>
 
                             <!-- Tổng tiền và thanh toán -->
@@ -222,8 +215,8 @@ class Cart extends BaseView
 
 
 
-                <!-- Back to Top -->
-                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+            <!-- Back to Top -->
+            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
 
             <!-- JavaScript Libraries -->
