@@ -36,9 +36,25 @@ class Sku extends BaseModel
     }
 
 
-    public function getOneSkuByName($name)
+    public function getOneByName($name)
     {
         return $this->getOneByName($name);
+    }
+
+    public function getOneSkuByName($sku){
+        $result = [];
+        try {
+            $sql = "SELECT * FROM $this->table WHERE sku=?";
+            $conn = $this->_conn->MySQLi();
+            $stmt = $conn->prepare($sql);
+
+            $stmt->bind_param('s', $sku);
+            $stmt->execute();
+            return $stmt->get_result()->fetch_assoc();
+        } catch (\Throwable $th) {
+            error_log('Lỗi khi lấy bằng tên: ' . $th->getMessage());
+            return $result;
+        }
     }
 
     //getallsku

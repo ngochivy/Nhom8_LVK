@@ -54,6 +54,7 @@ class Index extends BaseView
                                                     <th>ID</th>
                                                     <th>Tên</th>
                                                     <th>Giá</th>
+                                                    <th>Số lượng tồn kho</th>
                                                     <th>Tên sản phẩm</th>
                                                     <th>Tên biến thể</th>
 
@@ -68,6 +69,7 @@ class Index extends BaseView
                                                         <td><?= $item['id'] ?></td>
                                                         <td><?= $item['sku'] ?></td>
                                                         <td><?= $item['prices'] ?></td>
+                                                        <td><?= $item['quantity'] ?></td>
                                                         <td><?= $item['product_name'] ?></td>
                                                         <td><?= $item['product_variant_option_name'] ?></td>
 

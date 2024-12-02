@@ -58,8 +58,12 @@ class Edit extends BaseView
                                         <input type="text" class="form-control" id="sku" value="<?= $data['dataSku']['sku'] ?>" placeholder="Nhập tên loại sản phẩm..." name="sku">
                                     </div>
                                     <div class="form-group">
-                                        <label for="price">Tên*</label>
-                                        <input type="text" class="form-control" id="price" value="<?= $data['dataSku']['price'] ?>" placeholder="Nhập tên loại sản phẩm..." name="price">
+                                        <label for="prices">Tên*</label>
+                                        <input type="text" class="form-control" id="prices" value="<?= $data['dataSku']['prices'] ?>" placeholder="Nhập tên loại sản phẩm..." name="prices">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quantity">Số lượng tồn kho*</label>
+                                        <input type="number" class="form-control" id="quantity" value="<?= $data['dataSku']['quantity'] ?>" placeholder="Nhập tên loại sản phẩm..." name="quantity">
                                     </div>
                                     <div class="form-group">
                                         <label for="product_id">Tên sản phẩm</label>

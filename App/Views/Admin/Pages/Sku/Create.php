@@ -53,8 +53,12 @@ class Create extends BaseView
                                         <input type="text" class="form-control" id="sku" placeholder="Nhập tên loại sản phẩm..." name="sku" >
                                     </div>
                                     <div class="form-group">
-                                        <label for="price">Giá*</label>
-                                        <input type="number" class="form-control" id="price" placeholder="Nhập tên loại sản phẩm..." name="price" >
+                                        <label for="prices">Giá*</label>
+                                        <input type="number" class="form-control" id="prices" placeholder="Nhập tên loại sản phẩm..." name="prices" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="quantity">Số lượng tồn kho*</label>
+                                        <input type="number" class="form-control" id="quantity" placeholder="Nhập tên loại sản phẩm..." name="quantity">
                                     </div>
                                     <div class="form-group">
                                         <label for="product_id">Tên sản phẩm</label>

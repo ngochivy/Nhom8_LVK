@@ -12,10 +12,14 @@ class SkuValidation{
             NotificationHelper::error('sku', 'Không để trống Sku !');
             $is_valid = false;
         }
-        if (!isset($_POST['price']) || $_POST['price'] === '') {
-            NotificationHelper::error('price', 'Không để trống giá !');
+        if (!isset($_POST['prices']) || $_POST['prices'] === '') {
+            NotificationHelper::error('prices', 'Không để trống giá !');
             $is_valid = false;
         }        
+        if (!isset($_POST['quantity']) || $_POST['quantity'] === '') {
+            NotificationHelper::error('quantity', 'Không để trống số lượng !');
+            $is_valid = false;
+        }
         if (!isset($_POST['product_id']) || $_POST['product_id'] === '') {
             NotificationHelper::error('product_id', 'Không để tên sản phẩm !');
             $is_valid = false;
@@ -35,10 +39,14 @@ class SkuValidation{
             NotificationHelper::error('sku', 'Không để trống Sku !');
             $is_valid = false;
         }
-        if (!isset($_POST['price']) || $_POST['price'] === '') {
-            NotificationHelper::error('price', 'Không để trống giá !');
+        if (!isset($_POST['prices']) || $_POST['prices'] === '') {
+            NotificationHelper::error('prices', 'Không để trống giá !');
             $is_valid = false;
         }        
+        if (!isset($_POST['quantity']) || $_POST['quantity'] === '') {
+            NotificationHelper::error('quantity', 'Không để trống số lượng !');
+            $is_valid = false;
+        }
         if (!isset($_POST['product_id']) || $_POST['product_id'] === '') {
             NotificationHelper::error('product_id', 'Không để tên sản phẩm !');
             $is_valid = false;

@@ -25,11 +25,7 @@ class SkuController
    
 
         $sku = new Sku();
-<<<<<<< HEAD
         $data = $sku->getAllSkus();
-=======
-        $data = $sku->getAllSkuu();
->>>>>>> fe25692aaf2c4d04fa4fd0190b7b0a3f9783a672
 
 
          
@@ -77,54 +73,57 @@ class SkuController
 
     // xử lý chức năng thêm
     public static function store()
-    {
+{
+    // Validation các trường dữ liệu
+    $is_valid = SkuValidation::create();
 
-        //validation các trường dữ liệu
-        $is_valid = SkuValidation::create();
-
-        if (!$is_valid) {
-            NotificationHelper::error('store', 'Thêm sản phẩm biến thể thất bại');
-            header('location: /admin/skus/create');
-            exit;
-        }
-
-        $sku=$_POST['sku'];
-        $price=$_POST['price'];
-        $product_id=$_POST['product_id'];
-        $product_variant_option_id=$_POST['product_variant_option_id'];
-
-        $Sku =new Sku();
-        $is_exist=$Sku->getOneSkuByName($sku);
-        if ($is_exist) {
-            NotificationHelper::error('store', 'Tên sản phẩm biến thể đã tồn  tại');
-            header('location: /admin/skus/create');
-            exit;
-        }
-
-        // thực hiện thêm
-        $data=[
-            'sku'=>$sku,
-            'price'=>$price,
-            'product_id'=>$product_id,
-            'product_variant_option_id'=>$product_variant_option_id,
-         
-        ];
-        $result=$Sku->createSku($data);
-
-        // var_dump($result);
-    // var_dump($_POST);
-
-        if ($result) {
-            NotificationHelper::success('store','Thêm sản phẩm biến thể thành công');
-            header('location: /admin/skus');
-        }
-        else {
-            NotificationHelper::error('store', 'Thêm sản phẩm biến thể thất bại');
-            header('location: /admin/skus/create');
-            exit;
-
-        }
+    if (!$is_valid) {
+        NotificationHelper::error('store', 'Thêm sản phẩm biến thể thất bại');
+        header('location: /admin/skus/create');
+        exit;
     }
+
+    // Lấy dữ liệu từ POST
+    $sku = $_POST['sku'];
+    $prices = $_POST['prices'];
+    $quantity = $_POST['quantity'];
+    $product_id = $_POST['product_id'];
+    $product_variant_option_id = $_POST['product_variant_option_id'];
+
+    $Sku = new Sku();
+    
+    // Kiểm tra nếu SKU đã tồn tại
+    $is_exist = $Sku->getOneSkuByName($sku);
+    if ($is_exist) {
+        NotificationHelper::error('store', 'Tên sản phẩm biến thể đã tồn tại');
+        header('location: /admin/skus/create');
+        exit;
+    }
+
+    // Thực hiện thêm dữ liệu vào cơ sở dữ liệu
+    $data = [
+        'sku' => $sku,
+        'prices' => $prices,
+        'quantity' => $quantity,
+        'product_id' => $product_id,
+        'product_variant_option_id' => $product_variant_option_id,
+    ];
+    
+    $result = $Sku->createSku($data);
+    // var_dump($result);
+    // var_dump($_POST);
+    // Kiểm tra kết quả và thông báo
+    if ($result) {
+        NotificationHelper::success('store', 'Thêm sản phẩm biến thể thành công');
+        header('location: /admin/skus');
+        exit;
+    } else {
+        NotificationHelper::error('store', 'Thêm sản phẩm biến thể thất bại');
+        header('location: /admin/skus/create');
+        exit;
+    }
+}
+
 
 
     // hiển thị chi tiết
@@ -193,7 +192,8 @@ class SkuController
        
 
         $sku=$_POST['sku'];
-        $price=$_POST['price'];
+        $prices=$_POST['prices'];
+        $quantity=$_POST['quantity'];
         $product_id=$_POST['product_id'];
         $product_variant_option_id=$_POST['product_variant_option_id'];
 
@@ -212,7 +212,8 @@ class SkuController
         // thực hiện cập nhật
         $data=[
             'sku'=>$sku,
-            'price'=>$price,
+            'prices'=>$prices,
+            'quantity'=>$quantity,
             'product_id'=>$product_id,
             'product_variant_option_id'=>$product_variant_option_id
         ];
