@@ -6,10 +6,7 @@ use App\Models\BaseModel;
 
 class SKU extends BaseModel
 {
-    protected $table = 'skus';
-    protected $id = 'id';
-
-    public function getAllSku()
+    public function getConnection()
     {
         return $this->_conn->MySQLi(); // Giả sử _conn là đối tượng kết nối của bạn.
     }
