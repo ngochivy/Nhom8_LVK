@@ -70,23 +70,21 @@ class Sku extends BaseModel
             // Kết nối cơ sở dữ liệu
             $conn = $this->getConnection();
 
-            // Truy vấn lấy thông tin sản phẩm và các biến thể theo ID sản phẩm
+            // Truy vấn lấy SKU và các thông tin liên quan chỉ cho sản phẩm có ID cụ thể
             $stmt = $conn->prepare(
-                "SELECT skus.*, products.*,
-            product_variant_options.name as product_variant_option_name,
+                "SELECT skus.*, products.*, 
+            product_variant_options.name as product_variant_option_name, 
             product_variants.name as product_variant_name
             FROM `skus` 
             INNER JOIN product_variant_options 
             ON skus.product_variant_option_id = product_variant_options.id 
             INNER JOIN products 
-            ON skus.product_id = products.id
+            ON skus.product_id = products.id 
             INNER JOIN product_variants 
             ON product_variants.id = product_variant_options.product_variant_id
             WHERE products.id = ?"
             );
-
-            // Gán giá trị tham số và thực thi truy vấn
-            $stmt->bind_param('i', $productId);
+            $stmt->bind_param("i", $productId);  // Giới hạn kết quả theo product_id
             $stmt->execute();
 
             // Lấy kết quả
@@ -97,5 +95,28 @@ class Sku extends BaseModel
             error_log("Error in getSkuInnerJoinVariantAndVariantOption(): " . $th->getMessage());
             return [];
         }
+    }
+
+    public function getSkuByProductId($productId)
+    {
+        $conn = $this->getConnection();
+
+        // Truy vấn lấy SKU và các thông tin liên quan của sản phẩm theo ID
+        $query = "SELECT skus.sku, skus.prices, skus.quantity, products.*, 
+              product_variant_options.name as product_variant_option_name
+              FROM skus
+              INNER JOIN products 
+              ON skus.product_id = products.id
+              INNER JOIN product_variant_options 
+              ON skus.product_variant_option_id = product_variant_options.id
+              WHERE products.id = ? LIMIT 1";  // Chỉ lấy 1 sản phẩm
+
+        // Thực hiện truy vấn với phương thức bind_param
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param('i', $productId);  // Sử dụng 'i' cho kiểu dữ liệu INT
+        $stmt->execute();
+
+        // Lấy kết quả và trả về
+        return $stmt->get_result()->fetch_assoc(); // Dùng get_result() để lấy kết quả
     }
 }

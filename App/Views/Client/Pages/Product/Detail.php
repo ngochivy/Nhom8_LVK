@@ -137,10 +137,87 @@ class Detail extends BaseView
                                 <?php endif; ?>
                             </div>
 
-                            <script>
-                                document.querySelectorAll('.variant-select').forEach(select => {
-                                    select.addEventListener('change', function() {
-                                        updateSelectedVariants();
+									// Lấy giá của tất cả các biến thể đã chọn và cộng lại
+									document.querySelectorAll('.variant-select').forEach(select => {
+										let selectedOption = select.querySelector('option:checked');
+										let price = parseInt(selectedOption.getAttribute('data-price')) || 0;
+										let discountPrice = parseInt(selectedOption.getAttribute('data-discount-price')) || 0;
+
+										totalPrice += price; // Cộng tổng giá
+										totalDiscountPrice += discountPrice; // Cộng tổng giá giảm (nếu có)
+									});
+
+									// Cập nhật giá hiển thị theo tổng giá đã chọn
+									document.getElementById('price-display').innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) + " đ";
+
+									// Cập nhật giá giảm nếu có
+									if (totalDiscountPrice > 0) {
+_										// Nếu có giá giảm, hiển thị giá giảm
+										document.getElementById('discount_price-display').innerHTML = `<strong class="text-danger">${new Intl.NumberFormat('vi-VN').format(totalPrice - totalDiscountPrice)} đ</strong> <del><strike>${new Intl.NumberFormat('vi-VN').format(totalPrice)} đ</strike></del>`;
+									} else {
+										// Nếu không có giá giảm, chỉ hiển thị giá gốc
+										document.getElementById('discount_price-display').innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) + " đ";
+									}
+								}
+							</script>
+
+                     
+
+                        <div class="card-footer d-flex justify-content-between bg-light align-items-center" style="margin-top:150px;">
+                            <form action="/cart/add" method="post" class="d-flex align-items-center">
+                                <input type="hidden" name="method" value="POST">
+                                <input type="hidden" name="id" value="<?= $data['product']['id'] ?>" required>
+
+                                <!-- Lưu các biến thể đã chọn -->
+                                <input type="hidden" name="variants" id="selected-variants">
+
+                                <!-- Input số lượng -->
+                                <div class="input-group mr-3" style="max-width: 200px;">
+                                    <!-- Nút giảm số lượng -->
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-primary minus" type="button">-</button>
+                                    </div>
+
+                                    <!-- Input số lượng -->
+                                    <input type="number" name="quantity" value="1" min="1" class="form-control text-center" aria-label="Quantity" style="max-width: 60px;">
+
+                                    <!-- Nút tăng số lượng -->
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary plus" type="button">+</button>
+                                    </div>
+                                </div>
+                        
+                        
+                                <input type="hidden" name="product_id" value="<?php $product['id'] ?>"> <!-- ID sản phẩm động -->
+
+                            
+                            <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
+                        </form>
+                        </div>
+                    </div>
+
+                    <script>
+                        // Thêm sự kiện cho nút tăng giảm số lượng
+                        document.querySelector('.plus').addEventListener('click', function() {
+                            let quantityInput = document.querySelector('input[name="quantity"]');
+                            quantityInput.value = parseInt(quantityInput.value) + 1;
+                        });
+
+                        document.querySelector('.minus').addEventListener('click', function() {
+                            let quantityInput = document.querySelector('input[name="quantity"]');
+                            if (quantityInput.value > 1) {
+                                quantityInput.value = parseInt(quantityInput.value) - 1;
+                            }
+                        });
+
+                        // Cập nhật các biến thể đã chọn
+                        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                            radio.addEventListener('change', function() {
+                                let selectedVariants = [];
+                                document.querySelectorAll('input[type="radio"]:checked').forEach(selected => {
+                                    selectedVariants.push({
+                                        variantId: selected.name.split('-')[1],
+                                        optionId: selected.value
                                     });
                                 });
 

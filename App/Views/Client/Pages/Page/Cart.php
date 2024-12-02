@@ -4,6 +4,7 @@ namespace App\Views\Client\Pages\Page;
 
 use App\Views\BaseView;
 use App\Models\Sku;
+use App\Models\Product;
 
 class Cart extends BaseView
 {
@@ -26,7 +27,7 @@ class Cart extends BaseView
 
         <!-- Favicon -->
         <link rel="icon" href="/favicon.png" />
-
+        
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -64,7 +65,6 @@ class Cart extends BaseView
                 </div>
                 <!-- Page Header End -->
 
-
                 <!-- Cart Start -->
                 <!-- Cart Start -->
                 <form action="/checkout" method="post">
@@ -89,7 +89,10 @@ class Cart extends BaseView
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($cart as $id => $item): ?>
+                                            <?php foreach ($cart as $id => $item): 
+                                                // Fetch SKU and variant data for each cart item
+                                                $sku = (new Sku())->getSkuByProductId($item['id']);
+                                            ?>
                                                 <tr>
                                                     <td>
                                                         <input type="checkbox" name="check[]" value="<?= $item['id'] ?>">
@@ -167,6 +170,7 @@ class Cart extends BaseView
                                             <h5 class="font-weight-bold"><?= number_format($total, 0, ',', ',') ?> VND </h5>
                                         </div>
                                         <a class="text-light text-decoration-none" href="/checkout">
+                                        <a href="/checkout" class="text-light text-decoration-none">
                                             <button class="btn btn-block btn-primary my-3 py-3">Mua hàng</button>
                                         </a>
                                     </div>
@@ -229,14 +233,7 @@ class Cart extends BaseView
             <!-- Template Javascript -->
             <script src="/public/assets/client/js/main.js"></script>
         </body>
-
         </html>
-
-
-
-
-
 <?php
-
     }
 }

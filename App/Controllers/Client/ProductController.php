@@ -115,14 +115,20 @@ class ProductController
             return;
         }
 
-        // Lấy SKU và thông tin biến thể liên quan
+        // Lấy SKU và thông tin biến thể
         $skuModel = new Sku();
         $skuData = $skuModel->getSkuInnerJoinVariantAndVariantOption($id);
+
+        // Kiểm tra và xử lý nếu không có SKU dữ liệu
+        if (empty($skuData)) {
+            echo "Không có SKU cho sản phẩm này.";
+            return;
+        }
 
         // Chuẩn bị dữ liệu truyền vào view
         $data = [
             'product' => $product_detail,
-            'skus' => $skuData, // Dữ liệu SKU và biến thể
+            'skus' => $skuData, // Thêm dữ liệu SKU và biến thể
             'comments' => $comments,
             'is_login' => isset($_SESSION['User']),
         ];
