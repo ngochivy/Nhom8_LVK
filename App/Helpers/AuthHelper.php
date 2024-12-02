@@ -244,7 +244,7 @@ class AuthHelper
                 exit;
             }
 
-            if ($_SESSION['user']['role'] != 'Admin') {
+            if ($_SESSION['user']['role'] != 1) {
                 NotificationHelper::error('admin', 'Tài khoản này không có quyền truy cập');
                 // Sử dụng ob_start() và ob_end_flush()
                 ob_start();

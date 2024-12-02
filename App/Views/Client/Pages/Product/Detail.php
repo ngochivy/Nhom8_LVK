@@ -57,13 +57,23 @@ class Detail extends BaseView
                         <div id="product-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner border">
                                 <div class="carousel-item active">
-                                    <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $data['product']['image'] ?>" alt="Image">
+                                    <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $data['product']['image'] ?>" alt="Image" >
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-7 pb-5">
                         <h3 class="font-weight-bold" style="font-family:roboto;"><?= $data['product']['name'] ?></h3>
+                        <!-- Hiển thị lượt đánh giá và lượt bán -->
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="d-flex align-items-center">
+                                <span class="badge badge-success px-2 py-1"> ★</span>
+                                <p class="ml-2 pt-3">đánh giá: 444</p>
+                            </div>
+                            <div class="ml-4">
+                                <p class="pt-3">Sản phẩm đã bán: 123</p>
+                            </div>
+                        </div>
 
                         <div class="d-flex gap-3" style="font-family:montserrat;">
                             <?php
@@ -87,9 +97,22 @@ class Detail extends BaseView
                             ?>
                         </div>
 
+                        <!-- Thông tin vận chuyển -->
+                        <div class="d-flex flex-column mt-0">
+                            <span>
+                            <h5 class="text font-weight-bold mb-2">Vận chuyển: </h5>
+                            <i class="fa-solid fa-truck-fast" style="color: #c5837c;"></i> Miễn phí vận chuyển
+                            </span>
+                            <div>
+                                <p class="m-0">Địa chỉ: <strong>Cần Thơ</strong><a href="#" class="px-1 text-decoration-underline">thay đổi</a></p>
+                                <p class="m-0">Phí vận chuyển: <strong class="text-dark">0đ</strong></p>
+                            </div>
+                        </div>
+
+
                         <!-- Biến thể -->
                         <?php foreach ($data['variants'] as $variant): ?>
-                            <div class="d-flex mb-4">
+                            <div class="d-flex mb-2 mt-5">
                                 <p class="text-dark font-weight-medium mb-0 mr-3"><?= htmlspecialchars($variant['name']) ?>:</p>
                                 <form>
                                     <?php foreach ($variant['options'] as $option): ?>
@@ -121,7 +144,7 @@ class Detail extends BaseView
                         </script>
 
 
-                        <div class="card-footer d-flex justify-content-between bg-light align-items-center">
+                        <div class="card-footer d-flex justify-content-between bg-light align-items-center" style="margin-top:150px;">
                             <form action="/cart/add" method="post" class="d-flex align-items-center">
                                 <input type="hidden" name="method" value="POST">
                                 <input type="hidden" name="id" value="<?= $data['product']['id'] ?>" required>
@@ -193,10 +216,12 @@ class Detail extends BaseView
                             <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Bình luận</a>
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="tab-pane-1">
+                            <div class="tab-pane fade show active" id="tab-pane-1" >
                                 <!-- Mô tả sản phẩm từ database -->
                                 <h4 class="mb-3" style="font-family:roboto;"><?= htmlspecialchars($data['product']['name']); ?></h4>
-                                <p><?= nl2br(htmlspecialchars($data['product']['description'])); ?></p>
+                                <p><?= $data['product']['description'] ?></p>
+                                <h5 class="my-3">Hướng dẫn sử dụng</h5>
+                                <p><?= $data['product']['user_manual'] ?></p>
                             </div>
                             <div class="tab-pane fade" id="tab-pane-2">
                                 <div class="row">
@@ -262,7 +287,7 @@ class Detail extends BaseView
                 </div>
             </div>
             <!-- Shop Detail End -->
-            
+
 
 <?php
         }
