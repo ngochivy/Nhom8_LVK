@@ -67,7 +67,7 @@ class Index extends BaseView
                                                     <tr>
                                                         <td><?= $item['id'] ?></td>
                                                         <td><?= $item['sku'] ?></td>
-                                                        <td><?= $item['price'] ?></td>
+                                                        <td><?= $item['prices'] ?></td>
                                                         <td><?= $item['product_name'] ?></td>
                                                         <td><?= $item['product_variant_option_name'] ?></td>
 
