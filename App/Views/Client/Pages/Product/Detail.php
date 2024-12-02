@@ -15,6 +15,8 @@ class Detail extends BaseView
         $is_login = AuthHelper::checkLogin();
         if (isset($data['product']) && !empty($data['product'])) {
             $product = $data['product'];
+            $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
+            // var_dump($sku);
 
             $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption($product['id']);
             // var_dump($sku);
@@ -57,119 +59,109 @@ class Detail extends BaseView
                 </div>
                 <!-- Page Header End -->
 
-                <!-- Shop Detail Start -->
-                <div class="container product-details">
-                    <div class="row">
-                        <div class="col-lg-5 pb-5">
-                            <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                                <div class="carousel-inner border">
-                                    <div class="carousel-item active">
-                                        <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $product['image'] ?>" alt="Image">
-                                    </div>
+            <!-- Shop Detail Start -->
+            <div class="container-fluid py-5">
+                <div class="row px-xl-5">
+
+                    <div class="col-lg-5 pb-5">
+                        <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                            <div class="carousel-inner border">
+                                <div class="carousel-item active">
+                                    <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $data['product']['image'] ?>" alt="Image" >
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-7 pb-5">
-                            <h3 class="font-weight-bold" style="font-family:roboto;"><?= $product['name'] ?></h3>
-                            <!-- Hiển thị lượt đánh giá và lượt bán -->
-                            <div class="d-flex align-items-center mb-1">
-                                <div class="d-flex align-items-center">
-                                    <span class="badge badge-success px-2 py-1"> ★</span>
-                                    <p class="ml-2 pt-3">đánh giá: 444</p>
-                                </div>
-                                <div class="ml-4">
-                                    <p class="pt-3">Sản phẩm đã bán: 123</p>
-                                </div>
+                    </div>
+                    <div class="col-lg-7 pb-5">
+                        <h3 class="font-weight-bold" style="font-family:roboto;"><?= $data['product']['name'] ?></h3>
+                        <!-- Hiển thị lượt đánh giá và lượt bán -->
+                        <div class="d-flex align-items-center mb-1">
+                            <div class="d-flex align-items-center">
+                                <span class="badge badge-success px-2 py-1"> ★</span>
+                                <p class="ml-2 pt-3">đánh giá: 444</p>
                             </div>
+                            <div class="ml-4">
+                                <p class="pt-3">Sản phẩm đã bán: 123</p>
+                            </div>
+                        </div>
 
+                        <div class="d-flex gap-3" style="font-family:montserrat;">
+                            <?php
+                            if ($data['product']['discount_price'] > 0) :
+                            ?>
+
+                                <h3 class=" mb-0"><strike><?= number_format($data['product']['price']) ?> đ</strike></h3>
+                                <h3 class=" mb-4"><strong class="text-danger"><?= number_format($data['product']['price'] - $data['product']['discount_price']) ?> đ</strong></h3>
+                            <?php
+                            else :
+                            ?>
+                                <h6></h6>
+                                <!-- Giá cơ bản của sản phẩm -->
+                                <h3 id="base-price" data-base-price="<?= $data['product']['price'] ?>" class="font-weight-semi-bold mb-4"><?= number_format($data['product']['price']) ?> đ</h3>
+
+                                <!-- Giá sau khi chọn biến thể -->
+                                <h3 id="final-price" class="font-weight-semi-bold mb-4"><?= number_format($data['product']['price']) ?> đ</h3>
+
+                            <?php
+                            endif;
+                            ?>
+                        </div>
+
+                        <!-- Thông tin vận chuyển -->
+                        <div class="d-flex flex-column mt-0">
+                            <span>
+                            <h5 class="text font-weight-bold mb-2">Vận chuyển: </h5>
+                            <i class="fa-solid fa-truck-fast" style="color: #c5837c;"></i> Miễn phí vận chuyển
+                            </span>
                             <div>
-                                <?php
-                                // Kiểm tra nếu có SKU
-                                if (!empty($sku) && is_array($sku)) :
-                                    // Nếu có SKU, hiển thị giá từ SKU
-                                    if ($sku[0]['discount_price'] > 0):
-                                ?>
-                                        <h3 class="product-price" id="price-display"><strong class="text-danger"> <?= number_format($sku[0]['prices'] - $sku[0]['discount_price']) ?>đ</strong> <del class="product-old-price" id="discount_price-display"><strike><?= number_format($sku[0]['prices']) ?> đ</strike> </del> </h3>
-                                    <?php
-                                    else :
-                                    ?>
-                                        <h3 class="product-price"><?= number_format($sku[0]['prices']) ?> đ</h3>
-                                    <?php
-                                    endif;
-                                else :
-                                    // Nếu không có SKU, lấy giá từ bảng products
-                                    ?>
-                                    <h3 class="product-price"><?= number_format($product['price']) ?> đ</h3>
-                                <?php
-                                endif;
-                                ?>
+                                <p class="m-0">Địa chỉ: <strong>Cần Thơ</strong><a href="#" class="px-1 text-decoration-underline">thay đổi</a></p>
+                                <p class="m-0">Phí vận chuyển: <strong class="text-dark">0đ</strong></p>
                             </div>
+                        </div>
 
 
-                            <div class="product-options">
-                                <?php if (!empty($sku) && is_array($sku)) : ?>
-                                    <?php
-                                    // Nhóm các biến thể theo `product_variant_name`
-                                    $groupedOptions = [];
-                                    foreach ($sku as $item) {
-                                        $groupedOptions[$item['product_variant_name']][] = [
-                                            'id' => $item['product_variant_option_id'],
-                                            'name' => $item['product_variant_option_name'],
-                                            'price' => $item['prices']
-                                        ];
-                                    }
-                                    ?>
-
-                                    <?php foreach ($groupedOptions as $variantName => $options) : ?>
-                                        <label class="row d-flex " style="max-width:400px;">
-                                            <h5 class="col-6 py-2"><?= htmlspecialchars($variantName) ?>:</h5>
-                                            <select class="col-5 form-select form-select-lg mb-3 input-select variant-select" data-variant="<?= htmlspecialchars($variantName) ?>">
-                                                <?php foreach ($options as $option) : ?>
-                                                    <option value="<?= htmlspecialchars($option['id']) ?>" data-price="<?= htmlspecialchars($option['price']) ?>">
-                                                        <?= htmlspecialchars($option['name']) ?>
-                                                    </option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </label>
+                        <!-- Biến thể -->
+                        <?php foreach ($data['variants'] as $variant): ?>
+                            <div class="d-flex mb-2 mt-5">
+                                <p class="text-dark font-weight-medium mb-0 mr-3"><?= htmlspecialchars($variant['name']) ?>:</p>
+                                <form>
+                                    <?php foreach ($variant['options'] as $option): ?>
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="option-<?= $option['id'] ?>" name="variant-<?= $variant['name'] ?>" value="<?= $option['id'] ?>" data-price="<?= $option['price'] ?>">
+                                            <label class="custom-control-label" for="option-<?= $option['id'] ?>"><?= htmlspecialchars($option['name']) ?></label>
+                                        </div>
                                     <?php endforeach; ?>
-                                <?php else : ?>
-                                    <p></p>
-                                <?php endif; ?>
+                                </form>
                             </div>
+                        <?php endforeach; ?>
 
-									// Lấy giá của tất cả các biến thể đã chọn và cộng lại
-									document.querySelectorAll('.variant-select').forEach(select => {
-										let selectedOption = select.querySelector('option:checked');
-										let price = parseInt(selectedOption.getAttribute('data-price')) || 0;
-										let discountPrice = parseInt(selectedOption.getAttribute('data-discount-price')) || 0;
+                        <script>
+                            // Cập nhật giá khi chọn biến thể
+                            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                                radio.addEventListener('change', function() {
+                                    let basePrice = parseFloat(document.getElementById('base-price').dataset.basePrice); // Lấy giá cơ bản
+                                    let additionalPrice = 0;
 
-										totalPrice += price; // Cộng tổng giá
-										totalDiscountPrice += discountPrice; // Cộng tổng giá giảm (nếu có)
-									});
+                                    // Duyệt qua tất cả các lựa chọn đã chọn và cộng giá
+                                    document.querySelectorAll('input[type="radio"]:checked').forEach(selected => {
+                                        additionalPrice += parseFloat(selected.dataset.price || 0); // Lấy giá thêm từ thuộc tính data-price
+                                    });
 
-									// Cập nhật giá hiển thị theo tổng giá đã chọn
-									document.getElementById('price-display').innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) + " đ";
+                                    // Cập nhật giá cuối cùng
+                                    document.getElementById('final-price').innerText = (basePrice + additionalPrice).toLocaleString('vi-VN') + ' đ';
+                                });
+                            });
+                        </script>
 
-									// Cập nhật giá giảm nếu có
-									if (totalDiscountPrice > 0) {
-_										// Nếu có giá giảm, hiển thị giá giảm
-										document.getElementById('discount_price-display').innerHTML = `<strong class="text-danger">${new Intl.NumberFormat('vi-VN').format(totalPrice - totalDiscountPrice)} đ</strong> <del><strike>${new Intl.NumberFormat('vi-VN').format(totalPrice)} đ</strike></del>`;
-									} else {
-										// Nếu không có giá giảm, chỉ hiển thị giá gốc
-										document.getElementById('discount_price-display').innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) + " đ";
-									}
-								}
-							</script>
 
-                     
 
-                        <div class="card-footer d-flex justify-content-between bg-light align-items-center" style="margin-top:150px;">
-                            <form action="/cart/add" method="post" class="d-flex align-items-center">
-                                <input type="hidden" name="method" value="POST">
-                                <input type="hidden" name="id" value="<?= $data['product']['id'] ?>" required>
+                            <div class="card-footer d-flex justify-content-between bg-light align-items-center" style="margin-top:150px;">
+                                <form action="/cart/add" method="post" class="d-flex align-items-center">
+                                    <input type="hidden" name="method" value="POST">
+                                    <input type="hidden" name="id" value="<?= $data['product']['id'] ?>" required>
 
-                                <!-- Lưu các biến thể đã chọn -->
-                                <input type="hidden" name="variants" id="selected-variants">
+                                    <!-- Lưu các biến thể đã chọn -->
+                                    <input type="hidden" name="variants" id="selected-variants">
 
                                 <!-- Input số lượng -->
                                 <div class="input-group mr-3" style="max-width: 200px;">
@@ -186,15 +178,11 @@ _										// Nếu có giá giảm, hiển thị giá giảm
                                         <button class="btn btn-primary plus" type="button">+</button>
                                     </div>
                                 </div>
-                        
-                        
-                                <input type="hidden" name="product_id" value="<?php $product['id'] ?>"> <!-- ID sản phẩm động -->
 
-                            
-                            <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
-                        </form>
+                                <!-- Nút thêm vào giỏ hàng -->
+                                <button type="submit" class="btn btn-primary" style="width:290px; margin-left:-50px;"><i class="fa fa-shopping-cart mr-1"></i>Thêm vào giỏ hàng</button>
+                            </form>
                         </div>
-                    </div>
 
                     <script>
                         // Thêm sự kiện cho nút tăng giảm số lượng
@@ -221,116 +209,13 @@ _										// Nếu có giá giảm, hiển thị giá giảm
                                     });
                                 });
 
-                                function updateSelectedVariants() {
-                                    let selectedVariants = [];
-
-                                    // Lấy các ID của các biến thể đã chọn
-                                    document.querySelectorAll('.variant-select').forEach(select => {
-                                        let selectedOption = select.querySelector('option:checked');
-                                        if (selectedOption) {
-                                            selectedVariants.push(selectedOption.value); // Lưu ID biến thể
-                                        }
-                                    });
-
-                                    // Cập nhật giá trị của input hidden `selected-variants`
-                                    document.getElementById('selected-variants').value = selectedVariants.join(',');
-                                }
-                            </script>
-                            <script>
-                                // Theo dõi sự thay đổi trên các dropdown biến thể
-                                document.querySelectorAll('.variant-select').forEach(select => {
-                                    select.addEventListener('change', updatePrice);
-                                });
-
-                                function updatePrice() {
-                                    let totalPrice = 0;
-                                    let totalDiscountPrice = 0;
-
-                                    // Lấy giá của tất cả các biến thể đã chọn và cộng lại
-                                    document.querySelectorAll('.variant-select').forEach(select => {
-                                        let selectedOption = select.querySelector('option:checked');
-                                        let price = parseInt(selectedOption.getAttribute('data-price')) || 0;
-                                        let discountPrice = parseInt(selectedOption.getAttribute('data-discount-price')) || 0;
-
-                                        totalPrice += price; // Cộng tổng giá
-                                        totalDiscountPrice += discountPrice; // Cộng tổng giá giảm (nếu có)
-                                    });
-
-                                    // Cập nhật giá hiển thị theo tổng giá đã chọn
-                                    document.getElementById('price-display').innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) + " đ";
-
-                                    // Cập nhật giá giảm nếu có
-                                    if (totalDiscountPrice > 0) {
-                                        _ // Nếu có giá giảm, hiển thị giá giảm
-                                        document.getElementById('discount_price-display').innerHTML = `<strong class="text-danger">${new Intl.NumberFormat('vi-VN').format(totalPrice - totalDiscountPrice)} đ</strong> <del><strike>${new Intl.NumberFormat('vi-VN').format(totalPrice)} đ</strike></del>`;
-                                    } else {
-                                        // Nếu không có giá giảm, chỉ hiển thị giá gốc
-                                        document.getElementById('discount_price-display').innerText = new Intl.NumberFormat('vi-VN').format(totalPrice) + " đ";
-                                    }
-                                }
-                            </script>
-
-
-
-                            <div class="card-footer d-flex justify-content-between bg-light align-items-center" style="margin-top:150px;">
-                                <form action="/cart/add" method="post" class="d-flex align-items-center">
-                                    <input type="hidden" name="method" value="POST">
-                                    <input type="hidden" name="id" value="<?= $data['product']['id'] ?>" required>
-
-                                    <!-- Lưu các biến thể đã chọn -->
-                                    <input type="hidden" name="variants" id="selected-variants">
-
-                                    <!-- Input số lượng -->
-                                    <div class="input-group mr-3" style="max-width: 200px;">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-primary minus" type="button">-</button>
-                                        </div>
-                                        <input type="number" name="quantity" value="1" min="1" class="form-control text-center" aria-label="Quantity" style="max-width: 60px;">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary plus" type="button">+</button>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary " style="min-width: 230px;">
-                                        <i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng
-                                    </button>
-                                </form>
-
-                            </div>
-                        </div>
-
-                        <script>
-                            // Thêm sự kiện cho nút tăng giảm số lượng
-                            document.querySelector('.plus').addEventListener('click', function() {
-                                let quantityInput = document.querySelector('input[name="quantity"]');
-                                quantityInput.value = parseInt(quantityInput.value) + 1;
+                                // Lưu thông tin biến thể vào hidden input
+                                document.getElementById('selected-variants').value = JSON.stringify(selectedVariants);
                             });
+                        });
+                    </script>
 
-                            document.querySelector('.minus').addEventListener('click', function() {
-                                let quantityInput = document.querySelector('input[name="quantity"]');
-                                if (quantityInput.value > 1) {
-                                    quantityInput.value = parseInt(quantityInput.value) - 1;
-                                }
-                            });
-
-                            // Cập nhật các biến thể đã chọn
-                            document.querySelectorAll('input[type="radio"]').forEach(radio => {
-                                radio.addEventListener('change', function() {
-                                    let selectedVariants = [];
-                                    document.querySelectorAll('input[type="radio"]:checked').forEach(selected => {
-                                        selectedVariants.push({
-                                            variantId: selected.name.split('-')[1],
-                                            optionId: selected.value
-                                        });
-                                    });
-
-                                    // Lưu thông tin biến thể vào hidden input
-                                    document.getElementById('selected-variants').value = JSON.stringify(selectedVariants);
-                                });
-                            });
-                        </script>
-
-                    </div>
+                </div>
 
                 </div>
                 <div class="row px-xl-5">
@@ -338,13 +223,12 @@ _										// Nếu có giá giảm, hiển thị giá giảm
                         <div class="nav nav-tabs justify-content-center border-secondary mb-4">
                             <a class="nav-item nav-link active" data-toggle="tab" href="#tab-pane-1">Mô tả sản phẩm</a>
                             <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-2">Bình luận</a>
-                            <a class="nav-item nav-link" data-toggle="tab" href="#tab-pane-3">Hướng dẫn sử dụng</a>
                         </div>
                         <div class="tab-content">
                             <div class="tab-pane fade show active" id="tab-pane-1">
                                 <!-- Mô tả sản phẩm từ database -->
                                 <h4 class="mb-3" style="font-family:roboto;"><?= htmlspecialchars($data['product']['name']); ?></h4>
-                                <p><?= $data['product']['description'] ?></p>
+                                <p><?= nl2br(htmlspecialchars($data['product']['description'])); ?></p>
                             </div>
                             <div class="tab-pane fade" id="tab-pane-2">
                                 <div class="row">
@@ -404,10 +288,6 @@ _										// Nếu có giá giảm, hiển thị giá giảm
                                         </form>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade show active" id="tab-pane-3">
-                                <h5 class="my-3">Hướng dẫn sử dụng</h5>
-                                <p><?= $data['product']['user_manual'] ?></p>
                             </div>
                         </div>
                     </div>

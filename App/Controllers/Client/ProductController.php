@@ -97,16 +97,16 @@ class ProductController
 
     // Hiển thị chi tiết sản phẩm
     public static function detail($id)
-    {
-        // Khởi tạo model sản phẩm
-        $productModel = new Product();
+{
+    // Khởi tạo model sản phẩm
+    $productModel = new Product();
 
-        // Khởi tạo model bình luận
-        $comment = new Comment();
-        $comments = $comment->get5CommentNewestByProductAndStatus($id);
+    // Khởi tạo model bình luận
+    $comment = new Comment();
+    $comments = $comment->get5CommentNewestByProductAndStatus($id);
 
-        // Lấy thông tin sản phẩm từ database
-        $product_detail = $productModel->getOneProduct($id);
+    // Lấy thông tin sản phẩm từ database
+    $product_detail = $productModel->getOneProduct($id);
 
         // Kiểm tra nếu sản phẩm không tồn tại
         if (!$product_detail) {
@@ -137,7 +137,35 @@ class ProductController
         Header::render();
         Detail::render($data);
         Footer::render();
+    // Kiểm tra nếu sản phẩm không tồn tại
+    if (!$product_detail) {
+        // Hiển thị thông báo hoặc chuyển hướng nếu không tìm thấy sản phẩm
+        echo "Sản phẩm không tồn tại.";
+        return;
     }
+
+    // // Lấy SKU và thông tin biến thể
+    // $skuModel = new Sku();
+    // $skuData = array_filter(
+    //     $skuModel->getSkuInnerJoinVariantAndVariantOption($id),
+    //     fn($sku) => $sku['product_id'] == $id // Lọc SKU liên quan đến sản phẩm hiện tại
+    // );
+
+    // Chuẩn bị dữ liệu truyền vào view
+    $data = [
+        'product' => $product_detail,
+        // 'skus' => $skuData, // Thêm dữ liệu SKU và biến thể
+        'comments' => $comments,
+        'is_login' => isset($_SESSION['User']),
+    ];
+
+    // Render view
+    Header::render();
+    Detail::render($data);
+    Footer::render();
+}
+
+
 
 
 

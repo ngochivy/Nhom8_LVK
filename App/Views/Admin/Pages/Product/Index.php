@@ -57,8 +57,10 @@ class Index extends BaseView
                                                     <th>Giá</th>
                                                     <th>Giá giảm</th>
                                                     <th>Danh mục</th>
+                                                  
                                                     <th>Số lượng</th>
                                                     <th>hướng dẫn</th>
+                                                  
                                                     <th>nổi bật</th>
                                                     <th>Trạng thái</th>
                                                     <th> <a href="/admin/products/create" class="btn btn-success ">Thêm mới</a></th>
@@ -89,11 +91,11 @@ class Index extends BaseView
 
                                                         <td><?= ($item['is_feature'] == 1) ? 'Nổi bật' : 'Không' ?></td>
                                                         <td><?= ($item['status'] == 1) ? 'Hiển thị' : 'Ẩn' ?></td>
-                                                        <td class="d-flex align-items-center" style="height: 140px;">
-                                                            <a href="/admin/products/<?= $item['id'] ?>" class="btn btn-primary me-2">Sửa</a>
-                                                            <form action="/admin/products/<?= $item['id'] ?>" method="post" onsubmit="return confirm('Chắc chưa?')">
-                                                                <input type="hidden" name="method" value="DELETE">
-                                                                <button type="submit" class="btn btn-danger text-white">Xóa</button>
+                                                        <td>
+                                                            <a href="/admin/products/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <form action="/admin/products/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Chắc chưa?')">
+                                                                <input type="hidden" name="method" value="DELETE" id="">
+                                                                <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>
                                                         </td>
 

@@ -65,6 +65,13 @@ class Cart extends BaseView
                 </div>
                 <!-- Page Header End -->
 
+        <link href="/public/css/cart.css" rel="stylesheet">
+        <style>
+            body {
+                font-family: roboto;
+            }
+        </style>
+
                 <!-- Cart Start -->
                 <!-- Cart Start -->
                 <form action="/checkout" method="post">
