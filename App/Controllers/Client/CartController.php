@@ -7,6 +7,7 @@ use App\Views\Client\Layouts\Footer;
 use App\Views\Client\Layouts\Header;
 use App\Views\Client\Pages\Page\Cart;
 use App\Helpers\NotificationHelper;
+use App\Models\Sku;
 
 class CartController
 {
@@ -106,6 +107,10 @@ unset($cart[$productId]);  // Xóa sản phẩm khỏi giỏ hàng
 
     public static function update()
     {
+        //take sku price to total price
+        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
+        
+
         // Lấy ID sản phẩm và số lượng từ POST
         $productId = $_POST['id'] ?? null;
         $quantity = $_POST['quantity'] ?? null;
@@ -124,7 +129,7 @@ unset($cart[$productId]);  // Xóa sản phẩm khỏi giỏ hàng
             // Cập nhật số lượng
             $cart[$productId]['quantity'] = $quantity;
             // Cập nhật lại tổng giá của sản phẩm
-            $cart[$productId]['total_price'] = $cart[$productId]['price'] * $quantity;
+            $cart[$productId]['total_price'] = $sku[0]['prices'] * $quantity;
         }
 
         // Cập nhật lại cookie với giỏ hàng đã sửa đổi
