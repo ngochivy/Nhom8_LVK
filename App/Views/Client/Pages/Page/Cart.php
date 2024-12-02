@@ -4,6 +4,7 @@ namespace App\Views\Client\Pages\Page;
 
 use App\Views\BaseView;
 use App\Models\Sku;
+use App\Models\Product;
 
 class Cart extends BaseView
 {
@@ -12,12 +13,10 @@ class Cart extends BaseView
         $cart = $data['cart'] ?? [];
         $total = array_sum(array_column($cart, 'total_price'));
 
-        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
-
-?>
+        ?>
         <!-- Favicon -->
         <link rel="icon" href="/favicon.png" />
-
+        
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -55,11 +54,8 @@ class Cart extends BaseView
                 </div>
                 <!-- Page Header End -->
 
-
                 <!-- Cart Start -->
                 <form action="/checkout" method="post">
-                    <input type="hidden" name="method" id="" value="POST">
-
                     <div class="container-fluid pt-5">
                         <div class="row px-xl-5">
                             <div class="col-lg-8 table-responsive mb-5">
@@ -67,7 +63,8 @@ class Cart extends BaseView
                                     <p class="text-center">Giỏ hàng của bạn đang trống!</p>
                                 <?php else: ?>
                                     <table class="table table-bordered text-center mb-0">
-                                        <thead class="bg-secondary text-dark"><tr>
+                                        <thead class="bg-secondary text-dark">
+                                            <tr>
                                                 <th>Chọn</th>
                                                 <th>Hình ảnh</th>
                                                 <th>Sản phẩm</th>
@@ -75,113 +72,78 @@ class Cart extends BaseView
                                                 <th>Số lượng</th>
                                                 <th>Giá</th>
                                                 <th></th>
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($cart as $id => $item): ?>
+                                            <?php foreach ($cart as $id => $item): 
+                                                // Fetch SKU and variant data for each cart item
+                                                $sku = (new Sku())->getSkuByProductId($item['id']);
+                                            ?>
                                                 <tr>
-                                                    <!-- Checkbox để chọn sản phẩm -->
                                                     <td>
-                                                        <!-- <input
-                                                            type="checkbox"
-                                                            class="product-checkbox"
-                                                            name="check"
-                                                            id="check"> -->
                                                         <input type="checkbox" id="check" name="check[]" value="<?= $item['id'] ?>">
-
                                                     </td>
-
-
-                                                    <td><img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:150px; width:150px; class=" product-image></td>
+                                                    <td><img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:150px; width:150px;"></td>
                                                     <td><?= $item['name'] ?></td>
-                                                    <td><?= $sku[0]['product_variant_option_name']?></td>
                                                     <td>
-                                                        <!-- <div action="/cart/update" method="post"> -->
-                                                        <input type="hidden" name="id[]" id="id" value="<?= $item['id'] ?>">
-                                                        <input type="hidden" name="price[]" id="price" value="<?= $sku[0]['prices'] ?>">
-
-
-                                                        <input type="number"
-                                                            name="quantity[]"
-                                                            value="<?= $item['quantity'] ?>"
-                                                            min="1"
-                                                            class="form-control quantity-input"
-                                                            data-id="<?= $item['id'] ?>"
-                                                            data-price="<?= $sku[0]['prices'] ?>">
-
-
+                                                        <?= $sku['variant_name'] ?? 'Không có tùy chọn' ?>
+                                                    </td>
+                                                    <td>
+                                                        <input type="hidden" name="id[]" value="<?= $item['id'] ?>">
+                                                        <input type="hidden" name="price[]" value="<?= $sku['price'] ?>">
+                                                        <input type="number" name="quantity[]" value="<?= $item['quantity'] ?>" min="1" class="form-control quantity-input" data-id="<?= $item['id'] ?>" data-price="<?= $sku['price'] ?>">
+                                                    </td>
+                                                    <td><?= number_format($item['total_price'], 0, ',', ',') ?> VND</td>
+                                                    <td>
+                                                        <a href="/cart/remove/<?= $item['id'] ?>" class="btn btn-sm btn-outline-danger">
+                                                            <i class="fas fa-trash"></i>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
                             </div>
-
-                            </td>
-                            <td><?= number_format($item['total_price'], 0, ',', ',') ?> VND</td>
-                            <td>
-                                <!-- <div action="/cart/remove" method="post"> -->
-                                <input type="hidden" name="method" id="" value="POST">
-                                <input type="hidden" name="" id="" value="<?= $item['id'] ?>" required>
-                                <a href="/cart/remove/<?= $item['id'] ?>" class="btn btn-sm btn-outline-danger">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                        </div>
-                        </td>
-                        </tr>
-                    <?php endforeach; ?>
-                    </tbody>
-                    </table>
-                <?php endif; ?>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="mb-5">
-                            <div class="input-group">
-                                <input type="text" class="form-control p-4" placeholder="Mã giảm giá">
-                                <div class="input-group-append">
-                                    <button class="btn btn-primary">Áp dụng</button>
+                            <div class="col-lg-4">
+                                <div class="mb-5">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control p-4" placeholder="Mã giảm giá">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary">Áp dụng</button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="card border-secondary mb-5">
-                            <div class="card-header bg-secondary border-0">
-                                <h4 class="font-weight-semi-bold m-0">Tổng quan</h4>
-                            </div>
-                            <div class="card-body">
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-medium ">Tên: <?= $item['name'] ?> </h6>
-                                    <?php foreach ($cart as $id => $item): ?>
-                                        <!-- Thêm input ẩn cho tên sản phẩm để gửi qua checkout -->
-                                        <input type="hidden" name="name[]" value="<?= htmlspecialchars($item['name']) ?>">
-
-                                    <?php endforeach; ?>
-
-
-
-
+                                <div class="card border-secondary mb-5">
+                                    <div class="card-header bg-secondary border-0">
+                                        <h4 class="font-weight-semi-bold m-0">Tổng quan</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="font-weight-medium">Tổng tiền hàng</h6>
+                                            <h6 class="font-weight-medium"><?= number_format($total, 0, ',', ',') ?> VND</h6>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="font-weight-medium">Phí vận chuyển</h6>
+                                            <h6 class="font-weight-medium">0 đ</h6>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer border-secondary bg-transparent">
+                                        <div class="d-flex justify-content-between mt-2">
+                                            <h5 class="font-weight-bold">Tổng</h5>
+                                            <h5 class="font-weight-bold"><?= number_format($total, 0, ',', ',') ?> VND </h5>
+                                        </div>
+                                        <a href="/checkout" class="text-light text-decoration-none">
+                                            <button class="btn btn-block btn-primary my-3 py-3">Mua hàng</button>
+                                        </a>
+                                    </div>
                                 </div>
-                                <div class="d-flex justify-content-between mb-3 pt-4">
-                                    <h6 class="font-weight-medium">Tổng tiền hàng</h6>
-                                    <h6 class="font-weight-medium"><?= number_format($total, 0, ',', ',') ?> VND</h6>
-                                </div>
-                                <div class="d-flex justify-content-between">
-                                    <h6 class="font-weight-medium">Phí vận chuyển</h6>
-                                    <h6 class="font-weight-medium">0 đ</h6>
-                                </div>
-                            </div>
-                            <div class="card-footer border-secondary bg-transparent">
-                                <div class="d-flex justify-content-between mt-2">
-                                    <h5 class="font-weight-bold">Tổng</h5>
-                                    <!-- <input type="hidden" name="total_price" id="total_price" value="<?= $total ?>"> -->
-                                    <h5 class="font-weight-bold"><?= number_format($total, 0, ',', ',') ?> VND </h5>
-                                </div>
-                                <a class="text-light text-decoration-none" href="/checkout">
-                                    <button class="btn btn-block btn-primary my-3 py-3">Mua hàng</button>
-                                </a>
                             </div>
                         </div>
                     </div>
+                </form>
+                <!-- Cart End -->
             </div>
-            </div>
-            <!-- Cart End -->
-            </form>
 
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
@@ -216,11 +178,8 @@ class Cart extends BaseView
                 });
             </script>
 
-
-
             <!-- Back to Top -->
             <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-            </div>
 
             <!-- JavaScript Libraries -->
             <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -236,14 +195,7 @@ class Cart extends BaseView
             <!-- Template Javascript -->
             <script src="/public/assets/client/js/main.js"></script>
         </body>
-
         </html>
-
-
-
-
-
 <?php
-
     }
 }

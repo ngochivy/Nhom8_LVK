@@ -15,7 +15,7 @@ class Detail extends BaseView
         $is_login = AuthHelper::checkLogin();
         if (isset($data['product']) && !empty($data['product'])) {
             $product = $data['product'];
-            $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
+            $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption($product['id']);
             // var_dump($sku);
 
 ?>
@@ -186,7 +186,8 @@ _										// Nếu có giá giảm, hiển thị giá giảm
                                 </div>
                         
                         
-                            <input type="hidden" name="product_id" value="123"> <!-- ID sản phẩm -->
+                                <input type="hidden" name="product_id" value="<?php $product['id'] ?>"> <!-- ID sản phẩm động -->
+
                             
                             <button type="submit" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Thêm vào giỏ hàng</button>
                         </form>
