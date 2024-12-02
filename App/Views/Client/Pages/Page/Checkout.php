@@ -66,18 +66,18 @@ class Checkout extends BaseView
                                                 </div>
                                                 <div class="col-md-6 form-group">
                                                     <label for="last_name">Tên</label>
-                                                    <input type="text" name="last_name" class="form-control" id="first_name" placeholder="Your first_name" required>
+                                                    <input type="text" name="last_name" class="form-control" id="first_name" placeholder="Nhập tên" required>
 
                                                 </div>
                                                 <div class="col-md-6 form-group">
                                                     <label for="email">Email</label>
-                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                                                    <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
 
                                                 </div>
 
                                                 <div class="col-md-6 form-group">
                                                     <label for="phone_number">Số điện thoại</label>
-                                                    <input type="phone_number" name="phone_number" class="form-control" id="phone_number" placeholder="Your phone_number" required>
+                                                    <input type="phone_number" name="phone_number" class="form-control" id="phone_number" placeholder="Nhập số điện thoại" required>
 
                                                 </div>
                                                 <div class="col-md-6 form-option">
@@ -207,7 +207,9 @@ class Checkout extends BaseView
 
 
                                     <div class="card-footer border-light bg-transparent">
-                                        <button id="checkout-button" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="submit">Thanh toán ngay</button>
+                                        <button id="checkout-button" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="submit">
+                                            Thanh toán ngay
+                                        </button>
                                     </div>
                                 </div>
                             </div>

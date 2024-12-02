@@ -46,7 +46,7 @@ class Index extends BaseView
                     <?php if (!empty($data)) :
                     ?>
                         <?php foreach ($data as $item) : ?>
-                            <div class="col-lg-4 col-md-6 col-sm-12 mb-4"> 
+                            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                                 <!-- Danh sách bài viết -->
                                 <div class="grid">
                                     <!-- Bài viết mẫu -->
@@ -54,7 +54,10 @@ class Index extends BaseView
                                         <img src="<?= APP_URL ?>/public/uploads/blogs/<?= htmlspecialchars($item['image']) ?>" class="card-img-top"
                                             height="" alt="<?= htmlspecialchars($item['title']) ?>">
                                         <div class="content">
-                                            <p class="date"> <?= ($item['created_at']) ?></p>
+                                            <p class="date">
+                                                <?= date('d-m-Y', strtotime($item['created_at'])) ?>
+                                            </p>
+
                                             <h3 class="card-title"><?= htmlspecialchars($item['title']) ?></h3>
                                             <h3 class="content">
                                                 <?= htmlspecialchars(strlen($item['content']) > 100 ? mb_substr($item['content'], 0, 100) . '...' : $item['content']) ?>
