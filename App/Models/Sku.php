@@ -45,8 +45,8 @@ class Sku extends BaseModel
     public function getAllSkuu()
     {
         try {
-            // Kết nối cơ sở dữ liệu
-            $conn = $this->getConnection();
+        // Kết nối cơ sở dữ liệu
+        $conn = $this->getConnection();
 
             // Truy vấn lấy tất cả sản phẩm và tên danh mục (JOIN với bảng categories)
             $stmt = $conn->prepare(
