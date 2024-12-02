@@ -2,73 +2,64 @@
 
 namespace App\Models;
 
-class Sku extends BaseModel
+use App\Models\BaseModel;
+
+class SKU extends BaseModel
 {
-    protected $table = 'skus';
-    protected $id = 'id';
-
-    public function getAllSku()
+    public function getConnection()
     {
-        return $this->getAll();
-    }
-    public function getOneSku($id)
-    {
-        return $this->getOne($id);
+        return $this->_conn->MySQLi(); // Giả sử _conn là đối tượng kết nối của bạn.
     }
 
-    public function createSku($data)
+    /**
+     * Lấy SKU với các tùy chọn biến thể dựa trên ID
+     *
+     * @param int $id ID của SKU
+     * @return array|null Mảng chứa thông tin SKU hoặc null nếu không tìm thấy
+     */
+    public function getSKUWithVariantsById($id)
     {
-        return $this->create($data);
-    }
-    public function updateSku($id, $data)
-    {
-        return $this->update($id, $data);
-    }
+        // Kết nối cơ sở dữ liệu
+        $conn = $this->getConnection();
 
-    public function deleteSku($id)
-    {
-        return $this->delete($id);
-    }
-    public function getAllSkuByStatus()
-    {
-        return $this->getAllByStatus();
-    }
+        // Kiểm tra kết nối cơ sở dữ liệu
+        if ($conn === null) {
+            throw new \Exception("Không thể kết nối cơ sở dữ liệu.");
+        }
 
+        // Câu lệnh SQL để lấy SKU và tùy chọn biến thể
+        $sql = "SELECT s.*, 
+                       GROUP_CONCAT(CONCAT(pv.name, ':', pvo.name) SEPARATOR '|') as variant_options
+                FROM skus s
+                JOIN product_variant_options pvo ON s.product_variant_option_id = pvo.id
+                JOIN product_variants pv ON pvo.product_variant_id = pv.id
+                WHERE s.id = ?
+                GROUP BY s.id";
 
-    public function getOneSkuByName($name)
-    {
-        return $this->getOneByName($name);
-    }
-
-
-
-    public function getAllSkuu()
-    {
-        try {
-            // Kết nối cơ sở dữ liệu
-            $conn = $this->getConnection();
-
-            // Truy vấn lấy tất cả sản phẩm và tên danh mục (JOIN với bảng categories)
-            $stmt = $conn->prepare(
-                "SELECT skus.*, products.name as product_name,
-            product_variant_options.name as product_variant_option_name,
-            product_variants.name as product_variant_name
-            FROM `skus` INNER JOIN product_variant_options 
-            ON skus.product_variant_option_id = product_variant_options.id 
-            INNER JOIN products 
-            ON skus.product_id = products.id
-            INNER JOIN product_variants 
-            ON product_variants.id = product_variant_options.product_variant_id"
-            );
+        // Chuẩn bị và thực thi truy vấn
+        if ($stmt = $conn->prepare($sql)) {
+            $stmt->bind_param("i", $id); // Liên kết tham số ID kiểu integer
             $stmt->execute();
 
-            // Lấy kết quả
-            $result = $stmt->get_result();
-            return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
-        } catch (\Throwable $th) {
-            // Xử lý lỗi và ghi lại lỗi nếu có
-            error_log("Error in getAllProductWithCategoryName(): " . $th->getMessage());
-            return [];
+            // Lấy kết quả truy vấn
+            $result = $stmt->get_result()->fetch_assoc();
+
+            if ($result) {
+                // Xử lý dữ liệu variant_options
+                $result['variant_options'] = array_map(function($option) {
+                    list($variant, $value) = explode(':', $option);
+                    return [
+                        'variant_name' => $variant, 
+                        'option_name' => $value
+                    ];
+                }, explode('|', $result['variant_options']));
+                
+                return $result;
+            } else {
+                return null; // Trả về null nếu không tìm thấy SKU
+            }
+        } else {
+            throw new \Exception("Lỗi trong quá trình thực thi truy vấn.");
         }
     }
 }
