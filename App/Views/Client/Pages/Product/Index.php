@@ -38,7 +38,17 @@ class Index extends BaseView
         </head>
 
         <body>
-
+            <!-- Page Header Start -->
+            <div class="container-fluid bg-secondary mb-5">
+                <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+                    <h1 class="font-weight-semi-bold text-uppercase mb-3" style="font-family:roboto;">Cửa hàng</h1>
+                    <div class="d-inline-flex">
+                        <p class="m-0"><a href="/">Trang chủ</a></p>
+                        <p class="m-0 px-2">-</p>
+                        <p class="m-0">Cửa hàng</p>
+                    </div>
+                </div>
+            </div>
             <!-- Page Header End -->
 
             <!-- Shop Section Start -->
@@ -145,9 +155,7 @@ class Index extends BaseView
                                                         <form action="/cart/add" method="post">
                                                             <input type="hidden" name="method" id="" value="POST">
                                                             <input type="hidden" name="id" id="" value="<?= $item['id'] ?>" required>
-                                                            
-                                                                <button type="submit" class="btn btn-sm text-dark ml-1 p-2"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</button>
-                                                            
+                                                            <button type="submit" class="btn btn-sm border-0 text-dark py-1"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</button>
                                                         </form>
                                                     </div>
                                                 </div>
