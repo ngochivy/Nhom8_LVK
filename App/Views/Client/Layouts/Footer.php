@@ -84,9 +84,8 @@ class Footer extends BaseView
         </div>
         <!-- Footer End -->
 
-        <script src="//code.tidio.co/rnsskxxqiup0okczkpjjs7znonzqrzmf.js" async></script>
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+        <!-- Back to Top
+        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a> -->
 
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

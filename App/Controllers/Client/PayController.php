@@ -24,43 +24,43 @@ class PayController
         Footer::render();
     }
     public static function checkout()
-    {
-        // var_dump($_POST);
-        // die();
-        // Lấy dữ liệu gửi đến từ form
-        // Kiểm tra dữ liệu đầu vào
+{
+    // Kiểm tra xem có sản phẩm nào trong giỏ hàng không
+    if (!isset($_POST['check'])) {
+        header('Location: /cart');
+        exit;
+    }
 
-        // Kiểm tra nếu không có sản phẩm được chọn
-        if (!isset($_POST['check'])) {
+    $data = $_POST;
+    $products = [];
+    $total = 0;
 
-            header('Location: /cart');
-            exit;
-        }
+    foreach ($data['check'] as $check_id) {
+        foreach ($data['id'] as $index => $id) {
+            if ($id === $check_id) {
+                // Lấy thông tin sản phẩm từ POST
+                $productPrice = $data['price'][$index];  // Giá từ SKU
+                $quantity = $data['quantity'][$index];
+                $total += $productPrice * $quantity;
 
-        $data = $_POST;
-        // var_dump($_POST);
-        $products = [];
-        foreach ($data['check'] as $check_id) {
-            foreach ($data['id'] as $index => $id) {
-                if ($id === $check_id) { // Kiểm tra nếu ID trùng với giá trị check
-                    $products[] = [
-                        'name' => $data['name'][$index],
-                        // 'variant2' => $data['variant2'][$index],
-                        // 'variant' => $data['variant'][$index],
-                        'price' => $data['price'][$index],
-                        'quantity' => $data['quantity'][$index],
-
-                    ];
-                    break;
-                }
+                $products[] = [
+                    'id' => $data['id'][$index],
+                    'name' => $data['name'][$index],
+                    'price' => $productPrice,
+                    'quantity' => $quantity,
+                ];
+                break;
             }
         }
-
-
-        Header::render();
-        Checkout::render($products);
-        Footer::render();
     }
+
+    // Render checkout page với danh sách sản phẩm và tổng tiền
+    Header::render();
+    Checkout::render($products, $total); // Truyền cả tổng tiền vào
+    Footer::render();
+}
+
+
 
     public static function pay()
     {
@@ -78,7 +78,7 @@ class PayController
 
     public static function vnpay()
     {
-    
+
         $data = $_POST;
         Header::render();
         vnpay_create_payment::render($data);

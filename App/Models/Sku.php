@@ -80,7 +80,7 @@ class Sku extends BaseModel
     }
 
 
-    public function getSkuInnerJoinVariantAndVariantOption()
+    public function getSkuInnerJoinVariantAndVariantOption(int $productId)
     {
         try {
             // Kết nối cơ sở dữ liệu

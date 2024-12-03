@@ -2,6 +2,7 @@
 
 namespace App\Views\Client\Pages\Page;
 
+use App\Models\Sku;
 use App\Views\BaseView;
 
 class Checkout extends BaseView
@@ -117,33 +118,52 @@ class Checkout extends BaseView
                                 </div>
 
                                 <div class="col-lg-4">
-                                    <!-- Order info card -->
+                                    <!-- Thông tin đơn hàng -->
                                     <div class="card border-light shadow-sm mb-5">
                                         <div class="card-header bg-light border-0">
                                             <h4 class="font-weight-semi-bold m-0">Thông tin đơn hàng</h4>
                                         </div>
                                         <div class="card-body">
                                             <?php
-                                            $index = 0;
-                                            foreach ($data as $item):
-                                                $index += $item['price'] * $item['quantity'];
+                                            $total_price = 0;
+                                            // Kiểm tra xem giỏ hàng có tồn tại và có sản phẩm hay không
+                                            if (isset($data) && !empty($data)) {
+                                                foreach ($data as $item):
+                                                    $sku = (new Sku())->getSkuByProductId($item['id']); // Lấy thông tin SKU để lấy giá
+                                                    $item_total = $sku['prices'] * $item['quantity']; // Tính tổng tiền của sản phẩm
+                                                    $total_price += $item_total; // Cộng dồn vào tổng tiền
+                                                    
                                             ?>
-                                                <div class="card-footer border-light bg-transparent">
-                                                    <div class="d-flex justify-content-between mt-2">
-                                                        <h6 class="font-weight-bold" style="display: inline-block; width: 100px;">Tên:</h6>
-                                                        <h6 style="display: inline-block;"><?= htmlspecialchars($item['name']) ?></h6>
-                                                        <input type="hidden" name="name" id="name" value="<?= $item['name'] ?>">
+                                                    <div class="mb-2">
+                                                        <div class="d-flex justify-content-between">
+                                                            <h6 class="font-weight-bold" style="width: 100px;">Tên:</h6>
+                                                            <h6><?= htmlspecialchars($item['name']) ?></h6>
+                                                            <input type="hidden" name="name[]" value="<?= $item['name'] ?>"> <!-- Lưu tên sản phẩm -->
+                                                        </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <h6 class="font-weight-bold" style="width: 100px;">Số lượng:</h6>
+                                                            <h6><?= $item['quantity'] ?></h6>
+                                                            <input type="hidden" name="quantity[]" value="<?= $item['quantity'] ?>"> <!-- Lưu số lượng sản phẩm -->
+                                                        </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <h6 class="font-weight-bold" style="width: 100px;">Giá:</h6>
+                                                            <h6><?= number_format($sku['prices'], 0, ',', ',') ?> VND</h6> <!-- Hiển thị giá từ SKU -->
+                                                        </div>
+                                                        <div class="d-flex justify-content-between">
+                                                            <h6 class="font-weight-bold" style="width: 100px;">Tổng tiền:</h6>
+                                                            <h6><?= number_format($item_total, 0, ',', ',') ?> VND</h6> <!-- Hiển thị tổng tiền của sản phẩm -->
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="card-footer border-light bg-transparent">
-                                                    <div class="d-flex justify-content-between mt-2">
-                                                        <h6 class="font-weight-bold">Số lượng: <?= $item['quantity'] ?></h6>
-                                                        <input type="hidden" name="quantity" id="quantity" value="<?= $item['quantity'] ?>">
-                                                    </div>
-                                                </div>
-                                            <?php endforeach; ?>
+                                            <?php
+                                                endforeach;
+                                            } else {
+                                                echo "<p>Giỏ hàng của bạn đang trống!</p>";
+                                            }
+                                            ?>
 
                                             <hr class="mt-0">
+
+                                            <!-- Phí vận chuyển -->
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="font-weight-medium">Phí vận chuyển</h6>
                                                 <h6 class="font-weight-medium">0 đ</h6>
@@ -153,20 +173,21 @@ class Checkout extends BaseView
                                         <div class="card-footer border-light bg-transparent">
                                             <div class="d-flex justify-content-between mt-2">
                                                 <h5 class="font-weight-bold">Tổng cộng</h5>
-                                                <input type="hidden" name="total_price" id="total_price" value="<?= $index ?>">
-                                                <h5 class="font-weight-bold"><?= number_format($index, 0, ',', ',') ?> VND</h5>
+                                                <input type="hidden" name="total_price" value="<?= $total_price ?>"> <!-- Lưu tổng tiền vào form -->
+                                                <h5 class="font-weight-bold"><?= number_format($total_price, 0, ',', ',') ?> VND</h5>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!-- Payment options -->
+                                    <!-- Tùy chọn thanh toán -->
                                     <div class="card border-light shadow-sm mb-5">
                                         <div class="card-header bg-light border-0">
                                             <h4 class="font-weight-semi-bold m-0">Thanh toán</h4>
                                         </div>
                                         <div class="payment-options">
+                                            <!-- Thanh toán khi nhận hàng -->
                                             <div class="payment-option">
-                                                <input type="radio" name="payment" id="in-store" class="custom-radio">
+                                                <input type="radio" name="payment" id="in-store" class="custom-radio" required>
                                                 <label for="in-store">
                                                     <div class="option-content">
                                                         <span class="icon"><i class="fas fa-store"></i></span>
@@ -175,8 +196,9 @@ class Checkout extends BaseView
                                                 </label>
                                             </div>
 
+                                            <!-- Thanh toán qua ZaloPay -->
                                             <div class="payment-option">
-                                                <input type="radio" name="payment" id="zalopay" class="custom-radio">
+                                                <input type="radio" name="payment" id="zalopay" class="custom-radio" required>
                                                 <label for="zalopay">
                                                     <div class="option-content">
                                                         <img src="/public/uploads/checkout/zalopay.png" alt="ZaloPay" class="logo">
@@ -184,8 +206,9 @@ class Checkout extends BaseView
                                                 </label>
                                             </div>
 
+                                            <!-- Thanh toán qua VNPAY -->
                                             <div class="payment-option">
-                                                <input type="radio" name="payment" id="vnpay" class="custom-radio">
+                                                <input type="radio" name="payment" id="vnpay" class="custom-radio" required>
                                                 <label for="vnpay">
                                                     <div class="option-content">
                                                         <img src="/public/uploads/checkout/vnpay.png" alt="Vnpay" class="logo">
@@ -193,8 +216,9 @@ class Checkout extends BaseView
                                                 </label>
                                             </div>
 
+                                            <!-- Thanh toán qua chuyển khoản ngân hàng -->
                                             <div class="payment-option">
-                                                <input type="radio" name="payment" id="banktransfer" class="custom-radio">
+                                                <input type="radio" name="payment" id="banktransfer" class="custom-radio" required>
                                                 <label for="banktransfer">
                                                     <div class="option-content">
                                                         <span class="icon"><i class="fas fa-university"></i></span>
@@ -205,13 +229,15 @@ class Checkout extends BaseView
                                         </div>
                                     </div>
 
-
+                                    <!-- Nút thanh toán -->
                                     <div class="card-footer border-light bg-transparent">
                                         <button id="checkout-button" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3" type="submit">
                                             Thanh toán ngay
                                         </button>
                                     </div>
                                 </div>
+
+
                             </div>
                         </div>
                 </div>

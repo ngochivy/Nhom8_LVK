@@ -28,7 +28,11 @@ class vnpay_pay extends BaseView
 
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Tên sản phẩm</label>
-                                    <input class="form-control" id="name" name="name" type="text" value="<?= $data['name'] ?>" required>
+                                    <input
+                                        class="form-control" id="name" name="name" type="text"
+                                        value="<?= is_array($data['name']) ? htmlspecialchars(implode(', ', $data['name'])) : htmlspecialchars($data['name']) ?>"
+                                        required>
+
 
                                 </div>
                                 <div class="mb-3">
@@ -45,7 +49,7 @@ class vnpay_pay extends BaseView
                                         </label>
                                     </div>
                                     <br>
-                                  
+
                                 </div>
 
                                 <!-- Ngôn ngữ giao diện -->

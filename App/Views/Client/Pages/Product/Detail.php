@@ -15,8 +15,9 @@ class Detail extends BaseView
         $is_login = AuthHelper::checkLogin();
         if (isset($data['product']) && !empty($data['product'])) {
             $product = $data['product'];
-            $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
-            // var_dump($sku);
+            $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption( $product['id']);
+            // var_dump($sku)
+       
 
 ?>
 
@@ -64,13 +65,13 @@ class Detail extends BaseView
                         <div id="product-carousel" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner border">
                                 <div class="carousel-item active">
-                                    <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $sku[0]['image'] ?>" alt="Image">
+                                    <img class="w-100 h-100" src="<?= APP_URL ?>/public/uploads/products/<?= $product['image'] ?>" alt="Image">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-7 pb-5">
-                        <h3 class="font-weight-bold" style="font-family:roboto;"><?= $sku[0]['name'] ?></h3>
+                        <h3 class="font-weight-bold" style="font-family:roboto;"><?= $product['name'] ?></h3>
                         <!-- Hiển thị lượt đánh giá và lượt bán -->
                         <div class="d-flex align-items-center mb-1">
                             <div class="d-flex align-items-center">
@@ -84,13 +85,13 @@ class Detail extends BaseView
 
                         <div>
                             <?php
-                            if ($sku[0]['discount_price'] > 0):
+                            if ($product['discount_price'] > 0):
                             ?>
-                                <h3 class="product-price" id="price-display"><strong class="text-danger"> <?= number_format($sku[0]['prices'] - $sku[0]['discount_price']) ?>đ</strong> <del class="product-old-price" id="discount_price-display"><strike><?= number_format($sku[0]['prices']) ?> đ</strike> </del> </h3>
+                                <h3 class="product-price" id="price-display"><strong class="text-danger"> <?= number_format($product['price'] - $product['discount_price']) ?>đ</strong> <del class="product-old-price" id="discount_price-display"><strike><?= number_format($product['price']) ?> đ</strike> </del> </h3>
                             <?php
                             else :
                             ?>
-                                <h3 class="product-price"><?= number_format($sku[0]['prices']) ?> đ</h3>
+                                <h3 class="product-price"><?= number_format($product['price']) ?> đ</h3>
 
                             <?php
                             endif;

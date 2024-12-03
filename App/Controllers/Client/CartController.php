@@ -125,12 +125,13 @@ class CartController
     public static function update()
     {
         //take sku price to total price
-        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption();
+       
         
 
         // Lấy ID sản phẩm và số lượng từ POST
         $productId = $_POST['id'] ?? null;
         $quantity = $_POST['quantity'] ?? null;
+        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption($productId);
 
 
 {
@@ -172,7 +173,7 @@ class CartController
 
         if ($skuProduct) {
             // Cập nhật lại tổng giá của sản phẩm từ SKU
-            $cart[$productId]['total_price'] = $skuProduct['price'] * $quantity;
+            $cart[$productId]['total_price'] = $skuProduct['prices'] * $quantity;
         } else {
             // Nếu không tìm thấy SKU tương ứng
             NotificationHelper::error('update_cart', 'Không tìm thấy giá sản phẩm.');
