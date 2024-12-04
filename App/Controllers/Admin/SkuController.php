@@ -161,6 +161,7 @@ class SkuController
          ];
         if (!$data) {
             NotificationHelper::error('edit','không thể xem sản phẩm biến thể này');
+            NotificationHelper::error('edit','không thể xem sản phẩm biến thể này');
             header('location: /admin/skus');
             exit;
         }
@@ -185,6 +186,7 @@ class SkuController
 
         if (!$is_valid) {
             NotificationHelper::error('update', 'Cập nhật sản phẩm biến thể thất bại');
+            NotificationHelper::error('update', 'Cập nhật sản phẩm biến thể thất bại');
             header("location: /admin/skus/$id");
             exit;
         }
@@ -202,6 +204,7 @@ class SkuController
 
         if ($is_exist) {
             if($is_exist['id']!=$id){
+                NotificationHelper::error('update', 'Tên sản phẩm biến thể đã tồn  tại');
                 NotificationHelper::error('update', 'Tên sản phẩm biến thể đã tồn  tại');
                 header("location: /admin/skus/$id");
                 exit;
@@ -221,9 +224,11 @@ class SkuController
 
         if ($result) {
             NotificationHelper::success('update','Cập nhật sản phẩm biến thể thành công');
+            NotificationHelper::success('update','Cập nhật sản phẩm biến thể thành công');
             header('location: /admin/skus');
         }
         else {
+            NotificationHelper::error('update', 'Cập nhật sản phẩm biến thể thất bại');
             NotificationHelper::error('update', 'Cập nhật sản phẩm biến thể thất bại');
             header("location: /admin/skus/$id");
             exit;
@@ -240,8 +245,10 @@ class SkuController
         // var_dump($result);
         if ($result) {
             NotificationHelper::success('delete','Xóa sản phẩm biến thể thành công');
+            NotificationHelper::success('delete','Xóa sản phẩm biến thể thành công');
 
         }else{
+            NotificationHelper::error('delete', 'Xóa sản phẩm biến thất bại');
             NotificationHelper::error('delete', 'Xóa sản phẩm biến thất bại');
 
         }

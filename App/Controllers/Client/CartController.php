@@ -34,15 +34,19 @@ class CartController
     {
         if (!isset($_SESSION['user'])) {
             // Thông báo và chuyển hướng nếu chưa đăng nhập
+            // Thông báo và chuyển hướng nếu chưa đăng nhập
             NotificationHelper::error('login', 'Vui lòng đăng nhập');
             header('Location: /login');
             exit();
         }
 
+
         $productId = $_POST['id'] ?? null;
+        $quantity = max((int)($_POST['quantity'] ?? 1), 1); // Đảm bảo số lượng tối thiểu là 1
         $quantity = max((int)($_POST['quantity'] ?? 1), 1); // Đảm bảo số lượng tối thiểu là 1
 
         if (!$productId) {
+            NotificationHelper::error('cart', 'Sản phẩm không hợp lệ');
             NotificationHelper::error('cart', 'Sản phẩm không hợp lệ');
             header('Location: /cart');
             exit();
@@ -52,12 +56,18 @@ class CartController
 
         if (!$product) {
             NotificationHelper::error('cart', 'Sản phẩm không tồn tại');
+            NotificationHelper::error('cart', 'Sản phẩm không tồn tại');
             header('Location: /cart');
             exit();
         }
 
         // Lấy giỏ hàng hiện tại từ cookie
+        // Lấy giỏ hàng hiện tại từ cookie
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+
+        // Lấy ID các biến thể đã chọn từ POST
+        $variants = isset($_POST['variants']) ? explode(',', $_POST['variants']) : [];
+        var_dump($variants);
 
         // Lấy ID các biến thể đã chọn từ POST
         $variants = isset($_POST['variants']) ? explode(',', $_POST['variants']) : [];
@@ -78,7 +88,17 @@ class CartController
 
         // Cập nhật tổng giá cho từng sản phẩm
         $cart[$productId]['total_price'] = $cart[$productId]['price'] * $cart[$productId]['quantity'];
+                'variants' => $variants // Lưu thông tin biến thể vào giỏ hàng
+            ];
+        }
 
+        // Cập nhật tổng giá cho từng sản phẩm
+        $cart[$productId]['total_price'] = $cart[$productId]['price'] * $cart[$productId]['quantity'];
+
+        // Lưu giỏ hàng vào cookie
+        setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
+
+        NotificationHelper::success('cart', 'Đã thêm sản phẩm vào giỏ hàng!');
         // Lưu giỏ hàng vào cookie
         setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
 
@@ -86,6 +106,14 @@ class CartController
         header('Location: /cart');
         exit();
     }
+
+
+    public static function viewCart()
+    {
+        $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+        require 'views/cart.php';
+    }
+
 
 
     public static function viewCart()
@@ -110,6 +138,7 @@ class CartController
 
         // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
         if (isset($cart[$productId])) {
+            unset($cart[$productId]);  // Xóa sản phẩm khỏi giỏ hàng
             unset($cart[$productId]);  // Xóa sản phẩm khỏi giỏ hàng
         }
 

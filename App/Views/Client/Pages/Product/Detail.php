@@ -43,7 +43,21 @@ class Detail extends BaseView
 
             <div style="max-width: 99%;">
 
+            <div style="max-width: 99%;">
 
+
+                <!-- Page Header Start -->
+                <div class="container-fluid bg-secondary mb-5">
+                    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
+                        <h1 class="font-weight-semi-bold text-uppercase mb-3">Chi tiết sản phẩm</h1>
+                        <div class="d-inline-flex">
+                            <p class="m-0"><a href="">Trang chủ</a></p>
+                            <p class="m-0 px-2">-</p>
+                            <p class="m-0">Thông tin sản phẩm</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Page Header End -->
                 <!-- Page Header Start -->
                 <div class="container-fluid bg-secondary mb-5">
                     <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
@@ -172,6 +186,8 @@ class Detail extends BaseView
                                     <input type="hidden" name="method" value="POST">
                                     <input type="hidden" name="id" value="<?= $data['product']['id'] ?>" required>
 
+                                    <!-- Lưu các biến thể đã chọn -->
+                                    <input type="hidden" name="variants" id="selected-variants">
                                     <!-- Lưu các biến thể đã chọn -->
                                     <input type="hidden" name="variants" id="selected-variants">
 
@@ -320,6 +336,7 @@ class Detail extends BaseView
                 </div>
             </div>
             <!-- Shop Detail End -->
+            </div>
             </div>
 
 

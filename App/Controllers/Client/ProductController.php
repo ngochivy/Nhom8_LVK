@@ -115,17 +115,17 @@ class ProductController
         return;
     }
 
-    // Lấy SKU và thông tin biến thể
-    $skuModel = new Sku();
-    $skuData = array_filter(
-        $skuModel->getSkuInnerJoinVariantAndVariantOption($id),
-        fn($sku) => $sku['product_id'] == $id // Lọc SKU liên quan đến sản phẩm hiện tại
-    );
+    // // Lấy SKU và thông tin biến thể
+    // $skuModel = new Sku();
+    // $skuData = array_filter(
+    //     $skuModel->getSkuInnerJoinVariantAndVariantOption($id),
+    //     fn($sku) => $sku['product_id'] == $id // Lọc SKU liên quan đến sản phẩm hiện tại
+    // );
 
     // Chuẩn bị dữ liệu truyền vào view
     $data = [
         'product' => $product_detail,
-        'skus' => $skuData, // Thêm dữ liệu SKU và biến thể
+        // 'skus' => $skuData, // Thêm dữ liệu SKU và biến thể
         'comments' => $comments,
         'is_login' => isset($_SESSION['User']),
     ];
@@ -135,6 +135,9 @@ class ProductController
     Detail::render($data);
     Footer::render();
 }
+
+
+
 
 
 

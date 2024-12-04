@@ -14,6 +14,7 @@ class Cart extends BaseView
 
         // var_dump($cart);
 ?>
+
         <!-- Favicon -->
         <link rel="icon" href="/favicon.png" />
 
@@ -55,7 +56,14 @@ class Cart extends BaseView
                 </div>
                 <!-- Page Header End -->
 
+        <link href="/public/css/cart.css" rel="stylesheet">
+        <style>
+            body {
+                font-family: roboto;
+            }
+        </style>
 
+                <!-- Cart Start -->
                 <!-- Cart Start -->
                 <form action="/checkout" method="post">
                     <input type="hidden" name="method" value="POST">
@@ -173,7 +181,17 @@ class Cart extends BaseView
                         const quantityInputs = document.querySelectorAll('.quantity-input');
                         const totalElement = document.querySelector('h6.font-weight-medium:last-child');
                         const grandTotalElement = document.querySelector('h5.font-weight-bold:last-child');
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const quantityInputs = document.querySelectorAll('.quantity-input');
+                        const totalElement = document.querySelector('h6.font-weight-medium:last-child');
+                        const grandTotalElement = document.querySelector('h5.font-weight-bold:last-child');
 
+                        quantityInputs.forEach(input => {
+                            input.addEventListener('input', function() {
+                                const productId = this.dataset.id;
+                                const productPrice = parseFloat(this.dataset.price);
+                                const quantity = parseInt(this.value) || 1;
                         quantityInputs.forEach(input => {
                             input.addEventListener('input', function() {
                                 const productId = this.dataset.id;
@@ -184,7 +202,18 @@ class Cart extends BaseView
                                 const productTotal = this.closest('tr').querySelector('td:nth-last-child(2)');
                                 const newTotal = quantity * productPrice;
                                 productTotal.textContent = newTotal.toLocaleString('vi-VN') + ' VND';
+                                // Cập nhật tổng tiền cho sản phẩm
+                                const productTotal = this.closest('tr').querySelector('td:nth-last-child(2)');
+                                const newTotal = quantity * productPrice;
+                                productTotal.textContent = newTotal.toLocaleString('vi-VN') + ' VND';
 
+                                // Tính tổng tiền giỏ hàng
+                                let grandTotal = 0;
+                                quantityInputs.forEach(input => {
+                                    const quantity = parseInt(input.value) || 1;
+                                    const price = parseFloat(input.dataset.price);
+                                    grandTotal += quantity * price;
+                                });
                                 // Tính tổng tiền giỏ hàng
                                 let grandTotal = 0;
                                 quantityInputs.forEach(input => {
@@ -201,6 +230,8 @@ class Cart extends BaseView
                     });
                 </script>
 
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
                 <!-- Back to Top -->
                 <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
