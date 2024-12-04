@@ -119,7 +119,7 @@ class ContactController
                 // Nội dung email gửi cho khách hàng
                 $mailCustomer->isHTML(true);
                 $mailCustomer->Subject = '';
-                $mailCustomer->Body    = "<p>Chào <strong>$name</strong>,</p><p>Cảm ơn bạn đã Contact với chúng tôi. Dưới đây là thông tin bạn đã gửi:</p><p><strong>Số điện thoại:</strong> $phone_number</p><p><strong>Email:</strong> $email</p><p><strong>Nội dung:</strong> $message</p><p>Chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất.</p>";
+                $mailCustomer->Body    = "<p>Chào <strong>$name</strong>,</p><p>Cảm ơn bạn đã liên hệ với chúng tôi. Dưới đây là thông tin bạn đã gửi:</p><p><strong>Số điện thoại:</strong> $phone_number</p><p><strong>Email:</strong> $email</p><p><strong>Nội dung:</strong> $message</p><p>Chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất.</p>";
 
                 // Gửi email cho cả admin và khách hàng
                 if ($mail->send() && $mailCustomer->send()) {

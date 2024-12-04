@@ -86,11 +86,7 @@ class CartController
             ];
         }
 
-        // Cập nhật tổng giá cho từng sản phẩm
-        $cart[$productId]['total_price'] = $cart[$productId]['price'] * $cart[$productId]['quantity'];
-                'variants' => $variants // Lưu thông tin biến thể vào giỏ hàng
-            ];
-        }
+
 
         // Cập nhật tổng giá cho từng sản phẩm
         $cart[$productId]['total_price'] = $cart[$productId]['price'] * $cart[$productId]['quantity'];
@@ -99,10 +95,7 @@ class CartController
         setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
 
         NotificationHelper::success('cart', 'Đã thêm sản phẩm vào giỏ hàng!');
-        // Lưu giỏ hàng vào cookie
-        setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
 
-        NotificationHelper::success('cart', 'Đã thêm sản phẩm vào giỏ hàng!');
         header('Location: /cart');
         exit();
     }
@@ -114,13 +107,6 @@ class CartController
         require 'views/cart.php';
     }
 
-
-
-    public static function viewCart()
-    {
-        $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-        require 'views/cart.php';
-    }
 
 
     public static function remove($id)
@@ -154,70 +140,66 @@ class CartController
     public static function update()
     {
         //take sku price to total price
-       
-        
+
+
 
         // Lấy ID sản phẩm và số lượng từ POST
         $productId = $_POST['id'] ?? null;
         $quantity = $_POST['quantity'] ?? null;
-        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption($productId);
+        $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption($productId); {
 
 
-{
-    
-
-        // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
-        if (isset($cart[$productId])) {
-            // Cập nhật số lượng
-            $cart[$productId]['quantity'] = $quantity;
-            // Cập nhật lại tổng giá của sản phẩm
-            $cart[$productId]['total_price'] = $sku[0]['prices'] * $quantity;
-        }
-
-    // Lấy dữ liệu SKU của sản phẩm từ bảng SKU và bảng liên quan
-    $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption($productId);
-
-    // Nếu không có ID hoặc số lượng, chuyển hướng về giỏ hàng
-    if (!$productId || !$quantity) {
-        header('Location: /cart');
-        exit();
-    }
-
-    // Kiểm tra xem có cookie 'cart' hay không
-    $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
-
-    // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
-    if (isset($cart[$productId])) {
-        // Cập nhật số lượng
-        $cart[$productId]['quantity'] = $quantity;
-
-        // Tìm SKU tương ứng cho sản phẩm hiện tại
-        $skuProduct = null;
-        foreach ($sku as $skuItem) {
-            if ($skuItem['product_id'] == $productId) {
-                $skuProduct = $skuItem;
-                break;
+            // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
+            if (isset($cart[$productId])) {
+                // Cập nhật số lượng
+                $cart[$productId]['quantity'] = $quantity;
+                // Cập nhật lại tổng giá của sản phẩm
+                $cart[$productId]['total_price'] = $sku[0]['prices'] * $quantity;
             }
-        }
 
-        if ($skuProduct) {
-            // Cập nhật lại tổng giá của sản phẩm từ SKU
-            $cart[$productId]['total_price'] = $skuProduct['prices'] * $quantity;
-        } else {
-            // Nếu không tìm thấy SKU tương ứng
-            NotificationHelper::error('update_cart', 'Không tìm thấy giá sản phẩm.');
+            // Lấy dữ liệu SKU của sản phẩm từ bảng SKU và bảng liên quan
+            $sku = (new Sku())->getSkuInnerJoinVariantAndVariantOption($productId);
+
+            // Nếu không có ID hoặc số lượng, chuyển hướng về giỏ hàng
+            if (!$productId || !$quantity) {
+                header('Location: /cart');
+                exit();
+            }
+
+            // Kiểm tra xem có cookie 'cart' hay không
+            $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
+
+            // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng hay không
+            if (isset($cart[$productId])) {
+                // Cập nhật số lượng
+                $cart[$productId]['quantity'] = $quantity;
+
+                // Tìm SKU tương ứng cho sản phẩm hiện tại
+                $skuProduct = null;
+                foreach ($sku as $skuItem) {
+                    if ($skuItem['product_id'] == $productId) {
+                        $skuProduct = $skuItem;
+                        break;
+                    }
+                }
+
+                if ($skuProduct) {
+                    // Cập nhật lại tổng giá của sản phẩm từ SKU
+                    $cart[$productId]['total_price'] = $skuProduct['prices'] * $quantity;
+                } else {
+                    // Nếu không tìm thấy SKU tương ứng
+                    NotificationHelper::error('update_cart', 'Không tìm thấy giá sản phẩm.');
+                    header('Location: /cart');
+                    exit();
+                }
+            }
+
+            // Cập nhật lại cookie với giỏ hàng đã sửa đổi
+            setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
+
+            // Chuyển hướng về giỏ hàng sau khi cập nhật
             header('Location: /cart');
             exit();
         }
     }
-
-    // Cập nhật lại cookie với giỏ hàng đã sửa đổi
-    setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
-
-    // Chuyển hướng về giỏ hàng sau khi cập nhật
-    header('Location: /cart');
-    exit();
-}
-
-}
 }
