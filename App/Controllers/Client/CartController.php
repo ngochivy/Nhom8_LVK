@@ -34,19 +34,15 @@ class CartController
     {
         if (!isset($_SESSION['user'])) {
             // Thông báo và chuyển hướng nếu chưa đăng nhập
-            // Thông báo và chuyển hướng nếu chưa đăng nhập
             NotificationHelper::error('login', 'Vui lòng đăng nhập');
             header('Location: /login');
             exit();
         }
 
-
         $productId = $_POST['id'] ?? null;
-        $quantity = max((int)($_POST['quantity'] ?? 1), 1); // Đảm bảo số lượng tối thiểu là 1
         $quantity = max((int)($_POST['quantity'] ?? 1), 1); // Đảm bảo số lượng tối thiểu là 1
 
         if (!$productId) {
-            NotificationHelper::error('cart', 'Sản phẩm không hợp lệ');
             NotificationHelper::error('cart', 'Sản phẩm không hợp lệ');
             header('Location: /cart');
             exit();
@@ -56,49 +52,57 @@ class CartController
 
         if (!$product) {
             NotificationHelper::error('cart', 'Sản phẩm không tồn tại');
-            NotificationHelper::error('cart', 'Sản phẩm không tồn tại');
             header('Location: /cart');
             exit();
         }
 
         // Lấy giỏ hàng hiện tại từ cookie
-        // Lấy giỏ hàng hiện tại từ cookie
         $cart = isset($_COOKIE['cart']) ? json_decode($_COOKIE['cart'], true) : [];
 
-        // Lấy ID các biến thể đã chọn từ POST
-        $variants = isset($_POST['variants']) ? explode(',', $_POST['variants']) : [];
-        var_dump($variants);
+        // Lấy thông tin các biến thể đã chọn từ POST
+        $variants = isset($_POST['variants']) ? json_decode($_POST['variants'], true) : [];
 
-        // Lấy ID các biến thể đã chọn từ POST
-        $variants = isset($_POST['variants']) ? explode(',', $_POST['variants']) : [];
-        var_dump($variants);
+        // Kiểm tra nếu các biến thể đã chọn không hợp lệ
+        if (empty($variants)) {
+            NotificationHelper::error('cart', 'Không có biến thể nào được chọn');
+            header('Location: /cart');
+            exit();
+        }
 
+        // Lấy giá của SKU đã chọn và cập nhật vào giỏ hàng
+        $variantPrice = 0;
+        foreach ($variants as $variant) {
+            $variantPrice += (float)($variant['price'] ?? 0); // Giá của SKU
+        }
+
+        // Nếu sản phẩm đã có trong giỏ hàng, tăng số lượng lên
         if (isset($cart[$productId])) {
             $cart[$productId]['quantity'] += $quantity;
         } else {
+            // Thêm sản phẩm mới vào giỏ hàng
             $cart[$productId] = [
                 'id' => $product['id'],
                 'name' => $product['name'],
                 'image' => $product['image'],
-                'price' => $product['price'],
+                'price' => $variantPrice, // Lưu giá SKU thay vì giá sản phẩm
                 'quantity' => $quantity,
                 'variants' => $variants // Lưu thông tin biến thể vào giỏ hàng
             ];
         }
 
-
-
-        // Cập nhật tổng giá cho từng sản phẩm
+        // Cập nhật tổng giá cho sản phẩm (dựa trên giá SKU và số lượng)
         $cart[$productId]['total_price'] = $cart[$productId]['price'] * $cart[$productId]['quantity'];
 
-        // Lưu giỏ hàng vào cookie
+        // Lưu giỏ hàng vào cookie (thời gian lưu là 30 ngày)
         setcookie('cart', json_encode($cart), time() + (30 * 24 * 60 * 60), '/');
 
         NotificationHelper::success('cart', 'Đã thêm sản phẩm vào giỏ hàng!');
 
+        // Chuyển hướng đến trang giỏ hàng
         header('Location: /cart');
         exit();
     }
+
 
 
     public static function viewCart()

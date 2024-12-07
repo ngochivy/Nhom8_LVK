@@ -41,7 +41,8 @@ class Sku extends BaseModel
         return $this->getOneByName($name);
     }
 
-    public function getOneSkuByName($sku){
+    public function getOneSkuByName($sku)
+    {
         $result = [];
         try {
             $sql = "SELECT * FROM $this->table WHERE sku=?";
@@ -69,7 +70,7 @@ class Sku extends BaseModel
             ON skus.product_variant_option_id = product_variant_options.id 
             INNER JOIN products ON skus.product_id = products.id 
             INNER JOIN product_variants ON product_variants.id = product_variant_options.product_variant_id;");
-            
+
             $stmt->execute();
             $result = $stmt->get_result();
             return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
@@ -113,27 +114,43 @@ class Sku extends BaseModel
         }
     }
 
-    public function getSkuByProductId($productId)
+    public function getSkuAndVariantInfoByProductId($productId)
     {
+        // Lấy kết nối cơ sở dữ liệu
         $conn = $this->getConnection();
-
-        // Truy vấn lấy SKU và các thông tin liên quan của sản phẩm theo ID
+    
+        // Truy vấn lấy SKU, giá, số lượng và tên của product_variant_option theo ID sản phẩm
         $query = "SELECT skus.sku, skus.prices, skus.quantity, products.*, 
-              product_variant_options.name as product_variant_option_name
-              FROM skus
-              INNER JOIN products 
-              ON skus.product_id = products.id
-              INNER JOIN product_variant_options 
-              ON skus.product_variant_option_id = product_variant_options.id
-              WHERE products.id = ? LIMIT 1";  // Chỉ lấy 1 sản phẩm
-
+                  product_variant_options.name as product_variant_option_name
+                  FROM skus
+                  INNER JOIN products 
+                  ON skus.product_id = products.id
+                  INNER JOIN product_variant_options 
+                  ON skus.product_variant_option_id = product_variant_options.id
+                  WHERE products.id = ? LIMIT 1";  // Chỉ lấy 1 sản phẩm
+    
         // Thực hiện truy vấn với phương thức bind_param
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param('i', $productId);  // Sử dụng 'i' cho kiểu dữ liệu INT
-        $stmt->execute();
-
-        // Lấy kết quả và trả về
-        return $stmt->get_result()->fetch_assoc(); // Dùng get_result() để lấy kết quả
+        if ($stmt = $conn->prepare($query)) {
+            // Liên kết tham số
+            $stmt->bind_param('i', $productId);  // Sử dụng 'i' cho kiểu dữ liệu INT
+            
+            // Thực thi câu truy vấn
+            $stmt->execute();
+    
+            // Lấy kết quả truy vấn
+            $result = $stmt->get_result();
+    
+            // Kiểm tra xem có dữ liệu hay không
+            if ($result && $row = $result->fetch_assoc()) {
+                // Trả về kết quả dưới dạng mảng
+                return $row;
+            } else {
+                return null;  // Nếu không có dữ liệu
+            }
+        } else {
+            return null;  // Nếu có lỗi trong quá trình chuẩn bị câu truy vấn
+        }
     }
+    
 
 }

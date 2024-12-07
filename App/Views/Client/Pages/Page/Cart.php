@@ -12,26 +12,21 @@ class Cart extends BaseView
         $cart = $data['cart'] ?? [];
         $total = array_sum(array_column($cart, 'total_price'));
 
-        // var_dump($cart);
+        var_dump($cart); // Kiểm tra giỏ hàng
 ?>
         <!-- Favicon -->
         <link rel="icon" href="/favicon.png" />
-
         <!-- Google Web Fonts -->
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
         <!-- Font Awesome -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-
         <!-- Libraries Stylesheet -->
         <link href="/public/assets/client/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-
         <!-- Customized Bootstrap Stylesheet -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
         <link href="/public/assets/client/css/style.css" rel="stylesheet">
         <link href="/public/assets/client/css/style.min.css" rel="stylesheet">
-
         <link href="/public/css/cart.css" rel="stylesheet">
         <style>
             body {
@@ -39,7 +34,6 @@ class Cart extends BaseView
                 margin-top: -50px;
             }
         </style>
-
         <body>
             <div class="container-xxl bg-white p-0">
                 <!-- Page Header Start -->
@@ -54,8 +48,6 @@ class Cart extends BaseView
                     </div>
                 </div>
                 <!-- Page Header End -->
-
-
                 <!-- Cart Start -->
                 <form action="/checkout" method="post">
                     <input type="hidden" name="method" value="POST">
@@ -79,17 +71,16 @@ class Cart extends BaseView
                                         </thead>
                                         <tbody>
                                             <?php foreach ($cart as $id => $item):
-                                                $sku = (new Sku())->getSkuByProductId($item['id']);
+                                                // Lấy thông tin SKU và biến thể từ cơ sở dữ liệu
+                                                $skuInfo = (new Sku())->getSkuAndVariantInfoByProductId($item['id']);
                                             ?>
-
                                                 <tr>
-                                                    <!-- Checkbox để chọn sản phẩm -->
                                                     <td><input type="checkbox" name="check[]" value="<?= $item['id'] ?>"></td>
                                                     <td><img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:150px; width:150px;"></td>
                                                     <td><?= $item['name'] ?></td>
                                                     <td>
                                                         <input type="hidden" name="id[]" value="<?= $item['id'] ?>">
-                                                        <input type="hidden" name="price[]" value="<?= $item['price'] ?>">
+                                                        <input type="hidden" name="price[]" value="<?= $skuInfo['prices'] ?>">
 
                                                         <input type="number"
                                                             name="quantity[]"
@@ -97,11 +88,19 @@ class Cart extends BaseView
                                                             min="1"
                                                             class="form-control quantity-input"
                                                             data-id="<?= $item['id'] ?>"
-                                                            data-price="<?= $sku['prices'] ?>"
+                                                            data-price="<?= $skuInfo['prices'] ?>"
                                                             required>
-
                                                     </td>
-                                                    <td><?= $sku['product_variant_option_name'] ?></td>
+                                                    <td>
+                                                        <?php
+                                                        // Lấy tên biến thể từ giỏ hàng
+                                                        $variantNames = [];
+                                                        foreach ($item['variants'] as $variant) {
+                                                            $variantNames[] = $variant['name']; // Hoặc thay bằng giá trị tên biến thể phù hợp
+                                                        }
+                                                        echo implode(', ', $variantNames); // Hiển thị tên các biến thể
+                                                        ?>
+                                                    </td>
 
                                                     <td><?= number_format($item['total_price'], 0, ',', ',') ?> VND</td>
                                                     <td>
@@ -131,18 +130,16 @@ class Cart extends BaseView
                                     <div class="card-body">
                                         <?php foreach ($cart as $id => $item): ?>
                                             <div class="d-flex justify-content-between">
-                                                <h6 class="font-weight-bold mr-2">Tên:</h6> <!-- In đậm tên -->
+                                                <h6 class="font-weight-bold mr-2">Tên:</h6>
                                                 <h6 class=""> <?= $item['name'] ?></h6>
                                                 <input type="hidden" name="name[]" value="<?= htmlspecialchars($item['name']) ?>">
                                             </div>
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="font-weight-bold">Số lượng:</h6>
-                                                <h6 class=""><?= $item['quantity'] ?> </h6> <!-- In đậm số lượng -->
+                                                <h6 class=""><?= $item['quantity'] ?> </h6>
                                                 <input type="hidden" name="quantity[]" value="<?= htmlspecialchars($item['quantity']) ?>">
                                             </div>
                                         <?php endforeach; ?>
-
-
 
                                         <div class="d-flex justify-content-between mb-3 pt-4">
                                             <h6 class="font-weight-medium">Tổng tiền hàng</h6>
@@ -167,7 +164,6 @@ class Cart extends BaseView
                     <!-- Cart End -->
                 </form>
 
-
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const quantityInputs = document.querySelectorAll('.quantity-input');
@@ -178,54 +174,36 @@ class Cart extends BaseView
                             input.addEventListener('input', function() {
                                 const productId = this.dataset.id;
                                 const productPrice = parseFloat(this.dataset.price);
-                                const quantity = parseInt(this.value) || 1;
+                                const quantity = parseInt(this.value);
 
-                                // Cập nhật tổng tiền cho sản phẩm
-                                const productTotal = this.closest('tr').querySelector('td:nth-last-child(2)');
-                                const newTotal = quantity * productPrice;
-                                productTotal.textContent = newTotal.toLocaleString('vi-VN') + ' VND';
+                                // Cập nhật giá tổng cho sản phẩm hiện tại
+                                const totalPrice = productPrice * quantity;
 
-                                // Tính tổng tiền giỏ hàng
+                                // Tính tổng giỏ hàng
                                 let grandTotal = 0;
                                 quantityInputs.forEach(input => {
-                                    const quantity = parseInt(input.value) || 1;
                                     const price = parseFloat(input.dataset.price);
-                                    grandTotal += quantity * price;
+                                    const quantity = parseInt(input.value);
+                                    grandTotal += price * quantity;
                                 });
 
-                                // Cập nhật tổng tiền giỏ hàng
-                                totalElement.textContent = grandTotal.toLocaleString('vi-VN') + ' VND';
-                                grandTotalElement.textContent = grandTotal.toLocaleString('vi-VN') + ' VND';
+                                // Cập nhật tổng giỏ hàng
+                                totalElement.textContent = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'VND'
+                                }).format(grandTotal);
+                                grandTotalElement.textContent = new Intl.NumberFormat('en-US', {
+                                    style: 'currency',
+                                    currency: 'VND'
+                                }).format(grandTotal);
                             });
                         });
                     });
                 </script>
 
-                <!-- Back to Top -->
-                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
-
-            <!-- JavaScript Libraries -->
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-            <script src="/public/assets/client/lib/easing/easing.min.js"></script>
-            <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
-
-            <!-- Contact Javascript File -->
-            <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
-            <script src="/public/assets/client/mail/contact.js"></script>
-
-            <!-- Template Javascript -->
-            <script src="/public/assets/client/js/main.js"></script>
         </body>
-
-        </html>
-
-
-
-
-
+</html>
 <?php
-
     }
 }
