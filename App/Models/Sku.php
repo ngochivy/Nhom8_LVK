@@ -153,4 +153,8 @@ class Sku extends BaseModel
     }
     
 
+    public function countTotalSku()
+    {
+        return $this->countTotal();
+    }
 }

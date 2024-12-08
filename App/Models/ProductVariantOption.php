@@ -58,4 +58,10 @@ class ProductVariantOption extends BaseModel
             return [];
         }
     }
+
+
+    public function countTotalProductVariantOption()
+    {
+        return $this->countTotal();
+    }
 }

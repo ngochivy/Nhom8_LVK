@@ -33,7 +33,7 @@ class Header extends BaseView
             <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
             <link rel="stylesheet" type="text/css" href="<?= APP_URL ?>/public/assets/admin/libs/quill/dist/quill.snow.css"> -->
 
-
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 
             <!-- Custom CSS -->
@@ -146,35 +146,60 @@ class Header extends BaseView
                         <nav class="sidebar-nav">
                             <ul id="sidebarnav">
                                 <!-- User Profile-->
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin" aria-expanded="false"><i class="me-3 far fa-clock fa-fw"
-                                            aria-hidden="true"></i><span class="hide-menu">Bảng điều khiển</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/users" aria-expanded="false">
-                                        <i class="me-3 fa fa-user" aria-hidden="true"></i><span
-                                            class="hide-menu">Người dùng</span></a>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin" aria-expanded="false">
+                                        <i class="me-3 far fa-clock fa-fw" aria-hidden="true"></i>
+                                        <span class="hide-menu">Bảng điều khiển</span>
+                                    </a>
                                 </li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/categories" aria-expanded="false"><i class="me-3 fa fa-table"
-                                            aria-hidden="true"></i><span class="hide-menu">Loại sản phẩm</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/products" aria-expanded="false"><i class="me-3 fa fa-columns"
-                                            aria-hidden="true"></i><span class="hide-menu">Sản phẩm</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/comments" aria-expanded="false"><i class="me-3 fa fa-font"
-                                            aria-hidden="true"></i><span class="hide-menu">Bình luận</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/blogs" aria-expanded="false"><i class="me-3 fa fa-font"
-                                            aria-hidden="true"></i><span class="hide-menu">Bài viết</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/productvariant" aria-expanded="false"><i class="me-3 fa fa-font"
-                                            aria-hidden="true"></i><span class="hide-menu">Loại biến thể</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/productvariantoption" aria-expanded="false"><i class="me-3 fa fa-font"
-                                            aria-hidden="true"></i><span class="hide-menu">Biến thể</span></a></li>
-                                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                                        href="/admin/skus" aria-expanded="false"><i class="me-3 fa fa-font"
-                                            aria-hidden="true"></i><span class="hide-menu"> Sản phẩm biến thể</span></a></li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/users" aria-expanded="false">
+                                        <i class="me-3 fa fa-users" aria-hidden="true"></i>
+                                        <span class="hide-menu">Người dùng</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/categories" aria-expanded="false">
+                                        <i class="me-3 fa fa-chart-bar" aria-hidden="true"></i>
+                                        <span class="hide-menu">Loại sản phẩm</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/products" aria-expanded="false">
+                                        <i class="me-3 fa fa-cube" aria-hidden="true"></i>
+                                        <span class="hide-menu">Sản phẩm</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/comments" aria-expanded="false">
+                                        <i class="me-3 fa fa-comments" aria-hidden="true"></i>
+                                        <span class="hide-menu">Bình luận</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/blogs" aria-expanded="false">
+                                        <i class="me-3 fa fa-file-alt" aria-hidden="true"></i>
+                                        <span class="hide-menu">Bài viết</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/productvariant" aria-expanded="false">
+                                        <i class="me-3 fa fa-th-large" aria-hidden="true"></i>
+                                        <span class="hide-menu">Loại biến thể</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/productvariantoption" aria-expanded="false">
+                                        <i class="me-3 fa fa-code-branch" aria-hidden="true"></i>
+                                        <span class="hide-menu">Biến thể</span>
+                                    </a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/skus" aria-expanded="false">
+                                        <i class="me-3 fa fa-list-alt" aria-hidden="true"></i>
+                                        <span class="hide-menu">Sản phẩm biến thể</span>
+                                    </a>
+                                </li>
 
 
                             </ul>
