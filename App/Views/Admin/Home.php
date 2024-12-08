@@ -50,136 +50,180 @@ class Home extends BaseView
                     <!-- ============================================================== -->
                     <div class="row">
                         <!-- Column -->
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Doanh thu hằng ngày</h4>
-                                    <div class="text-end">
-                                        <h2 class="font-light mb-0"><i class="ti-arrow-up text-success"></i> 3,000,000 đ</h2>
-                                        <span class="text-muted">Thu nhập hôm nay</span>
-                                    </div>
-                                    <span class="text-success">80%</span>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar"
-                                            style="width: 80%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-cyan text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-users"></i> <?= $data['total_user'] ?></h1>
+                                    <h6 class="text-white">Người dùng</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-success text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-chart-bar"></i><?= $data['total_category'] ?></h1>
+                                    <h6 class="text-white">Loại sản phẩm</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-warning text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-cube"></i><?= $data['total_product'] ?></h1>
+                                    <h6 class="text-white">Sản phẩm</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-danger text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-th-large"></i><?= $data['total_productvariant'] ?></h1>
+                                    <h6 class="text-white">Loại biến thể</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-info text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-code-branch"></i><?= $data['total_productvariantoption'] ?></h1>
+                                    <h6 class="text-white">Biến thể</h6>
                                 </div>
                             </div>
                         </div>
                         <!-- Column -->
                         <!-- Column -->
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Doanh thu tuần</h4>
-                                    <div class="text-end">
-                                        <h2 class="font-light mb-0"><i class="ti-arrow-up text-info"></i> 20,000,000 đ</h2>
-                                        <span class="text-muted">Thu nhập hôm nay</span>
-                                    </div>
-                                    <span class="text-info">30%</span>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-info" role="progressbar"
-                                            style="width: 30%; height: 6px;" aria-valuenow="25" aria-valuemin="0"
-                                            aria-valuemax="100"></div>
-                                    </div>
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-danger text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-list-alt"></i><?= $data['total_sku'] ?></h1>
+                                    <h6 class="text-white">Sản phẩm biến thể</h6>
                                 </div>
                             </div>
                         </div>
                         <!-- Column -->
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- Sales chart -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <!-- column -->
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="card-title">Thống kê doanh thu</h4>
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content " id="flot-line-chart"
-                                            style="padding: 0px; position: relative;">
-                                            <canvas class="flot-base w-100" height="400"></canvas>
-                                        </div>
-                                    </div>
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-info text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-file-alt"></i></i><?= $data['total_blog'] ?></h1>
+                                    <h6 class="text-white">Bài viết</h6>
                                 </div>
                             </div>
                         </div>
-                        <!-- column -->
-                    </div>
-                    <!-- ============================================================== -->
-                    <!-- Table -->
-                    <!-- ============================================================== -->
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="d-md-flex">
-                                        <h4 class="card-title col-md-10 mb-md-0 mb-3 align-self-center">Dự án của tháng</h4>
-                                        <div class="col-md-2 ms-auto">
-                                            <select class="form-select shadow-none col-md-2 ml-auto">
-                                                <option selected>Tháng 1</option>
-                                                <option value="1">Tháng 2</option>
-                                                <option value="2">Tháng 3</option>
-                                                <option value="3">Tháng 4</option>
-                                                <option value="4">Tháng 5</option>
-                                                <option value="5">Tháng 6</option>
-                                                <option value="6">Tháng 7</option>
-                                                <option value="7">Tháng 8</option>
-                                                <option value="8">Tháng 9</option>
-                                                <option value="9">Tháng 10</option>
-                                                <option value="10">Tháng 11</option>
-                                                <option value="11">Tháng 12</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="table-responsive mt-5">
-                                        <table class="table stylish-table no-wrap">
-                                            <thead>
-                                                <tr>
-                                                    <th class="border-top-0" colspan="2">Phân công</th>
-                                                    <th class="border-top-0">Tên dự án</th>
-                                                    <th class="border-top-0">Ngân sách</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody style="font-family:roboto;">
-                                                <tr class="active">
-                                                    <td><span class=""><img class="rounded-circle" src="../../../../public/assets/admin/assets/images/users/vy.jpg"
-                                                                alt="user" style="height: 50px; width:50px; "></span></td>
-                                                    <td class="align-middle">
-                                                        <h6>Ngô Chí Vỹ</h6><small class="text-muted">Nhà thiết kế website</small>
-                                                    </td>
-                                                    <td class="align-middle">Dự án thiết kế giao diện</td>
-                                                    <td class="align-middle">10,000,000 đ</td>
-                                                </tr>
+                        <!-- Column -->
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-cyan text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-comments"></i><?= $data['total_comment'] ?></h1>
+                                    <h6 class="text-white">Bình luận</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Column -->
+                        <div class="col-md-3">
+                            <div class="card card-hover">
+                                <div class="box bg-success text-center">
+                                    <h1 class="font-light text-white"><i class="fa fa-shopping-cart"></i><?= $data['total_user'] ?></h1>
+                                    <h6 class="text-white">Đơn hàng</h6>
+                                </div>
+                            </div>
+                        </div>
 
-                                                <tr class="active">
-                                                    <td><span class=""><img class="rounded-circle" src="../../../../public/assets/admin/assets/images/users/linhh.jpg"
-                                                                alt="user" style="height: 50px; width:50px; "></span></td>
-                                                    <td class="align-middle">
-                                                        <h6>Trần Nhựt Linh</h6><small class="text-muted">Quản lý dự án</small>
-                                                    </td>
-                                                    <td class="align-middle">Dự án cải tiến quy trình</td>
-                                                    <td class="align-middle">8,000,000 đ</td>
-                                                </tr>
-                                                <tr class="active">
-                                                    <td><span class="round"><img class="rounded-circle" src="../../../../public/assets/admin/assets/images/users/khang.jpg"
-                                                                alt="user" style="height: 50px; width:50px; "></span></td>
-
-                                                    <td class="align-middle">
-                                                        <h6>Lê Hoàng Khang</h6><small class="text-muted">Lập trình viên</small>
-                                                    </td>
-                                                    <td class="align-middle">Dự án phát triển website</td>
-                                                    <td class="align-middle">6,000,000 đ</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <h4>Thống kê sản phẩm theo loại</h4>
                                     </div>
+
+                                    <canvas id="product_by_category"></canvas>
+
                                 </div>
+
                             </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title">
+                                        <h4>5 sản phẩm có lượt tương tác nhiều nhất</h4>
+                                    </div>
+
+                                    <canvas id="comment_by_product"></canvas>
+
+                                </div>
+
+                            </div>
+
                         </div>
                     </div>
+
+
+                    <script>
+                        function productByCategoryChart() {
+                            var php_data= <?= json_encode($data['product_by_category']) ?>;
+                            var labels=[];
+                            var data=[];
+
+                            for(let i of php_data){
+                                labels.push(i.name);
+                                data.push(i.count);
+                            }
+                            const ctx = document.getElementById('product_by_category');
+                            
+                            new Chart(ctx, {
+                                type: 'pie',
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        label: 'Loại sản phẩm',
+                                        data: data,
+                                        borderWidth: 1
+                                    }]
+                                },
+                                // options: {
+                                //     scales: {
+                                //         y: {
+                                //             beginAtZero: true
+                                //         }
+                                //     }
+                                // }
+                            });
+                        }
+                        function commentByProductChart() {
+                            var php_data= <?= json_encode($data['comment_by_product']) ?>;
+                            var labels=[];
+                            var data=[];
+
+                            for(let i of php_data){
+                                labels.push(i.name);
+                                data.push(i.count);
+                            }
+                            const ctx = document.getElementById('comment_by_product');
+                            
+                            new Chart(ctx, {
+                                type: 'bar',
+                                data: {
+                                    labels: labels,
+                                    datasets: [{
+                                        label: 'Số lượng bình luận',
+                                        data: data,
+                                        borderWidth: 1
+                                    }]
+                                },
+                       
+                            });
+                        }
+                        commentByProductChart();
+                        productByCategoryChart();
+                    </script>
+
         </body>
 
 

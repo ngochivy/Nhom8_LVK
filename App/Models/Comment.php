@@ -99,11 +99,22 @@ class Comment extends BaseModel
     // {
     //     return $this->countTotal();
     // }
+    
+
+
+    public function countTotalComment()
+    {
+        return $this->countTotal();
+    }
+
+
+
     public function countCommentByProduct()
     {
         $result = [];
         try {
-            $sql = "SELECT COUNT(*) AS count,products.name FROM comments INNER JOIN products ON comments.product_id = products.id GROUP BY comments.product_id ORDER BY count DESC LIMIT 5;";
+
+            $sql = "SELECT COUNT(*) AS  count, products.name FROM comments INNER JOIN products ON comments.product_id = products.id GROUP BY comments.product_id ORDER BY count DESC LIMIT 5;";
             $result = $this->_conn->MySQLi()->query($sql);
             return $result->fetch_all(MYSQLI_ASSOC);
         } catch (\Throwable $th) {

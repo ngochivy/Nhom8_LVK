@@ -55,6 +55,9 @@ class Blog extends BaseModel
             return $result;
         }
     }
-
+    public function countTotalBlog()
+    {
+        return $this->countTotal();
+    }
     
 }

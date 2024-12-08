@@ -64,4 +64,9 @@ class ProductVariant extends BaseModel
         }
     }
 
+
+    public function countTotalProductVariant()
+    {
+        return $this->countTotal();
+    }
 }
