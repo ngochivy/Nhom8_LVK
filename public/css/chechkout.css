@@ -81,3 +81,71 @@ h6 {
 
 /* Button */
 
+
+/* Tổng quan cho card */
+.card {
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề card */
+.card-header {
+    background-color: #007bff; /* Màu sắc nổi bật */
+    color: white;
+    padding: 10px 15px;
+    border-bottom: 2px solid #0056b3;
+}
+
+/* Nội dung sản phẩm */
+.card-body div.mb-2 {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed #ddd;
+}
+
+/* Tên sản phẩm và các thông tin khác */
+.card-body h6 {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Đặt trọng tâm vào các thông tin chính */
+.card-body h6.font-weight-bold {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Định dạng chi tiết thông tin */
+.d-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Tổng cộng và phí vận chuyển */
+.card-footer {
+    background-color: #e9ecef;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
+
+/* Tổng giá tiền */
+.card-footer h5 {
+    color: #d9534f; /* Màu đỏ cho tổng tiền */
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Responsive cho màn hình nhỏ */
+@media (max-width: 768px) {
+    .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .d-flex h6 {
+        margin-bottom: 5px;
+    }
+}

@@ -49,15 +49,15 @@ class Home extends BaseView
                 <div class="carousel-inner">
 
                     <div class="carousel-item active" style="height: 410px;">
-                        <img class="img-fluid" src="/public//assets//client//img//banner1.png" alt="Image">
+                        <img class="img-fluid" src="/public/assets/client/img/banner1.png" alt="Image" style="object-fit: cover; height: 100%;">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
-                            <div class="p-3" style="max-width: 700px;">
-                                <!-- <h4 class="text-light text-uppercase font-weight-medium mb-3">LVK House</h4> -->
-                                <!-- <h3 class="display-4 text-white font-weight-semi-bold mb-4" style="font-family:montserrat;">Nâng tầm cuộc sống! Chất lượng, giá tốt</h3> -->
-                                <a href="/products" class="btn btn-light py-2 px-3 rounded-1">Mua ngay</a>
+                            <div class="p-3 text-center" style="max-width: 700px;">
+                                <h3 class="display-4 text-white font-weight-semi-bold mb-4" style="font-family: 'Montserrat', sans-serif; text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);">Nâng tầm cuộc sống! Chất lượng, giá tốt</h3>
+                                <a href="/products" class="btn btn-light py-2 px-3 rounded-3 shadow-lg">Mua ngay</a>
                             </div>
                         </div>
                     </div>
+
                     <!-- <div class="carousel-item" style="height: 410px; justify-content:center !important;">
                         <img class="img-fluid" src="https://th.bing.com/th/id/R.80d43d9d14389650193470a88258142d?rik=qFFEiaOOrLRs1Q&riu=http%3a%2f%2fwww.goldsun.vn%2fpic%2fProductCate%2fthiet-bi-_637160882463804420.jpg&ehk=f0otbp0S8nIVoVhXLQW6GIMOPlgzIVy9xkvQYtCv8ks%3d&risl=&pid=ImgRaw&r=0" alt="Image">
                         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
@@ -295,7 +295,7 @@ class Home extends BaseView
                     <!-- Centering the section title -->
                     <div class="text-center mx-auto">
                         <h2 class="section-title px-5 mb-3">
-                            <span class="px-2" style="font-family:roboto;">Bài viết</span>
+                            <span class="px-2" style="font-family:roboto;">Bài viết nổi bật</span>
                         </h2>
                     </div>
                     <!-- Aligning the 'Xem tất cả' link to the right -->

@@ -82,4 +82,5 @@ class Cart extends BaseModel
     {
         unset($_SESSION['cart']);
     }
+    
 }

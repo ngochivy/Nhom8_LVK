@@ -64,6 +64,10 @@ class PayController
 
     public static function pay()
     {
+
+        $oo = new CheckoutController();
+
+        $re = $oo->sendOrderEmail ();
         // echo "hai";
         // die();
         $data = [
@@ -83,7 +87,10 @@ class PayController
         Header::render();
         vnpay_create_payment::render($data);
         Footer::render();
+            // Chuyển hướng đến trang pay
+            header('Location: /pay');
     }
+    
 
     // public static function returnPayment()
     // {
@@ -92,4 +99,6 @@ class PayController
     //     vnpay_return::render();
     //     Footer::render();
     // }
+    
+   
 }
