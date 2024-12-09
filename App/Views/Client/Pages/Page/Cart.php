@@ -34,6 +34,7 @@ class Cart extends BaseView
                 font-family: roboto;
             }
         </style>
+
         <body>
             <div class="container-xxl bg-white p-0">
                 <!-- Page Header Start -->
@@ -77,6 +78,18 @@ class Cart extends BaseView
                                             <?php foreach ($cart as $id => $item):
                                                 // Lấy thông tin SKU và biến thể từ cơ sở dữ liệu
                                                 $skuInfo = (new Sku())->getSkuAndVariantInfoByProductId($item['id']);
+
+                                                // Kiểm tra nếu sản phẩm có biến thể, lấy SKU biến thể
+                                                $sku = '';
+                                                if (!empty($item['variants']) && isset($item['variants'][0]['sku'])) {
+                                                    $sku = $item['variants'][0]['sku']; // Lấy SKU của biến thể nếu có
+                                                } else {
+                                                    $sku = $skuInfo['sku']; // Nếu không có biến thể, lấy SKU sản phẩm gốc
+                                                }
+
+
+                                                // Lấy thông tin biến thể
+                                                $variants = !empty($item['variants']) ? $item['variants'] : [];
                                             ?>
                                                 <tr>
                                                     <td><input type="checkbox" name="check[]" value="<?= $item['id'] ?>"></td>
@@ -84,30 +97,32 @@ class Cart extends BaseView
                                                     <td><?= $item['name'] ?></td>
                                                     <td>
                                                         <input type="hidden" name="id[]" value="<?= $item['id'] ?>">
-                                                        <input type="hidden" name="price[]" value="<?= $skuInfo['prices'] ?>">
-
-                                                    <td><?= $sku['product_variant_option_name'] ?></td>
-                                                    <td>
+                                                        <input type="hidden" name="sku[]" value="<?= $sku ?>">
+                                                        <input type="hidden" name="price[]" value="<?= $item['price'] ?>">
                                                         <input type="number"
                                                             name="quantity[]"
                                                             value="<?= $item['quantity'] ?>"
                                                             min="1"
                                                             class="form-control quantity-input"
                                                             data-id="<?= $item['id'] ?>"
-                                                            data-price="<?= $skuInfo['prices'] ?>"
+                                                            data-sku="<?= $sku ?>"
+                                                            data-price="<?= $item['price'] ?>"
                                                             required>
                                                     </td>
+
                                                     <td>
                                                         <?php
-                                                        // Lấy tên biến thể từ giỏ hàng
+                                                        // Nếu có biến thể, hiển thị tên biến thể
                                                         $variantNames = [];
-                                                        foreach ($item['variants'] as $variant) {
-                                                            $variantNames[] = $variant['name']; // Hoặc thay bằng giá trị tên biến thể phù hợp
+                                                        foreach ($variants as $variant) {
+                                                            $variantNames[] = $variant['name'];  // Lưu tên biến thể
                                                         }
-                                                        echo implode(', ', $variantNames); // Hiển thị tên các biến thể
+                                                        echo implode(', ', $variantNames);  // Hiển thị tên các biến thể
                                                         ?>
-                                                    </td>
+                                                        <input type="hidden" name="variants[<?= $item['id'] ?>][]" value="<?= implode(',', array_column($variants, 'id')) ?>"> <!-- Truyền ID của các biến thể -->
+                                                        <input type="hidden" name="variant_names[<?= $item['id'] ?>][]" value="<?= implode(',', array_column($variants, 'name')) ?>"> <!-- Truyền tên của các biến thể -->
 
+                                                    </td>
                                                     <td><?= number_format($item['total_price'], 0, ',', ',') ?> VND</td>
                                                     <td>
                                                         <a href="/cart/remove/<?= $item['id'] ?>" class="btn btn-sm btn-outline-danger">
@@ -139,67 +154,88 @@ class Cart extends BaseView
                                         <?php foreach ($cart as $id => $item): ?>
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="font-weight-bold mr-2">Tên:</h6>
-                                                <h6 class=""> <?= $item['name'] ?></h6>
+                                                <h6 class=""> <?= $item['name'] ?> -
+                                                    <?php
+                                                    // Hiển thị tên của các biến thể, nếu có
+                                                    if (!empty($item['variants'])) {
+                                                        $variantNames = [];
+                                                        foreach ($item['variants'] as $variant) {
+                                                            $variantNames[] = $variant['name']; // Lưu tên biến thể vào mảng
+                                                        }
+                                                        echo implode(', ', $variantNames); // Nối các tên biến thể bằng dấu phẩy và hiển thị
+                                                    } else {
+                                                        echo 'Không có biến thể'; // Nếu không có biến thể, hiển thị thông báo này
+                                                    }
+                                                    ?>
+                                                </h6>
+
                                                 <input type="hidden" name="name[]" value="<?= htmlspecialchars($item['name']) ?>">
                                             </div>
+
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="font-weight-bold">Số lượng:</h6>
-                                                <h6 class=""><?= $item['quantity'] ?> </h6>
+                                                <h6 class="quantity-display" data-id="<?= $item['id'] ?>"><?= $item['quantity'] ?> </h6>
                                                 <input type="hidden" name="quantity[]" value="<?= htmlspecialchars($item['quantity']) ?>">
                                             </div>
+
                                         <?php endforeach; ?>
 
                                         <div class="d-flex justify-content-between mb-3 pt-4">
                                             <h6 class="font-weight-medium">Tổng tiền hàng</h6>
-                                            <h6 class="font-weight-medium"><?= number_format($total, 0, ',', ',') ?> VND</h6>
-                                        </div>
-                                        <div class="d-flex justify-content-between">
-                                            <h6 class="font-weight-medium">Phí vận chuyển</h6>
-                                            <h6 class="font-weight-medium">0 đ</h6>
+                                            <h6 class="totalorder"><?= number_format($total, 0, ',', ',') ?> VND</h6>
                                         </div>
                                     </div>
-                                    <div class="card-footer border-secondary bg-transparent">
-                                        <div class="d-flex justify-content-between mt-2">
-                                            <h5 class="font-weight-bold">Tổng</h5>
-                                            <h5 class="font-weight-bold"><?= number_format($total, 0, ',', ',') ?> VND </h5>
-                                        </div>
-                                        <button class="btn btn-block btn-primary my-3 py-3">Mua hàng</button>
-                                    </div>
+                                </div>
+                                <div class="pt-2">
+                                    <button type="submit" class="btn btn-primary btn-block py-3" name="submit" value="submit">Tiến hành thanh toán</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </form>
 
+
+
+
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const quantityInputs = document.querySelectorAll('.quantity-input');
-                        const totalElement = document.querySelector('h6.font-weight-medium:last-child');
-                        const grandTotalElement = document.querySelector('h5.font-weight-bold:last-child');
+                        const totalElement = document.querySelector('h6.totalorder');
+                        const grandTotalElement = document.querySelector('h6.totalorder');
 
                         quantityInputs.forEach(input => {
                             input.addEventListener('input', function() {
-                                const productId = this.dataset.id;
-                                const productPrice = parseFloat(this.dataset.price);
+                                const skuPrice = parseFloat(this.dataset.price); // Giá SKU từ data-price
                                 const quantity = parseInt(this.value);
 
-                                // Cập nhật giá tổng cho sản phẩm hiện tại
-                                const totalPrice = productPrice * quantity;
+                                // Tính tổng giá cho sản phẩm hiện tại (dựa trên giá SKU và số lượng)
+                                const totalPriceElement = this.closest('tr').querySelector('td:nth-last-child(2)');
+                                const totalPrice = skuPrice * quantity;
+                                totalPriceElement.textContent = new Intl.NumberFormat('vi-VN', {
+                                    style: 'currency',
+                                    currency: 'VND'
+                                }).format(totalPrice);
+
+                                // Cập nhật số lượng trong phần tổng quan
+                                const quantityDisplayElement = document.querySelector(`.quantity-display[data-id="${this.dataset.id}"]`);
+                                if (quantityDisplayElement) {
+                                    quantityDisplayElement.textContent = quantity; // Cập nhật số lượng trong tổng quan
+                                }
 
                                 // Tính tổng giỏ hàng
                                 let grandTotal = 0;
                                 quantityInputs.forEach(input => {
-                                    const price = parseFloat(input.dataset.price);
-                                    const quantity = parseInt(input.value);
-                                    grandTotal += price * quantity;
+                                    const price = parseFloat(input.dataset.price); // Lấy giá SKU từ data-price
+                                    const qty = parseInt(input.value);
+                                    grandTotal += price * qty;
                                 });
 
                                 // Cập nhật tổng giỏ hàng
-                                totalElement.textContent = new Intl.NumberFormat('en-US', {
+                                totalElement.textContent = new Intl.NumberFormat('vi-VN', {
                                     style: 'currency',
                                     currency: 'VND'
                                 }).format(grandTotal);
-                                grandTotalElement.textContent = new Intl.NumberFormat('en-US', {
+                                grandTotalElement.textContent = new Intl.NumberFormat('vi-VN', {
                                     style: 'currency',
                                     currency: 'VND'
                                 }).format(grandTotal);
@@ -208,9 +244,11 @@ class Cart extends BaseView
                     });
                 </script>
 
+
             </div>
         </body>
-</html>
+
+        </html>
 <?php
     }
 }
