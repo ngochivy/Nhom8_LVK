@@ -38,7 +38,7 @@ class Index extends BaseView
         </head>
 
         <body>
-
+         
             <!-- Page Header End -->
 
             <!-- Shop Section Start -->

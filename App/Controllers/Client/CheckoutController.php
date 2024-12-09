@@ -7,6 +7,7 @@ use App\Helpers\NotificationHelper;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+use App\Models\Sku;
 
 
 use App\Views\Client\Layouts\Footer;
@@ -21,6 +22,7 @@ class CheckoutController
     // hiển thị danh sách
     public static function checkout()
     {
+
         // giả sử data là mảng dữ liệu lấy được từ database
 
         Header::render();
@@ -31,9 +33,10 @@ class CheckoutController
 
 
 
-    public static function sendOderEmail()
+    public static function sendOrderEmail()
     {
-
+        // $sku = new Sku();
+        // $sku = (new Sku())->getSkuByProductId($item['id']);
         $is_valid = true;
 
         // Kiểm tra các trường dữ liệu từ form
@@ -56,7 +59,7 @@ class CheckoutController
             NotificationHelper::error('phone_number', 'Không để trống số điện thoại');
             $is_valid = false;
         }
-     
+
 
         if (empty($_POST['province'])) {
             NotificationHelper::error('province', 'Nội dung không được để trống');
@@ -94,17 +97,24 @@ class CheckoutController
             $ward = $_POST['ward'];
             $address = $_POST['address'];
             $message = $_POST['message'];
+            $name = $_POST['name'][0];
+            $quantity = $_POST['quantity'][0];
+            // $prices = $sku['prices'];
+            $total_price = $_POST['total_price'];
+
+
 
             // Cấu hình PHPMailer
-            $mail = new PHPMailer(true); // Enable exceptions
+
 
             try {
-                $mail->setFrom('lvksports7@gmail.com', 'Liên Hệ Hỗ Trợ');
-                $mail->addAddress('recipient@example.com', 'Người nhận');
+                $mail = new PHPMailer(true);
                 $mail->CharSet = 'UTF-8';
+                $mail->setFrom('lvksports7@gmail.com', 'Contact Support');
+                $mail->addAddress('recipient@example.com', 'Người nhận');
                 $mail->isHTML(true);
                 $mail->Body = '<meta charset="UTF-8">';
-                
+
 
                 // Cấu hình SMTP
 
@@ -118,17 +128,55 @@ class CheckoutController
                 $mail->Port = 587;
 
 
-              
+
 
                 // Người gửi
                 $mail->setFrom($email, $first_name); // Sử dụng email và tên nhập từ form
                 // Người nhận (Chủ trang web)
-                $mail->addAddress('lvksports7@gmail.com', 'Liên Hệ'); // Email của bạn là người nhận
+                $mail->addAddress('lvksports7@gmail.com', 'Liên hệ'); // Email của bạn là người nhận
 
                 // Nội dung email gửi đến admin
                 $mail->isHTML(true);
-                $mail->Subject = "Liên hệ từ $first_name";
+                $mail->Subject = "Thông báo đơn hàng mới của:  $first_name";
                 $mail->Body = "
+                 <html lang='vi'>
+                <head>
+                    <meta charset='UTF-8'>
+                    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+                    <title>Thông báo đơn hàng mới</title>
+                   <style>
+    table {
+        width: 50%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        text-align: left;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    th {
+        background-color: #f4f4f4;
+        color: #333;
+        font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
+
+                     <body>
+
+                    <div class='container'>
                 <p>Bạn đã nhận được tin nhắn từ <strong>$first_name $last_name</strong> (<strong>$email</strong>):</p>
                 <p><strong>Số điện thoại:</strong> $phone_number</p>
                 <p><strong>Tỉnh/Thành phố:</strong> $province</p>
@@ -136,9 +184,58 @@ class CheckoutController
                 <p><strong>Phường/Xã:</strong> $ward</p>
                 <p><strong>Địa chỉ chi tiết:</strong> $address</p>
                 <p><strong>Nội dung:</strong> $message</p>
+
+                <table>
+  
+        <p>Tên sản phẩm</p>
+        <strong>$name</strong>
+ 
+   
+        <p>Số lượng</p>
+        <strong>$quantity</strong>
+
+ 
+        
+   
+        <p>Tổng tiền
+            <strong></strong>" . number_format($total_price, 0, ',', '.') . " đ</p>
+
+</table>
+
+                             </div>
+                </body>
+                
             ";
-            
-                // Gửi email cho khách hàng
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 $mailCustomer = new PHPMailer(true);
                 $mailCustomer->isSMTP();
                 $mailCustomer->Host = 'smtp.gmail.com';
@@ -149,14 +246,133 @@ class CheckoutController
                 $mailCustomer->Port = 587;
 
                 // Người gửi là admin
-                $mailCustomer->setFrom('lvksports7@gmail.com', 'Liên Hệ');
+                $mailCustomer->setFrom('lvksports7@gmail.com', 'LVK House');
                 // Người nhận là khách hàng
                 $mailCustomer->addAddress($email, $message);
 
                 // Nội dung email gửi cho khách hàng
                 $mailCustomer->isHTML(true);
-                $mailCustomer->Subject = 'Chúng tôi đã nhận được yêu cầu của bạn';
-                $mailCustomer->Body    = "<p>Chào <strong>$first_name</strong><strong>$last_name</strong>,</p><p>Cảm ơn bạn đã liên hệ với chúng tôi. Dưới đây là thông tin bạn đã gửi:</p><p><strong>Số điện thoại:</strong><p><strong>Email:</strong> $email</p><p><strong>Số điện thoại:</strong> $phone_number</p><p><strong>Tỉnh/Thành Phố:</strong> $province</p><p><strong>Huyện:</strong> $district</p><p><strong>Phường/Xã:</strong> $ward</p><p><strong>Phường/Xã:</strong> $address</p><p><strong>Nội dung:</strong> $message</p><p>Chúng tôi sẽ phản hồi bạn trong thời gian sớm nhất.</p>";
+                $mailCustomer->Subject = 'LVK House, ';
+                $mailCustomer->Body = "
+<html lang='vi'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>Thông báo đơn hàng mới</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            border-radius: 8px 8px 0 0;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .content {
+            font-size: 16px;
+            color: #333;
+            margin-top: 20px;
+        }
+        .content p {
+            margin-bottom: 10px;
+        }
+        .content strong {
+            color: #333;
+        }
+        .table-container {
+            margin-top: 30px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .table-container th, .table-container td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .table-container th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .table-container td {
+            background-color: #f9f9f9;
+        }
+        .total {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+        .footer {
+            margin-top: 40px;
+            font-size: 14px;
+            text-align: center;
+            color: #888;
+        }
+            .total {
+            color: red;
+            }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <div class='header'>
+            <h2>Thông báo đơn hàng mới từ LVK House</h2>
+        </div>
+        
+        <div class='content'>
+            <p><strong>Xin chào $first_name $last_name</strong> (<strong>$email</strong>),</p>
+            <p><strong>Số điện thoại:</strong> $phone_number</p>
+            <p><strong>Tỉnh/Thành phố:</strong> $province</p>
+            <p><strong>Huyện/Quận:</strong> $district</p>
+            <p><strong>Phường/Xã:</strong> $ward</p>
+            <p><strong>Địa chỉ chi tiết:</strong> $address</p>
+            <p><strong>Nội dung:</strong> $message</p>
+        </div>
+
+        <div class='table-container'>
+            <table>
+                <tr>
+                    <th>Tên sản phẩm</th>
+                    <td><strong>$name</strong></td>
+                </tr>
+                <tr>
+                    <th>Số lượng</th>
+                    <td><strong>$quantity</strong></td>
+                </tr>
+                <tr>
+                    <th>Tổng tiền</th>
+                    <td><strong>" . number_format($total_price, 0, ',', ',') . " đ</strong></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class='total'>
+            <p><strong>Tổng tiền: </strong>" . number_format($total_price, 0, ',', ',') . " đ</p>
+        </div>
+
+        <div class='footer'>
+            <p>Trân trọng, <br>Đội ngũ LVK House</p>
+        </div>
+    </div>
+</body>
+</html>";
 
                 // Gửi email cho cả admin và khách hàng
                 if ($mail->send() && $mailCustomer->send()) {
@@ -169,9 +385,10 @@ class CheckoutController
             }
         }
 
+        return $is_valid;
+
         // Sau khi gửi email, điều hướng về trang liên hệ
-        header('Location: /pay');
-        exit();
+        // header('Location: /pay');
+        // exit();
     }
-    
 }

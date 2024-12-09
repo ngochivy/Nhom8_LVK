@@ -1,2 +1,64 @@
 
 
+.input-group-append button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+
+/* Điều chỉnh kích thước chữ nhỏ lại */
+h6 {
+    font-size: 14px; /* Chữ nhỏ hơn */
+    font-weight: bold;
+    color: #343a40; /* Màu chữ tối */
+}
+
+h5 {
+    font-size: 16px; /* Giữ chữ lớn hơn cho phần tổng */
+    font-weight: bold;
+    color: #dc3545; /* Màu đỏ cho tổng */
+}
+
+/* Căn lề phải cho các phần tử */
+.d-flex {
+    display: flex;
+    justify-content: flex-end;  /* Căn lề phải */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Để đảm bảo chữ trong card không bị lệch khi căn phải */
+.card-body h6, .card-footer h5 {
+    text-align: right; /* Căn lề phải cho các chữ */
+}
+
+/* Cấu trúc card */
+.card {
+    border: 1px solid #ccc;  /* Màu viền nhẹ cho card */
+    border-radius: 10px;
+}
+
+/* Định dạng header card */
+.card-header {
+    background-color: #6c757d;  /* Màu nền xám cho header */
+    color: #ffffff; /* Màu chữ trắng cho tiêu đề */
+    padding: 15px;
+}
+
+/* Tiêu đề với màu xanh dương */
+.card-header h4 {
+    font-weight: 600;
+    color: #007bff; /* Màu xanh dương */
+}
+
+/* Định dạng phần tổng tiền và tổng cộng */
+.card-footer {
+    background-color: transparent;
+    padding: 15px;
+}
+
+
+
+

@@ -3,6 +3,9 @@
 namespace App\Helpers;
 
 use App\Models\User;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class AuthHelper
 {
@@ -254,4 +257,5 @@ class AuthHelper
             }
         }
     }
+  
 }

@@ -50,7 +50,7 @@ class ProductVariant extends BaseModel
 
             // Truy vấn lấy tất cả sản phẩm và tên danh mục (JOIN với bảng categories)
             $stmt = $conn->prepare(
-                "SELECT product_variants.*, products.name as product_name FROM `product_variants` INNER JOIN products ON product_variants.product_id = products.id;"
+                "SELECT product_variants.*, products.name as product_name= FROM `product_variants` INNER JOIN products ON product_variants.product_id = products.id;"
             );
             $stmt->execute();
 
