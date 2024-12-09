@@ -93,7 +93,7 @@ class Cart extends BaseView
                                                     </td>
                                                     <td><?= $sku['product_variant_option_name'] ?></td>
 
-                                                    <td><?= number_format($item['total_price'], 0, ',', ',')?> VND</td>
+                                                    <td><?= number_format($item['total_price'], 0, ',', ',') ?> VND</td>
                                                     <td>
                                                         <a href="/cart/remove/<?= $item['id'] ?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
                                                     </td>
@@ -116,44 +116,41 @@ class Cart extends BaseView
 
                                 <div class="card border-secondary mb-5">
                                     <div class="card-header bg-secondary border-0">
-                                        <h4 class="font-weight-semi-bold m-0 text-primary">Tổng quan</h4> <!-- Màu xanh dương cho tiêu đề -->
+                                        <h4 class="font-weight-semi-bold m-0">Tổng quan</h4>
                                     </div>
                                     <div class="card-body">
                                         <?php foreach ($cart as $id => $item): ?>
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h6 class="font-weight-bold text-dark">Tên:</h6>
-                                                <h6 class=""><?= $item['name'] ?></h6>
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="font-weight-bold mr-2">Tên:</h6> <!-- In đậm tên -->
+                                                <h6 class=""> <?= $item['name'] ?></h6>
                                                 <input type="hidden" name="name[]" value="<?= htmlspecialchars($item['name']) ?>">
                                             </div>
-                                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                                <h6 class="font-weight-bold text-dark">Số lượng:</h6>
-                                                <h6 class=""><?= $item['quantity'] ?></h6>
+                                            <div class="d-flex justify-content-between">
+                                                <h6 class="font-weight-bold">Số lượng:</h6>
+                                                <h6 class=""><?= $item['quantity'] ?> </h6> <!-- In đậm số lượng -->
                                                 <input type="hidden" name="quantity[]" value="<?= htmlspecialchars($item['quantity']) ?>">
                                             </div>
                                         <?php endforeach; ?>
 
-                                        <!-- Tổng tiền hàng -->
-                                        <div class="d-flex justify-content-between align-items-center mb-3 pt-4">
-                                            <h6 class="font-weight-medium text-dark">Tổng tiền hàng:</h6>
-                                            <h6 class="font-weight-medium text-dark"><?= number_format($total, 0, ',', ',') ?> VND</h6>
-                                        </div>
 
-                                        <!-- Phí vận chuyển -->
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <h6 class="font-weight-medium text-dark">Phí vận chuyển:</h6>
-                                            <h6 class="font-weight-medium text-dark">0 đ</h6>
+
+                                        <div class="d-flex justify-content-between mb-3 pt-4">
+                                            <h6 class="font-weight-medium">Tổng tiền hàng</h6>
+                                            <h6 class="font-weight-medium"><?= number_format($total, 0, ',', ',') ?> VND</h6>
+                                        </div>
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="font-weight-medium">Phí vận chuyển</h6>
+                                            <h6 class="font-weight-medium">0 đ</h6>
                                         </div>
                                     </div>
                                     <div class="card-footer border-secondary bg-transparent">
-                                        <div class="d-flex justify-content-between align-items-center mt-2">
-                                            <h5 class="font-weight-bold text-danger">Tổng:</h5> <!-- Màu đỏ cho phần tổng -->
-                                            <h5 class="font-weight-bold text-danger"><?= number_format($total, 0, ',', ',') ?>VND</h5>
+                                        <div class="d-flex justify-content-between mt-2">
+                                            <h5 class="font-weight-bold">Tổng</h5>
+                                            <h5 class="font-weight-bold"><?= number_format($total, 0, ',', ',') ?> VND</h5>
                                         </div>
-                                        <button class="btn btn-primary btn-block my-3 py-3 rounded-pill shadow">Mua hàng</button>
+                                        <button class="btn btn-block btn-primary my-3 py-3">Mua hàng</button>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
