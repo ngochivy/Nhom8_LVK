@@ -9,7 +9,10 @@ class Checkout extends BaseView
 {
     public static function render($data = null)
     {
-        // var_dump($data);
+        var_dump($data);
+
+        // var_dump($_POST['variants']);
+
 ?>
         <!-- Favicon -->
         <link rel="icon" href="/favicon.png" />
@@ -129,17 +132,21 @@ class Checkout extends BaseView
                                             // Kiểm tra xem giỏ hàng có tồn tại và có sản phẩm hay không
                                             if (isset($data) && !empty($data)) {
                                                 foreach ($data as $item):
-                                                    $sku = (new Sku())->getSkuByProductId($item['id']); // Lấy thông tin SKU để lấy giá
-                                                    $item_total = $sku['prices'] * $item['quantity']; // Tính tổng tiền của sản phẩm
+                                                    $sku = (new Sku())->getSkuAndVariantInfoByProductId($item['id']);
+                                                    // Lấy thông tin SKU để lấy giá
+                                                    $item_total = $item['price'] * $item['quantity']; // Tính tổng tiền của sản phẩm
                                                     $total_price += $item_total; // Cộng dồn vào tổng tiền
-                                                    
+
                                             ?>
                                                     <div class="mb-2">
                                                         <div class="d-flex justify-content-between">
                                                             <h6 class="font-weight-bold" style="width: 100px;">Tên:</h6>
-                                                            <h6><?= htmlspecialchars($item['name']) ?></h6>
+                                                            <h6>
+                                                                <?= htmlspecialchars($item['name']) ?>
+                                                                                                                            </h6>
                                                             <input type="hidden" name="name[]" value="<?= $item['name'] ?>"> <!-- Lưu tên sản phẩm -->
                                                         </div>
+
                                                         <div class="d-flex justify-content-between">
                                                             <h6 class="font-weight-bold" style="width: 100px;">Số lượng:</h6>
                                                             <h6><?= $item['quantity'] ?></h6>
@@ -147,7 +154,7 @@ class Checkout extends BaseView
                                                         </div>
                                                         <div class="d-flex justify-content-between">
                                                             <h6 class="font-weight-bold" style="width: 100px;">Giá:</h6>
-                                                            <h6><?= number_format($sku['prices'], 0, ',', ',') ?> VND</h6> <!-- Hiển thị giá từ SKU -->
+                                                            <h6><?= number_format($item['price'], 0, ',', ',') ?> VND</h6> <!-- Hiển thị giá từ SKU -->
                                                         </div>
                                                         <div class="d-flex justify-content-between">
                                                             <h6 class="font-weight-bold" style="width: 100px;">Tổng tiền:</h6>
@@ -160,6 +167,7 @@ class Checkout extends BaseView
                                                 echo "<p>Giỏ hàng của bạn đang trống!</p>";
                                             }
                                             ?>
+
 
                                             <hr class="mt-0">
 
