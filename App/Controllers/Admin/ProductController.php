@@ -89,12 +89,14 @@ class ProductController
         'price' => $_POST['price'],
         'discount_price' => $_POST['discount_price'],
         'description' => $_POST['description'],
+        'short_description' => $_POST['short_description'],
         'quantity' => $_POST['quantity'],
         'user_manual' => $_POST['user_manual'],
         'is_feature' => $_POST['is_feature'],
         'status' => $_POST['status'],
         'category_id' => $_POST['category_id'],
     ];
+
 
     // Xử lý ảnh nếu có
     $is_upload = ProductValidation::uploadImage();
@@ -104,7 +106,7 @@ class ProductController
 
     // Tạo sản phẩm
     $result = $Product->createProduct($data);
-
+    var_dump($result);
     if ($result) {
         NotificationHelper::success('store', 'Thêm sản phẩm thành công');
         header('location: /admin/products');

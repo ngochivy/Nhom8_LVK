@@ -96,13 +96,13 @@ class Edit extends BaseView
                                     </div>
                                     <div class="form-group">
                                         <label for="category_id">Loại sản phẩm</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="category_id" name="category_id">
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="category_id" name="category_id" value="">
                                             <option value="" selected disabled>vui lòng chọn...</option>
 
                                             <?php
                                             foreach ($data['category'] as $item) :
                                             ?>
-                                                <option value="<?= $item['id'] ?>" <?= ($item['id'] == $data['product']['id']) ? 'selected' : '' ?>><?= $item['name'] ?></option>
+                                                <option value="<?= $item['id'] ?>" <?= ($item['id'] == $data['product']['category_id']) ? 'selected' : '' ?>><?= $item['name'] ?></option>
                                             <?php
                                             endforeach;
                                             ?>
@@ -124,7 +124,7 @@ class Edit extends BaseView
 
                                     <div class="form-group">
                                         <label for="status">Trạng thái*</label>
-                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" value="<?= $data['status'] ?>" required>
+                                        <select class="select2 form-select shadow-none" style="width: 100%; height:36px;" id="status" name="status" value="<?= $data['product']['status'] ?>" required>
                                             <option value="" selected disabled>Vui lòng chọn...</option>
                                             <option value="1" <?= ($data['product']['status'] == 1 ? 'selected' : '') ?>>Hiển thị</option>
                                             <option value="0" <?= ($data['product']['status'] == 0 ? 'selected' : '') ?>>Ẩn</option>
