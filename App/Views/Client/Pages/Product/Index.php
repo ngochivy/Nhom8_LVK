@@ -145,9 +145,7 @@ class Index extends BaseView
                                                         <form action="/cart/add" method="post">
                                                             <input type="hidden" name="method" id="" value="POST">
                                                             <input type="hidden" name="id" id="" value="<?= $item['id'] ?>" required>
-                                                            
-                                                                <button type="submit" class="btn btn-sm text-dark ml-1 p-2"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</button>
-                                                            
+                                                            <button type="submit" class="btn btn-sm border-0 text-dark py-1"><i class="fas fa-shopping-cart text-primary mr-1"></i>Thêm vào giỏ hàng</button>
                                                         </form>
                                                     </div>
                                                 </div>

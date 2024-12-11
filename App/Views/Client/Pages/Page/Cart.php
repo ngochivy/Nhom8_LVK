@@ -12,9 +12,8 @@ class Cart extends BaseView
         $cart = $data['cart'] ?? [];
         $total = array_sum(array_column($cart, 'total_price'));
 
-        var_dump($cart); // Kiểm tra giỏ hàng
+        // var_dump($cart);
 ?>
-
         <!-- Favicon -->
         <link rel="icon" href="/favicon.png" />
         <!-- Google Web Fonts -->
@@ -32,45 +31,34 @@ class Cart extends BaseView
         <style>
             body {
                 font-family: roboto;
+                margin-top: -50px;
             }
         </style>
 
         <body>
             <div class="container-xxl bg-white p-0">
-                <!-- Page Header Start -->
-                <div class="container-fluid bg-secondary mb-5">
-                    <div class="d-flex flex-column align-items-center justify-content-center" style="min-height: 300px">
-                        <h1 class="font-weight-semi-bold text-uppercase mb-3">Giỏ Hàng</h1>
-                        <div class="d-inline-flex">
-                            <p class="m-0"><a href="">Trang chủ</a></p>
-                            <p class="m-0 px-2">-</p>
-                            <p class="m-0">Giỏ hàng</p>
-                        </div>
-                    </div>
-                </div>
+
                 <!-- Page Header End -->
+
+
                 <!-- Cart Start -->
                 <form action="/checkout" method="post">
                     <input type="hidden" name="method" value="POST">
-                    <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token'] ?>">
-                    <!-- id -->
-                     
-
-                    <div class="container-fluid pt-5">
+                    <div class="container-xxl pt-5">
                         <div class="row px-xl-5">
-                            <div class="col-lg-8 table-responsive mb-5">
+                            <div class="col-lg-8 table-responsive mb-5 mr-0">
                                 <?php if (empty($cart)): ?>
-                                    <p class="text-center">Giỏ hàng của bạn đang trống! <a href="/shop" class="btn btn-primary">Mua sắm ngay</a></p>
+                                    <p class="text-center">Giỏ hàng của bạn đang trống!</p>
                                 <?php else: ?>
-                                    <table class="table table-bordered text-center mb-0">
-                                        <thead class="bg-secondary text-dark">
+                                    <table class="table table-bordered text-center">
+                                        <thead class="bg-primary text-dark">
                                             <tr>
                                                 <th>Chọn</th>
                                                 <th>Hình ảnh</th>
                                                 <th>Sản phẩm</th>
-                                                <th>Tùy chọn</th>
                                                 <th>Số lượng</th>
-                                                <th>Giá</th>
+                                                <th>Tùy chọn</th>
+                                                <th style="min-width: 70px;">Giá</th>
                                                 <th></th>
                                             </tr>
                                         </thead>
@@ -91,14 +79,16 @@ class Cart extends BaseView
                                                 // Lấy thông tin biến thể
                                                 $variants = !empty($item['variants']) ? $item['variants'] : [];
                                             ?>
+
                                                 <tr>
+                                                    <!-- Checkbox để chọn sản phẩm -->
                                                     <td><input type="checkbox" name="check[]" value="<?= $item['id'] ?>"></td>
                                                     <td><img src="<?= APP_URL ?>/public/uploads/products/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" style="height:150px; width:150px;"></td>
                                                     <td><?= $item['name'] ?></td>
                                                     <td>
                                                         <input type="hidden" name="id[]" value="<?= $item['id'] ?>">
-                                                        <input type="hidden" name="sku[]" value="<?= $sku ?>">
                                                         <input type="hidden" name="price[]" value="<?= $item['price'] ?>">
+
                                                         <input type="number"
                                                             name="quantity[]"
                                                             value="<?= $item['quantity'] ?>"
@@ -108,26 +98,13 @@ class Cart extends BaseView
                                                             data-sku="<?= $sku ?>"
                                                             data-price="<?= $item['price'] ?>"
                                                             required>
-                                                    </td>
-
-                                                    <td>
-                                                        <?php
-                                                        // Nếu có biến thể, hiển thị tên biến thể
-                                                        $variantNames = [];
-                                                        foreach ($variants as $variant) {
-                                                            $variantNames[] = $variant['name'];  // Lưu tên biến thể
-                                                        }
-                                                        echo implode(', ', $variantNames);  // Hiển thị tên các biến thể
-                                                        ?>
-                                                        <input type="hidden" name="variants[<?= $item['id'] ?>][]" value="<?= implode(',', array_column($variants, 'id')) ?>"> <!-- Truyền ID của các biến thể -->
-                                                        <input type="hidden" name="variant_names[<?= $item['id'] ?>][]" value="<?= implode(',', array_column($variants, 'name')) ?>"> <!-- Truyền tên của các biến thể -->
 
                                                     </td>
+                                                    <td><?= $sku['product_variant_option_name'] ?></td>
+
                                                     <td><?= number_format($item['total_price'], 0, ',', ',') ?> VND</td>
                                                     <td>
-                                                        <a href="/cart/remove/<?= $item['id'] ?>" class="btn btn-sm btn-outline-danger">
-                                                            <i class="fas fa-trash"></i>
-                                                        </a>
+                                                        <a href="/cart/remove/<?= $item['id'] ?>" class="btn btn-sm btn-outline-danger"><i class="fas fa-trash"></i></a>
                                                     </td>
                                                 </tr>
                                             <?php endforeach; ?>
@@ -136,7 +113,6 @@ class Cart extends BaseView
                                 <?php endif; ?>
                             </div>
 
-                            <!-- Tổng tiền và thanh toán -->
                             <div class="col-lg-4">
                                 <div class="mb-5">
                                     <div class="input-group">
@@ -146,6 +122,7 @@ class Cart extends BaseView
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="card border-secondary mb-5">
                                     <div class="card-header bg-secondary border-0">
                                         <h4 class="font-weight-semi-bold m-0">Tổng quan</h4>
@@ -153,45 +130,36 @@ class Cart extends BaseView
                                     <div class="card-body">
                                         <?php foreach ($cart as $id => $item): ?>
                                             <div class="d-flex justify-content-between">
-                                                <h6 class="font-weight-bold mr-2">Tên:</h6>
-                                                <h6 class=""> <?= $item['name'] ?> -
-                                                    <?php
-                                                    // Hiển thị tên của các biến thể, nếu có
-                                                    if (!empty($item['variants'])) {
-                                                        $variantNames = [];
-                                                        foreach ($item['variants'] as $variant) {
-                                                            $variantNames[] = $variant['name']; // Lưu tên biến thể vào mảng
-                                                        }
-                                                        echo implode(', ', $variantNames); // Nối các tên biến thể bằng dấu phẩy và hiển thị
-                                                    } else {
-                                                        echo 'Không có biến thể'; // Nếu không có biến thể, hiển thị thông báo này
-                                                    }
-                                                    ?>
-                                                </h6>
-
+                                                <h6 class="font-weight-bold mr-2">Tên:</h6> <!-- In đậm tên -->
+                                                <h6 class=""> <?= $item['name'] ?></h6>
                                                 <input type="hidden" name="name[]" value="<?= htmlspecialchars($item['name']) ?>">
                                             </div>
-
                                             <div class="d-flex justify-content-between">
                                                 <h6 class="font-weight-bold">Số lượng:</h6>
-                                                <h6 class="quantity-display" data-id="<?= $item['id'] ?>"><?= $item['quantity'] ?> </h6>
+                                                <h6 class=""><?= $item['quantity'] ?> </h6> <!-- In đậm số lượng -->
                                                 <input type="hidden" name="quantity[]" value="<?= htmlspecialchars($item['quantity']) ?>">
                                             </div>
-
                                         <?php endforeach; ?>
+
+
 
                                         <div class="d-flex justify-content-between mb-3 pt-4">
                                             <h6 class="font-weight-medium">Tổng tiền hàng</h6>
                                             <h6 class="totalorder"><?= number_format($total, 0, ',', ',') ?> VND</h6>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="pt-2">
-                                    <button type="submit" class="btn btn-primary btn-block py-3" name="submit" value="submit">Tiến hành thanh toán</button>
+                                    <div class="card-footer border-secondary bg-transparent">
+                                        <div class="d-flex justify-content-between mt-2">
+                                            <h5 class="font-weight-bold">Tổng</h5>
+                                            <h5 class="font-weight-bold"><?= number_format($total, 0, ',', ',') ?> VND</h5>
+                                        </div>
+                                        <button class="btn btn-block btn-primary my-3 py-3">Mua hàng</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Cart End -->
                 </form>
 
 
@@ -244,11 +212,31 @@ class Cart extends BaseView
                     });
                 </script>
 
-
+                <!-- Back to Top -->
+                <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
             </div>
+
+            <!-- JavaScript Libraries -->
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+            <script src="/public/assets/client/lib/easing/easing.min.js"></script>
+            <script src="/public/assets/client/lib/owlcarousel/owl.carousel.min.js"></script>
+
+            <!-- Contact Javascript File -->
+            <script src="/public/assets/client/mail/jqBootstrapValidation.min.js"></script>
+            <script src="/public/assets/client/mail/contact.js"></script>
+
+            <!-- Template Javascript -->
+            <script src="/public/assets/client/js/main.js"></script>
         </body>
 
         </html>
+
+
+
+
+
 <?php
+
     }
 }
