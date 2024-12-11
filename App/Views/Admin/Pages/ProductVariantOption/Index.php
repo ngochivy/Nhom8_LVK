@@ -55,7 +55,7 @@ class Index extends BaseView
                                                 <tr>
                                                     <th>ID</th>
                                                     <th>Tên</th>
-                                                    <th>Tên sản phẩm</th>
+                                                    <th>Loại biến thể</th>
 
                                                     <th><a href="/admin/productvariantoption/create" class="btn btn-success ">Thêm</a></th>
                                                 </tr>

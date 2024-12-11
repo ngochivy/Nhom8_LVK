@@ -72,25 +72,23 @@ class Index extends BaseView
                                                                 <?= htmlspecialchars($item['content']) ?>
                                                             </div>
                                                         </td>
-
                                                         <td>
                                                             <img src="<?= APP_URL ?>/public/uploads/blogs/<?= $item['image'] ?>" alt="" width="100px">
                                                         </td>
-                                                        <td><?= $item['author_id'] ?></td>
+                                                        <td><?= $item['author_username'] ?></td> <!-- Thay 'author_id' bằng 'author_username' -->
                                                         <td>
-                                                            <a href="/admin/blogs/<?= $item['id'] ?>" class="btn btn-primary ">Sửa</a>
+                                                            <a href="/admin/blogs/<?= $item['id'] ?>" class="btn btn-primary">Sửa</a>
                                                             <form action="/admin/blogs/<?= $item['id'] ?>" method="post" style="display: inline-block;" onsubmit="return confirm('Bạn có chắc chắn sửa!?')">
-                                                                <input type="hidden" name="method" value="DELETE" id="">
+                                                                <input type="hidden" name="method" value="DELETE">
                                                                 <button type="submit" class="btn btn-danger text-white">Xoá</button>
                                                             </form>
                                                         </td>
                                                     </tr>
                                                 <?php
                                                 endforeach;
-
-
                                                 ?>
                                             </tbody>
+
                                         </table>
                                     </div>
                                 <?php

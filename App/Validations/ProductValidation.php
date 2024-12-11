@@ -76,8 +76,8 @@ class ProductValidation
     public static function uploadImage()
     {
         // Kiểm tra nếu không có file hoặc file không được upload đúng cách
-        if (!isset($_FILES['image']) || !is_uploaded_file($_FILES['image']['tmp_name'])) {
-            NotificationHelper::error('no_file', 'Chưa chọn ảnh để upload!');
+if (!isset($_FILES['image']) || !is_uploaded_file($_FILES['image']['tmp_name'])) {
+            // NotificationHelper::error('no_file', 'Chưa chọn ảnh để upload!');
             return false;
         }
     

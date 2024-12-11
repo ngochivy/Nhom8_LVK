@@ -19,35 +19,49 @@ class BlogController
     // hiển thị danh sách
     public static function index()
     {
-
         $Blog = new Blog();
         $data = $Blog->getAllBlog();
-        // echo '<pre>';
-        // var_dump($data);
+
+        // Lấy username cho từng bài viết
+        foreach ($data as &$item) {
+            $item['author_username'] = $Blog->getUsernameByAuthorId($item['author_id']);
+        }
+
         Header::render();
         Notification::render();
         NotificationHelper::unset();
-        // // hiển thị giao diện danh sách
+        // hiển thị giao diện danh sách
         Index::render($data);
         Footer::render();
     }
 
 
+
     // hiển thị giao diện form thêm
     public static function create()
     {
+        $blogModel = new Blog();
 
-        $create = new Blog();
-        $data = $create->getAllBlog();
-        // var_dump($data);
+        // Lấy danh sách blog
+        $blogs = $blogModel->getAllBlog();
 
+        // Lấy danh sách người dùng để chọn tác giả
+        $authors = $blogModel->getAllUsers();
+
+        // Header, Notification
         Header::render();
         Notification::render();
         NotificationHelper::unset();
-        // hiển thị form thêm
-        Create::render($data);
+
+        // Truyền cả blogs và authors vào view Create
+        Create::render([
+            'blogs' => $blogs,
+            'authors' => $authors
+        ]);
+
         Footer::render();
     }
+
 
 
     // xử lý chức năng thêm
@@ -116,69 +130,64 @@ class BlogController
     }
 
     // xử lý chức năng sửa (cập nhật)
-   public static function update(int $id)
-   {
-       $is_valid = BlogValidation::edit();
+    public static function update(int $id)
+    {
+        $is_valid = BlogValidation::edit();
 
-       if (!$is_valid) {
-           NotificationHelper::error('update', 'Cập nhật bài viết thất bại');
-           header("location: /admin/blogs/$id");
-           exit;
-       }
-
-       $Title=$_POST['title'];
-       $Content=$_POST['content'];
-       $Author_ID=$_POST['author_id'];
-       
-       $blog=new Blog();
-       $is_exist=$blog->getOneBlogByName($Title);
-
-       if ($is_exist) {
-           if($is_exist['id']!=$id){
-               NotificationHelper::error('update', 'Tên bài viết đã tồn tại');
-               header("location: /admin/blogs/$id");
-               exit;
-           }
-  
-       }
-
-       // thực hiện cập nhật
-       $data=[
-           'title'=>$Title,
-           'content'=>$Content,
-           'author_id'=>$Author_ID
-       ];
-       $result=$blog->updateBlog($id,$data);
-
-       if ($result) {
-           NotificationHelper::success('update','Cập nhật bài viết thành công');
-           header('location: /admin/blogs');
-       }
-       else {
-           NotificationHelper::error('update', 'Cập nhật bài viết thất bại');
-           header('location: /admin/blogs/create');
-           exit;
-
-       }
-       $is_upload=BlogValidation::uploadImage();
-        if($is_upload){
-            $data['image']= $is_upload;
-        }
-
-       $result=$blog->updateBlog($id,$data);
-
-        if ($result) {
-            NotificationHelper::success('update','Cập nhật bài viét thành công');
-            header('location: /admin/blogs');
-        }
-        else {
+        if (!$is_valid) {
             NotificationHelper::error('update', 'Cập nhật bài viết thất bại');
             header("location: /admin/blogs/$id");
             exit;
-
         }
-   }
-    
+
+        $Title = $_POST['title'];
+        $Content = $_POST['content'];
+        $Author_ID = $_POST['author_id'];
+
+        $blog = new Blog();
+        $is_exist = $blog->getOneBlogByName($Title);
+
+        if ($is_exist) {
+            if ($is_exist['id'] != $id) {
+                NotificationHelper::error('update', 'Tên bài viết đã tồn tại');
+                header("location: /admin/blogs/$id");
+                exit;
+            }
+        }
+
+        // thực hiện cập nhật
+        $data = [
+            'title' => $Title,
+            'content' => $Content,
+            'author_id' => $Author_ID
+        ];
+        $result = $blog->updateBlog($id, $data);
+
+        if ($result) {
+            NotificationHelper::success('update', 'Cập nhật bài viết thành công');
+            header('location: /admin/blogs');
+        } else {
+            NotificationHelper::error('update', 'Cập nhật bài viết thất bại');
+            header('location: /admin/blogs/create');
+            exit;
+        }
+        $is_upload = BlogValidation::uploadImage();
+        if ($is_upload) {
+            $data['image'] = $is_upload;
+        }
+
+        $result = $blog->updateBlog($id, $data);
+
+        if ($result) {
+            NotificationHelper::success('update', 'Cập nhật bài viét thành công');
+            header('location: /admin/blogs');
+        } else {
+            NotificationHelper::error('update', 'Cập nhật bài viết thất bại');
+            header("location: /admin/blogs/$id");
+            exit;
+        }
+    }
+
 
     // // thực hiện xoá
     public static function delete(int $id)

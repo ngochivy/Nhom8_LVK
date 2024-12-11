@@ -193,11 +193,7 @@ class CheckoutController
    
         <p>Số lượng</p>
         <strong>$quantity</strong>
-
- 
-        
-   
-        <p>Tổng tiền
+<p>Tổng tiền
             <strong></strong>" . number_format($total_price, 0, ',', '.') . " đ</p>
 
 </table>
@@ -206,34 +202,6 @@ class CheckoutController
                 </body>
                 
             ";
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                 $mailCustomer = new PHPMailer(true);
@@ -323,7 +291,7 @@ class CheckoutController
             margin-top: 40px;
             font-size: 14px;
             text-align: center;
-            color: #888;
+color: #888;
         }
             .total {
             color: red;

@@ -51,7 +51,7 @@ class Index extends BaseView
                                         <table id="" class="table">
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
+                                                    <th>Id</th>
                                                     <th>Hình ảnh</th>
                                                     <th>Tên</th>
                                                     <th>Giá</th>
@@ -59,9 +59,9 @@ class Index extends BaseView
                                                     <th>Danh mục</th>
                                                   
                                                     <th>Số lượng</th>
-                                                    <th>hướng dẫn</th>
+                                                    <th>Hướng dẫn</th>
                                                   
-                                                    <th>nổi bật</th>
+                                                    <th>Nổi bật</th>
                                                     <th>Trạng thái</th>
                                                     <th> <a href="/admin/products/create" class="btn btn-success ">Thêm mới</a></th>
                                                 </tr>

@@ -47,9 +47,7 @@ class PayController
                     $sku = $data['sku'][$index];  // Lấy SKU từ POST
                     $total += $productPrice * $quantity;  // Tính tổng tiền của sản phẩm
 
-                    // In ra dữ liệu để kiểm tra
-                    echo "SKU: " . $sku . "<br>";  // In SKU để kiểm tra
-                    echo "Price: " . $productPrice . " Quantity: " . $quantity . "<br>";
+                    
 
                     // Thêm thông tin sản phẩm vào mảng
                     $products[] = [
@@ -71,7 +69,7 @@ class PayController
     }
 
     // Kiểm tra dữ liệu được truyền qua
-    var_dump($products);  // In dữ liệu sản phẩm để kiểm tra
+    // var_dump($products);  // In dữ liệu sản phẩm để kiểm tra
 
     // Render trang thanh toán với danh sách sản phẩm và tổng tiền
     Header::render();

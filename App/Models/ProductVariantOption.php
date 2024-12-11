@@ -64,4 +64,5 @@ class ProductVariantOption extends BaseModel
     {
         return $this->countTotal();
     }
+    
 }

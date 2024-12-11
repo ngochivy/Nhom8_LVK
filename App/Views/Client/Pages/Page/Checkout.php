@@ -1,17 +1,17 @@
 <?php
 
+
 namespace App\Views\Client\Pages\Page;
 
 use App\Models\Sku;
 use App\Views\BaseView;
 
+ob_start();
 class Checkout extends BaseView
 {
     public static function render($data = null)
     {
-        var_dump($data);
 
-        // var_dump($_POST['variants']);
 
 ?>
         <!-- Favicon -->
@@ -143,7 +143,7 @@ class Checkout extends BaseView
                                                             <h6 class="font-weight-bold" style="width: 100px;">Tên:</h6>
                                                             <h6>
                                                                 <?= htmlspecialchars($item['name']) ?>
-                                                                                                                            </h6>
+                                                            </h6>
                                                             <input type="hidden" name="name[]" value="<?= $item['name'] ?>"> <!-- Lưu tên sản phẩm -->
                                                         </div>
 
@@ -262,7 +262,6 @@ class Checkout extends BaseView
             </div>
 
             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
             <script>
                 function validateAndSubmit() {
 
@@ -1533,9 +1532,12 @@ class Checkout extends BaseView
                     });
                 });
             </script>
+
         </body>
 
         </html>
 <?php
     }
 }
+
+ob_end_flush();

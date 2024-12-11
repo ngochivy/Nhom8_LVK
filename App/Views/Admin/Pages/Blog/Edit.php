@@ -62,7 +62,7 @@ class Edit extends BaseView
                                     </div>
                                     <div class="form-group">
                                         <label for="content">Nội dung</label>
-                                        <textarea type="text" class="form-control" id="content" placeholder="Nhập nội dung bài viết..." name="content"><?= $data['content']?>  </textarea>
+                                        <textarea type="text" class="form-control" id="content" placeholder="Nhập nội dung bài viết..." name="content" rows="10"><?= $data['content']?>  </textarea>
                                     </div>
 
                                     <div class="form-group">

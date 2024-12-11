@@ -92,7 +92,7 @@ class Create extends BaseView
                                            <?php
                                             foreach ($data as $item) :
                                             ?>
-                                                <option value="<?= $item['category_id']?>"><?= $item['name']?></option>
+                                                <option value="<?= $item['id']?>"><?= $item['name']?></option>
                                             <?php
                                             endforeach;
                                             ?>

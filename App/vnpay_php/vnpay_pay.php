@@ -17,7 +17,7 @@ class vnpay_pay extends BaseView
 
 
        <div class="container mt-5">
-    <h3 class="text-center mb-4">TẠO MỚI ĐƠN HÀNG</h3>
+    <h3 class="text-center mb-4 text-primary">TẠO MỚI ĐƠN HÀNG</h3>
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-lg border-0 rounded-lg">

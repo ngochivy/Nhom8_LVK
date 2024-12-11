@@ -182,12 +182,12 @@ class Header extends BaseView
                                         <span class="hide-menu">Bài viết</span>
                                     </a>
                                 </li>
-                                <li class="sidebar-item">
+                                <!-- <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/productvariant" aria-expanded="false">
                                         <i class="me-3 fa fa-th-large" aria-hidden="true"></i>
                                         <span class="hide-menu">Loại biến thể</span>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="sidebar-item">
                                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/admin/productvariantoption" aria-expanded="false">
                                         <i class="me-3 fa fa-code-branch" aria-hidden="true"></i>
