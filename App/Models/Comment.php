@@ -122,4 +122,24 @@ class Comment extends BaseModel
             return $result;
         }
     }
+
+    public function getUsernamebyUserId($UserId) {
+        try {
+            $sql = "SELECT u.username FROM users u WHERE u.id = ?";
+            $conn = $this->_conn->MySQLi();
+            $stmt = $conn->prepare($sql);
+            
+            // Liên kết biến $authorId với tham số trong câu lệnh SQL
+            $stmt->bind_param('i', $UserId);
+            $stmt->execute();
+    
+            // Lấy kết quả
+            $result = $stmt->get_result()->fetch_assoc();
+            
+            return $result ? $result['username'] : null;
+        } catch (\Throwable $th) {
+            error_log('Lỗi khi lấy username: ' . $th->getMessage());
+            return null;
+        }
+    }
 }

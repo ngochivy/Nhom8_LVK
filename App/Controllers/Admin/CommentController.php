@@ -23,6 +23,13 @@ class CommentController
         $comment = new Comment();
         $data = $comment->getAllComment();
 
+        //get username by 
+        
+        foreach ($data as &$item) {
+            $item['username'] = $comment->getUsernamebyUserId($item['user_id']);
+        }
+        
+
         Header::render();
         Notification::render();
         NotificationHelper::unset();
